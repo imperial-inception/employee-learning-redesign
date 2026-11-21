@@ -109,7 +109,7 @@ A file named `NNx-name` is another state of screen `NN`, built in the same task.
 
 ## View it locally (clickable)
 
-Open `design/index.html` in a browser: a gallery of all 34 screens with a dark/light switch. Click a screen to open it; the sidebar, bell, search and profile chip take you to the matching screen. Inside a screen, **T** switches dark/light and **G** returns to the gallery.
+Open `design/index.html` in a browser: a gallery of all 34 screens and 32 sub-views with a dark/light switch. Click one to open it; the sidebar, bell, search, profile chip, tabs and steps take you to the matching view. Inside a screen, **T** switches dark/light and **G** returns to the gallery.
 
 Double-clicking the file works. To serve it instead (Windows, Python installed):
 

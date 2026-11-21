@@ -2,6 +2,8 @@
 
 Paste this file as the **first message** of a fresh Codex thread in the Skill Portal app repository (after copying this design kit into it, see step 0). Attach `design/screens/00-overview.png` and `design/screens/01-home.png` to that first message (`codex -i path1,path2` or paste). Use **high** reasoning for the recon/plan phase and **medium** for screen-by-screen iteration (OpenAI's frontend guidance; it changes by model, so adjust if a slice keeps failing).
 
+To see every view at once, open `design/index.html` (the gallery: 34 screens and 32 sub-views, dark/light switch). Each card opens a clickable mockup: the sidebar, profile chip, tabs and steps lead to the matching view. Use it to understand the flow; the PNGs in `design/screens/` stay the pixel reference.
+
 ---
 
 ## Goal
@@ -40,6 +42,7 @@ This is the most important instruction in this brief.
 10. Remove nothing the user can do today unless `docs/SCREENS.md` says where it moved.
 11. **Sub-views.** A reference named `NNx-name` (a letter after the number, e.g. `07b-profile-experience`, `05c-record-learned`, `20b-person-role`) is another state of screen `NN`: a tab, a step or a dialog. Build it in the same task as screen `NN`; it has its own reference PNG and its own acceptance criteria in `docs/SCREENS.md`. If you need a state that is drawn nowhere, don't invent a layout: compose it from the nearest drawn view and list it in `design/GAPS.md`.
 12. **Roles and manager-set goals.** Managers assign each direct report a professional role from the admin-configured choices (`20b`, `10b`, admin `15d`), and can set a goal for a direct report (`20c`; the employee's side is `04b`). Follow the rules in `docs/CONCEPT.md`. If the API can't do one of these yet, hide that action, show nothing fake, and log it in `design/GAPS.md`.
+13. **Open product decisions.** Three behaviours are drawn as defaults that I have not confirmed yet: (a) an employee cannot decline a goal their manager set, only comment on it and discuss it in a 1:1 (`04b`); (b) the manager sees an employee's quick-feedback answers, but they never affect the review decision (`05e`, `09`); (c) activity owners see combined feedback only after 5 or more answers (`15f`). Build the defaults, keep each one in a single place (one constant or server setting, not repeated across components) so a change is a one-line edit, and add no UI to change them.
 
 ## Verification loop (build this first; use it for every screen)
 
