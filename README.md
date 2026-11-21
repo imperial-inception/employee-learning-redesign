@@ -86,6 +86,18 @@ High-fidelity redesign of **Skill Portal**, an employee development app whose go
 4. Approve the plan → **Phase 1** (tokens, components, verification harness) → **Home** as the first screen through the full loop.
 5. Only then start `/goal` with `codex/GOAL.md` for the remaining screens. Review each screen's report in `design/PROGRESS.md`, and finish with a human pass in the Codex in-app browser.
 
+## View it locally (clickable)
+
+Open `design/index.html` in a browser: a gallery of all 34 screens with a dark/light switch. Click a screen to open it; the sidebar, bell, search and profile chip take you to the matching screen. Inside a screen, **T** switches dark/light and **G** returns to the gallery.
+
+Double-clicking the file works. To serve it instead (Windows, Python installed):
+
+```powershell
+python -m http.server 8791 --bind 127.0.0.1 --directory design
+```
+
+Then open http://localhost:8791/.
+
 ## Re-rendering the PNGs
 
 ```powershell

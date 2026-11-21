@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Skill Portal: screen gallery</title>
+<link rel="stylesheet" href="html/assets/styles.css">
+<style>
+html,body{height:auto;overflow:auto}
+body{background:var(--bg);color:var(--text);font-family:Geist,"Segoe UI",sans-serif}
+.wrap{max-width:1680px;margin:0 auto;padding:36px 40px 60px}
+.top{display:flex;align-items:flex-end;gap:16px;margin-bottom:8px}
+.top h1{font-size:28px;font-weight:600;letter-spacing:-.03em;margin:0}
+.top p{color:var(--muted);margin:6px 0 0;font-size:14px}
+.seg{margin-left:auto}
+.seg span{cursor:pointer}
+.hint{font-size:12.5px;color:var(--faint);margin:14px 0 6px}
+.hint .kbd{margin:0 2px}
+h2{font-size:13px;font-weight:600;color:var(--muted);letter-spacing:.02em;margin:34px 0 12px;display:flex;align-items:center;gap:10px}
+h2 small{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);transition:border-color .15s,transform .15s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card img{display:block;width:100%;aspect-ratio:1600/1060;object-fit:cover;object-position:top left;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.card .m{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.card .n{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.card b{font-weight:550;font-size:13.5px}
+@media (max-width:700px){.wrap{padding:20px 16px 40px}.top{flex-wrap:wrap}.seg{margin-left:0}}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div><h1>Skill Portal redesign</h1><p>34 screens. Click one to open it; inside, the sidebar, bell, search and profile chip are clickable.</p></div>
+    <div class="seg" id="theme"><span data-t="">Dark</span><span data-t="light">Light</span></div>
+  </div>
+  <div class="hint">Inside a screen: <span class="kbd">T</span> switches dark / light · <span class="kbd">G</span> comes back here. Names and numbers are placeholders.</div>
+  <div id="groups"></div>
+</div>
+<script>
+const G = [
+  ['Overview', [['00-overview', 'Overview']]],
+  ['Employee', [['01-home', 'Home'], ['02-command', 'Command palette (Ctrl K)'], ['03-learning', 'Learning'], ['19-pathways', 'Learning › Pathways'],
+    ['06-my-learning', 'Learning › My learning'], ['05-record-new', 'Record learning'], ['04-goals', 'Goals & pathways'], ['18-goal-editor', 'Goal editor'],
+    ['25-growth', 'Next level'], ['08-colleagues', 'Colleagues'], ['07-profile', 'Profile'], ['23-agent-confirm', 'Connected agents'],
+    ['21-welcome', 'Welcome (first week)'], ['22-notifications', 'Notifications']]],
+  ['Manager', [['31-manager-home', 'Manager home'], ['09-reviews', 'Reviews'], ['33-reviews-bulk', 'Reviews · bulk'], ['32-team-record', 'Record for your team'],
+    ['10-team', 'Team'], ['20-person', 'One person'], ['26-one-on-one', '1:1 prep'], ['30-team-insights', 'Team insights'], ['11-reports', 'Reports']]],
+  ['Admin console', [['12-admin-health', 'Data health'], ['13-admin-catalog', 'Catalog'], ['16-admin-sources', 'Sources'], ['14-admin-templates', 'Pathway templates'],
+    ['15-admin-rules', 'Rules & populations'], ['17-admin-access', 'Access'], ['24-admin-audit', 'Audit log']]],
+  ['Proposals (not agreed scope)', [['27-skills-map', 'Team skills map'], ['28-lms-inbox', 'LMS completions inbox'], ['29-mobile', 'On the go (mobile)']]]
+];
+const light = new URLSearchParams(location.search).get('theme') === 'light';
+if (light) document.documentElement.setAttribute('data-theme', 'light');
+document.querySelectorAll('#theme span').forEach(s => {
+  if ((s.dataset.t === 'light') === light) s.classList.add('on');
+  s.onclick = () => { location.search = s.dataset.t ? '?theme=light' : ''; };
+});
+const q = light ? '?theme=light' : '';
+document.getElementById('groups').innerHTML = G.map(([title, items]) =>
+  `<h2>${title} <small>${items.length}</small></h2><div class="grid">` + items.map(([f, t]) =>
+    `<a class="card" href="html/${f}.html${q}"><img loading="lazy" alt="" src="screens/${f}${light ? '-light' : ''}.png">
+      <div class="m"><span class="n">${f.slice(0, 2)}</span><b>${t}</b></div></a>`).join('') + '</div>').join('');
+document.addEventListener('keydown', e => { if (e.key.toLowerCase() === 't' && !e.ctrlKey && !e.metaKey) location.search = light ? '' : '?theme=light'; });
+</script>
+</body></html>

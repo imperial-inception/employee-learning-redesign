@@ -73,7 +73,7 @@
   const page = document.getElementById('page');
   if (page) {
     const ws = b.dataset.ws || 'employee', act = b.dataset.active || '', mgr = b.dataset.role === 'manager';
-    const a = (id, icon, label, extra = '') => `<a class="${act === id ? 'active' : ''}">${ico(icon)}<span>${label}</span>${extra}</a>`;
+    const a = (id, icon, label, extra = '') => `<a class="${act === id ? 'active' : ''}" data-go="${id}">${ico(icon)}<span>${label}</span>${extra}</a>`;
     // per-screen nav counts: <body data-counts='{"reviews":7}'>
     let counts = {}; try { counts = JSON.parse(b.dataset.counts || '{}'); } catch (e) {}
     const cnt = (id, d) => { const v = id in counts ? counts[id] : d; return v ? `<span class="cnt">${v}</span>` : ''; };
@@ -100,14 +100,14 @@
           ${a('reports', 'file', 'Reports')}</nav>` : ''}`;
     const side = `<aside class="sidebar">
         <div class="ws-btn"><div class="mark">${ico('cap')}</div><b>Skill Portal</b>${ws === 'admin' ? '<span class="ws-tag">ADMIN</span>' : ''}${ico('cd', 'xs')}
-          <div class="bell">${ico('bell', 'sm')}<span class="dot"></span></div></div>
-        <div class="cmdk-btn">${ico('search', 'sm')}<span>Search or ask…</span><span class="kbd">Ctrl K</span></div>
+          <div class="bell" data-go="bell">${ico('bell', 'sm')}<span class="dot"></span></div></div>
+        <div class="cmdk-btn" data-go="cmdk">${ico('search', 'sm')}<span>Search or ask…</span><span class="kbd">Ctrl K</span></div>
         ${nav}
         <div class="side-foot"><nav class="nav">
           ${ws === 'admin' ? a('back', 'swap', 'Back to my portal') : a('admin', 'key', 'Admin console')}
           ${a('help', 'help', 'Help &amp; guides')}</nav></div></aside>`;
     // Profile corner, top right: the only thing above the page. Its menu: Profile, Connected agents, Theme, Sign out.
-    const top = `<div class="utop"><div class="me-chip${act === 'me' ? ' active' : ''}" title="Profile, connected agents, theme, sign out">
+    const top = `<div class="utop"><div class="me-chip${act === 'me' ? ' active' : ''}" data-go="me" title="Profile, connected agents, theme, sign out">
         <div class="avatar">${user.initials}</div><div class="pc-who"><b>${user.name}</b><small>${user.role}</small></div>${ico('cd', 'xs')}</div></div>`;
     const shell = document.createElement('div');
     shell.className = 'app';
@@ -115,6 +115,25 @@
     b.insertBefore(shell, page);
     document.getElementById('slot').appendChild(page);
   }
+  // Clickable preview (no visual change): sidebar, bell, search and profile chip open the matching mockup.
+  // Keys: T toggles dark/light, G opens the gallery. The theme choice travels with every click.
+  const GO = { today: '01-home', find: '03-learning', plan: '04-goals', colleagues: '08-colleagues', reviews: '09-reviews',
+    team: '10-team', insights: '30-team-insights', reports: '11-reports', admin: '12-admin-health', back: '01-home',
+    health: '12-admin-health', catalog: '13-admin-catalog', templates: '14-admin-templates', rules: '15-admin-rules',
+    sources: '16-admin-sources', access: '17-admin-access', audit: '24-admin-audit', me: '07-profile',
+    bell: '22-notifications', cmdk: '02-command' };
+  const themeQ = () => document.documentElement.getAttribute('data-theme') === 'light' ? '?theme=light' : '';
+  document.head.insertAdjacentHTML('beforeend', '<style>[data-go]{cursor:pointer}</style>');
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-go]'); if (!el || !GO[el.dataset.go]) return;
+    e.preventDefault(); location.href = GO[el.dataset.go] + '.html' + themeQ();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.target.isContentEditable) return;
+    const k = e.key.toLowerCase();
+    if (k === 't') location.search = themeQ() ? '' : '?theme=light';
+    if (k === 'g') location.href = '../index.html' + themeQ();
+  });
   // keep class and style on the placeholder so icons can be coloured directly: <i data-i="alert" class="c-warn">
   document.querySelectorAll('i[data-i]').forEach(el => {
     const style = el.getAttribute('style');
