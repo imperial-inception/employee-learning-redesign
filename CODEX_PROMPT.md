@@ -84,6 +84,7 @@ Proposal screens `27–29` (skills map, LMS completions inbox, mobile) are **out
 
 ```
 Screen: <id + name>
+Sub-views: <each id with its diff ratio, dark · light, or “none”>
 Diff ratio: dark <x%> · light <y%>   (threshold <t%>)
 Remaining differences: <numbered list or “none”>
 Acceptance criteria: <n/n passed, list any failed>

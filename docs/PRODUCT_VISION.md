@@ -24,7 +24,7 @@ The rule for every feature: **give before you take.** Every time we ask an emplo
 1. **Home opens to one focus and one next step**, not a dashboard of everything.
 2. **Ctrl K, ask anything** (“what should I learn for interface management?”) and get an answer that cites real catalog items, each one-click addable to the plan.
 3. **Completions arrive by themselves** from the LMS. Recording becomes “add a 2-line reflection, submit”: under a minute, no retyping.
-4. **Your manager approves in 10 seconds**, from the review queue, a phone, or an actionable Teams or email message.
+4. **Your manager approves in 10 seconds**, from the review queue, a phone, or an actionable chat or email message.
 5. **“Next level” shows exactly what to grow**, with the evidence you already have counted for you.
 6. **The 1:1 agenda builds itself**: what was approved since last time, what's stuck, talking points from both sides.
 7. **Your portfolio is yours**: a clean, exportable record of what you learned and applied, ready for a promotion packet.
@@ -61,7 +61,7 @@ The current split (Next.js UI, Python API that owns identity, permissions, rules
 4. **Reporting read models** (database views or worker-refreshed tables) that implement the counting rules once: each person once, summed totals, approved only. Team view, reports and exports all read from them.
 5. **Ingestion pipeline as a product**: stage → validate → detect conflicts and gaps → preview → publish, with freshness targets per source. A failed refresh pages an admin. If the org tree is older than ~36 h, manager-only actions pause instead of silently using stale access.
 6. **Authorization in one policy module**: relationship-based (“current manager of”) plus roles taken from the company directory/auth layer instead of an app-local admin list.
-7. **Notification service** with digests, channels (email, Teams), deduplication and quiet hours, so 5 due items don't mean 20 messages.
+7. **Notification service** with digests, channels (email, chat), deduplication and quiet hours, so 5 due items don't mean 20 messages.
 8. **Integrations**: LMS completions in (read-only), intranet community feed in (articles, questions, events by topic, read-only, links out), actionable notifications out; optional calendar hook for 1:1s. One recommendation service ranks catalog, community and people items together and returns the Why with each item, so the UI never guesses.
 9. **Product analytics that respect privacy**: aggregated events to measure the loop (below), with no individual tracking dashboards.
 

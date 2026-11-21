@@ -10,7 +10,7 @@ Copy the block below into the app repository's root `AGENTS.md` (create it if mi
 - Fonts: Geist + Geist Mono via next/font (geist package). Numbers, codes, dates and kbd use Geist Mono / tabular-nums.
 - Components: use only the component layer listed in components/README.md. Status = StatusIcon/StatusPill mapped from the API enum, never computed in the browser.
 - The backend owns identity, permissions, rules and trusted data. The UI never computes status, counts, eligibility, on-time, progress or permissions. Missing data = honest empty state + entry in design/GAPS.md.
-- One screen per task. Done = the per-screen checklist in CODEX_PROMPT.md, proven by tests you ran.
+- One screen per task, together with its sub-views (ids with a letter after the number, e.g. 07b, 20b: tabs, steps, dialogs). Done = the per-screen checklist in CODEX_PROMPT.md for the screen and each sub-view, proven by tests you ran.
 
 ### Commands
 - Type check: <fill in, e.g. pnpm tsc --noEmit>
