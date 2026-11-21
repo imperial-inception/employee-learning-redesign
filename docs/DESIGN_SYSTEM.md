@@ -31,7 +31,7 @@ Implement these as CSS variables on `:root` (dark, the default) and `[data-theme
 | Token | Value | Use |
 |---|---|---|
 | `--bg` | `#09090B` | page background |
-| `--panel` | `#0D0D10` | top navbar, subnav |
+| `--panel` | `#0D0D10` | sidebar |
 | `--surface` | `#121215` | panels, cards, inputs |
 | `--surface-2` | `#17171B` | inset areas, secondary buttons |
 | `--surface-3` | `#1D1D22` | kbd, empty bar track, selected segment |
@@ -86,7 +86,7 @@ shadcn's `--accent` means "hover background", not brand colour. Keep the brand c
 | `--destructive` | `--danger` |
 | `--border` / `--input` | `--line` / `--line-2` |
 | `--ring` | `--brand` |
-| navbar (`AppShell`) | `--panel`, `--text-2`, `--sel` |
+| `--sidebar` and friends | `--panel`, `--text-2`, `--sel` |
 
 ### Typography
 
@@ -131,7 +131,7 @@ Learning types are marked with a small coloured dot inside a neutral tag: Formal
 
 | Component | Notes |
 |---|---|
-| `AppShell` | Top navbar, 56px, `--panel` with a bottom hairline; light theme uses white. Left: logo mark + product name, then nav tabs (32px tall, active = `--sel` fill, count badges in mono). Right: `Search or ask… Ctrl K` trigger (250px), bell with an accent dot, **profile avatar** (30px; active ring when on Profile) opening a menu: Profile, Connected agents, Admin console (if permitted), Theme, Sign out. Manager pages under **My team** add a 42px subnav (Reviews · Team · Insights · Reports, active = 1.5px underline). Content is centred, max-width 1440px, padding 24px 36px. Admin console is a separate workspace: same bar, its own tabs, “Back to my portal” on the right. Below 1100px the tabs collapse into a menu button. |
+| `AppShell` | Left sidebar, 236px, `--panel` with a right hairline (light theme `#F4F4F5`): workspace button + bell, `Search or ask… Ctrl K` trigger, nav groups (Home · Learning · Goals & pathways · Colleagues; manager group My team), footer (Admin console / Help). **Profile corner** top right of the main area: a 52px band holding only the profile chip (30px avatar, name, role, chevron; `--surface` fill, `--line` border, pill radius; `--sel` + accent ring when on Profile) that opens Profile, Connected agents, Theme, Sign out. Content padding 2px 36px 28px below the band. Admin console is a separate workspace with its own sidebar. |
 | `NavItem` | 31px, icon 16px `--muted`, active = `--sel` background + `--text`. Optional mono count on the right (`--danger` when it's an alert). |
 | `CommandPalette` | cmdk. Scopes (All, Learning, Pathways, People, Actions), first row “Ask the advisor: …”, grouped results, footer with keyboard hints and “Results respect your permissions”. |
 | `PageHeader` | optional crumbs, title, one-line subtitle, right-aligned actions (max one primary). |

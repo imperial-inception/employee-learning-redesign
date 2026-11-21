@@ -77,30 +77,41 @@
     // per-screen nav counts: <body data-counts='{"reviews":7}'>
     let counts = {}; try { counts = JSON.parse(b.dataset.counts || '{}'); } catch (e) {}
     const cnt = (id, d) => { const v = id in counts ? counts[id] : d; return v ? `<span class="cnt">${v}</span>` : ''; };
-    // Optional user for the avatar: <body data-user='{"name":"Omar Haddad","initials":"OH"}'>
-    let user = { name: 'Jordan Lee', initials: 'JL' }; try { Object.assign(user, JSON.parse(b.dataset.user || '{}')); } catch (e) {}
-    const t = (id, label, extra = '') => `<a class="${act === id ? 'active' : ''}">${label}${extra}</a>`;
-    const teamIds = ['reviews', 'team', 'insights', 'reports'];
-    const inTeam = teamIds.includes(act);
-    const primary = ws === 'admin'
-      ? `${t('health', 'Data health', '<span class="cnt alert">3</span>')}${t('catalog', 'Catalog')}${t('templates', 'Pathway templates')}
-         ${t('rules', 'Rules &amp; populations')}${t('sources', 'Sources')}${t('access', 'Access')}${t('audit', 'Audit log')}`
-      : `${t('today', 'Home')}${t('find', 'Learning')}${t('plan', 'Goals &amp; pathways')}${t('colleagues', 'Colleagues')}
-         ${mgr ? `<a class="${inTeam ? 'active' : ''}">My team${cnt('reviews', 4)}${ico('cd', 'xs')}</a>` : ''}`;
-    const top = `<header class="topbar">
-        <div class="brand"><div class="mark">${ico('cap')}</div><b>Skill Portal</b>${ws === 'admin' ? '<span class="ws-tag">ADMIN</span>' : ''}</div>
-        <nav class="tnav">${primary}</nav>
-        <div class="tr">
-          ${ws === 'admin' ? `<span class="btn sm ghost">${ico('swap', 'sm')} Back to my portal</span>` : ''}
-          <div class="cmdk-btn">${ico('search', 'sm')}<span>Search or ask…</span><span class="kbd">Ctrl K</span></div>
-          <div class="tb-icon">${ico('bell')}<span class="dot"></span></div>
-          <div class="me-btn${act === 'me' ? ' active' : ''}" title="${user.name}: Profile, connected agents, admin console, theme, sign out"><div class="avatar">${user.initials}</div>${ico('cd', 'xs')}</div>
-        </div></header>`;
-    const sub = (ws !== 'admin' && mgr && inTeam) ? `<nav class="subnav">
-        ${t('reviews', 'Reviews', cnt('reviews', 4))}${t('team', 'Team', cnt('team', 11))}${t('insights', 'Insights')}${t('reports', 'Reports')}</nav>` : '';
+    // Optional user for the profile corner: <body data-user='{"name":"Omar Haddad","initials":"OH","role":"Systems Engineer"}'>
+    let user = { name: 'Jordan Lee', initials: 'JL', role: 'Systems Engineer' }; try { Object.assign(user, JSON.parse(b.dataset.user || '{}')); } catch (e) {}
+    const nav = ws === 'admin'
+      ? `<div class="nav-sec" style="padding-top:2px">Admin console</div><nav class="nav">
+          ${a('health', 'shield', 'Data health', '<span class="cnt alert">3</span>')}
+          ${a('catalog', 'book', 'Catalog', '<span class="cnt">536</span>')}
+          ${a('templates', 'route', 'Pathway templates', '<span class="cnt">4</span>')}
+          ${a('rules', 'sliders', 'Rules &amp; populations')}
+          ${a('sources', 'cloud', 'Sources', '<span class="cnt">5</span>')}
+          ${a('access', 'key', 'Access')}
+          ${a('audit', 'file', 'Audit log')}</nav>`
+      : `<nav class="nav">
+          ${a('today', 'home', 'Home')}
+          ${a('find', 'book', 'Learning')}
+          ${a('plan', 'target', 'Goals &amp; pathways')}
+          ${a('colleagues', 'users', 'Colleagues')}</nav>
+        ${mgr ? `<div class="nav-sec">My team</div><nav class="nav">
+          ${a('reviews', 'inbox', 'Reviews', cnt('reviews', 4))}
+          ${a('team', 'users', 'Team', cnt('team', 11))}
+          ${a('insights', 'chart', 'Insights')}
+          ${a('reports', 'file', 'Reports')}</nav>` : ''}`;
+    const side = `<aside class="sidebar">
+        <div class="ws-btn"><div class="mark">${ico('cap')}</div><b>Skill Portal</b>${ws === 'admin' ? '<span class="ws-tag">ADMIN</span>' : ''}${ico('cd', 'xs')}
+          <div class="bell">${ico('bell', 'sm')}<span class="dot"></span></div></div>
+        <div class="cmdk-btn">${ico('search', 'sm')}<span>Search or ask…</span><span class="kbd">Ctrl K</span></div>
+        ${nav}
+        <div class="side-foot"><nav class="nav">
+          ${ws === 'admin' ? a('back', 'swap', 'Back to my portal') : a('admin', 'key', 'Admin console')}
+          ${a('help', 'help', 'Help &amp; guides')}</nav></div></aside>`;
+    // Profile corner, top right: the only thing above the page. Its menu: Profile, Connected agents, Theme, Sign out.
+    const top = `<div class="utop"><div class="me-chip${act === 'me' ? ' active' : ''}" title="Profile, connected agents, theme, sign out">
+        <div class="avatar">${user.initials}</div><div class="pc-who"><b>${user.name}</b><small>${user.role}</small></div>${ico('cd', 'xs')}</div></div>`;
     const shell = document.createElement('div');
     shell.className = 'app';
-    shell.innerHTML = top + sub + `<div class="main"><div class="content" id="slot"></div></div>`;
+    shell.innerHTML = side + `<div class="main">${top}<div class="content" id="slot"></div></div>`;
     b.insertBefore(shell, page);
     document.getElementById('slot').appendChild(page);
   }

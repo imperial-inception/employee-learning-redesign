@@ -6,7 +6,7 @@ Reference images: `design/screens/<file>.png` (dark) and `<file>-light.png`. Ref
 
 **Product goal:** help employees improve themselves; give managers insight to help their people. Recording/review is plumbing, kept quiet.
 
-**Navigation:** a top navbar (56px). Left: logo, then Home · Learning (tabs: Find · Pathways · My learning) · Goals & pathways (incl. Next level) · Colleagues; managers add **My team**, which opens a second bar: Reviews · Team · Insights · Reports. Right: the `Search or ask… Ctrl K` trigger, the bell, and the **profile avatar** (menu: Profile, Connected agents, Admin console if permitted, Theme, Sign out). Admins get a separate **Admin console** with its own tabs and a “Back to my portal” button. Ctrl/⌘ K opens the command palette everywhere.
+**Navigation:** a left sidebar (236px): workspace + bell, `Search or ask… Ctrl K`, then Home · Learning (tabs: Find · Pathways · My learning) · Goals & pathways (incl. Next level) · Colleagues; managers add a **My team** group: Reviews · Team · Insights · Reports; footer: Admin console (if permitted) · Help. **Profile sits top right**, alone in a slim 52px band above the page: avatar, name and role, opening Profile, Connected agents, Theme, Sign out. Admins get a separate **Admin console** workspace with its own sidebar and “Back to my portal”. Ctrl/⌘ K opens the command palette everywhere.
 
 ---
 
@@ -77,7 +77,7 @@ Not a product screen. The learning loop, the navigation, six principles. Read it
 - **Primary:** “Use this goal” on a starter goal.
 - **Accept:** 3 optional steps (focus goal, pathway, visibility); no fake numbers; empty sections collapse to one honest line.
 
-### 22 · Notifications: `22-notifications`, panel from the topbar bell
+### 22 · Notifications: `22-notifications`, panel from the sidebar bell
 - **Accept:** grouped Today / This week; each item has one action; agent changes and returned work come first; digest preference visible; “Mark all read”.
 
 ---

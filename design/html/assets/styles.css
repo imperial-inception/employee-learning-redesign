@@ -54,40 +54,40 @@ body{font-family:Geist,"Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;
 .sp{margin-left:auto}
 
 /* ---------------- shell ---------------- */
-/* Top navigation bar (logo + sections left; search, bell and profile avatar right). */
-.app{display:flex;flex-direction:column;height:100vh;overflow:hidden}
-.topbar{height:56px;flex:none;display:flex;align-items:center;gap:6px;padding:0 24px;background:var(--panel);border-bottom:1px solid var(--line);position:relative;z-index:2}
-.brand{display:flex;align-items:center;gap:9px;margin-right:20px;flex:none}
-.brand .mark{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--cyan));flex:none}
-.brand .mark .i{width:16px;height:16px}
-.brand b{font-weight:600;font-size:14.5px;letter-spacing:-.01em;white-space:nowrap}
-.tnav{display:flex;align-items:center;gap:2px}
-.tnav a,.subnav a{display:flex;align-items:center;gap:7px;white-space:nowrap;text-decoration:none;font-weight:500;font-size:13.5px;color:var(--text-2)}
-.tnav a{height:32px;padding:0 12px;border-radius:8px}
-.tnav a .i{width:12px;height:12px;color:var(--muted)}
-.tnav a.active{background:var(--sel);color:var(--text)}
-.cnt{font:500 11px "Geist Mono",monospace;color:var(--muted)}
-.tnav .cnt{height:18px;min-width:18px;padding:0 5px;border-radius:999px;display:inline-grid;place-items:center;background:var(--accent-bg);color:var(--accent-2)}
-[data-theme=light] .tnav .cnt{color:var(--accent)}
-.tnav .cnt.alert{background:var(--danger-bg);color:var(--danger)}
-.tr{margin-left:auto;display:flex;align-items:center;gap:10px}
-.cmdk-btn{display:flex;align-items:center;gap:8px;width:250px;height:32px;padding:0 9px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px}
+/* Sidebar: workspace, bell, search, navigation, admin + help. The profile lives top right (below). */
+.app{display:grid;grid-template-columns:236px 1fr;height:100vh;overflow:hidden}
+.sidebar{background:var(--panel);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:12px 10px}
+.ws-btn{display:flex;align-items:center;gap:9px;padding:6px 8px;border-radius:8px}
+.ws-btn .mark{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--cyan))}
+.ws-btn .mark .i{width:15px;height:15px}
+.ws-btn b{font-weight:600;font-size:13.5px;white-space:nowrap}
+.ws-btn .bell{margin-left:auto;position:relative;color:var(--muted);width:28px;height:28px;display:grid;place-items:center;border-radius:7px}
+.ws-btn .bell .dot{position:absolute;top:5px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.cmdk-btn{display:flex;align-items:center;gap:8px;margin:10px 2px 12px;height:32px;padding:0 9px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px}
 .cmdk-btn .kbd{margin-left:auto}
-.tb-icon{position:relative;width:32px;height:32px;display:grid;place-items:center;border-radius:8px;color:var(--text-2)}
-.tb-icon .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--panel)}
-.me-btn{display:flex;align-items:center;gap:4px;padding:2px 4px 2px 2px;border-radius:999px;color:var(--muted)}
-.me-btn .avatar{width:30px;height:30px;font-size:11px}
-.me-btn.active .avatar{box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--accent)}
-.subnav{height:42px;flex:none;display:flex;align-items:stretch;gap:4px;padding:0 24px;background:var(--panel);border-bottom:1px solid var(--line)}
-.subnav a{padding:0 10px;margin-bottom:-1px}
-.subnav a.active{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
-.subnav .cnt{margin-left:2px}
-.ws-tag{font:500 10.5px "Geist Mono",monospace;padding:2px 6px;border-radius:5px;background:var(--accent-bg);color:var(--accent-2);margin-left:2px}
-.main{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--bg)}
+.sidebar .nav{display:flex;flex-direction:column;gap:1px}
+.sidebar .nav a{display:flex;align-items:center;gap:10px;height:31px;padding:0 9px;border-radius:7px;color:var(--text-2);font-weight:500;font-size:13.5px;text-decoration:none;white-space:nowrap}
+.sidebar .nav a .i{color:var(--muted)}
+.sidebar .nav a.active{background:var(--sel);color:var(--text)}
+.sidebar .nav a.active .i{color:var(--text)}
+.sidebar .nav .cnt{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.sidebar .nav .cnt.alert{color:var(--danger)}
+.nav-sec{font-size:11.5px;font-weight:500;color:var(--faint);padding:16px 9px 5px}
+.side-foot{margin-top:auto;padding-top:10px;border-top:1px solid var(--line)}
+.ws-tag{font:500 10.5px "Geist Mono",monospace;padding:2px 6px;border-radius:5px;background:var(--accent-bg);color:var(--accent-2);margin-left:4px}
+.main{position:relative;overflow:hidden;background:var(--bg)}
 .main::before{content:"";position:absolute;inset:-200px 0 auto 0;height:520px;background:radial-gradient(60% 60% at 30% 0%,rgba(125,139,255,.09),transparent 70%);pointer-events:none}
 [data-theme=light] .main::before{background:radial-gradient(60% 60% at 30% 0%,rgba(75,91,239,.06),transparent 70%)}
-/* content keeps the same working width as before (about 1368px) and centres on wide screens */
-.content{position:relative;height:100%;overflow:hidden;max-width:1440px;margin:0 auto;padding:24px 36px 26px}
+.cnt{font:500 11px "Geist Mono",monospace;color:var(--muted)}
+/* Profile corner: the only thing above the page. Avatar, name and role; opens Profile, Connected agents, Theme, Sign out. */
+.utop{position:relative;z-index:1;height:52px;display:flex;align-items:center;justify-content:flex-end;padding:0 24px}
+.me-chip{display:flex;align-items:center;gap:9px;height:38px;padding:0 10px 0 4px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+.me-chip .avatar{width:30px;height:30px;font-size:11px}
+.me-chip .pc-who b{display:block;font-weight:550;font-size:13px;line-height:1.15;color:var(--text)}
+.me-chip .pc-who small{display:block;font-size:11.5px;line-height:1.25;color:var(--muted)}
+.me-chip.active{background:var(--sel);border-color:var(--line-2)}
+.me-chip.active .avatar{box-shadow:0 0 0 2px var(--sel),0 0 0 3.5px var(--accent)}
+.content{position:relative;height:calc(100% - 52px);overflow:hidden;padding:2px 36px 28px}
 
 /* ---------------- page header ---------------- */
 .crumbs{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);margin-bottom:10px}
@@ -133,7 +133,7 @@ h1{font-size:26px;line-height:1.15;font-weight:600;letter-spacing:-.025em}
 .panel-h .cnt{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
 .panel-h .lnk{margin-left:auto;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:4px}
 [data-theme=light] .panel{box-shadow:0 1px 2px rgba(9,9,11,.04),0 2px 6px -2px rgba(9,9,11,.04)}
-[data-theme=light] .topbar,[data-theme=light] .subnav{background:#FFFFFF}
+[data-theme=light] .sidebar{background:#F4F4F5}
 [data-theme=light] .panel.glow{box-shadow:var(--glow)}
 .glow{position:relative;border:1px solid transparent;background:
   linear-gradient(160deg,var(--hero-wash),transparent 45%) padding-box,
