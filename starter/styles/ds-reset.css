@@ -1,0 +1,23 @@
+/* Undoes the HOST APP's global reset inside the design area.
+   The reference mockups were drawn on plain browser defaults. A host app usually ships a global reset
+   (Tailwind preflight: svg/img display:block, unstyled lists and headings, button resets; MUI CssBaseline),
+   which would quietly move things by a few pixels. Inside [data-ds] this layer puts browser defaults back.
+
+   Why a layer: it must beat Tailwind's base layer (preflight) but lose to Tailwind utilities and to every
+   unlayered rule (ds.css, CSS modules, MUI/Emotion). The layer order is declared at the top of
+   styles/globals.css: theme, base, ds-reset, components, utilities.
+
+   SVG is excluded from `all: revert`: SVG drawing attributes (stroke, fill, stroke-width, width/height on <svg>)
+   are low-priority author styles, and reverting them would erase every icon and chart. Only the two properties
+   preflight changes on <svg> itself are restored. */
+@layer ds-reset {
+  :where([data-ds]) :where(:not(svg, svg *)),
+  :where([data-ds]) :where(:not(svg, svg *))::before,
+  :where([data-ds]) :where(:not(svg, svg *))::after {
+    all: revert;
+  }
+  :where([data-ds]) :where(svg) {
+    display: revert;
+    vertical-align: revert;
+  }
+}

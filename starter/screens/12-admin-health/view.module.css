@@ -1,0 +1,61 @@
+/* GENERATED from the page-local <style> of design/html/12-admin-health.html (kit classes wrapped in :global, view root = .v). */
+:where(.v) :global(#page){height:100%;display:flex;flex-direction:column}
+/* local fix: shared admin sidebar header wraps "Skill Portal" next to the ADMIN tag (see report) */
+:where(.v) :global(.ws-btn){gap:7px}:where(.v) :global(.ws-btn) b{white-space:nowrap}:where(.v) :global(.ws-tag){margin-left:0;padding:2px 5px}
+.chk{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+/* banners */
+.bn{display:flex;flex-direction:column;gap:10px}
+:where(.v) :global(.banner){padding:12px 14px 12px 12px;gap:12px}
+:global(.banner) .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
+:global(.banner):global(.danger) .ic{background:var(--danger-bg);color:var(--danger)}
+:global(.banner):global(.warn) .ic{background:var(--warn-bg);color:var(--warn)}
+:global(.banner) .tx b{font-weight:600}
+:global(.banner) .tx .s{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+:global(.banner) .tx .s :global(.mono){font-size:11.5px;color:var(--text-2)}
+:where(.v) :global(.banner):global(.danger){border-color:rgba(255,93,110,.28)}
+:global([data-theme=light]) :where(.v) :global(.banner):global(.danger){border-color:rgba(225,29,72,.25)}
+:where(.v) :global(.btn):global(.primary) :global(.kbd){background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
+
+/* sources strip */
+.src{display:grid;grid-template-columns:repeat(5,1fr);margin-top:16px}
+.src .cell{padding:12px 16px;border-left:1px solid var(--line);min-width:0}
+.src .cell:first-child{border-left:none}
+.src .nm{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.src .stt{display:flex;align-items:center;gap:7px;font-weight:550;margin-top:6px;font-size:13px}
+.src .stt :global(.st){width:14px;height:14px}
+.src .mt{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-bad{color:var(--danger)}.c-rev{color:var(--warn)}:where(.v) :global(.c-ok){color:var(--text)}.c-not{color:var(--muted)}
+
+/* queue */
+.qp{flex:1;min-height:0;margin-top:16px;display:flex;flex-direction:column;overflow:hidden}
+.qh{display:flex;align-items:flex-end;padding:0 16px;border-bottom:1px solid var(--line)}
+.qh h2{font-size:13.5px;font-weight:600;margin-right:18px;height:42px;display:flex;align-items:center}
+.qh :global(.tabs){border-bottom:none;height:42px;align-items:flex-end}
+.qh :global(.tabs)>span{height:42px}
+.qh .note{margin-left:auto;height:42px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.call{display:flex;align-items:center;gap:10px;margin:12px 16px 4px;padding:9px 10px 9px 12px;border-radius:9px;border:1px solid var(--brand-line);background:var(--brand-bg);font-size:13px}
+.call .ai{color:var(--brand-2)}
+:global([data-theme=light]) .call .ai{color:var(--brand)}
+.call :global(.muted){font-size:12.5px}
+.qt th{height:36px;padding:0 12px;white-space:nowrap}
+.qt td{height:48px;padding:0 12px;white-space:nowrap}
+.qt th:first-child,.qt td:first-child{padding-left:16px;width:36px;padding-right:0}
+.qt th:last-child,.qt td:last-child{padding-right:16px}
+.qt tr:global(.on) td{background:var(--sel)}
+.it :global(.t){font-weight:500}
+.it .code{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:7px}
+.fld{color:var(--text-2)}
+.val{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--text)}
+.val:global(.mono){font-size:12px}
+.qt :global(.seg){padding:2px}
+.qt :global(.seg) span{height:22px;padding:0 9px;font-size:12px}
+.reflag{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--warn);margin-top:3px}
+.since{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+:global(.check).mid{background:var(--brand);border-color:var(--brand)}
+:global(.check).mid::after{content:"";width:7px;height:1.75px;border-radius:1px;background:#fff}
+:where(.v) :global(.check) :global(.i){width:11px;height:11px}
+.bulk{display:flex;align-items:center;gap:10px;margin:auto 12px 12px;padding:8px 8px 8px 14px;border-radius:11px;background:var(--surface-3);border:1px solid var(--line-2);box-shadow:0 12px 32px -12px rgba(0,0,0,.55)}
+:global([data-theme=light]) .bulk{box-shadow:0 12px 28px -14px rgba(9,9,11,.28)}
+.bulk b{font-weight:600}
+.bulk .div{width:1px;height:18px;background:var(--line-2);margin:0 2px}
+.fade{position:relative}

@@ -1,0 +1,20 @@
+/* GENERATED from the page-local <style> of design/html/02-command.html (kit classes wrapped in :global, view root = .v). */
+.v{overflow:hidden}
+.bg{filter:blur(1.5px) saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.55)}
+:global([data-theme=light]) .scrim{background:rgba(250,250,250,.55)}
+.pal{position:fixed;left:50%;top:118px;transform:translateX(-50%);width:720px;overflow:hidden}
+.pal .q{display:flex;align-items:center;gap:12px;height:58px;padding:0 18px;border-bottom:1px solid var(--line);font-size:17px}
+.caret{display:inline-block;width:2px;height:20px;background:var(--brand);vertical-align:-4px;margin-left:1px}
+.scopes{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.scopes span{height:26px;padding:0 10px;border-radius:7px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--muted);border:1px solid transparent}
+.scopes span:global(.on){color:var(--text);background:var(--surface-3);border-color:var(--line-2)}
+:where(.v) :global(.grp){font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:12px 18px 5px}
+.it{display:flex;align-items:center;gap:12px;height:42px;padding:0 18px;margin:0 6px;border-radius:8px}
+.it:global(.sel){background:var(--sel)}
+.it :global(.t){font-weight:500}.it :global(.c){color:var(--muted);font-size:12.5px}
+.it :global(.r){margin-left:auto;display:flex;align-items:center;gap:8px}
+.ask{margin:0 6px;border-radius:10px;padding:12px 12px;display:flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--brand-bg),transparent 70%);box-shadow:inset 0 0 0 1px var(--brand-line)}
+.ask .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),var(--cyan));color:#fff}
+.foot{display:flex;align-items:center;gap:16px;height:42px;padding:0 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);margin-top:8px}
+.foot span{display:flex;align-items:center;gap:6px}

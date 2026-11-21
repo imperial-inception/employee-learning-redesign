@@ -6,9 +6,9 @@ Copy the block below into the app repository's root `AGENTS.md` (create it if mi
 ## UI redesign (design kit in design/)
 - The UI follows docs/DESIGN_SYSTEM.md and the mockups in design/html/. This is an established design system: implement it, never redesign it. No new colours, fonts, gradients, shadows, card styles, animations or layout ideas.
 - Precedence when unsure: backend rules and docs/CONCEPT.md > docs/DESIGN_SYSTEM.md > docs/SCREENS.md > mockup HTML/CSS (exact values) > PNG (overall look). Unresolved questions go to design/QUESTIONS.md.
-- Tokens live in app/globals.css (light on :root, dark on .dark, default dark) and Tailwind @theme inline. No raw colour literals in components; the lint rule enforces it.
-- Fonts: Geist + Geist Mono via next/font (geist package). Numbers, codes, dates and kbd use Geist Mono / tabular-nums.
-- Components: use only the component layer listed in components/README.md. Status = StatusIcon/StatusPill mapped from the API enum, never computed in the browser.
+- Start from starter/ (README.md, PORTING.md): the design layer already written for this stack. Tokens and kit classes live in styles/ds.css (generated; dark on :root, light on [data-theme="light"], scoped to [data-ds]); one data-theme attribute drives CSS, MUI (lib/mui-theme.ts) and ECharts. No raw colour literals in components; the lint rule enforces it.
+- Fonts: Geist + Geist Mono, self-hosted from public/fonts (same files as the mockups). Numbers, codes, dates and kbd use Geist Mono / tabular-nums.
+- Components: use only components/ds (see its README) and the kit classes; MUI (themed) for behaviour such as dialogs, menus and data grids. Markup per screen: starter/screens/<view>; data pattern: starter/screens/01-home. Status = StatusIcon/StatusPill mapped from the API enum, never computed in the browser.
 - The backend owns identity, permissions, rules and trusted data. The UI never computes status, counts, eligibility, on-time, progress or permissions. Missing data = honest empty state + entry in design/GAPS.md.
 - One screen per task, together with its sub-views (ids with a letter after the number, e.g. 07b, 20b: tabs, steps, dialogs). Done = the per-screen checklist in CODEX_PROMPT.md for the screen and each sub-view, proven by tests you ran.
 

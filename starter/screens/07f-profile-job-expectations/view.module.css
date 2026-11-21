@@ -1,0 +1,57 @@
+/* GENERATED from the page-local <style> of design/html/07f-profile-job-expectations.html (kit classes wrapped in :global, view root = .v). */
+/* profile header + section tabs: same rules as 07-profile, prefixed */
+.je-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.je-idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+:global(.avatar).je-xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.je-idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.je-idl b{color:var(--text);font-weight:550}
+.je-lnk{color:var(--brand-2);display:inline-flex;align-items:center;gap:4px}
+:global([data-theme=light]) .je-lnk{color:var(--brand)}
+.je-ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.je-sl{color:var(--faint)}
+.je-acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.je-tabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.je-tabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.je-tabs a :global(.i){color:var(--faint)}
+.je-tabs a:global(.on){color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.je-tabs a:global(.on) :global(.i){color:var(--text)}
+.je-tabs .je-n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.je-tabs .je-dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.je-tabs .je-push{margin-left:auto}
+
+.je-cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px}
+.je-side{display:flex;flex-direction:column;gap:16px;min-width:0}
+
+/* expectation table */
+.je-hd,.je-ar{display:grid;grid-template-columns:236px minmax(0,1.25fr) minmax(0,1fr);gap:24px;padding:0 18px}
+.je-hd{height:34px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.je-ar{padding:14px 18px 15px;border-top:1px solid var(--line);align-items:start}
+.je-hd + .je-ar{border-top:none}
+.je-an{display:flex;align-items:center;gap:10px;font-weight:550;font-size:13.5px;letter-spacing:-.005em}
+.je-ix{font:500 11px "Geist Mono",monospace;color:var(--faint);width:18px;flex:none}
+.je-ex{font-size:13px;line-height:1.5;color:var(--text-2)}
+.je-ex.na{color:var(--muted)}
+.je-lk{font-size:12.5px;line-height:1.5;color:var(--muted)}
+.je-ft{display:flex;align-items:center;gap:8px;padding:12px 18px 13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.je-ft :global(.mono){font-size:11.5px;color:var(--faint)}
+
+/* right column */
+.je-sum{padding:18px 20px 20px}
+.je-lvls{position:relative;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.je-lvls::before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:1.5px;background:var(--line-2)}
+.je-lvl{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:500;color:var(--text-2)}
+.je-lvl .je-o{width:10px;height:10px;border-radius:50%;background:var(--surface-3);box-shadow:0 0 0 1.5px var(--muted);position:relative;flex:none}
+.je-lvl :global(.mono){margin-left:auto;font-size:10.5px;letter-spacing:.06em;color:var(--faint)}
+.je-lvl.now{color:var(--text)}
+.je-lvl.now .je-o{background:var(--brand);box-shadow:0 0 0 3px var(--brand-bg)}
+.je-lvl.now :global(.mono){color:var(--brand-2)}
+:global([data-theme=light]) .je-lvl.now :global(.mono){color:var(--brand)}
+.je-cmp{margin-top:18px;padding-top:15px;border-top:1px solid var(--line);font-size:13px;line-height:1.55;color:var(--muted)}
+.je-cmp .je-lnk{font-weight:550}
+.je-sum :global(.btn):global(.primary){width:100%;justify-content:center;margin-top:16px}
+.je-how{padding:14px 18px 16px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.je-how h3{font-size:12.5px;font-weight:600;color:var(--text-2);display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.je-how ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.je-how li{display:flex;gap:9px;align-items:flex-start}
+.je-how li :global(.i){margin-top:2px;color:var(--muted)}
+.je-how b{color:var(--text-2);font-weight:550}

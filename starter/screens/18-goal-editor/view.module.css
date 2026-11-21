@@ -1,0 +1,77 @@
+/* GENERATED from the page-local <style> of design/html/18-goal-editor.html (kit classes wrapped in :global, view root = .v). */
+.c-faint{color:var(--faint)}.mt2{margin-top:2px}
+.v{overflow:hidden}
+.bg{filter:blur(1.5px) saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.58)}
+:global([data-theme=light]) .scrim{background:rgba(250,250,250,.6)}
+.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:1000px;overflow:hidden}
+
+/* header / footer */
+.dh{display:flex;align-items:center;gap:10px;height:56px;padding:0 16px 0 20px;border-bottom:1px solid var(--line)}
+.dh .ic{width:28px;height:28px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.dh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.dh .x{width:28px;height:28px;display:grid;place-items:center;border-radius:7px;color:var(--muted)}
+.df{display:flex;align-items:center;gap:8px;height:62px;padding:0 16px 0 12px;border-top:1px solid var(--line);background:var(--surface-2)}
+.df .vis{display:flex;align-items:center;gap:8px;margin-left:10px;padding-left:16px;border-left:1px solid var(--line);font-size:12.5px;color:var(--muted);white-space:nowrap}
+.df .vis b{font-weight:550;color:var(--text-2);white-space:nowrap}
+.df .vis :global(.i){color:var(--muted)}
+
+/* body */
+.db{display:grid;grid-template-columns:minmax(0,1fr) 404px}
+.col{padding:20px 24px 6px}
+.col:global(.r){border-left:1px solid var(--line);padding:20px 22px 6px}
+.f{margin-bottom:20px}
+.lb{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:550;color:var(--text-2);margin-bottom:7px}
+.lb .o{font-weight:400;color:var(--faint)}
+.lb :global(.sp){font-weight:400;font-size:12px;color:var(--muted)}
+:global(.input).ttl{height:42px;font-size:15px;font-weight:550;letter-spacing:-.01em}
+.ta{position:relative;min-height:86px;padding-bottom:26px}
+.ta .cc{position:absolute;right:12px;bottom:8px;font:500 11px "Geist Mono",monospace;color:var(--faint)}
+:where(.v) :global(.help){display:flex;align-items:center;gap:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ro{background:var(--surface-2);border-color:var(--line);color:var(--text-2);cursor:default}
+.ro .lk{margin-left:auto;color:var(--faint)}
+:where(.v) :global(.input) :global(.i){color:var(--muted)}
+
+/* milestones */
+.msr{display:grid;grid-template-columns:22px minmax(0,1fr) 132px 26px;gap:8px;align-items:center;margin-bottom:8px}
+.msr :global(.n){font:500 11px "Geist Mono",monospace;letter-spacing:.04em;color:var(--faint)}
+.msr .dt{font-family:"Geist Mono",monospace;font-size:12.5px;padding:0 10px;gap:8px}
+.msr .dt.empty{color:var(--faint);font-family:Geist,"Segoe UI",sans-serif;font-size:13px}
+.msr .rm{color:var(--faint);display:grid;place-items:center}
+.addl{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 8px 0 30px;color:var(--muted);font-size:13px;font-weight:500}
+
+/* linked learning */
+.ll{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.ll .g{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:9px 12px 2px;display:flex}
+.ll .g span:last-child{margin-left:auto}
+.ll :global(.r){display:flex;align-items:center;gap:10px;height:38px;padding:0 10px 0 12px;font-size:13px}
+.ll :global(.r) :global(.st){width:15px;height:15px}
+.ll :global(.r) .code{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-left:5px}
+.ll :global(.r) .s{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.ll :global(.r) .rm{color:var(--faint);display:grid;place-items:center;width:20px}
+.ll .pwg{border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
+.ll .gl{display:flex;gap:2px;margin-left:auto}
+.ll .gl :global(.st){width:13px;height:13px}
+
+
+.srch{margin-top:10px;border:1px solid var(--brand);border-radius:10px;background:var(--surface);box-shadow:0 0 0 3px var(--brand-bg),0 12px 32px -12px rgba(0,0,0,.45);overflow:hidden}
+:global([data-theme=light]) .srch{box-shadow:0 0 0 3px var(--brand-bg),0 12px 32px -14px rgba(9,9,11,.18)}
+.srch .q{display:flex;align-items:center;gap:9px;height:38px;padding:0 12px;border-bottom:1px solid var(--line);font-size:13.5px}
+.srch .q :global(.i){color:var(--muted)}
+.caret{display:inline-block;width:1.5px;height:16px;background:var(--brand);vertical-align:-3px;margin-left:1px}
+.srch .res{display:flex;align-items:center;gap:10px;height:40px;padding:0 8px;margin:3px 4px;border-radius:7px;font-size:13px}
+.srch .res:global(.sel){background:var(--sel)}
+.srch .res .code{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.srch .res :global(.m){margin-left:auto;display:flex;align-items:center;gap:8px;font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.srch .res :global(.pill){height:20px;font:550 11.5px Geist,"Segoe UI",sans-serif}
+.srch .ft{display:flex;align-items:center;gap:14px;height:32px;padding:0 12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.srch .ft span{display:flex;align-items:center;gap:5px}
+.srch .ft :global(.kbd){height:17px;font-size:10px}
+
+.opt{display:flex;align-items:flex-start;gap:12px;padding:15px 0 14px;border-top:1px solid var(--line)}
+.opt b{font-weight:550;font-size:13.5px;display:block}
+.opt p{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.opt .ic{color:var(--muted);margin-top:1px}
+.opt :global(.toggle){margin-top:2px}
+.sep{height:1px;background:var(--line);margin:4px 0 0}

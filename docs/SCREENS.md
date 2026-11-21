@@ -10,7 +10,7 @@ Reference images: `design/screens/<file>.png` (dark) and `<file>-light.png`. Ref
 
 **Product goal:** help employees improve themselves; give managers insight to help their people. Recording/review is plumbing, kept quiet.
 
-**Navigation:** a left sidebar (236px): workspace + bell, `Search or ask… Ctrl K`, then Home · Learning (tabs: Find · Pathways · My learning) · Goals & pathways (incl. Next level) · Colleagues; managers add a **My team** group: Reviews · Team · Insights · Reports; footer: Admin console (if permitted) · Help. **Profile sits top right**, alone in a slim 52px band above the page: avatar, name and role, opening Profile, Connected agents, Theme, Sign out. Admins get a separate **Admin console** workspace with its own sidebar and “Back to my portal”. Ctrl/⌘ K opens the command palette everywhere.
+**Navigation:** a left sidebar (236px): workspace + bell, `Search or ask… Ctrl K`, then Home · Learning (tabs: Find · Pathways · My learning) · Goals & pathways (incl. Next level) · Colleagues; managers add a **My team** group: Team (tabs: People · Waiting for you; its sidebar count is the number of records waiting for the manager's decision) · Insights · Reports. There is no separate Reviews page: reviewing happens in Team › Waiting for you; footer: Admin console (if permitted) · Help. **Profile sits top right**, alone in a slim 52px band above the page: avatar, name and role, opening Profile, Connected agents, Theme, Sign out. Admins get a separate **Admin console** workspace with its own sidebar and “Back to my portal”. Ctrl/⌘ K opens the command palette everywhere.
 
 ---
 
@@ -152,17 +152,11 @@ Not a product screen. The learning loop, the navigation, six principles. Read it
 
 ## Manager (“My team”)
 
+The sidebar group is **Team · Insights · Reports**. Reviewing is not its own destination: it lives inside **Team** as the **Waiting for you** tab (09, 33), next to **People** (10, 10b). Only approved learning counts, so a manager still approves, returns or rejects every submitted learning record, from that tab. Team's sidebar count is the number of records waiting for the manager's decision. Everything that used to open “Reviews” (Manager home, Insights, Reports › Review turnaround, One person, the team-record flow) now opens Team › Waiting for you. File names and ids `09-reviews` and `33-reviews-bulk` are kept for tooling.
+
 ### 31 · Manager home: `31-manager-home`, `/home` for managers
-- **Primary:** the most urgent team action (e.g. “Review Priya's FA-110”, due tomorrow).
-- **Accept:** personal focus strip stays compact; “Your team today” = reviews waiting, people who could use a hand (support framing, no judgement), 1:1s coming up; what to do first is obvious in 5 seconds.
-
-### 09 · Reviews: `09-reviews`, route `/team/reviews/:submissionId?`
-- **Primary:** Approve (A). Return for changes (R, feedback required); Reject (quiet, confirm).
-- **Accept:** queue sorted by due date; detail with evidence and version history; **shared feedback** and **private note** visibly and structurally separate; private notes never shown to the employee or sent to AI; only the current direct manager can decide (API); keyboard end to end.
-
-### 33 · Reviews · bulk: `33-reviews-bulk`, route `/team/reviews?mode=select`
-- **Primary:** “Approve N” (A).
-- **Accept:** rows that can't be bulk-approved are disabled with a reason (no evidence; resubmission needs individual review); one optional shared note for all; no private notes in bulk; every decision recorded per item and version.
+- **Primary:** the most urgent team action (e.g. “Review Priya's FA-110”, due tomorrow), opening that record in Team › Waiting for you.
+- **Accept:** personal focus strip stays compact; “Your team today” = Waiting for you (records to decide, with “Open in Team”), people who could use a hand (support framing, no judgement), 1:1s coming up; what to do first is obvious in 5 seconds.
 
 ### 32 · Record for your team (roster): `32-team-record`, route `/team/record`
 - **Primary:** “Create N records”.
@@ -177,12 +171,23 @@ Not a product screen. The learning loop, the navigation, six principles. Read it
 - **Primary:** Create 8 records (Ctrl Enter)
 - **Accept:** steps 1 and 2 collapse to one editable line each; shared files are attached once and copied to each record, with limits and who can see them stated; the creation mode chosen in step 2 is shown with Change; a preview shows what each person gets, including creator and reviewer; the footer reads “N records will be created · M skipped (already approved)”.
 
-### 10 · Team: `10-team`, route `/team`
-- **Accept:** org-data freshness shown (and a warning if today's refresh failed); KPIs max 4; table listed by name, never ranked; each person counted once; percentages from summed totals; “Not recorded” instead of zero; the Professional role column shows the manager-assigned role (one of the job family's configured roles) or “Not recorded”, and each cell is editable in place (10b).
+### 10 · Team › People: `10-team`, route `/team` (People is the default tab)
+- **Primary:** none on People itself; the “Waiting for your review” KPI's Review (G R) opens the Waiting for you tab.
+- **Tabs:** People (count = direct reports) · Waiting for you (count = records waiting for the manager's decision), in the shared tab style under the Team header; both counts come from the API, never counted in the browser; the Waiting for you count equals Team's sidebar count.
+- **Accept:** Team header with org-data freshness (and a warning if today's refresh failed); tab row as above with People selected; KPIs max 4; table listed by name, never ranked; each person counted once; percentages from summed totals; “Not recorded” instead of zero; the Professional role column shows the manager-assigned role (one of the job family's configured roles) or “Not recorded”, and each cell is editable in place (10b).
 
-### 10b · Team › set a role inline: `10b-team-role-picker`, route `/team` (popover, no route change)
+### 10b · Team › People › set a role inline: `10b-team-role-picker`, route `/team` (popover, no route change)
 - **Primary:** Assign (Enter)
-- **Accept:** clicking a Professional role cell opens a picker with the configured roles and the current value (“Now: Not recorded”); the hovered or selected row shows its one-line description; assigning takes effect today, notifies the person and leaves the HR job title unchanged; “Start date & note” opens the full role dialog (20b); the row stays highlighted while the picker is open; the API rejects anyone who isn't the person's current manager.
+- **Accept:** same header and tab row as 10 (People selected); clicking a Professional role cell opens a picker with the configured roles and the current value (“Now: Not recorded”); the hovered or selected row shows its one-line description; assigning takes effect today, notifies the person and leaves the HR job title unchanged; “Start date & note” opens the full role dialog (20b); the row stays highlighted while the picker is open; the API rejects anyone who isn't the person's current manager.
+
+### 09 · Team › Waiting for you: `09-reviews`, route `/team/waiting/:submissionId?` (redirect old `/team/reviews` URLs here)
+- **Primary:** Approve (A). Return for changes (R, feedback required); Reject (quiet, confirm).
+- **Layout:** the same Team header and tab row as 10, with Waiting for you selected and the keyboard hints (J / K, A, R) at the right of the tab row; below it the review layout: queue on the left (Waiting / Returned / Done this month, sorted by due date, 7-day window from submission), the open record (evidence, version history) and the decision panel on the right.
+- **Accept:** tab counts come from the API and match Team's sidebar count; the sidebar keeps Team active; choosing a record in the queue opens it in place (the URL gains its submissionId, the tab stays on, no page change); only approved learning counts toward goals, so the decision panel states what approving counts toward; **shared feedback** and **private note** visibly and structurally separate; private notes never shown to the employee or sent to AI; only the current direct manager can decide (API); keyboard end to end: J / K next and previous, A approve, R return (feedback required).
+
+### 33 · Team › Waiting for you (bulk): `33-reviews-bulk`, route `/team/waiting?mode=select`
+- **Primary:** “Approve N” (A).
+- **Accept:** same Team header and tab row as 09 (Waiting for you selected; count from the API); the One by one / Select toggle switches between 09 and this select mode without leaving the tab; X selects, Esc leaves select mode; rows that can't be bulk-approved are disabled with a reason (no evidence; resubmission needs individual review); one optional shared note for all; no private notes in bulk; every decision recorded per item and version. Bulk approve still needs backend support: a bulk decision endpoint that checks the manager relationship for every record and records each decision per item and version.
 
 ### 20 · One person: `20-person`, route `/team/:personId`
 - **Accept:** plan progress, in-review items, experience to confirm (Confirm / Not sure), shared feedback thread, and a private notes panel (lock, “Only you can see this”) that is never exported, shown to the person or sent to AI.
@@ -196,7 +201,7 @@ Not a product screen. The learning loop, the navigation, six principles. Read it
 - **Accept:** same fields as the goal editor (title, why, due date, read-only timeframe derived from the due date, milestones with optional dates); link learning or a pathway, where a linked pathway is only “Suggested” and the employee chooses whether to adopt it; “Make this her focus” off by default, naming the current focus it would replace; footer states “Priya sees this goal and that you set it; she can link learning and comment; only you can remove it”; goal text never sent to the advisor; the API checks the manager relationship.
 
 ### 30 · Insights: `30-team-insights`, route `/team/insights?period=`
-- **Accept:** max 6 charts, each titled with its takeaway and ending in an action (Open reviews, Start a goal together, Remind, Book 1:1s); no activity tracking, no rankings, people sorted A–Z; text/table equivalent for every chart (“Table view”); footnote with counting rules.
+- **Accept:** max 6 charts, each titled with its takeaway and ending in an action (Open in Team › Waiting for you, Start a goal together, Remind, Book 1:1s); no activity tracking, no rankings, people sorted A–Z; text/table equivalent for every chart (“Table view”); footnote with counting rules.
 
 ### 26 · 1:1 prep: `26-one-on-one`, route `/team/:personId/one-on-one` (core)
 - **Primary:** Share agenda with the employee.
@@ -210,8 +215,8 @@ Not a product screen. The learning loop, the navigation, six principles. Read it
 - **Accept:** approved items only, grouped by competency framework area (the same area names as Insights): items by type, files and links, items without a file, last approved; totals agree with the team report; each person counted once per area and once in the total (not the sum of rows); a row expands to the people behind it, and an approved item with no file is flagged; the CSV has one row per approved item with approver, date and file links; filters (period, people, framework) in the URL; Status stays locked to Approved only; people with nothing show “nothing recorded yet”, never zero.
 
 ### 11c · Reports › Review turnaround: `11c-report-turnaround`, route `/team/reports/turnaround?period=`
-- **Primary:** Export CSV (E); “Open reviews” is secondary
-- **Accept:** only the signed-in manager's own decisions, marked “Only you see this report”; median days per month against the 7-day window with the slowest decision, previous quarter faded for context; decision counts (approved / returned / rejected) agree with Insights and Manager home; no employee breakdown or ranking; “Waiting now” lists open reviews by when their window ends; footnote: review time never changes on-time status, which is judged by submission date.
+- **Primary:** Export CSV (E); “Open in Team” (Team › Waiting for you) is secondary
+- **Accept:** only the signed-in manager's own decisions, marked “Only you see this report”; median days per month against the 7-day window with the slowest decision, previous quarter faded for context; decision counts (approved / returned / rejected) agree with Insights and Manager home; no employee breakdown or ranking; “Waiting now” lists records still waiting for the manager's decision by when their window ends; footnote: review time never changes on-time status, which is judged by submission date.
 
 ### 11d · Reports › Goal progress: `11d-report-goal-progress`, route `/team/reports/goals?period=`
 - **Primary:** Export CSV (E)

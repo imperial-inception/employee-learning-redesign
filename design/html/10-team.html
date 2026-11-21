@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="assets/styles.css">
 <style>
 #page{height:100%;display:flex;flex-direction:column}
+.tm-tabs{margin-bottom:18px}
 .fresh{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted);white-space:nowrap}
 .fresh .mono{color:var(--text-2);font-size:12px}
 /* KPI row */
@@ -70,17 +71,18 @@ tr.hl td{background:var(--hover)}
 </style></head>
 <body data-ws="employee" data-active="team" data-role="manager">
 <main id="page">
-  <header class="ph" style="margin-bottom:20px">
+  <header class="ph" style="margin-bottom:16px">
     <div><h1>Team</h1>
       <p class="sub">Your 11 direct reports. For development conversations, not performance ratings.</p></div>
     <div class="acts"><div class="fresh"><i data-i="cloud" data-c="sm"></i><span>Org data from HR directory · last good update <span class="mono">20 Nov 00:57</span></span>
       <span class="pill p-rev"><i data-i="alert" data-c="xs"></i> Today's refresh failed</span></div></div>
   </header>
+  <div class="tabs tm-tabs"><span class="on">People <span class="n">11</span></span><span>Waiting for you <span class="n">4</span></span></div>
 
   <section class="panel kpi">
     <div class="cell"><div class="k"><i data-i="inbox" data-c="xs"></i>Waiting for your review</div>
       <div class="bot"><span class="v">4</span><span class="dl warn">oldest 6 days</span>
-        <span class="btn sm primary" style="margin-left:auto">Review <span class="kbd">G R</span></span></div></div>
+        <span class="btn sm primary" style="margin-left:auto" data-go="reviews">Review <span class="kbd">G R</span></span></div></div>
     <div class="cell"><div class="k">Approved this quarter</div>
       <div class="bot"><span class="v">23</span><span class="dl ok">+6 vs Q3</span>
         <svg class="spark" viewBox="0 0 118 30"><polyline points="0,24 20,22 39,23 59,17 79,15 98,9 118,5" fill="none" style="stroke:var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>

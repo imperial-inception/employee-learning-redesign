@@ -1,0 +1,20 @@
+/* GENERATED from the page-local <style> of design/html/03-learning.html (kit classes wrapped in :global, view root = .v). */
+.lay{display:grid;grid-template-columns:184px 1fr 420px;gap:22px;margin-top:16px}
+.fs{margin-bottom:18px}.fs h3{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:7px}
+.fo{display:flex;align-items:center;gap:9px;height:28px;font-size:13px;color:var(--text-2)}
+.fo :global(.n){margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.sbar{display:flex;align-items:center;gap:12px;height:50px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font-size:16px}
+.res :global(.li){align-items:flex-start;padding:14px 16px;gap:12px}
+.res :global(.li) :global(.st){margin-top:2px}
+.res .tg{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.res .act{display:flex;gap:6px;flex:none}
+.adv{padding:0;overflow:hidden;align-self:start}
+.adv .hd{display:flex;align-items:center;gap:8px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.adv .ans{padding:14px 16px;font-size:13.5px;line-height:1.65;color:var(--text-2)}
+.adv .ans b{color:var(--text);font-weight:550}
+:where(.v) :global(.cite){display:inline-grid;place-items:center;min-width:17px;height:17px;padding:0 4px;border-radius:5px;background:var(--brand-bg);color:var(--brand-2);font:600 10.5px "Geist Mono",monospace;vertical-align:1px}
+:global([data-theme=light]) :where(.v) :global(.cite){color:var(--brand)}
+.src{display:flex;align-items:center;gap:10px;height:40px;padding:0 16px;border-top:1px solid var(--line);font-size:13px}
+.fu{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px 0}
+.fu span{height:26px;padding:0 10px;border-radius:7px;border:1px solid var(--line-2);display:flex;align-items:center;font-size:12.5px;color:var(--text-2)}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--muted);margin-top:7px}

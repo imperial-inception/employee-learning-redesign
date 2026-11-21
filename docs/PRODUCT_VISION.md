@@ -24,7 +24,7 @@ The rule for every feature: **give before you take.** Every time we ask an emplo
 1. **Home opens to one focus and one next step**, not a dashboard of everything.
 2. **Ctrl K, ask anything** (“what should I learn for interface management?”) and get an answer that cites real catalog items, each one-click addable to the plan.
 3. **Completions arrive by themselves** from the LMS. Recording becomes “add a 2-line reflection, submit”: under a minute, no retyping.
-4. **Your manager approves in 10 seconds**, from the review queue, a phone, or an actionable chat or email message.
+4. **Your manager approves in 10 seconds**, from Team › Waiting for you (there is no separate Reviews page), a phone, or an actionable chat or email message.
 5. **“Next level” shows exactly what to grow**, with the evidence you already have counted for you.
 6. **The 1:1 agenda builds itself**: what was approved since last time, what's stuck, talking points from both sides.
 7. **Your portfolio is yours**: a clean, exportable record of what you learned and applied, ready for a promotion packet.

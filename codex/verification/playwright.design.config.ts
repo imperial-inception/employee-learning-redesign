@@ -16,7 +16,7 @@ export default defineConfig({
   retries: 0,
   reporter: [['list'], ['html', { open: 'never', outputFolder: 'test-results/design-report' }]],
   expect: {
-    toHaveScreenshot: { maxDiffPixelRatio: 0.05, animations: 'disabled', caret: 'hide', scale: 'css' },
+    toHaveScreenshot: { maxDiffPixelRatio: 0.03, animations: 'disabled', caret: 'hide', scale: 'css' },
   },
   use: {
     viewport: { width: 1600, height: 1060 },

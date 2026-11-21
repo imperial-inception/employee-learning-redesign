@@ -11,6 +11,7 @@ High-fidelity redesign of **Skill Portal**, an employee development app whose go
 | Path | What it is |
 |---|---|
 | `CODEX_PROMPT.md` | **Start here if you're the implementer.** The full brief: goal, rules, phases, verification loop, done-when, report format |
+| `starter/` | **The design as working code** for a Next.js Pages Router app (React 18, TypeScript 5, alongside MUI 5 and Tailwind 4): tokens, fonts, theme switch, components, shell, and all 62 views as React, each measured against its PNG. See [starter/README.md](starter/README.md) and [starter/PORTING.md](starter/PORTING.md) |
 | `codex/GOAL.md` | Text for Codex `/goal` (use after the first screen passes the loop) |
 | `codex/AGENTS.md` | Block to paste into the app repo's `AGENTS.md` |
 | `codex/verification/` | Playwright config + specs (mockup vs app screenshots, axe a11y), raw-colour lint |
@@ -51,8 +52,8 @@ High-fidelity redesign of **Skill Portal**, an employee development app whose go
 | | |
 |---|---|
 | ![Manager home](design/screens/31-manager-home.png) | **31 · Manager home**: your next step, then your team today. [light](design/screens/31-manager-home-light.png) |
-| ![Reviews](design/screens/09-reviews.png) | **09 · Reviews**: queue by due date; shared feedback vs private note; A / R keys. [light](design/screens/09-reviews-light.png) |
-| ![Bulk reviews](design/screens/33-reviews-bulk.png) | **33 · Reviews · bulk**: approve several at once; rows that need individual review are locked with a reason. [light](design/screens/33-reviews-bulk-light.png) |
+| ![Team, waiting for you](design/screens/09-reviews.png) | **09 · Team › Waiting for you**: the review queue lives inside Team (no separate Reviews page); queue by due date; shared feedback vs private note; A / R keys. [light](design/screens/09-reviews-light.png) |
+| ![Waiting for you, bulk](design/screens/33-reviews-bulk.png) | **33 · Team › Waiting for you (bulk)**: approve several at once; rows that need individual review are locked with a reason. [light](design/screens/33-reviews-bulk-light.png) |
 | ![Team record](design/screens/32-team-record.png) | **32 · Record for your team**: one roster after a team session or shared course; creates a record per person. [light](design/screens/32-team-record-light.png) |
 | ![Team](design/screens/10-team.png) | **10 · Team**: support, not ranking; counting rules stated. [light](design/screens/10-team-light.png) |
 | ![Person](design/screens/20-person.png) | **20 · One person**: plan, evidence, experience to confirm, private notes. [light](design/screens/20-person-light.png) |
@@ -104,8 +105,16 @@ A file named `NNx-name` is another state of screen `NN`, built in the same task.
 1. Copy `design/`, `docs/`, `codex/` and `CODEX_PROMPT.md` into the app repository.
 2. Paste the block from `codex/AGENTS.md` into the app's `AGENTS.md`; restart Codex.
 3. New thread → paste `CODEX_PROMPT.md`, attach `00-overview.png` + `01-home.png`. Codex does **Phase 0 (recon)** and stops.
-4. Approve the plan → **Phase 1** (tokens, components, verification harness) → **Home** as the first screen through the full loop.
+4. Approve the plan → **Phase 1**: port the `starter/` foundation (tokens, components, shell, verification harness; `starter/PORTING.md`) → **Home** as the first screen through the full loop, following `starter/screens/01-home`.
 5. Only then start `/goal` with `codex/GOAL.md` for the remaining screens. Review each screen's report in `design/PROGRESS.md`, and finish with a human pass in the Codex in-app browser.
+
+## Run the starter (React)
+
+```powershell
+cd starter
+npm install
+npm run dev      # http://localhost:3100 : every view as React, /ui-kit for the components
+```
 
 ## View it locally (clickable)
 

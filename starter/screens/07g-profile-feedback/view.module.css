@@ -1,0 +1,53 @@
+/* GENERATED from the page-local <style> of design/html/07g-profile-feedback.html (kit classes wrapped in :global, view root = .v). */
+/* profile header + section tabs: same rules as 07-profile, prefixed */
+.fb-idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+:global(.avatar).fb-xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.fb-idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.fb-idl b{color:var(--text);font-weight:550}
+.fb-lnk{color:var(--brand-2);display:inline-flex;align-items:center;gap:4px}
+:global([data-theme=light]) .fb-lnk{color:var(--brand)}
+.fb-ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.fb-sl{color:var(--faint)}
+.fb-acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.fb-tabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.fb-tabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.fb-tabs a :global(.i){color:var(--faint)}
+.fb-tabs a:global(.on){color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.fb-tabs a:global(.on) :global(.i){color:var(--text)}
+.fb-tabs .fb-n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.fb-tabs a:global(.on) .fb-n{color:var(--text-2)}
+.fb-tabs .fb-dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.fb-tabs .fb-push{margin-left:auto}
+
+.fb-cols{display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:16px;align-items:start}
+.fb-col{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+/* feedback list */
+.fb-list :global(.li){align-items:flex-start;padding:11px 16px;gap:12px}
+.fb-list :global(.li) :global(.avatar){margin-top:1px}
+.fb-list :global(.li).fb-sel{background:var(--sel);box-shadow:inset 2px 0 0 var(--brand)}
+.fb-q{font-size:13px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fb-meta{display:flex;align-items:center;gap:8px;margin-top:5px;font-size:12px;color:var(--muted);min-width:0;white-space:nowrap}
+.fb-ref{display:inline-flex;align-items:center;gap:6px;min-width:0;color:var(--text-2)}
+.fb-ref :global(.st){width:13px;height:13px}
+.fb-ref :global(.mono){font-size:11px;color:var(--faint)}
+.fb-gen{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.fb-dt{font:500 11.5px "Geist Mono",monospace;color:var(--faint);white-space:nowrap;margin-top:2px}
+
+/* private-notes statement */
+.fb-rule{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-size:12.5px;line-height:1.5;color:var(--muted)}
+.fb-rule .fb-lk{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--surface-3);color:var(--text-2);flex:none}
+.fb-rule b{color:var(--text);font-weight:600}
+
+/* thread */
+.fb-th .fb-vis{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-left:auto}
+.fb-msg{display:flex;gap:11px;padding:14px 18px 0}
+.fb-msg .fb-w{font-size:12.5px;display:flex;gap:8px;align-items:baseline}
+.fb-msg .fb-w b{font-weight:550}
+.fb-msg .fb-w :global(.mono){font-size:11.5px;color:var(--faint)}
+.fb-msg p{font-size:13.5px;line-height:1.55;color:var(--text-2);margin-top:4px}
+.fb-cmp{margin:16px 18px 0}
+.fb-cmp :global(.textarea){min-height:92px}
+.fb-cmp .fb-caret{display:inline-block;width:1.5px;height:16px;background:var(--brand);vertical-align:-3px;margin-left:1px}
+.fb-bar{display:flex;align-items:center;gap:8px;padding:12px 18px 16px}
+.fb-bar .fb-vis2{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}

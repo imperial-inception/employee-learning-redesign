@@ -1,6 +1,6 @@
 # Skill Portal design system
 
-The single source of truth for how the redesigned UI looks. The mockups in `design/html/` implement it in plain CSS (`design/html/assets/styles.css`). The real app must implement the **same tokens and rules**. When this file and a mockup disagree, this file wins.
+The single source of truth for how the redesigned UI looks. The mockups in `design/html/` implement it in plain CSS (`design/html/assets/styles.css`). The real app must implement the **same tokens and rules**. For **token values** (colours, shadows) the mockup stylesheet `design/html/assets/styles.css` is canonical: the PNGs are rendered from it and `starter/styles/ds.css` is generated from it. For rules and behaviour, this file wins over a mockup.
 
 Direction in one sentence: **"Linear-grade"**: dark-first, hairline borders instead of shadows, monochrome with one accent, dense aligned lists, mono type for numbers and codes, keyboard-first.
 
@@ -24,7 +24,7 @@ Dense is good; cluttered is not. A screen is cluttered when it shows things the 
 
 ## 1. Tokens
 
-Implement these as CSS variables on `:root` (dark, the default) and `[data-theme="light"]` (or `.light` if next-themes uses the class strategy). Use them through Tailwind theme variables; **never hard-code a colour in a component**.
+Implement these as CSS variables on `:root` (dark, the default) and `[data-theme="light"]`, switched by one `data-theme` attribute on `<html>` (`starter/lib/theme.ts`). Use them as `var(--token)` in CSS Modules (or the `ds-` Tailwind colours in `starter/styles/tailwind-tokens.css`); **never hard-code a colour in a component**.
 
 ### Colour: dark (default)
 
@@ -65,32 +65,19 @@ Implement these as CSS variables on `:root` (dark, the default) and `[data-theme
 | `--line` `--line-2` | `rgba(9,9,11,.08)` `rgba(9,9,11,.14)` |
 | `--text` `--text-2` `--muted` `--faint` | `#09090B` `#3F3F46` `#71717A` `#A1A1AA` |
 | `--brand` `--brand-2` `--brand-bg` `--brand-line` | `#4B5BEF` `#3644D6` `rgba(75,91,239,.09)` `rgba(75,91,239,.35)` |
-| `--ok` `--warn` `--orange` `--danger` `--info` | `#15A05A` `#D97706` `#D9621F` `#E11D48` `#0284C7` (backgrounds at ~10%) |
+| `--ok` `--warn` `--orange` `--danger` `--info` | `#15A05A` `#CA8A04` `#EA580C` `#E11D48` `#0284C7` (backgrounds at ~10%; in review stays yellow-amber and returned red-orange so they never look alike) |
 | `--btn-primary-bg` / `-fg` | `#09090B` / `#FFFFFF` |
 | panels | add `box-shadow: 0 1px 2px rgba(9,9,11,.04), 0 2px 6px -2px rgba(9,9,11,.04)` (light only) |
 
-### Mapping to shadcn/ui variable names
+### MUI and ECharts
 
-shadcn's `--accent` means "hover background", not brand colour. Keep the brand colour as `--brand` to avoid collisions.
-
-| shadcn var | maps to |
-|---|---|
-| `--background` | `--bg` |
-| `--foreground` | `--text` |
-| `--card`, `--popover` | `--surface` |
-| `--card-foreground`, `--popover-foreground` | `--text` |
-| `--primary` / `--primary-foreground` | `--btn-primary-bg` / `--btn-primary-fg` |
-| `--secondary` / `--secondary-foreground` | `--surface-2` / `--text` |
-| `--muted` / `--muted-foreground` | `--surface-2` / `--muted` |
-| `--accent` / `--accent-foreground` | `--sel` / `--text` |
-| `--destructive` | `--danger` |
-| `--border` / `--input` | `--line` / `--line-2` |
-| `--ring` | `--brand` |
-| `--sidebar` and friends | `--panel`, `--text-2`, `--sel` |
+Libraries that need literal colours read the same values from `starter/lib/tokens.generated.ts` (generated with `ds.css`):
+- **MUI 5**: `createDsMuiTheme(mode)` in `starter/lib/mui-theme.ts` maps `--brand` → `primary`, `--bg`/`--surface` → `background.default`/`paper`, `--text`/`--muted`/`--faint` → `text.*`, `--line` → `divider`, `--ok`/`--warn`/`--danger`/`--info` → `success`/`warning`/`error`/`info`, and restyles Button, Paper, Dialog, Menu, Tooltip, TableCell, Chip, Tabs, OutlinedInput to the sizes below. No elevation shadows in dark mode.
+- **ECharts**: `echartsTheme(mode)` in `starter/lib/echarts-theme.ts`; status series use `statusColor(mode)` so approved / in review / returned keep their meaning in charts.
 
 ### Typography
 
-- **Geist** (UI) and **Geist Mono** (numbers, codes, IDs, timestamps, keyboard hints), loaded with `next/font` from the `geist` npm package. Self-hosted, so no requests to external font servers.
+- **Geist** (UI) and **Geist Mono** (numbers, codes, IDs, timestamps, keyboard hints), self-hosted from `starter/public/fonts` (the same woff2 files the mockups use, SIL OFL) via `@font-face`, so there are no requests to external font servers and screenshots match the PNGs.
 - Base 13.5px / 1.45. Page title 26px / 600 / letter-spacing −0.025em. Hero title 28px / 600 / −0.03em. Panel title 13.5px / 600. Meta 12–12.5px. Section labels: mono 11px, letter-spacing .07em, uppercase, `--faint`.
 - All numbers in tables, KPIs, durations and dates use `font-variant-numeric: tabular-nums` (Geist Mono or `tabular-nums`).
 
@@ -133,7 +120,7 @@ Learning types are marked with a small coloured dot inside a neutral tag: Formal
 |---|---|
 | `AppShell` | Left sidebar, 236px, `--panel` with a right hairline (light theme `#F4F4F5`): workspace button + bell, `Search or ask… Ctrl K` trigger, nav groups (Home · Learning · Goals & pathways · Colleagues; manager group My team), footer (Admin console / Help). **Profile corner** top right of the main area: a 52px band holding only the profile chip (30px avatar, name, role, chevron; `--surface` fill, `--line` border, pill radius; `--sel` + accent ring when on Profile) that opens Profile, Connected agents, Theme, Sign out. Content padding 2px 36px 28px below the band. Admin console is a separate workspace with its own sidebar. |
 | `NavItem` | 31px, icon 16px `--muted`, active = `--sel` background + `--text`. Optional mono count on the right (`--danger` when it's an alert). |
-| `CommandPalette` | cmdk. Scopes (All, Learning, Pathways, People, Actions), first row “Ask the advisor: …”, grouped results, footer with keyboard hints and “Results respect your permissions”. |
+| `CommandPalette` | a dialog with a filtered list (MUI Dialog, or `cmdk` if the registry allows it). Scopes (All, Learning, Pathways, People, Actions), first row “Ask the advisor: …”, grouped results, footer with keyboard hints and “Results respect your permissions”. |
 | `PageHeader` | optional crumbs, title, one-line subtitle, right-aligned actions (max one primary). |
 | `Panel` / `PanelHeader` | surface + hairline, 12px radius; header 46px with title, mono count, right link. |
 | `ListRow` | ≥44px, status icon, title, context (muted), right-aligned mono meta; hover = `--hover`. |
@@ -155,11 +142,11 @@ Learning types are marked with a small coloured dot inside a neutral tag: Formal
 
 ## 4. Icons
 
-Use `lucide-react` (stroke 1.75, 16px in nav and rows, 14px in buttons, 12px in tags). Mockup name → Lucide name:
+Use `<Icon name>` from `starter/components/ds` (the design's own set, generated from the mockups, so it matches the PNGs exactly): 16px in nav and rows, 14px in buttons, 12px in tags. For an icon the set lacks, use `lucide-react` with stroke 1.75; mockup name → closest Lucide name:
 
 home→`House` · target→`Target` · search→`Search` · record→`ClipboardCheck` · user→`User` · inbox→`Inbox` · users→`Users` · chart→`ChartColumn` · shield→`ShieldCheck` · book→`BookOpen` · route→`Route` · sliders→`SlidersHorizontal` · cloud→`Cloud` · key→`KeyRound` · file→`FileText` · bell→`Bell` · help→`CircleHelp` · cr/cd/cl/cu→`ChevronRight/Down/Left/Up` · ext→`ExternalLink` · plus→`Plus` · check→`Check` · clock→`Clock` · lock→`Lock` · spark→`Sparkles` · clip→`Paperclip` · cal→`Calendar` · alert→`TriangleAlert` · refresh→`RefreshCw` · x→`X` · arrow→`ArrowRight` · enter→`CornerDownLeft` · filter→`Filter` · moon→`Moon` · sun2→`Sun` · link→`Link` · info→`Info` · eye/eyeoff→`Eye/EyeOff` · msg→`MessageSquare` · cap→`GraduationCap` · upload/download→`Upload/Download` · brief→`Briefcase` · send→`Send` · swap→`ArrowLeftRight` · more→`Ellipsis` · flag→`Flag` · grid→`LayoutGrid` · cmd→`Command`.
 
-Status glyphs are **custom** (not Lucide): copy the `st-*` SVGs from `shell.js`.
+Status glyphs are **custom** (not Lucide): `<StatusIcon status>` in the starter (generated from the `st-*` SVGs in `shell.js`).
 
 ---
 

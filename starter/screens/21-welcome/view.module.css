@@ -1,0 +1,58 @@
+/* GENERATED from the page-local <style> of design/html/21-welcome.html (kit classes wrapped in :global, view root = .v). */
+.c-faint{color:var(--faint)}.mt2{margin-top:2px}
+.top{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:18px}
+.k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* get started */
+.gs{padding:0}
+.gs-h{display:flex;align-items:center;gap:14px;padding:18px 22px 16px}
+.gs-h h2{font-size:17px;font-weight:600;letter-spacing:-.015em}
+.gs-h :global(.c){font-size:12.5px;color:var(--muted);margin-top:2px}
+.seg3{display:flex;gap:3px;width:120px}
+.seg3 span{flex:1;height:4px;border-radius:3px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.step{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:14px;padding:18px 22px 20px;border-top:1px solid var(--line)}
+:where(.v) :global(.num){width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font:600 12px "Geist Mono",monospace;color:var(--muted);margin-top:-2px}
+.step.cur :global(.num){border-color:var(--brand);color:var(--brand-2);background:var(--brand-bg)}
+:global([data-theme=light]) .step.cur :global(.num){color:var(--brand)}
+.sh{display:flex;align-items:center;gap:10px}
+.sh h3{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.sh :global(.sp){font-size:12px;color:var(--muted)}
+.step>div>p{font-size:13px;color:var(--muted);margin-top:3px;max-width:640px}
+.opts{margin-top:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.op{display:flex;align-items:center;gap:12px;min-height:58px;padding:9px 12px 9px 14px;border-top:1px solid var(--line)}
+.op:first-child{border-top:none}
+.op>:global(.i){color:var(--muted)}
+.op :global(.t){font-weight:500}
+.op :global(.why){margin-top:2px}
+.op :global(.m){font-size:12.5px;color:var(--muted);white-space:nowrap;text-align:right}
+.op :global(.m) small{display:block;font-size:11.5px;color:var(--faint);margin-top:1px}
+.op :global(.m) :global(.i){color:var(--faint)}
+.op.hl{background:var(--hover)}
+.op :global(.btn){min-width:100px;justify-content:center}
+.own{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted);font-weight:500}
+.own :global(.kbd){margin-left:2px}
+.vis{display:flex;align-items:center;gap:14px;margin-top:12px;padding:12px 14px;border:1px dashed var(--line-2);border-radius:10px}
+.vis :global(.t){font-weight:500;font-size:13px}
+.vis :global(.c){font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* right column */
+.rc{display:flex;flex-direction:column;gap:18px}
+.one{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--text-2);line-height:1.5}
+:global(.panel-h)+.one{border-top:none}
+.one :global(.i){margin-top:2px}
+.one .lms{color:var(--brand-2);white-space:nowrap}
+:global([data-theme=light]) .one .lms{color:var(--brand)}
+.ab :global(.r){display:grid;grid-template-columns:118px minmax(0,1fr);align-items:center;gap:10px;min-height:42px;padding:6px 16px;border-top:1px solid var(--line);font-size:13px}
+.ab :global(.r):first-of-type{border-top:none}
+.ab :global(.r) .l{color:var(--muted);font-size:12.5px}
+.ab :global(.r) .v{display:flex;align-items:center;gap:8px;min-width:0}
+.ab :global(.r) .src{margin-left:auto;font-size:11.5px;color:var(--faint);white-space:nowrap}
+.ab :global(.avatar){width:20px;height:20px;font-size:8.5px}
+
+.how{padding:14px 16px 15px}
+.flow{display:flex;align-items:center;gap:5px;margin-top:10px;flex-wrap:nowrap}
+.flow span{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:6px;border:1px solid var(--line-2);font-size:12px;font-weight:500;color:var(--text-2);white-space:nowrap}
+.flow :global(.i){color:var(--faint)}
+.flow .okk{border-color:transparent;background:var(--ok-bg);color:var(--ok)}
+.flow .okk :global(.st){width:13px;height:13px}
+.how p{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}

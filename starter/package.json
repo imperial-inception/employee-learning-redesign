@@ -1,0 +1,51 @@
+{
+  "name": "redesign-starter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Design-only reference implementation of the redesign for a Next.js Pages Router app (React 18). Static sample data, no backend.",
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "dev:preview": "next dev -p 3101 -H 127.0.0.1",
+    "build": "next build",
+    "start": "next start -p 3100",
+    "lint": "next lint && node scripts/check-no-raw-colors.mjs components lib pages",
+    "typecheck": "tsc --noEmit",
+    "gen:css": "node scripts/build-ds-css.mjs && node scripts/build-icons.mjs",
+    "gen:views": "node scripts/convert-mockups.mjs",
+    "gen": "npm run gen:css && npm run gen:views",
+    "test:design:baseline": "playwright test -c playwright.design.config.ts --project=mockup --update-snapshots",
+    "test:design": "playwright test -c playwright.design.config.ts --project=app",
+    "check:collisions": "node scripts/check-collisions.mjs",
+    "diff": "node scripts/visual-diff.mjs"
+  },
+  "dependencies": {
+    "@emotion/cache": "11.14.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/server": "11.11.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/material": "5.18.0",
+    "@mui/material-nextjs": "5.18.0",
+    "next": "13.5.11",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.65.1",
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "22.19.1",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7",
+    "eslint": "8.57.1",
+    "eslint-config-next": "13.5.11",
+    "pixelmatch": "8.0.0",
+    "pngjs": "7.0.0",
+    "postcss": "8.5.33",
+    "postcss-selector-parser": "7.2.1",
+    "tailwindcss": "4.3.5",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

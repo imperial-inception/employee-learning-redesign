@@ -1,0 +1,12 @@
+/* Starter page base. In the real app keep the app's own globals; copy only the layer order line and the imports
+   from pages/_app.tsx (ds-reset.css, ds.css, ds-additions.css). */
+
+/* Cascade layer order. Declared before Tailwind so ds-reset sits between preflight (base) and utilities. */
+@layer theme, base, ds-reset, components, utilities;
+
+/* Tailwind 4 is present only to reproduce the host app (its preflight is active). Design components don't use it. */
+@import "tailwindcss";
+@import "./tailwind-tokens.css";
+
+html, body, #__next { height: 100%; }
+body { margin: 0; background: var(--bg); }

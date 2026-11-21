@@ -1,0 +1,61 @@
+/* GENERATED from the page-local <style> of design/html/25-growth.html (kit classes wrapped in :global, view root = .v). */
+.lay{display:grid;grid-template-columns:minmax(0,1fr) 352px;gap:18px;margin-top:16px}
+.areas{overflow:hidden;display:flex;flex-direction:column}
+.areas .hd,.areas .ar{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr) 262px;gap:26px;padding:0 20px}
+.areas .hd{height:34px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.areas .ar{flex:1;padding:15px 20px 16px;border-top:1px solid var(--line);align-items:start}
+.areas .hd + .ar{border-top:none}
+.an{display:flex;align-items:center;gap:10px;font-weight:550;font-size:14px;letter-spacing:-.005em}
+.an .ix{font:500 11px "Geist Mono",monospace;color:var(--faint);width:18px}
+.chg{margin:5px 0 0 28px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.chg b{color:var(--text-2);font-weight:550;margin-right:3px}
+.meter{display:inline-flex;gap:3px;flex:none}
+.meter i{width:13px;height:6px;border-radius:2px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.meter i:global(.on){background:var(--brand);box-shadow:none}
+.meter:global(.nr) i{background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--line-2)}
+.ev .lbl{font-size:13px;font-weight:550;color:var(--text)}
+.ev .lbl.none{color:var(--text-2);font-weight:500}
+.ev .lbl:global(.nr){color:var(--muted);font-weight:500;font-style:italic}
+.ev .src{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+.ev .src .x{color:var(--faint);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nx .tt{font-size:13px;font-weight:500;color:var(--text)}
+.nx .tt :global(.mono){font-size:11px;color:var(--faint);margin-left:3px}
+.nx :global(.row){gap:6px;margin-top:7px}
+.nx .cov{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-2)}
+.nx .opt{font-size:12px;color:var(--muted);margin-top:4px;padding-left:21px}
+.sum{padding:18px 20px 18px}
+.sum .k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.sum .path{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--text-2)}
+.sum .path .lv{height:24px;padding:0 9px;border-radius:7px;border:1px solid var(--line-2);display:flex;align-items:center;gap:6px;font-weight:500}
+.sum .path .lv.to{border-color:var(--brand-line);color:var(--brand-2);background:var(--brand-bg)}
+:global([data-theme=light]) .sum .path .lv.to{color:var(--brand)}
+.lvls{position:relative;margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.lvls::before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:1.5px;background:var(--line-2)}
+.lvl{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:500;color:var(--text-2)}
+.lvl :global(.dot){width:10px;height:10px;border-radius:50%;background:var(--surface-3);box-shadow:0 0 0 1.5px var(--muted);position:relative;flex:none}
+.lvl :global(.mono){margin-left:auto;font-size:10.5px;letter-spacing:.06em}
+.lvl.to{color:var(--text)}.lvl.to :global(.dot){background:var(--brand);box-shadow:0 0 0 3px var(--brand-bg)}.lvl.to :global(.mono){color:var(--brand-2)}
+:global([data-theme=light]) .lvl.to :global(.mono){color:var(--brand)}
+.sum .hl{display:flex;align-items:baseline;gap:10px;margin-top:18px}
+.sum .hl :global(.big){font-size:38px}
+.sum .hl span{color:var(--text-2);font-size:14px}
+.seg6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:14px}
+.seg6 span{height:8px;border-radius:3px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.seg6 span:global(.on){background:var(--brand);box-shadow:none}
+.seg6 span:global(.nr){background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 4px)}
+.sum :global(.lg){display:flex;flex-wrap:wrap;gap:6px 13px;font-size:12px;color:var(--muted);margin-top:10px}
+.sum :global(.lg) i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}
+.sum p{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.55}
+.sum p b{color:var(--text-2);font-weight:550}
+.oo{padding:16px 18px 18px}
+.oo .who{display:flex;align-items:center;gap:10px}
+.oo .who b{font-weight:550;font-size:13.5px;display:block}
+.oo .who small{font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.oo ul{list-style:none;margin:14px 0 16px;display:flex;flex-direction:column;gap:8px}
+.oo li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--text-2)}
+.oo li :global(.i){color:var(--ok);margin-top:1px}
+.oo :global(.btn):global(.primary){width:100%;justify-content:center}
+.oo :global(.help){display:flex;gap:7px;align-items:flex-start;margin-top:10px}
+.how{padding:14px 18px 16px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.how h3{font-size:12.5px;font-weight:600;color:var(--text-2);display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.how b{color:var(--text-2);font-weight:550}

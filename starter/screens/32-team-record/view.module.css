@@ -1,0 +1,66 @@
+/* GENERATED from the page-local <style> of design/html/32-team-record.html (kit classes wrapped in :global, view root = .v). */
+/* 32 · Record for your team (manager bulk record). One centred column: header, stepper, one panel. */
+:where(.v) :global(#page){height:100%;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:880px;flex:1;min-height:0;display:flex;flex-direction:column}
+:where(.v) :global(.ph){margin-bottom:18px}
+:where(.v) :global(.btn):global(.primary) :global(.kbd){background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
+.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* compact stepper: one line, labels only */
+.stepper{display:flex;align-items:center;gap:12px;list-style:none;margin-bottom:16px}
+.stepper li{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--muted);white-space:nowrap}
+.stepper li :global(.st){width:16px;height:16px}
+.stepper :global(.num){width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.stepper .done{color:var(--text-2)}
+.stepper .cur{color:var(--text)}
+.stepper .cur :global(.num){border-color:var(--brand);background:var(--brand);color:#fff}
+.stepper .optl{font-weight:400;color:var(--faint);font-size:12px}
+.stepper .ln{flex:1;height:1px;background:var(--line-2);min-width:24px}
+.stepper .ln.done{background:var(--ok);opacity:.55}
+
+/* the one panel */
+.card{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.act{display:flex;align-items:center;gap:10px;height:50px;padding:0 20px;border-bottom:1px solid var(--line);background:var(--surface-2);border-radius:12px 12px 0 0}
+.act .k{width:74px;flex:none}
+.act b{font-weight:550}
+.act :global(.muted){font-size:12.5px}
+:where(.v) :global(.lnk){font-size:12.5px;color:var(--muted)}
+
+.sh{display:flex;align-items:center;gap:10px;padding:16px 20px 10px}
+.sh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.sh :global(.cnt){font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.qa{display:flex;align-items:center;gap:2px}
+.qa :global(.btn){color:var(--muted)}
+.qa :global(.dot){color:var(--faint)}
+
+.ppl{margin:0 20px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pr{display:flex;align-items:center;gap:11px;height:40px;padding:0 14px;border-top:1px solid var(--line)}
+.pr:first-child{border-top:none}
+.pr :global(.avatar){width:22px;height:22px;font-size:9px}
+.pr .nm{font-weight:500}
+.pr.off .nm{color:var(--muted)}
+.pr.off :global(.avatar){opacity:.45}
+.pr.skip .nm{color:var(--text-2)}
+.pr .note{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted)}
+.pr .note :global(.st){width:14px;height:14px}
+.pr .lead{margin-left:auto;font-size:12px;color:var(--faint)}
+.pr.skip{background:var(--hover)}
+
+/* how records are created */
+.how{padding:18px 20px 18px}
+.how :global(.label){margin-bottom:9px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:10px}
+.opt:global(.on){border-color:var(--brand-line);background:var(--brand-bg)}
+.opt :global(.t){font-weight:550;display:flex;align-items:center;gap:8px}
+.opt :global(.c){font-size:12.5px;color:var(--muted);margin-top:2px}
+.opt :global(.pill){height:20px;font-size:11.5px;margin-left:auto}
+.tr-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;flex:none;margin-top:1px}
+.tr-radio:global(.on){border-color:var(--brand)}
+.tr-radio:global(.on)::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand)}
+
+/* footer summary */
+.foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
+.foot .sum{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-right:auto}
+.foot .sum b{font-weight:600}
+.foot .sum .sep{color:var(--faint)}

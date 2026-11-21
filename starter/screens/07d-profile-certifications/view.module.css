@@ -1,0 +1,62 @@
+/* GENERATED from the page-local <style> of design/html/07d-profile-certifications.html (kit classes wrapped in :global, view root = .v). */
+/* ---- copied from 07-profile (header + section tabs), keep in sync ---- */
+.acc{color:var(--brand-2)}:global([data-theme=light]) .acc{color:var(--brand)}
+.idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+:global(.avatar).xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.idl b{color:var(--text);font-weight:550}
+.idl :global(.lnk){color:var(--brand-2);display:inline-flex;align-items:center;gap:4px}
+:global([data-theme=light]) .idl :global(.lnk){color:var(--brand)}
+.idl .ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.idl :global(.sl){color:var(--faint)}
+.idh :global(.acts){margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.ptabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.ptabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.ptabs a :global(.i){color:var(--faint)}
+.ptabs a:global(.on){color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ptabs a:global(.on) :global(.i){color:var(--text)}
+.ptabs :global(.n){font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.ptabs a:global(.on) :global(.n){color:var(--text-2)}
+.ptabs :global(.dot){width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.ptabs .push{margin-left:auto}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px;align-items:start}
+.cc{display:flex;flex-direction:column;gap:16px;min-width:0}
+.src{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:550;white-space:nowrap}
+.src.mc{background:var(--ok-bg);color:var(--ok)}
+.src.sr{border:1px dashed var(--line-2);color:var(--muted);font-weight:500}
+.never{display:flex;gap:8px;font-size:12px;color:var(--muted);padding:12px 16px 14px;line-height:1.45}
+.never :global(.i){margin-top:2px}
+
+/* ---- this view: Certifications tab (pcx-) ---- */
+.pcx-hb{margin-left:auto}
+.pcx-r{display:grid;grid-template-columns:30px minmax(0,1fr) 92px 148px 168px;align-items:center;column-gap:14px;padding:11px 16px;border-top:1px solid var(--line);min-height:62px}
+.pcx-r.pcx-hd{min-height:34px;padding:0 16px;border-top:none;background:var(--surface-2);font-size:12px;font-weight:500;color:var(--muted)}
+.pcx-r.pcx-sel{background:var(--sel);box-shadow:inset 2px 0 0 var(--brand)}
+.pcx-ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.pcx-r :global(.t){font-weight:500}
+.pcx-r :global(.c){font-size:12.5px;color:var(--muted);margin-top:2px}
+.pcx-d{font:500 12.5px "Geist Mono",monospace;color:var(--text-2);white-space:nowrap}
+.pcx-d small{display:flex;align-items:center;gap:4px;font:500 11.5px Geist,"Segoe UI",sans-serif;margin-top:3px}
+.pcx-soon{color:var(--warn)}
+.pcx-quiet{color:var(--muted);font-family:Geist,"Segoe UI",sans-serif}
+.pcx-exp{color:var(--muted)}
+.pcx-nr{color:var(--faint);font:italic 400 12.5px Geist,"Segoe UI",sans-serif}
+.pcx-v small{display:block;font-size:11.5px;color:var(--faint);margin-top:4px;white-space:nowrap}
+.pcx-v small .acc{font-weight:500}
+.pcx-ln{border-top:1px solid var(--line)}
+
+/* attach panel */
+.pcx-sub{font-size:12px;color:var(--muted);margin-left:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcx-body{padding:14px 16px 4px;display:flex;flex-direction:column;gap:13px}
+.pcx-drop{border:1.5px dashed var(--line-2);border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px 16px;background:linear-gradient(180deg,var(--hover),transparent)}
+.pcx-drop .pcx-ic{width:36px;height:36px;border-radius:9px;margin-bottom:10px}
+.pcx-drop b{font-weight:550}
+.pcx-drop :global(.muted){font-size:12px;margin-top:4px}
+.pcx-body :global(.label){font-size:12px;margin-bottom:5px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:6px}
+.pcx-body :global(.label) .opt{color:var(--faint);font-weight:400}
+.pcx-body :global(.input){height:34px;font-size:13px;background:var(--surface-2);padding:0 10px;color:var(--faint)}
+.pcx-body :global(.input) :global(.i){color:var(--faint)}
+.pcx-body :global(.help){margin-top:0;line-height:1.45}
+.pcx-ft{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid var(--line);margin-top:12px}
+.pcx-rn{display:flex;gap:9px;padding:13px 16px;font-size:12.5px;color:var(--text-2);line-height:1.5}
+.pcx-rn :global(.i){margin-top:3px;color:var(--muted)}

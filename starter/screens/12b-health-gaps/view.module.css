@@ -1,0 +1,60 @@
+/* GENERATED from the page-local <style> of design/html/12b-health-gaps.html (kit classes wrapped in :global, view root = .v). */
+:where(.v) :global(#page){height:100%;display:flex;flex-direction:column}
+/* same local shell fix as 12-admin-health: keep "Skill Portal" + ADMIN tag on one line */
+:where(.v) :global(.sidebar) :global(.ws-btn){gap:7px}:where(.v) :global(.sidebar) :global(.ws-btn) b{white-space:nowrap}:where(.v) :global(.sidebar) :global(.ws-tag){margin-left:0;padding:2px 5px}
+.chk{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+/* banners (as 12-admin-health) */
+.bn{display:flex;flex-direction:column;gap:10px}
+.bn :global(.banner){padding:12px 14px 12px 12px;gap:12px}
+.bn .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
+.bn :global(.danger) .ic{background:var(--danger-bg);color:var(--danger)}
+.bn :global(.warn) .ic{background:var(--warn-bg);color:var(--warn)}
+.bn .tx b{font-weight:600}
+.bn .tx .s{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+.bn .tx .s :global(.mono){font-size:11.5px;color:var(--text-2)}
+.bn :global(.danger){border-color:rgba(255,93,110,.28)}
+:global([data-theme=light]) .bn :global(.danger){border-color:rgba(225,29,72,.25)}
+/* sources strip (as 12-admin-health) */
+.src{display:grid;grid-template-columns:repeat(5,1fr);margin-top:16px}
+.src .cell{padding:12px 16px;border-left:1px solid var(--line);min-width:0}
+.src .cell:first-child{border-left:none}
+.src .nm{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.src .stt{display:flex;align-items:center;gap:7px;font-weight:550;margin-top:6px;font-size:13px}
+.src .stt :global(.st){width:14px;height:14px}
+.src .mt{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-bad{color:var(--danger)}.hs-rev{color:var(--warn)}.hs-okt{color:var(--text)}.hs-not{color:var(--muted)}
+/* queue panel + tab header (as 12-admin-health) */
+.qp{flex:1;min-height:0;margin-top:16px;display:flex;flex-direction:column;overflow:hidden}
+.qh{display:flex;align-items:flex-end;padding:0 16px;border-bottom:1px solid var(--line)}
+.qh h2{font-size:13.5px;font-weight:600;margin-right:18px;height:42px;display:flex;align-items:center}
+.qh :global(.tabs){border-bottom:none;height:42px;align-items:flex-end}
+.qh :global(.tabs)>span{height:42px}
+.qh .note{margin-left:auto;height:42px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.call{display:flex;align-items:center;gap:10px;margin:12px 16px 4px;padding:9px 10px 9px 12px;border-radius:9px;border:1px solid var(--brand-line);background:var(--brand-bg);font-size:13px}
+.call .ai{color:var(--brand-2);display:flex}
+:global([data-theme=light]) .call .ai{color:var(--brand)}
+.call :global(.muted){font-size:12.5px}
+.it :global(.t){font-weight:500}
+.it .code{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:7px}
+.fld{color:var(--text-2)}
+.val{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--text);max-width:260px}
+.val:global(.mono){font-size:12px}
+.since{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+
+/* gaps tab (new, prefixed hx-) */
+.hx-t th{height:36px;padding:0 12px;white-space:nowrap}
+.hx-t td{height:50px;padding:0 12px;white-space:nowrap}
+.hx-t th:first-child,.hx-t td:first-child{padding-left:16px}
+.hx-t th:last-child,.hx-t td:last-child{padding-right:12px;text-align:right}
+.hx-t th.hx-use{color:var(--text-2)}
+.hx-t td.hx-use{background:color-mix(in srgb,var(--brand) 4%,transparent)}
+.hx-t th.hx-use{background:color-mix(in srgb,var(--brand) 4%,transparent)}
+.hx-blank{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;border:1px dashed var(--line-2);font-size:12px;color:var(--faint);font-style:italic}
+.hx-ell{display:inline-block;max-width:250px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;white-space:nowrap}
+.hx-from{display:inline-flex;align-items:center;gap:5px;margin-left:8px;font-size:12px;color:var(--muted);vertical-align:middle}
+.hx-use .val{vertical-align:middle}
+.hx-from :global(.i){color:var(--brand-2)}
+:global([data-theme=light]) .hx-from :global(.i){color:var(--brand)}
+.hx-foot{display:flex;align-items:flex-start;gap:9px;margin:auto 16px 14px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted);line-height:1.5}
+.hx-foot :global(.i){margin-top:2px;flex:none}
+.hx-foot b{color:var(--text-2);font-weight:550}

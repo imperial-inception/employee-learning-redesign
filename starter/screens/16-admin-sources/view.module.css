@@ -1,0 +1,74 @@
+/* GENERATED from the page-local <style> of design/html/16-admin-sources.html (kit classes wrapped in :global, view root = .v). */
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+:where(.v) :global(.ws-btn){gap:7px}:where(.v) :global(.ws-btn) b{white-space:nowrap}:where(.v) :global(.ws-tag){margin-left:0}
+.lay{display:grid;grid-template-columns:288px 1fr;gap:18px;align-items:start}
+.col{display:flex;flex-direction:column;gap:16px}
+/* source list */
+:where(.v) :global(.sl) :global(.li){gap:11px;padding:10px 14px;min-height:60px;align-items:center}
+:where(.v) :global(.sl) :global(.li):global(.on){background:var(--sel);box-shadow:inset 2px 0 0 var(--brand)}
+:global(.sl) .ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--text-2);flex:none;background:var(--surface-2)}
+:where(.v) :global(.sl) :global(.t){font-size:13px}
+:where(.v) :global(.sl) :global(.c){font-size:12px;margin-top:1px}
+:global(.sl) :global(.c).bad{color:var(--danger)}:global(.sl) :global(.c).rev{color:var(--warn)}
+:global(.sl) :global(.li).off :global(.t){color:var(--muted);font-weight:450}
+.fail{padding:13px 14px}
+.fail .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.fail .hd :global(.st){width:15px;height:15px}
+.fail .er{margin-top:9px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font:500 11.5px/1.55 "Geist Mono",monospace;color:var(--text-2)}
+.fail p{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5}
+.fail .ba{display:flex;gap:6px;margin-top:11px}
+/* main */
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.sh .ic{width:42px;height:42px;border-radius:11px;border:1px solid var(--line-2);background:var(--surface);display:grid;place-items:center;color:var(--text)}
+.sh h2{font-size:18px;font-weight:600;letter-spacing:-.015em;display:flex;align-items:center;gap:10px}
+.sh :global(.c){font-size:12.5px;color:var(--muted);margin-top:3px}
+.sh :global(.acts){margin-left:auto;display:flex;gap:8px}
+.stats{display:grid;grid-template-columns:.9fr 1.15fr 1.15fr 1.3fr;margin-bottom:16px}
+.stats .cell{padding:13px 16px;border-left:1px solid var(--line)}
+.stats .cell:first-child{border-left:none}
+.stats .k{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.stats .v{font-size:13.5px;font-weight:550}
+.stats .v:global(.mono){font-size:12.5px;font-weight:500}
+.stats .s{font-size:12px;color:var(--muted);margin-top:4px}
+.ticks{display:flex;gap:4px;align-items:flex-end;height:22px}
+.ticks span{flex:1;height:18px;border-radius:3px;background:var(--ok);opacity:.85}
+.ticks span.bad{background:var(--danger);opacity:1}
+.ticks span.pv{background:var(--warn);opacity:1}
+.ticks span.held{background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2);opacity:1}
+.tk-l{display:flex;justify-content:space-between;font:500 10.5px "Geist Mono",monospace;color:var(--faint);margin-top:5px}
+.grid2{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
+/* preview */
+.pv{overflow:hidden}
+.pv :global(.panel-h) :global(.mono){font-size:11.5px}
+.sum{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sum :global(.pill){height:24px}
+.sum :global(.pill) :global(.mono){font-weight:600}
+.sum .gap{margin-left:auto;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sum .gap :global(.i){color:var(--ok)}
+.pv table{table-layout:fixed}
+.pv th{height:34px;padding:0 12px;background:var(--surface-2)}
+.pv td{height:45px;padding:0 12px;font-size:12.5px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv td.it{color:var(--text);font-size:13px;font-weight:500}
+.pv td.it .cd{font:400 11.5px "Geist Mono",monospace;color:var(--faint);margin-right:8px}
+.sg{width:18px;height:18px;border-radius:5px;display:inline-grid;place-items:center;font:700 12px "Geist Mono",monospace;vertical-align:middle}
+.sg.add{background:var(--ok-bg);color:var(--ok)}
+.sg.chg{background:var(--brand-bg);color:var(--brand-2)}
+:global([data-theme=light]) .sg.chg{color:var(--brand)}
+.bf{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+.af{color:var(--text)}
+.ar{color:var(--faint);padding:0 6px}
+.nw{color:var(--muted)}
+.nw .dd{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:1px}
+.pv .tf{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+/* right */
+.mp :global(.li){min-height:34px;padding:0 16px;gap:8px;font-size:12.5px}
+.mp .src{font:500 11.5px "Geist Mono",monospace;color:var(--muted);width:112px;flex:none}
+.mp :global(.li) :global(.i){color:var(--faint)}
+.mp .dst{color:var(--text);font-weight:500}
+.mp .ft{display:flex;align-items:center;gap:8px;height:38px;padding:0 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.mp .ft :global(.mono){font-size:11.5px}
+.ph2{padding:14px 16px}
+.ph2 :global(.input){height:34px;font:500 12.5px "Geist Mono",monospace;background:var(--surface-2)}
+.ph2 :global(.input) :global(.i){color:var(--faint)}
+.val{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:12.5px;color:var(--ok);font-weight:500}
+.ph2 p{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.45}

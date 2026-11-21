@@ -1,0 +1,63 @@
+/* GENERATED from the page-local <style> of design/html/15c-rules-required.html (kit classes wrapped in :global, view root = .v). */
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+:where(.v) :global(.ws-btn){gap:7px}:where(.v) :global(.ws-btn) b{white-space:nowrap}:where(.v) :global(.ws-tag){margin-left:0}
+:where(.v) :global(.tabs) span:global(.n){height:auto;padding:0;margin:0}
+.lay{display:grid;grid-template-columns:1fr 372px;gap:18px;margin-top:18px;align-items:start}
+.rq-col{display:flex;flex-direction:column;gap:18px}
+/* rules table */
+.rq-main{overflow:hidden}
+.rq-g{display:grid;grid-template-columns:minmax(0,1.2fr) 150px minmax(0,1fr) 140px;gap:18px}
+.rq-th{height:36px;align-items:center;padding:0 18px;border-bottom:1px solid var(--line);font-size:12px;font-weight:500;color:var(--muted)}
+.rq-row{padding:13px 18px;border-top:1px solid var(--line);align-items:start}
+.rq-th + .rq-row{border-top:none}
+.rq-it{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.rq-it > :global(.i){color:var(--brand-2);margin-top:2px}
+:global([data-theme=light]) .rq-it > :global(.i){color:var(--brand)}
+.rq-tt{font-size:13.5px;font-weight:600;line-height:1.35}
+.rq-cd{font:400 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:6px}
+.rq-pop{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.rq-pop :global(.i){color:var(--faint)}
+.rq-pop :global(.mono){font-size:11.5px;color:var(--text-2)}
+.rq-due{font:500 12.5px "Geist Mono",monospace;color:var(--text);padding-top:1px}
+.rq-sm{font:400 12px Geist,sans-serif;color:var(--muted);margin-top:4px}
+.rq-rs{font-size:12.5px;color:var(--text-2);line-height:1.5;padding-top:1px}
+.rq-ap{display:flex;gap:8px;align-items:flex-start;padding-top:1px}
+.rq-ap :global(.avatar){margin-top:1px}
+.rq-ap b{font-size:12.5px;font-weight:550;display:block;line-height:1.35}
+.rq-ap .rq-sm{margin-top:2px;font-family:"Geist Mono",monospace;font-size:11.5px}
+.rq-you{font:500 10.5px "Geist Mono",monospace;color:var(--faint);margin-left:4px}
+/* pending removal, inside the CM-140 row */
+.rq-req{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:2px 0 0 26px;padding:10px 12px;border-radius:9px;border:1px dashed var(--line-2);background:linear-gradient(90deg,var(--warn-bg),transparent 65%),var(--surface)}
+.rq-req > :global(.i){color:var(--warn)}
+.rq-req .tx{font-size:12.5px;color:var(--text-2);line-height:1.45}
+.rq-req .tx b{color:var(--text);font-weight:550}
+.rq-req .tx .q{color:var(--muted)}
+.rq-pol{display:flex;gap:10px;align-items:flex-start;padding:13px 18px;border-top:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted);line-height:1.5}
+.rq-pol :global(.i){color:var(--text-2);margin-top:2px}
+.rq-pol b{color:var(--text-2);font-weight:550}
+/* overrides */
+.rq-lead{padding:11px 16px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.rq-ov{padding:12px 16px;border-top:1px solid var(--line)}
+.rq-lead + .rq-ov{border-top:none}
+.rq-ovh{display:flex;align-items:center;gap:8px}
+.rq-ovh b{font-size:13px;font-weight:600}
+.rq-ovh :global(.pill){margin-left:auto}
+.rq-ovw{font-size:12.5px;color:var(--text-2);margin:7px 0 0 28px}
+.rq-ovw :global(.mono){font-size:11.5px;color:var(--muted);margin-right:4px}
+.rq-ovr{font-size:12.5px;color:var(--text-2);margin:4px 0 0 28px;line-height:1.45}
+.rq-ovr .q{color:var(--muted)}
+.rq-ovb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin:7px 0 0 28px}
+.rq-ovb :global(.i){color:var(--faint)}
+.rq-ovb :global(.mono){font-size:11.5px}
+.rq-ft{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.rq-ft :global(.lnk){margin-left:auto;display:flex;align-items:center;gap:4px}
+/* how employees see it */
+.rq-pv{padding:14px 16px}
+.rq-pv :global(.grp){margin-bottom:8px}
+.rq-card{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--surface-2)}
+.rq-card .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550}
+.rq-card .hd :global(.i){color:var(--brand-2)}
+:global([data-theme=light]) .rq-card .hd :global(.i){color:var(--brand)}
+.rq-card .hd :global(.m){margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--text-2)}
+.rq-card :global(.why){margin:6px 0 0 22px}
+.rq-pvn{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}

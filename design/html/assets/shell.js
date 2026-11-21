@@ -72,9 +72,10 @@
 
   const page = document.getElementById('page');
   if (page) {
-    const ws = b.dataset.ws || 'employee', act = b.dataset.active || '', mgr = b.dataset.role === 'manager';
+    // Reviews lives inside Team (tab "Waiting for you"), so an old data-active="reviews" still lights Team.
+    const ws = b.dataset.ws || 'employee', act = (b.dataset.active === 'reviews' ? 'team' : b.dataset.active) || '', mgr = b.dataset.role === 'manager';
     const a = (id, icon, label, extra = '') => `<a class="${act === id ? 'active' : ''}" data-go="${id}">${ico(icon)}<span>${label}</span>${extra}</a>`;
-    // per-screen nav counts: <body data-counts='{"reviews":7}'>
+    // per-screen nav counts: <body data-counts='{"team":7}'> (Team's count = records waiting for your decision)
     let counts = {}; try { counts = JSON.parse(b.dataset.counts || '{}'); } catch (e) {}
     const cnt = (id, d) => { const v = id in counts ? counts[id] : d; return v ? `<span class="cnt">${v}</span>` : ''; };
     // Optional user for the profile corner: <body data-user='{"name":"Omar Haddad","initials":"OH","role":"Systems Engineer"}'>
@@ -94,8 +95,7 @@
           ${a('plan', 'target', 'Goals &amp; pathways')}
           ${a('colleagues', 'users', 'Colleagues')}</nav>
         ${mgr ? `<div class="nav-sec">My team</div><nav class="nav">
-          ${a('reviews', 'inbox', 'Reviews', cnt('reviews', 4))}
-          ${a('team', 'users', 'Team', cnt('team', 11))}
+          ${a('team', 'users', 'Team', cnt('team', 4))}
           ${a('insights', 'chart', 'Insights')}
           ${a('reports', 'file', 'Reports')}</nav>` : ''}`;
     const side = `<aside class="sidebar">
@@ -138,6 +138,10 @@
     '12': { 'Conflicts': '12-admin-health', 'Gaps': '12b-health-gaps', 'Formal items missing a link': '12c-health-missing-links', 'Formatting': '12d-health-formatting' },
     '15': { 'Frameworks': '15b-rules-frameworks', 'Populations': '15-admin-rules', 'Required learning': '15c-rules-required', 'Roles': '15d-rules-roles', 'Reminders': '15e-rules-reminders', 'Feedback form': '15f-rules-feedback-form' },
     '32': { 'Activity': '32b-team-record-activity', 'Who attended': '32-team-record', 'Evidence': '32c-team-record-evidence' },
+    // Team tabs: People (10, 10b) · Waiting for you (09 one by one, 33 select mode)
+    '10': { 'People': '10-team', 'Waiting for you': '09-reviews' },
+    '09': { 'People': '10-team', 'Waiting for you': '09-reviews' },
+    '33': { 'People': '10-team', 'Waiting for you': '09-reviews', 'One by one': '09-reviews' },
     '20': { 'Change role': '20b-person-role' }
   };
   const fam = (location.pathname.split('/').pop() || '').slice(0, 2);

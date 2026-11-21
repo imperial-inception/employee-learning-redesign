@@ -1,0 +1,38 @@
+/* Design tokens as Tailwind 4 theme colours, for any Tailwind you write next to the design components.
+   Names are prefixed ds- so they cannot collide with the app's existing Tailwind theme:
+   bg-ds-surface, text-ds-muted, border-ds-line, bg-ds-brand-bg … They follow dark/light automatically
+   because they point at the CSS variables. Prefer the design components; use these for layout glue only. */
+@theme inline {
+  --color-ds-bg: var(--bg);
+  --color-ds-panel: var(--panel);
+  --color-ds-surface: var(--surface);
+  --color-ds-surface-2: var(--surface-2);
+  --color-ds-surface-3: var(--surface-3);
+  --color-ds-hover: var(--hover);
+  --color-ds-sel: var(--sel);
+  --color-ds-line: var(--line);
+  --color-ds-line-2: var(--line-2);
+  --color-ds-text: var(--text);
+  --color-ds-text-2: var(--text-2);
+  --color-ds-muted: var(--muted);
+  --color-ds-faint: var(--faint);
+  --color-ds-brand: var(--brand);
+  --color-ds-brand-2: var(--brand-2);
+  --color-ds-brand-bg: var(--brand-bg);
+  --color-ds-brand-line: var(--brand-line);
+  --color-ds-ok: var(--ok);
+  --color-ds-ok-bg: var(--ok-bg);
+  --color-ds-warn: var(--warn);
+  --color-ds-warn-bg: var(--warn-bg);
+  --color-ds-orange: var(--orange);
+  --color-ds-orange-bg: var(--orange-bg);
+  --color-ds-danger: var(--danger);
+  --color-ds-danger-bg: var(--danger-bg);
+  --color-ds-info: var(--info);
+  --color-ds-info-bg: var(--info-bg);
+  --font-ds-sans: Geist, "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-ds-mono: "Geist Mono", ui-monospace, Consolas, monospace;
+  --radius-ds-panel: 12px;
+  --radius-ds-control: 8px;
+  --radius-ds-tag: 6px;
+}

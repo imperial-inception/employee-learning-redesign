@@ -38,8 +38,9 @@ export const screens: Screen[] = [
   { id: '22', name: 'notifications', mockup: '22-notifications', route: '/home?panel=notifications', fixture: 'jordan' },
   // Manager
   { id: '31', name: 'manager-home', mockup: '31-manager-home', route: '/home', fixture: 'jordan-manager' },
-  { id: '09', name: 'reviews', mockup: '09-reviews', route: '/team/reviews', fixture: 'jordan-manager' },
-  { id: '33', name: 'reviews-bulk', mockup: '33-reviews-bulk', route: '/team/reviews?mode=select', fixture: 'jordan-manager-7' },
+  // 09 and 33 are Team's "Waiting for you" tab (no separate Reviews page); their ids and mockup names stay for tooling.
+  { id: '09', name: 'team-waiting', mockup: '09-reviews', route: '/team/waiting', fixture: 'jordan-manager' },
+  { id: '33', name: 'team-waiting-bulk', mockup: '33-reviews-bulk', route: '/team/waiting?mode=select', fixture: 'jordan-manager-7' },
   { id: '32', name: 'team-record', mockup: '32-team-record', route: '/team/record?step=attendees', fixture: 'jordan-manager' },
   { id: '32b', name: 'team-record-activity', mockup: '32b-team-record-activity', route: '/team/record?step=activity', fixture: 'jordan-manager' },
   { id: '32c', name: 'team-record-evidence', mockup: '32c-team-record-evidence', route: '/team/record?step=evidence', fixture: 'jordan-manager' },

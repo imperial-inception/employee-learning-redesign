@@ -1,0 +1,41 @@
+/* GENERATED from the page-local <style> of design/html/32b-team-record-activity.html (kit classes wrapped in :global, view root = .v). */
+/* 32b · Record for your team, step 1 Activity. Same frame as 32-team-record; page-local classes use the trc- prefix. */
+:where(.v) :global(#page){height:100%;display:flex;flex-direction:column;align-items:center}
+.trc-wrap{width:100%;max-width:880px;flex:1;min-height:0;display:flex;flex-direction:column}
+.trc-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* compact stepper: one line, labels only */
+.trc-stepper{display:flex;align-items:center;gap:12px;list-style:none;margin-bottom:16px}
+.trc-stepper li{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--muted);white-space:nowrap}
+.trc-stepper li :global(.st){width:16px;height:16px}
+.trc-num{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.trc-stepper .trc-done{color:var(--text-2)}
+.trc-stepper .trc-cur{color:var(--text)}
+.trc-stepper .trc-cur .trc-num{border-color:var(--brand);background:var(--brand);color:#fff}
+.trc-optl{font-weight:400;color:var(--faint);font-size:12px}
+.trc-stepper .trc-ln{flex:1;height:1px;background:var(--line-2);min-width:24px}
+
+/* the one panel */
+.trc-card{flex:0 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.trc-sh{display:flex;align-items:center;gap:10px;padding:18px 20px 4px}
+.trc-sh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.trc-form{padding:12px 20px 18px;display:flex;flex-direction:column;gap:18px}
+.trc-f :global(.label){display:flex;align-items:center;gap:8px}
+.trc-f :global(.label) .trc-o{font-weight:400;color:var(--faint);font-size:12px}
+.trc-types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.trc-opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px}
+.trc-opt.trc-on{border-color:var(--brand-line);background:var(--brand-bg)}
+.trc-opt :global(.radio){margin-top:3px}
+.trc-opt .trc-t{display:flex;align-items:center;gap:8px;font-weight:550}
+.trc-opt .trc-c{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+.trc-row3{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:12px}
+.trc-f :global(.input) :global(.i){color:var(--muted)}
+.trc-f :global(.input).trc-ph{color:var(--faint)}
+.trc-f :global(.textarea){min-height:66px}
+.trc-f :global(.help) :global(.i){color:var(--faint);margin-right:2px}
+
+/* footer */
+.trc-foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
+.trc-sum{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-right:auto}
+.trc-sum :global(.i){color:var(--faint)}
+.trc-sum b{color:var(--text-2);font-weight:550}

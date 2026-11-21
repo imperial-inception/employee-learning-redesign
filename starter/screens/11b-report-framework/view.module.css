@@ -1,0 +1,74 @@
+/* GENERATED from the page-local <style> of design/html/11b-report-framework.html (kit classes wrapped in :global, view root = .v). */
+/* 11b · Reports › Audit-ready evidence by framework. Same frame as 11-reports; page-local classes use the rpt- prefix. */
+:where(.v) :global(#page){height:100%;display:flex;flex-direction:column}
+.rpt-l{flex:1;min-height:0;display:grid;grid-template-columns:272px 1fr;gap:18px}
+.rpt-col{display:flex;flex-direction:column;gap:16px;min-height:0}
+.rpt-grp{font:500 11px "Geist Mono",monospace;letter-spacing:.06em;color:var(--faint);padding:12px 16px 4px}
+.rpt-types{padding-bottom:6px}
+.rpt-types :global(.li){align-items:flex-start;padding:11px 14px;gap:11px;position:relative;border-top:none}
+.rpt-types :global(.li) :global(.i){margin-top:2px;color:var(--muted)}
+.rpt-types :global(.li) :global(.t){font-size:13px}
+.rpt-types :global(.li) :global(.c){font-size:12px;margin-top:2px;line-height:1.4}
+.rpt-types :global(.li).rpt-on{background:var(--sel)}
+.rpt-types :global(.li).rpt-on :global(.i){color:var(--text)}
+.rpt-types :global(.li).rpt-on::before{content:"";position:absolute;left:0;top:11px;bottom:11px;width:2px;border-radius:0 2px 2px 0;background:var(--brand)}
+
+.rpt-p{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.rpt-h{display:flex;align-items:flex-start;gap:14px;padding:18px 22px 14px}
+.rpt-h h2{font-size:18px;font-weight:600;letter-spacing:-.015em}
+.rpt-h h2 :global(.mono){font-size:14px;font-weight:500;color:var(--muted);letter-spacing:0;margin-left:6px}
+.rpt-h p{font-size:12.5px;color:var(--muted);margin-top:4px}
+.rpt-acts{margin-left:auto;display:flex;gap:8px;align-items:center}
+.rpt-fl{display:flex;align-items:center;gap:8px;padding:0 22px 14px;border-bottom:1px solid var(--line)}
+.rpt-chip{display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-2);font-size:12.5px;color:var(--text);white-space:nowrap}
+.rpt-chip .rpt-k,.rpt-chip :global(.i){color:var(--muted)}
+.rpt-chip.rpt-locked{background:transparent;border-style:dashed}
+.rpt-fresh{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.rpt-fresh :global(.mono){color:var(--text-2);font-size:12px}
+
+.rpt-viz{display:grid;grid-template-columns:1fr 276px;border-bottom:1px solid var(--line)}
+.rpt-chart{padding:14px 22px 12px}
+.rpt-chh{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:550;color:var(--text-2)}
+.rpt-chh :global(.legend){margin:0 0 0 auto}
+svg.rpt-bars{display:block;width:100%;height:auto;margin-top:8px}
+.rpt-bars .rpt-gl{stroke:var(--line)}.rpt-bars .rpt-gl0{stroke:var(--line-2)}
+.rpt-bars text{font:500 10.5px "Geist Mono",monospace;fill:var(--faint)}
+.rpt-bars text.rpt-lb{font:500 12px Geist,"Segoe UI",sans-serif;fill:var(--text-2)}
+.rpt-bars text.rpt-tot{fill:var(--text-2);font-size:11px;font-weight:600}
+.rpt-bars tspan.rpt-pp{fill:var(--muted);font-weight:500}
+.rpt-bars .rpt-f{fill:var(--t-formal)}.rpt-bars .rpt-r{fill:var(--t-rel)}.rpt-bars .rpt-e{fill:var(--t-exp)}
+.rpt-sum{border-left:1px solid var(--line);padding:14px 20px;display:flex;flex-direction:column;gap:14px}
+.rpt-sk{font-size:12px;color:var(--muted)}
+.rpt-sv{font-size:22px;font-weight:600;letter-spacing:-.025em;line-height:1.1;margin-top:3px;display:flex;align-items:baseline;gap:6px}
+.rpt-sv small{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0}
+.rpt-sb{display:flex;height:5px;gap:2px;margin-top:7px}
+.rpt-sb span{border-radius:2px}
+.rpt-st{display:flex;gap:10px;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.rpt-st :global(.d){margin-right:5px;vertical-align:1px}
+
+.rpt-prev{flex:1;min-height:0;display:flex;flex-direction:column}
+.rpt-ph{display:flex;align-items:center;gap:8px;padding:10px 22px 6px;font-size:12.5px}
+.rpt-ph b{font-weight:550}
+.rpt-t th{height:30px;font-size:11.5px;padding:0 12px;white-space:nowrap}
+.rpt-t td{height:32px;padding:0 12px;font-size:12.5px;white-space:nowrap}
+.rpt-t th:first-child,.rpt-t td:first-child{padding-left:22px}
+.rpt-t th:last-child,.rpt-t td:last-child{padding-right:22px}
+.rpt-t .rpt-n{text-align:right;font:500 12.5px "Geist Mono",monospace;color:var(--text-2)}
+.rpt-t th.rpt-n{font:500 11.5px Geist,sans-serif;color:var(--muted)}
+.rpt-t .rpt-n.rpt-z{color:var(--faint)}
+.rpt-t th :global(.d){margin-right:6px;vertical-align:1px}
+.rpt-area{display:flex;align-items:center;gap:8px}
+.rpt-area :global(.i){color:var(--faint)}
+.rpt-t tr.rpt-open td{background:var(--hover)}
+.rpt-t tr.rpt-open .rpt-area :global(.i){color:var(--text-2)}
+.rpt-t tr.rpt-sub td{height:28px;font-size:12px;background:var(--hover);color:var(--text-2)}
+.rpt-t tr.rpt-sub .rpt-n{font-size:12px}
+.rpt-t tr.rpt-sub td:first-child{padding-left:44px}
+.rpt-who{display:flex;align-items:center;gap:8px}
+.rpt-who :global(.avatar){width:18px;height:18px;font-size:8px}
+.rpt-t tr td.rpt-miss{color:var(--warn)}
+.rpt-t tr.rpt-tot td{border-top:1px solid var(--line-2);font-weight:600;color:var(--text);height:36px}
+.rpt-t tr.rpt-tot .rpt-n{color:var(--text);font-weight:600}
+.rpt-t tr.rpt-tot .rpt-fn{font-weight:400;color:var(--muted);font-size:12px;margin-left:6px}
+.rpt-note{display:flex;align-items:center;gap:8px;padding:11px 22px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);margin-top:auto}
+.rpt-note b{color:var(--text-2);font-weight:550}

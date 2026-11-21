@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.next-dev/
+out/
+*.tsbuildinfo
+test-results/
+playwright-report/
+# Visual baselines are rendered on the machine that runs the comparison (font rasterising differs per OS).
+tests/design/__baselines__/

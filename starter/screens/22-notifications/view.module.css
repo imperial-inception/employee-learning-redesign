@@ -1,0 +1,42 @@
+/* GENERATED from the page-local <style> of design/html/22-notifications.html (kit classes wrapped in :global, view root = .v). */
+.c-faint{color:var(--faint)}
+.v{overflow:hidden}
+.bg{filter:saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.42)}
+:global([data-theme=light]) .scrim{background:rgba(250,250,250,.45)}
+
+/* the bell, lifted above the scrim so the anchor reads as pressed */
+.bell-on{position:fixed;left:189px;top:18px;width:28px;height:28px;border-radius:7px;display:grid;place-items:center;background:var(--surface-3);box-shadow:0 0 0 1px var(--line-2);color:var(--text)}
+
+.np{position:fixed;left:12px;top:56px;width:492px;overflow:visible}
+.np .caret{position:absolute;top:-6px;left:185px;width:12px;height:12px;background:var(--surface);transform:rotate(45deg);border-left:1px solid var(--line-2);border-top:1px solid var(--line-2);border-radius:2px 0 0 0}
+.nh{display:flex;align-items:center;gap:8px;height:52px;padding:0 10px 0 18px;border-bottom:1px solid var(--line)}
+.nh h2{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+.nh .ib{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--muted)}
+.ntabs{display:flex;gap:2px;padding:8px 10px 0;border-bottom:1px solid var(--line)}
+.ntabs span{height:30px;padding:0 9px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--muted);margin-bottom:-1px}
+.ntabs span:global(.on){color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ntabs :global(.n){font:500 11px "Geist Mono",monospace;color:var(--faint)}
+:where(.v) :global(.grp){font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:12px 18px 2px}
+.nt{position:relative;display:flex;gap:12px;padding:10px 16px 12px 18px;margin:0 6px;border-radius:9px}
+.nt:global(.sel){background:var(--hover)}
+.nt .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.nt .ic :global(.st){width:16px;height:16px}
+.nt .ic.ai{background:linear-gradient(135deg,var(--brand),var(--cyan));box-shadow:none;color:#fff}
+.nt .ic:global(.warn){background:var(--warn-bg);box-shadow:none;color:var(--warn)}
+.nt .ic.acc{background:var(--brand-bg);box-shadow:none;color:var(--brand-2)}
+:global([data-theme=light]) .nt .ic.acc{color:var(--brand)}
+.nt .tt{font-size:13px;line-height:1.45;color:var(--text-2);padding-right:46px}
+.nt .tt b{color:var(--text);font-weight:550}
+.nt .tt .code{font:500 11px "Geist Mono",monospace;color:var(--faint);white-space:nowrap}
+.nt .q{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.nt .ac{display:flex;align-items:center;gap:8px;margin-top:9px}
+.nt .ac :global(.m){font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.nt .tm{position:absolute;right:16px;top:11px;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.nt .ud{position:absolute;left:5px;top:20px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.nt.read .tt{color:var(--muted)}
+.nt.read .tt b{color:var(--text-2)}
+.nt :global(.btn):global(.primary) :global(.kbd){height:17px}
+.nf{display:flex;align-items:center;gap:8px;height:46px;padding:0 16px 0 18px;margin-top:8px;border-top:1px solid var(--line);background:var(--surface-2);border-radius:0 0 14px 14px;font-size:12.5px;color:var(--muted)}
+.nf b{color:var(--text-2);font-weight:550}
+.nf :global(.lnk){margin-left:auto;display:flex;align-items:center;gap:5px;color:var(--text-2);font-weight:500}

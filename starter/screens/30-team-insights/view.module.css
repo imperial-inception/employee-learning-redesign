@@ -1,0 +1,87 @@
+/* GENERATED from the page-local <style> of design/html/30-team-insights.html (kit classes wrapped in :global, view root = .v). */
+/* 30 Team insights: manager dashboard, 6 chart panels. Screen-local CSS only. */
+:where(.v) :global(#page){height:100%;display:flex;flex-direction:column}
+:where(.v) :global(.ph){margin-bottom:14px;align-items:flex-end}
+.eyebrow{font:500 11.5px "Geist Mono",monospace;letter-spacing:.08em;color:var(--faint);margin-bottom:8px}
+.fresh{display:flex;align-items:center;gap:6px;font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-right:8px}
+.dash{flex:1;min-height:0;display:grid;grid-template-columns:1.12fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:14px}
+.cp{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.cp :global(.panel-h) :global(.btn){margin-left:auto}
+.pb{flex:1;min-height:0;padding:12px 16px 12px;display:flex;flex-direction:column}
+.tk{font-size:13px;color:var(--text-2);line-height:1.4;margin-bottom:11px}
+.tk b{color:var(--text);font-weight:600}
+.eb{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.pf{margin-top:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);padding-top:10px}
+.pf :global(.i){color:var(--faint)}
+.pf a,.lnk2{color:var(--brand-2);text-decoration:none;font-weight:500;white-space:nowrap}
+:global([data-theme=light]) .pf a,:global([data-theme=light]) .lnk2{color:var(--brand)}
+
+/* chart primitives (inline SVG, tokens only) */
+svg.cv{display:block;width:100%;height:auto;overflow:visible}
+.cv text{font-family:"Geist Mono",ui-monospace,Consolas,monospace;font-size:10.5px;fill:var(--muted);font-variant-numeric:tabular-nums}
+.cv .tx{fill:var(--text-2)}.cv .tt{fill:var(--text)}.cv .fa{fill:var(--faint)}
+.cv .sans{font-family:Geist,"Segoe UI",sans-serif;font-size:12px}
+.cv .b6{font-weight:600}
+.cv .gl{stroke:var(--line);stroke-width:1}
+.cv .base{stroke:var(--line-2);stroke-width:1}
+.cv .ref{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.cv .ln{fill:none;stroke:var(--brand);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cv .wash{fill:var(--brand);opacity:.1}
+.cv :global(.dot){fill:var(--brand);stroke:var(--surface);stroke-width:2}
+.cv :global(.dot).w{fill:var(--warn)}
+.cv :global(.dot).o{fill:var(--surface);stroke:var(--muted);stroke-width:1.5}
+.cv .unit{fill:var(--surface-3);stroke:var(--line-2)}
+.cv .unit.w{fill:var(--warn-bg);stroke:var(--warn)}
+.cv .ut{font-family:Geist,sans-serif;font-size:9.5px;font-weight:600;fill:var(--text-2)}
+.cv .trk{stroke:var(--line);stroke-width:1}
+.cv .zone{fill:var(--warn-bg)}
+.cv .band{fill:var(--surface-2)}
+:global([data-theme=light]) .cv .band{fill:var(--surface-3);opacity:.55}
+
+/* learning-type series: dark steps pulled into the dataviz lightness band (validated) */
+.f-formal{fill:var(--t-formal)}.f-rel{fill:var(--t-rel)}.f-exp{fill:var(--t-exp)}
+.v:not(:global([data-theme=light])) .f-formal{opacity:.95}
+.v:not(:global([data-theme=light])) .f-rel,.v:not(:global([data-theme=light])) .f-exp{opacity:.76}
+:where(.v) :global(.lg){display:flex;gap:14px;font-size:12px;color:var(--text-2);margin-bottom:4px}
+:where(.v) :global(.lg) span{display:flex;align-items:center;gap:6px}
+:where(.v) :global(.lg) svg{width:9px;height:9px}
+
+/* skill coverage */
+.cv .bar-n{fill:var(--faint)}
+.cv .bar-w{fill:var(--warn)}
+.cv :global(.ghost){fill:none;stroke:var(--warn);stroke-width:1;stroke-dasharray:2 2}
+.cv .thr{stroke:var(--warn);stroke-width:1;stroke-dasharray:3 3}
+
+/* goals: tall segmented bar */
+.tall{display:flex;gap:2px;height:28px;margin:2px 0 9px}
+.tall span{flex-basis:0;border-radius:4px;display:flex;align-items:center;padding-left:9px;font-size:13px;font-weight:600}
+.tall .g-ok{background:var(--ok);color:#05130B}
+.tall .g-att{background:var(--warn);color:#0B0B0B}
+.tall .g-no{background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2);color:var(--text)}
+:global([data-theme=light]) .tall .g-ok,:global([data-theme=light]) .tall .g-att{color:#fff}
+.glg{display:flex;align-items:center;gap:14px;font-size:12px;color:var(--text-2)}
+.glg span{display:flex;align-items:center;gap:6px}
+.glg :global(.st){width:13px;height:13px}
+.ic-w{color:var(--warn);display:flex}
+.ic-w :global(.i){width:13px;height:13px}
+.def{font-size:12px;color:var(--muted);margin:8px 0 12px}
+.pr{display:flex;align-items:center;gap:10px;min-height:48px;border-top:1px solid var(--line)}
+.pr :global(.avatar){width:24px;height:24px;font-size:9.5px}
+.pr :global(.n){font-weight:550;font-size:13px}
+.pr :global(.c){font-size:12px;color:var(--muted)}
+.pr :global(.btn){margin-left:auto}
+
+/* due soon list */
+.dr{display:flex;align-items:center;gap:10px;min-height:48px;border-top:1px solid var(--line)}
+.dr .dt{width:50px;flex:none}
+.dr .dt b{display:block;font:500 12px "Geist Mono",monospace;color:var(--text)}
+.dr .dt small{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.dr .dt small.w{color:var(--warn)}
+.dr :global(.avatar){width:22px;height:22px;font-size:9px}
+.dr :global(.n){font-weight:550;font-size:13px;line-height:1.25}
+.dr :global(.c){font-size:12px;color:var(--muted);line-height:1.3}
+.dr :global(.btn){margin-left:auto}
+
+.foot{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:var(--muted)}
+.foot :global(.i){color:var(--faint)}
+.foot b{color:var(--text-2);font-weight:550}

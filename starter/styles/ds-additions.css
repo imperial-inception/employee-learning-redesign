@@ -1,0 +1,19 @@
+/* Hand-written additions to the generated ds.css: things the static mockups never needed because nothing in
+   them was a real link or button. Scoped like ds.css (zero-specificity :where), so they only touch the design area. */
+
+/* Links that look like buttons, chips or tiles: no underline, no link colour (the class sets the colour). */
+:where([data-ds]) :is(a.btn, a.me-chip, a.cmdk-btn, a.bell, a.pill, a.tag) { text-decoration: none; }
+:where([data-ds]) :is(a, button).btn { cursor: pointer; }
+
+/* Clickable shell parts keep the mockup look whatever element they are rendered as. */
+:where([data-ds]) a.bell { color: var(--muted); }
+:where([data-ds]) a.cmdk-btn:hover { border-color: var(--line-2); }
+:where([data-ds]) .sidebar .nav a:not(.active):hover { background: var(--hover); color: var(--text); }
+:where([data-ds]) a.me-chip:hover { border-color: var(--line-2); }
+
+/* Keyboard focus: 2px brand ring with 2px offset (DESIGN_SYSTEM.md §6). */
+:where([data-ds]) :is(a, button, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 8px;
+}

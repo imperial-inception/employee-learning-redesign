@@ -1,9 +1,14 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Reviews, select mode</title>
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Team › Waiting for you, select mode</title>
 <link rel="stylesheet" href="assets/styles.css">
 <style>
-/* 33 · Reviews in Select mode (bulk decisions). Header, one table panel, one sticky bulk bar. No detail panel. */
+/* 33 · Team › Waiting for you in Select mode (bulk decisions). Team header + tabs, one table panel, one sticky bulk bar. No detail panel. */
 #page{height:100%;display:flex;flex-direction:column}
-.ph{margin-bottom:18px}
+.ph{margin-bottom:16px}
+.fresh{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.fresh .mono{color:var(--text-2);font-size:12px}
+.tm-tabs{margin-bottom:18px}
+.tm-keys{margin-left:auto;align-self:center;display:flex;align-items:center}
+.tm-hint{font-size:12.5px;color:var(--muted);margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .kh{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
 .kh+.kh{margin-left:10px}
 .btn.primary .kbd{background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
@@ -55,17 +60,21 @@ tr.dis td{height:64px}
 [data-theme=light] .cnt-chip{color:var(--accent)}
 .cnt-chip .check{width:13px;height:13px;border-radius:3px}
 </style></head>
-<body data-ws="employee" data-active="reviews" data-role="manager" data-counts='{"reviews":7}'>
+<body data-ws="employee" data-active="team" data-role="manager" data-counts='{"team":7}'>
 <main id="page">
   <header class="ph">
-    <div><h1>Reviews</h1>
-      <p class="sub">7 submissions are waiting. Tick the routine ones and decide them together; open anything that needs a closer look.</p></div>
-    <div class="acts"><span class="kh"><span class="kbd">X</span> select</span><span class="kh"><span class="kbd">A</span> approve selected</span><span class="kh"><span class="kbd">Esc</span> exit select</span></div>
+    <div><h1>Team</h1>
+      <p class="sub">Your 11 direct reports. For development conversations, not performance ratings.</p></div>
+    <div class="acts"><div class="fresh"><i data-i="cloud" data-c="sm"></i><span>Org data from HR directory · last good update <span class="mono">20 Nov 00:57</span></span>
+      <span class="pill p-rev"><i data-i="alert" data-c="xs"></i> Today's refresh failed</span></div></div>
   </header>
+  <div class="tabs tm-tabs"><span>People <span class="n">11</span></span><span class="on">Waiting for you <span class="n">7</span></span>
+    <div class="tm-keys"><span class="kh"><span class="kbd">X</span> select</span><span class="kh"><span class="kbd">A</span> approve selected</span><span class="kh"><span class="kbd">Esc</span> exit select</span></div></div>
 
   <section class="panel tp">
     <div class="panel-h">
       <div class="seg"><span class="on">Waiting <span class="n">7</span></span><span>Returned <span class="n">2</span></span><span>Done this month <span class="n">12</span></span></div>
+      <span class="tm-hint">Tick the routine ones and decide them together; open anything that needs a closer look.</span>
       <div class="sp seg"><span>One by one</span><span class="on"><i data-i="check" data-c="xs"></i> Select</span></div>
     </div>
     <table>
