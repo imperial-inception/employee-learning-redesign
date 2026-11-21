@@ -26,23 +26,24 @@ h2 small{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
 <body>
 <div class="wrap">
   <div class="top">
-    <div><h1>Skill Portal redesign</h1><p>34 screens. Click one to open it; inside, the sidebar, bell, search and profile chip are clickable.</p></div>
+    <div><h1>Skill Portal redesign</h1><p>34 screens and 32 sub-views (tabs, steps, dialogs). Click one to open it; inside, the sidebar, bell, search and profile chip are clickable.</p></div>
     <div class="seg" id="theme"><span data-t="">Dark</span><span data-t="light">Light</span></div>
   </div>
   <div class="hint">Inside a screen: <span class="kbd">T</span> switches dark / light · <span class="kbd">G</span> comes back here. Names and numbers are placeholders.</div>
   <div id="groups"></div>
 </div>
 <script>
+// sub-views (07b, 20b …) sit right after their parent screen
 const G = [
   ['Overview', [['00-overview', 'Overview']]],
-  ['Employee', [['01-home', 'Home'], ['02-command', 'Command palette (Ctrl K)'], ['03-learning', 'Learning'], ['19-pathways', 'Learning › Pathways'],
-    ['06-my-learning', 'Learning › My learning'], ['05-record-new', 'Record learning'], ['04-goals', 'Goals & pathways'], ['18-goal-editor', 'Goal editor'],
-    ['25-growth', 'Next level'], ['08-colleagues', 'Colleagues'], ['07-profile', 'Profile'], ['23-agent-confirm', 'Connected agents'],
+  ['Employee', [['01-home', 'Home'], ['02-command', 'Command palette (Ctrl K)'], ['02b-profile-menu', "Profile menu (top right)"], ['03-learning', 'Learning'], ['03b-learning-item', "Learning › course detail"], ['19-pathways', 'Learning › Pathways'],
+    ['06-my-learning', 'Learning › My learning'], ['05-record-new', 'Record › 4 Evidence'], ['05b-record-activity', "Record › 1 Activity"], ['05c-record-learned', "Record › 2 What you learned"], ['05d-record-apply', "Record › 3 How you'll apply it"], ['05e-record-feedback', "Record › 5 Quick feedback"], ['05f-record-review', "Record › 6 Review & submit"], ['04-goals', 'Goals & pathways'], ['04b-goals-manager-set', "Goal set by your manager"], ['18-goal-editor', 'Goal editor'],
+    ['25-growth', 'Next level'], ['08-colleagues', 'Colleagues'], ['08b-colleague-profile', "Colleague's profile"], ['07-profile', 'Profile'], ['07b-profile-experience', "Profile › Experience"], ['07c-profile-tools', "Profile › Tools"], ['07d-profile-certifications', "Profile › Certifications"], ['07e-profile-education', "Profile › Education"], ['07f-profile-job-expectations', "Profile › Job expectations"], ['07g-profile-feedback', "Profile › Feedback"], ['07h-profile-privacy', "Profile › Privacy"], ['23-agent-confirm', 'Connected agents'],
     ['21-welcome', 'Welcome (first week)'], ['22-notifications', 'Notifications']]],
-  ['Manager', [['31-manager-home', 'Manager home'], ['09-reviews', 'Reviews'], ['33-reviews-bulk', 'Reviews · bulk'], ['32-team-record', 'Record for your team'],
-    ['10-team', 'Team'], ['20-person', 'One person'], ['26-one-on-one', '1:1 prep'], ['30-team-insights', 'Team insights'], ['11-reports', 'Reports']]],
-  ['Admin console', [['12-admin-health', 'Data health'], ['13-admin-catalog', 'Catalog'], ['16-admin-sources', 'Sources'], ['14-admin-templates', 'Pathway templates'],
-    ['15-admin-rules', 'Rules & populations'], ['17-admin-access', 'Access'], ['24-admin-audit', 'Audit log']]],
+  ['Manager', [['31-manager-home', 'Manager home'], ['09-reviews', 'Reviews'], ['33-reviews-bulk', 'Reviews · bulk'], ['32-team-record', 'Record for your team'], ['32b-team-record-activity', "Team record › 1 Activity"], ['32c-team-record-evidence', "Team record › 3 Evidence"],
+    ['10-team', 'Team'], ['10b-team-role-picker', "Team › set a role inline"], ['20-person', 'One person'], ['20b-person-role', "Choose her professional role"], ['20c-person-goal', "Set a goal for her"], ['26-one-on-one', '1:1 prep'], ['30-team-insights', 'Team insights'], ['11-reports', 'Reports'], ['11b-report-framework', "Reports › by framework"], ['11c-report-turnaround', "Reports › review turnaround"], ['11d-report-goal-progress', "Reports › goal progress"]]],
+  ['Admin console', [['12-admin-health', 'Data health'], ['12b-health-gaps', "Data health › Gaps"], ['12c-health-missing-links', "Data health › Missing links"], ['12d-health-formatting', "Data health › Formatting"], ['13-admin-catalog', 'Catalog'], ['16-admin-sources', 'Sources'], ['14-admin-templates', 'Pathway templates'],
+    ['15-admin-rules', 'Rules & populations'], ['15b-rules-frameworks', "Rules › Frameworks"], ['15c-rules-required', "Rules › Required learning"], ['15d-rules-roles', "Rules › Roles"], ['15e-rules-reminders', "Rules › Reminders"], ['15f-rules-feedback-form', "Rules › Feedback form"], ['17-admin-access', 'Access'], ['24-admin-audit', 'Audit log']]],
   ['Proposals (not agreed scope)', [['27-skills-map', 'Team skills map'], ['28-lms-inbox', 'LMS completions inbox'], ['29-mobile', 'On the go (mobile)']]]
 ];
 const light = new URLSearchParams(location.search).get('theme') === 'light';

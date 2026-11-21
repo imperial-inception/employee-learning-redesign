@@ -1,0 +1,57 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Profile menu</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;border:0}
+/* a small menu: barely dim the page so it stays readable behind */
+.pm-scrim{position:fixed;inset:0;background:rgba(5,5,8,.22)}
+[data-theme=light] .pm-scrim{background:rgba(250,250,250,.28)}
+/* the chip, redrawn exactly where the shell puts it (main area right edge, 52px band), in its open state */
+.pm-top{position:fixed;top:0;right:0;left:236px;height:52px;display:flex;align-items:center;justify-content:flex-end;padding:0 24px}
+.pm-top .me-chip{border-color:var(--line-2);background:linear-gradient(var(--sel),var(--sel)),var(--surface)}
+/* the menu, anchored under the chip */
+.pm{position:fixed;top:52px;right:24px;width:276px;padding:6px}
+.pm-h{display:flex;align-items:center;gap:11px;padding:10px 10px 12px}
+.pm-h b{display:block;font-weight:600;font-size:13.5px;line-height:1.2}
+.pm-h small{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.pm-sep{height:1px;background:var(--line);margin:4px -6px}
+.pm-it{display:flex;align-items:center;gap:10px;height:34px;padding:0 10px;border-radius:8px;font-size:13px;font-weight:500;color:var(--text-2)}
+.pm-it .i{color:var(--muted)}
+.pm-it.pm-sel{background:var(--sel);color:var(--text)}
+.pm-it.pm-sel .i{color:var(--text)}
+.pm-it .pill{margin-left:auto}
+.pm-th{display:flex;align-items:center;gap:10px;padding:6px 6px 6px 10px}
+.pm-th .pm-l{font-size:13px;font-weight:500;color:var(--text-2)}
+.pm-th .seg{margin-left:auto}
+.pm-th .seg span{height:24px;padding:0 8px;font-size:12px;gap:5px}
+.pm-out{padding-left:36px;color:var(--muted)}
+</style></head>
+<body>
+<iframe id="bg"></iframe>
+<div class="pm-scrim"></div>
+
+<div class="pm-top"><div class="me-chip active"><div class="avatar">JL</div><div class="pc-who"><b>Jordan Lee</b><small>Systems Engineer</small></div><i data-i="cu" data-c="xs"></i></div></div>
+
+<div class="pm overlay" role="menu">
+  <div class="pm-h"><div class="avatar lg">JL</div>
+    <div class="grow"><b>Jordan Lee</b><small>Systems Engineer</small></div></div>
+  <div class="pm-sep"></div>
+  <div class="pm-it pm-sel" data-go="me"><i data-i="user"></i>Profile</div>
+  <div class="pm-it"><i data-i="link"></i>Connected agents<span class="pill sm p-rev">1 waiting</span></div>
+  <div class="pm-sep"></div>
+  <div class="pm-th"><span class="pm-l">Theme</span>
+    <span class="seg" id="pm-theme"><span data-t="dark"><i data-i="moon" data-c="xs"></i>Dark</span><span data-t="light"><i data-i="sun2" data-c="xs"></i>Light</span><span data-t="system">System</span></span></div>
+  <div class="pm-sep"></div>
+  <div class="pm-it pm-out">Sign out</div>
+</div>
+
+<script>document.getElementById('bg').src='01-home.html'+location.search;</script>
+<script src="assets/shell.js"></script>
+<script>
+// the segment shows the theme the page is rendered in
+(function () {
+  const t = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  document.querySelectorAll('#pm-theme span[data-t]').forEach(s => s.classList.toggle('on', s.dataset.t === t));
+})();
+</script>
+</body></html>

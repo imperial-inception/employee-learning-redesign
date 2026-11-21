@@ -1,0 +1,117 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Profile education</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ---- copied from 07-profile (header + section tabs), keep in sync ---- */
+.acc{color:var(--accent-2)}[data-theme=light] .acc{color:var(--accent)}
+.idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.avatar.xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.idl b{color:var(--text);font-weight:550}
+.idl .lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .idl .lnk{color:var(--accent)}
+.idl .ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.idl .sl{color:var(--faint)}
+.idh .acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.ptabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.ptabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.ptabs a .i{color:var(--faint)}
+.ptabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ptabs a.on .i{color:var(--text)}
+.ptabs .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.ptabs a.on .n{color:var(--text-2)}
+.ptabs .dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.ptabs .push{margin-left:auto}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px;align-items:start}
+.cc{display:flex;flex-direction:column;gap:16px;min-width:0}
+.never{display:flex;gap:8px;font-size:12px;color:var(--muted);padding:12px 16px 14px;line-height:1.45}
+.never .i{margin-top:2px}
+
+/* ---- this view: Education tab (ped-) ---- */
+.ped-desc{font-size:12px;color:var(--faint);margin-left:6px}
+.ped-hb{margin-left:auto}
+.ped-r{display:grid;grid-template-columns:30px minmax(0,1fr) 170px 220px 96px 28px;align-items:center;column-gap:14px;padding:11px 16px;border-top:1px solid var(--line);min-height:58px}
+.ped-r.ped-hd{min-height:34px;padding:0 16px;border-top:none;background:var(--surface-2);font-size:12px;font-weight:500;color:var(--muted)}
+.ped-ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.ped-r .t{font-weight:500}
+.ped-r .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.ped-f{color:var(--text-2);font-size:13px}
+.ped-y{font:500 12.5px "Geist Mono",monospace;color:var(--text-2);white-space:nowrap}
+.ped-nr{color:var(--faint);font-style:italic;font-size:12.5px;white-space:nowrap}
+.ped-nr small{display:block;font-style:normal;font-size:11.5px;font-weight:500;margin-top:2px}
+.ped-more{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--faint)}
+.ped-ln{border-top:1px solid var(--line)}
+
+.ped-use .ped-u{display:flex;gap:10px;padding:12px 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--text-2);line-height:1.5}
+.ped-use .ped-u:first-of-type{border-top:none}
+.ped-use .ped-u .i{margin-top:3px;color:var(--muted)}
+.ped-use .ped-u b{color:var(--text);font-weight:550}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <header class="idh">
+    <div class="avatar xl">JL</div>
+    <div>
+      <h1>Jordan Lee</h1>
+      <div class="idl"><b>Engineer, Systems II</b><span class="ro"><i data-i="lock" data-c="xs"></i>From HR directory</span><span class="lnk">Edit in HR directory <i data-i="ext" data-c="xs"></i></span>
+        <span class="sl">·</span>Architecture &amp; integration<span class="sl">·</span>Employee ID <span class="mono">104822</span></div>
+      <div class="idl">Professional role <b>Systems Engineer</b><span>· assigned by Sam</span><span class="sl">·</span><span class="lnk">View job expectations <i data-i="arrow" data-c="xs"></i></span></div>
+    </div>
+    <div class="acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
+  </header>
+
+  <nav class="ptabs">
+    <a><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a><i data-i="brief" data-c="sm"></i>Experience<span class="n">5</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="n">5</span></a>
+    <a><i data-i="shield" data-c="sm"></i>Certifications<span class="n">4</span></a>
+    <a class="on"><i data-i="cap" data-c="sm"></i>Education<span class="n">3</span></a>
+    <a><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a><i data-i="msg" data-c="sm"></i>Feedback<span class="n">6</span></a>
+    <a class="push"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="n">hidden</span></a>
+    <a><i data-i="link" data-c="sm"></i>Connected agents<span class="dot"></span></a>
+  </nav>
+
+  <div class="cols">
+    <div class="cc">
+      <section class="panel">
+        <div class="panel-h"><h2>Education</h2><span class="cnt">3</span><span class="ped-desc">degrees and courses of study</span>
+          <span class="btn sm primary ped-hb"><i data-i="plus" data-c="xs"></i> Add education</span></div>
+        <div class="ped-r ped-hd"><span></span><span>Degree or course</span><span>Field</span><span>Institution</span><span>Year</span><span></span></div>
+
+        <div class="ped-r"><span class="ped-ic"><i data-i="cap" data-c="sm"></i></span>
+          <div class="t ellipsis">Master of Science (MSc)</div>
+          <span class="ped-f ellipsis">Systems engineering</span>
+          <span class="ped-f ellipsis">Northgate University</span>
+          <span class="ped-y">2019</span>
+          <span class="ped-more"><i data-i="more" data-c="sm"></i></span></div>
+
+        <div class="ped-r"><span class="ped-ic"><i data-i="cap" data-c="sm"></i></span>
+          <div class="t ellipsis">Bachelor of Engineering (BEng)</div>
+          <span class="ped-f ellipsis">Mechanical engineering</span>
+          <span class="ped-f ellipsis">Riverside Institute of Technology</span>
+          <span class="ped-y">2016</span>
+          <span class="ped-more"><i data-i="more" data-c="sm"></i></span></div>
+
+        <div class="ped-r"><span class="ped-ic"><i data-i="cap" data-c="sm"></i></span>
+          <div class="t ellipsis">Graduate certificate</div>
+          <span class="ped-f ellipsis">Data analysis</span>
+          <span class="ped-f ellipsis">Lakeside College · online</span>
+          <span class="ped-nr">Not recorded<small class="acc">Add year</small></span>
+          <span class="ped-more"><i data-i="more" data-c="sm"></i></span></div>
+
+        <div class="never ped-ln"><i data-i="user" data-c="xs"></i><span>Education is self-reported: you add it and nobody verifies it here. A missing detail reads “Not recorded”.</span></div>
+      </section>
+    </div>
+
+    <div class="cc">
+      <section class="panel ped-use">
+        <div class="panel-h"><h2>How education is used</h2></div>
+        <div class="ped-u"><i data-i="eye" data-c="xs"></i><span><b>Sam can see it</b> on your profile. Colleagues see it only if Privacy allows (off now).</span></div>
+        <div class="ped-u"><i data-i="target" data-c="xs"></i><span><b>It doesn't set your role</b> or make any learning required. Sam assigns your professional role.</span></div>
+        <div class="ped-u"><i data-i="book" data-c="xs"></i><span><b>Short courses go in Learning.</b> Record them in My learning, where Sam reviews them.</span></div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,120 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Data health · Gaps</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+#page{height:100%;display:flex;flex-direction:column}
+/* same local shell fix as 12-admin-health: keep "Skill Portal" + ADMIN tag on one line */
+.sidebar .ws-btn{gap:7px}.sidebar .ws-btn b{white-space:nowrap}.sidebar .ws-tag{margin-left:0;padding:2px 5px}
+.chk{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+/* banners (as 12-admin-health) */
+.bn{display:flex;flex-direction:column;gap:10px}
+.bn .banner{padding:12px 14px 12px 12px;gap:12px}
+.bn .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
+.bn .danger .ic{background:var(--danger-bg);color:var(--danger)}
+.bn .warn .ic{background:var(--warn-bg);color:var(--warn)}
+.bn .tx b{font-weight:600}
+.bn .tx .s{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+.bn .tx .s .mono{font-size:11.5px;color:var(--text-2)}
+.bn .danger{border-color:rgba(255,93,110,.28)}
+[data-theme=light] .bn .danger{border-color:rgba(225,29,72,.25)}
+/* sources strip (as 12-admin-health) */
+.src{display:grid;grid-template-columns:repeat(5,1fr);margin-top:16px}
+.src .cell{padding:12px 16px;border-left:1px solid var(--line);min-width:0}
+.src .cell:first-child{border-left:none}
+.src .nm{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.src .stt{display:flex;align-items:center;gap:7px;font-weight:550;margin-top:6px;font-size:13px}
+.src .stt .st{width:14px;height:14px}
+.src .mt{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-bad{color:var(--danger)}.hs-rev{color:var(--warn)}.hs-okt{color:var(--text)}.hs-not{color:var(--muted)}
+/* queue panel + tab header (as 12-admin-health) */
+.qp{flex:1;min-height:0;margin-top:16px;display:flex;flex-direction:column;overflow:hidden}
+.qh{display:flex;align-items:flex-end;padding:0 16px;border-bottom:1px solid var(--line)}
+.qh h2{font-size:13.5px;font-weight:600;margin-right:18px;height:42px;display:flex;align-items:center}
+.qh .tabs{border-bottom:none;height:42px;align-items:flex-end}
+.qh .tabs>span{height:42px}
+.qh .note{margin-left:auto;height:42px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.call{display:flex;align-items:center;gap:10px;margin:12px 16px 4px;padding:9px 10px 9px 12px;border-radius:9px;border:1px solid var(--accent-line);background:var(--accent-bg);font-size:13px}
+.call .ai{color:var(--accent-2);display:flex}
+[data-theme=light] .call .ai{color:var(--accent)}
+.call .muted{font-size:12.5px}
+.it .t{font-weight:500}
+.it .code{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:7px}
+.fld{color:var(--text-2)}
+.val{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--text);max-width:260px}
+.val.mono{font-size:12px}
+.since{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+
+/* gaps tab (new, prefixed hx-) */
+.hx-t th{height:36px;padding:0 12px;white-space:nowrap}
+.hx-t td{height:50px;padding:0 12px;white-space:nowrap}
+.hx-t th:first-child,.hx-t td:first-child{padding-left:16px}
+.hx-t th:last-child,.hx-t td:last-child{padding-right:12px;text-align:right}
+.hx-t th.hx-use{color:var(--text-2)}
+.hx-t td.hx-use{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.hx-t th.hx-use{background:color-mix(in srgb,var(--accent) 4%,transparent)}
+.hx-blank{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:6px;border:1px dashed var(--line-2);font-size:12px;color:var(--faint);font-style:italic}
+.hx-ell{display:inline-block;max-width:250px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;white-space:nowrap}
+.hx-from{display:inline-flex;align-items:center;gap:5px;margin-left:8px;font-size:12px;color:var(--muted);vertical-align:middle}
+.hx-use .val{vertical-align:middle}
+.hx-from .i{color:var(--accent-2)}
+[data-theme=light] .hx-from .i{color:var(--accent)}
+.hx-foot{display:flex;align-items:flex-start;gap:9px;margin:auto 16px 14px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted);line-height:1.5}
+.hx-foot .i{margin-top:2px;flex:none}
+.hx-foot b{color:var(--text-2);font-weight:550}
+</style></head>
+<body data-ws="admin" data-active="health">
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Data health</h1><p class="sub">What needs a person today. Everything else runs on its own.</p></div>
+    <div class="acts"><span class="chk"><i data-i="clock" data-c="xs"></i>Checked <span class="mono">08:14</span> today</span><span class="btn sm ghost"><i data-i="file" data-c="sm"></i> Audit log</span></div>
+  </header>
+
+  <div class="bn">
+    <div class="banner danger"><span class="ic"><i data-i="alert" data-c="sm"></i></span>
+      <div class="tx grow"><div><b>HR directory refresh failed at 00:57.</b> Manager access is using 20 Nov data (1 day old).</div>
+        <div class="s"><i data-i="bell" data-c="xs"></i>Admins notified<span class="faint">·</span>next automatic try <span class="mono">22 Nov 00:57</span><span class="faint">·</span>managers see a “Today's refresh failed” notice</div></div>
+      <div class="acts"><span class="btn">View error</span><span class="btn"><i data-i="refresh" data-c="sm"></i> Retry now</span></div></div>
+    <div class="banner warn"><span class="ic"><i data-i="clock" data-c="sm"></i></span>
+      <div class="tx grow"><div><b>Academy catalog preview has waited 10 days:</b> 103 records, 4 changes.</div>
+        <div class="s">Nothing reaches employees until it is published. Imported <span class="mono">11 Nov 06:00</span></div></div>
+      <div class="acts"><span class="btn">Review &amp; publish <i data-i="arrow" data-c="xs"></i></span></div></div>
+  </div>
+
+  <section class="panel src">
+    <div class="cell"><div class="nm"><i data-i="users" data-c="xs"></i>HR directory</div><div class="stt hs-bad"><i data-i="st-bad"></i>Failed</div><div class="mt">DAILY 00:57 · GOOD 20 NOV</div></div>
+    <div class="cell"><div class="nm"><i data-i="cap" data-c="xs"></i>Academy catalog</div><div class="stt hs-rev"><i data-i="st-rev"></i>Preview waiting</div><div class="mt">103 RECORDS · SINCE 11 NOV</div></div>
+    <div class="cell"><div class="nm"><i data-i="book" data-c="xs"></i>Library catalog</div><div class="stt hs-okt"><i data-i="st-ok"></i>OK</div><div class="mt">UPDATED 8 NOV · MONTHLY</div></div>
+    <div class="cell"><div class="nm"><i data-i="brief" data-c="xs"></i>Job catalog</div><div class="stt hs-okt"><i data-i="st-ok"></i>OK</div><div class="mt">NEXT 9 DEC · QUARTERLY</div></div>
+    <div class="cell"><div class="nm"><i data-i="grid" data-c="xs"></i>Design practices</div><div class="stt hs-not"><i data-i="st-not"></i>Not set up</div><div class="mt" style="color:var(--muted)">OPTIONAL · SET UP <span style="font-family:Geist,sans-serif">→</span></div></div>
+  </section>
+
+  <section class="panel qp">
+    <div class="qh"><h2>Needs attention</h2>
+      <div class="tabs"><span>Conflicts <span class="n">12</span></span><span class="on">Gaps <span class="n">5</span></span><span>Formal items missing a link <span class="n">7</span></span><span>Formatting <span class="n">3</span></span></div>
+      <span class="note"><i data-i="info" data-c="xs"></i>Decisions persist across imports and are re-flagged if a source value changes.</span></div>
+    <div class="call"><span class="ai"><i data-i="spark" data-c="sm"></i></span><span><b style="font-weight:550">All 5 gaps can be filled automatically</b> <span class="muted">· one source has a value and the other is blank, so there is nothing to choose</span></span>
+      <span class="sp btn sm primary"><i data-i="check" data-c="xs"></i> Fill all 5</span></div>
+    <table class="hx-t">
+      <thead><tr><th>Item</th><th>Field</th><th>Master list</th><th>Course files</th><th class="hx-use">Will use</th><th>Flagged</th><th></th></tr></thead>
+      <tbody>
+        <tr><td class="it"><span class="t">Model Governance</span><span class="code">MB-305</span></td><td class="fld">Course level</td>
+          <td><span class="val mono">L4</span></td><td><span class="hx-blank">blank</span></td>
+          <td class="hx-use"><span class="val mono">L4</span><span class="hx-from"><i data-i="arrow" data-c="xs"></i>from Master list</span></td><td><span class="since">18 Nov</span></td><td><span class="btn sm ghost">Skip</span></td></tr>
+        <tr><td class="it"><span class="t">Lead a design review</span><span class="code">EX-302</span></td><td class="fld">Duration</td>
+          <td><span class="hx-blank">blank</span></td><td><span class="val mono">~4 h</span></td>
+          <td class="hx-use"><span class="val mono">~4 h</span><span class="hx-from"><i data-i="arrow" data-c="xs"></i>from Course files</span></td><td><span class="since">18 Nov</span></td><td><span class="btn sm ghost">Skip</span></td></tr>
+        <tr><td class="it"><span class="t">Shadow a review board</span><span class="code">RL-210</span></td><td class="fld">Professional role</td>
+          <td><span class="hx-blank">blank</span></td><td><span class="val">Systems Engineer</span></td>
+          <td class="hx-use"><span class="val">Systems Engineer</span><span class="hx-from"><i data-i="arrow" data-c="xs"></i>from Course files</span></td><td><span class="since">18 Nov</span></td><td><span class="btn sm ghost">Skip</span></td></tr>
+        <tr><td class="it"><span class="t">Requirements Quality</span><span class="code">RQ-120</span></td><td class="fld">Description</td>
+          <td><span class="hx-blank">blank</span></td><td><span class="val"><span class="hx-ell" style="max-width:190px">Write requirements that are clear, testable and traceable.</span></span></td>
+          <td class="hx-use"><span class="val"><span class="hx-ell" style="max-width:150px">Write requirements that are clear, testable and traceable.</span></span><span class="hx-from"><i data-i="arrow" data-c="xs"></i>from Course files</span></td><td><span class="since">11 Nov</span></td><td><span class="btn sm ghost">Skip</span></td></tr>
+        <tr><td class="it"><span class="t">Risk &amp; Opportunity Management</span><span class="code">RM-150</span></td><td class="fld">Provider</td>
+          <td><span class="val">Academy</span></td><td><span class="hx-blank">blank</span></td>
+          <td class="hx-use"><span class="val">Academy</span><span class="hx-from"><i data-i="arrow" data-c="xs"></i>from Master list</span></td><td><span class="since">11 Nov</span></td><td><span class="btn sm ghost">Skip</span></td></tr>
+      </tbody>
+    </table>
+    <div class="hx-foot"><i data-i="info" data-c="sm"></i><span><b>Filled values are kept on every import.</b> If the blank source later sends a different value, the item moves to Conflicts. A skipped gap stays blank and stays on this list.</span></div>
+  </section>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,136 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Feedback</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* profile header + section tabs: same rules as 07-profile, prefixed */
+.fb-idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.avatar.fb-xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.fb-idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.fb-idl b{color:var(--text);font-weight:550}
+.fb-lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .fb-lnk{color:var(--accent)}
+.fb-ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.fb-sl{color:var(--faint)}
+.fb-acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.fb-tabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.fb-tabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.fb-tabs a .i{color:var(--faint)}
+.fb-tabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.fb-tabs a.on .i{color:var(--text)}
+.fb-tabs .fb-n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.fb-tabs a.on .fb-n{color:var(--text-2)}
+.fb-tabs .fb-dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.fb-tabs .fb-push{margin-left:auto}
+
+.fb-cols{display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:16px;align-items:start}
+.fb-col{display:flex;flex-direction:column;gap:14px;min-width:0}
+
+/* feedback list */
+.fb-list .li{align-items:flex-start;padding:11px 16px;gap:12px}
+.fb-list .li .avatar{margin-top:1px}
+.fb-list .li.fb-sel{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.fb-q{font-size:13px;color:var(--text);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fb-meta{display:flex;align-items:center;gap:8px;margin-top:5px;font-size:12px;color:var(--muted);min-width:0;white-space:nowrap}
+.fb-ref{display:inline-flex;align-items:center;gap:6px;min-width:0;color:var(--text-2)}
+.fb-ref .st{width:13px;height:13px}
+.fb-ref .mono{font-size:11px;color:var(--faint)}
+.fb-gen{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.fb-dt{font:500 11.5px "Geist Mono",monospace;color:var(--faint);white-space:nowrap;margin-top:2px}
+
+/* private-notes statement */
+.fb-rule{display:flex;gap:11px;align-items:flex-start;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);font-size:12.5px;line-height:1.5;color:var(--muted)}
+.fb-rule .fb-lk{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--surface-3);color:var(--text-2);flex:none}
+.fb-rule b{color:var(--text);font-weight:600}
+
+/* thread */
+.fb-th .fb-vis{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-left:auto}
+.fb-msg{display:flex;gap:11px;padding:14px 18px 0}
+.fb-msg .fb-w{font-size:12.5px;display:flex;gap:8px;align-items:baseline}
+.fb-msg .fb-w b{font-weight:550}
+.fb-msg .fb-w .mono{font-size:11.5px;color:var(--faint)}
+.fb-msg p{font-size:13.5px;line-height:1.55;color:var(--text-2);margin-top:4px}
+.fb-cmp{margin:16px 18px 0}
+.fb-cmp .textarea{min-height:92px}
+.fb-cmp .fb-caret{display:inline-block;width:1.5px;height:16px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.fb-bar{display:flex;align-items:center;gap:8px;padding:12px 18px 16px}
+.fb-bar .fb-vis2{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <header class="fb-idh">
+    <div class="avatar fb-xl">JL</div>
+    <div>
+      <h1>Jordan Lee</h1>
+      <div class="fb-idl"><b>Engineer, Systems II</b><span class="fb-ro"><i data-i="lock" data-c="xs"></i>From HR directory</span><span class="fb-lnk">Edit in HR directory <i data-i="ext" data-c="xs"></i></span>
+        <span class="fb-sl">·</span>Architecture &amp; integration<span class="fb-sl">·</span>Employee ID <span class="mono">104822</span></div>
+      <div class="fb-idl">Professional role <b>Systems Engineer</b><span>· assigned by Sam</span><span class="fb-sl">·</span><span class="fb-lnk">View job expectations <i data-i="arrow" data-c="xs"></i></span></div>
+    </div>
+    <div class="fb-acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
+  </header>
+
+  <nav class="fb-tabs">
+    <a href="07-profile.html"><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a><i data-i="brief" data-c="sm"></i>Experience<span class="fb-n">5</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="fb-n">5</span></a>
+    <a><i data-i="shield" data-c="sm"></i>Certifications<span class="fb-n">4</span></a>
+    <a><i data-i="cap" data-c="sm"></i>Education<span class="fb-n">3</span></a>
+    <a href="07f-profile-job-expectations.html"><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a class="on" href="07g-profile-feedback.html"><i data-i="msg" data-c="sm"></i>Feedback<span class="fb-n">6</span></a>
+    <a class="fb-push" href="07h-profile-privacy.html"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="fb-n">hidden</span></a>
+    <a href="23-agent-confirm.html"><i data-i="link" data-c="sm"></i>Connected agents<span class="fb-dot"></span></a>
+  </nav>
+
+  <div class="fb-cols">
+    <div class="fb-col">
+      <section class="panel fb-list">
+        <div class="panel-h"><h2>Shared feedback</h2><span class="cnt">6</span>
+          <span class="sp seg"><span class="on">All 6</span><span>On submissions 4</span><span>General 2</span></span></div>
+
+        <div class="li fb-sel"><div class="avatar sm a5">SP</div>
+          <div class="grow"><div class="fb-q">Before our 1:1 on Thu 4 Dec, have a look at Next level and pick one area to grow in next.</div>
+            <div class="fb-meta"><span class="fb-gen"><i data-i="msg" data-c="xs"></i>General note</span></div></div>
+          <span class="fb-dt">19 NOV</span></div>
+
+        <div class="li"><div class="avatar sm a5">SP</div>
+          <div class="grow"><div class="fb-q">The structure is clear and the reflection is honest. Add one example from the CDR prep.</div>
+            <div class="fb-meta"><span class="fb-ref"><i data-i="st-ret"></i>Clear Status &amp; Issue Communication <span class="mono">CO-120</span></span><span class="fb-sl">·</span><span>you replied 18 Nov</span></div></div>
+          <span class="fb-dt">17 NOV</span></div>
+
+        <div class="li"><div class="avatar sm a5">SP</div>
+          <div class="grow"><div class="fb-q">Thanks for running the weekly interface sync while I was out. The actuator team noticed.</div>
+            <div class="fb-meta"><span class="fb-gen"><i data-i="msg" data-c="xs"></i>General note</span></div></div>
+          <span class="fb-dt">7 NOV</span></div>
+
+        <div class="li"><div class="avatar sm a5">SP</div>
+          <div class="grow"><div class="fb-q">Good call to learn this from Priya directly. Your notes would help the next new starter.</div>
+            <div class="fb-meta"><span class="fb-ref"><i data-i="st-ok"></i>RFLP model walkthrough</span></div></div>
+          <span class="fb-dt">29 OCT</span></div>
+
+        <div class="li"><div class="avatar sm a5">SP</div>
+          <div class="grow"><div class="fb-q">v2 fixed the allocation gaps. The block diagram shows you understood it.</div>
+            <div class="fb-meta"><span class="fb-ref"><i data-i="st-ok"></i>Systems Engineering Fundamentals <span class="mono">SE-101</span></span></div></div>
+          <span class="fb-dt">14 OCT</span></div>
+
+        <div class="li"><div class="avatar sm a5">SP</div>
+          <div class="grow"><div class="fb-q">The CDR traceability matrix is solid evidence. Keep it as your example for requirements work.</div>
+            <div class="fb-meta"><span class="fb-ref"><i data-i="st-ok"></i>Requirements Traceability <span class="mono">RQ-102</span></span></div></div>
+          <span class="fb-dt">24 SEP</span></div>
+      </section>
+
+      <div class="fb-rule"><span class="fb-lk"><i data-i="lock" data-c="sm"></i></span>
+        <span><b>A manager's private notes never appear here.</b> This page shows only feedback Sam chose to share with you. Private notes stay with the manager who wrote them: never shown to you or colleagues, never exported, never sent to AI.</span></div>
+    </div>
+
+    <section class="panel fb-th">
+      <div class="panel-h"><i data-i="msg" data-c="sm c-muted"></i><h2>General note from Sam</h2><span class="fb-vis"><i data-i="eye" data-c="xs"></i>Shared with you</span></div>
+      <div class="fb-msg"><div class="avatar sm a5">SP</div>
+        <div class="grow"><div class="fb-w"><b>Sam Patel</b><span class="mono">19 NOV · 17:40</span></div>
+          <p>Before our 1:1 on Thu 4 Dec, have a look at Next level and pick one area you'd like to grow in next. We'll plan the first step together.</p></div></div>
+      <div class="fb-cmp"><label class="label">Your reply</label>
+        <div class="textarea">Thanks Sam. I'd like to start with Integration &amp; interfaces: IM-201 and more time at the interface review board.<span class="fb-caret"></span></div></div>
+      <div class="fb-bar"><span class="fb-vis2"><i data-i="eye" data-c="xs"></i>Sam will see your reply</span>
+        <span class="sp btn ghost">Cancel</span><span class="btn primary"><i data-i="send" data-c="sm"></i> Reply <span class="kbd">Ctrl Enter</span></span></div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

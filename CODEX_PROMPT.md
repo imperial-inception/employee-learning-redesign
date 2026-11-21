@@ -38,6 +38,8 @@ This is the most important instruction in this brief.
 8. Check the installed Next.js version first. If it ships version-matched docs in `node_modules/next/dist/docs/` or a managed AGENTS.md block, read them before using any Next API.
 9. Accessibility: WCAG 2.2 AA. Visible focus ring (2px `--brand`), full keyboard operation, status never by colour alone, dialogs and palette trap and restore focus.
 10. Remove nothing the user can do today unless `docs/SCREENS.md` says where it moved.
+11. **Sub-views.** A reference named `NNx-name` (a letter after the number, e.g. `07b-profile-experience`, `05c-record-learned`, `20b-person-role`) is another state of screen `NN`: a tab, a step or a dialog. Build it in the same task as screen `NN`; it has its own reference PNG and its own acceptance criteria in `docs/SCREENS.md`. If you need a state that is drawn nowhere, don't invent a layout: compose it from the nearest drawn view and list it in `design/GAPS.md`.
+12. **Roles and manager-set goals.** Managers assign each direct report a professional role from the admin-configured choices (`20b`, `10b`, admin `15d`), and can set a goal for a direct report (`20c`; the employee's side is `04b`). Follow the rules in `docs/CONCEPT.md`. If the API can't do one of these yet, hide that action, show nothing fake, and log it in `design/GAPS.md`.
 
 ## Verification loop (build this first; use it for every screen)
 

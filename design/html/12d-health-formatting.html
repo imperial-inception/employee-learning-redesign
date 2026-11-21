@@ -1,0 +1,137 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Data health · Formatting</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+#page{height:100%;display:flex;flex-direction:column}
+/* same local shell fix as 12-admin-health: keep "Skill Portal" + ADMIN tag on one line */
+.sidebar .ws-btn{gap:7px}.sidebar .ws-btn b{white-space:nowrap}.sidebar .ws-tag{margin-left:0;padding:2px 5px}
+.chk{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+/* banners (as 12-admin-health) */
+.bn{display:flex;flex-direction:column;gap:10px}
+.bn .banner{padding:12px 14px 12px 12px;gap:12px}
+.bn .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
+.bn .danger .ic{background:var(--danger-bg);color:var(--danger)}
+.bn .warn .ic{background:var(--warn-bg);color:var(--warn)}
+.bn .tx b{font-weight:600}
+.bn .tx .s{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+.bn .tx .s .mono{font-size:11.5px;color:var(--text-2)}
+.bn .danger{border-color:rgba(255,93,110,.28)}
+[data-theme=light] .bn .danger{border-color:rgba(225,29,72,.25)}
+/* sources strip (as 12-admin-health) */
+.src{display:grid;grid-template-columns:repeat(5,1fr);margin-top:16px}
+.src .cell{padding:12px 16px;border-left:1px solid var(--line);min-width:0}
+.src .cell:first-child{border-left:none}
+.src .nm{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.src .stt{display:flex;align-items:center;gap:7px;font-weight:550;margin-top:6px;font-size:13px}
+.src .stt .st{width:14px;height:14px}
+.src .mt{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hs-bad{color:var(--danger)}.hs-rev{color:var(--warn)}.hs-okt{color:var(--text)}.hs-not{color:var(--muted)}
+/* queue panel + tab header (as 12-admin-health) */
+.qp{flex:1;min-height:0;margin-top:16px;display:flex;flex-direction:column;overflow:hidden}
+.qh{display:flex;align-items:flex-end;padding:0 16px;border-bottom:1px solid var(--line)}
+.qh h2{font-size:13.5px;font-weight:600;margin-right:18px;height:42px;display:flex;align-items:center}
+.qh .tabs{border-bottom:none;height:42px;align-items:flex-end}
+.qh .tabs>span{height:42px}
+.qh .note{margin-left:auto;height:42px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.call{display:flex;align-items:center;gap:10px;margin:12px 16px 4px;padding:9px 10px 9px 12px;border-radius:9px;border:1px solid var(--accent-line);background:var(--accent-bg);font-size:13px}
+.call .ai{color:var(--accent-2);display:flex}
+[data-theme=light] .call .ai{color:var(--accent)}
+.call .muted{font-size:12.5px}
+.it .t{font-weight:500}
+.it .code{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:7px}
+.fld{color:var(--text-2)}
+.val{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--text);max-width:260px}
+.val.mono{font-size:12px}
+.since{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+
+
+/* formatting tab (new, prefixed hx- / hf-) */
+.hx-t th{height:36px;padding:0 12px;white-space:nowrap}
+.hx-t td{height:60px;padding:8px 12px;white-space:nowrap}
+.hx-t th:first-child,.hx-t td:first-child{padding-left:16px}
+.hx-t th:last-child,.hx-t td:last-child{padding-right:16px;text-align:right}
+.hf-ttl{font-size:13.5px;color:var(--text)}
+.hf-ttl.before{color:var(--text-2)}
+.hf-del{background:var(--danger-bg);color:var(--danger);text-decoration:line-through;text-decoration-thickness:1px;border-radius:3px;padding:0 1px}
+.hf-cs{background:var(--danger-bg);color:var(--danger);border-radius:3px;padding:0 1px}
+.hf-ins{background:var(--ok-bg);color:var(--ok);border-radius:3px;padding:0 1px}
+.hf-arrow{color:var(--faint);display:flex}
+.hf-warn{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--warn);margin-top:4px}
+.hf-warn u{text-decoration:none;color:var(--text-2);font-weight:500}
+.hf-rule{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:6px;background:var(--info-bg);color:var(--info);font-size:12px;font-weight:550}
+.hx-t .seg{padding:2px}
+.hx-t .seg span{height:24px;padding:0 10px;font-size:12px}
+.hf-auto{display:flex;gap:28px;margin:14px 16px 0;padding:14px 16px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2)}
+.hf-auto .grp{margin-bottom:9px}
+.hf-auto .tag{background:var(--surface)}
+.hf-tgl{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text-2);max-width:560px}
+.hf-tgl .toggle{margin-top:2px}
+.hf-tgl .help{margin-top:3px}
+.hf-sep{width:1px;background:var(--line)}
+.hx-bar{display:flex;align-items:center;gap:14px;margin:auto 12px 12px;padding:8px 8px 8px 16px;border-radius:11px;background:var(--surface-3);border:1px solid var(--line-2);box-shadow:0 12px 32px -12px rgba(0,0,0,.55);font-size:13px;white-space:nowrap}
+[data-theme=light] .hx-bar{box-shadow:0 12px 28px -14px rgba(9,9,11,.28)}
+.hx-bar b{font-weight:600}
+.hx-bar .div{width:1px;height:18px;background:var(--line-2)}
+.hx-bar .muted{font-size:12.5px}</style></head>
+<body data-ws="admin" data-active="health">
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Data health</h1><p class="sub">What needs a person today. Everything else runs on its own.</p></div>
+    <div class="acts"><span class="chk"><i data-i="clock" data-c="xs"></i>Checked <span class="mono">08:14</span> today</span><span class="btn sm ghost"><i data-i="file" data-c="sm"></i> Audit log</span></div>
+  </header>
+
+  <div class="bn">
+    <div class="banner danger"><span class="ic"><i data-i="alert" data-c="sm"></i></span>
+      <div class="tx grow"><div><b>HR directory refresh failed at 00:57.</b> Manager access is using 20 Nov data (1 day old).</div>
+        <div class="s"><i data-i="bell" data-c="xs"></i>Admins notified<span class="faint">·</span>next automatic try <span class="mono">22 Nov 00:57</span><span class="faint">·</span>managers see a “Today's refresh failed” notice</div></div>
+      <div class="acts"><span class="btn">View error</span><span class="btn"><i data-i="refresh" data-c="sm"></i> Retry now</span></div></div>
+    <div class="banner warn"><span class="ic"><i data-i="clock" data-c="sm"></i></span>
+      <div class="tx grow"><div><b>Academy catalog preview has waited 10 days:</b> 103 records, 4 changes.</div>
+        <div class="s">Nothing reaches employees until it is published. Imported <span class="mono">11 Nov 06:00</span></div></div>
+      <div class="acts"><span class="btn">Review &amp; publish <i data-i="arrow" data-c="xs"></i></span></div></div>
+  </div>
+
+  <section class="panel src">
+    <div class="cell"><div class="nm"><i data-i="users" data-c="xs"></i>HR directory</div><div class="stt hs-bad"><i data-i="st-bad"></i>Failed</div><div class="mt">DAILY 00:57 · GOOD 20 NOV</div></div>
+    <div class="cell"><div class="nm"><i data-i="cap" data-c="xs"></i>Academy catalog</div><div class="stt hs-rev"><i data-i="st-rev"></i>Preview waiting</div><div class="mt">103 RECORDS · SINCE 11 NOV</div></div>
+    <div class="cell"><div class="nm"><i data-i="book" data-c="xs"></i>Library catalog</div><div class="stt hs-okt"><i data-i="st-ok"></i>OK</div><div class="mt">UPDATED 8 NOV · MONTHLY</div></div>
+    <div class="cell"><div class="nm"><i data-i="brief" data-c="xs"></i>Job catalog</div><div class="stt hs-okt"><i data-i="st-ok"></i>OK</div><div class="mt">NEXT 9 DEC · QUARTERLY</div></div>
+    <div class="cell"><div class="nm"><i data-i="grid" data-c="xs"></i>Design practices</div><div class="stt hs-not"><i data-i="st-not"></i>Not set up</div><div class="mt" style="color:var(--muted)">OPTIONAL · SET UP <span style="font-family:Geist,sans-serif">→</span></div></div>
+  </section>
+
+  <section class="panel qp">
+    <div class="qh"><h2>Needs attention</h2>
+      <div class="tabs"><span>Conflicts <span class="n">12</span></span><span>Gaps <span class="n">5</span></span><span>Formal items missing a link <span class="n">7</span></span><span class="on">Formatting <span class="n">3</span></span></div>
+      <span class="note"><i data-i="info" data-c="xs"></i>Decisions persist across imports and are re-flagged if a source value changes.</span></div>
+    <table class="hx-t" style="margin-top:4px">
+      <colgroup><col style="width:30%"><col style="width:34px"><col><col style="width:190px"><col style="width:130px"><col style="width:92px"><col style="width:150px"></colgroup>
+      <thead><tr><th>Before</th><th></th><th>After</th><th>Rule</th><th>Source</th><th>Flagged</th><th>Decision</th></tr></thead>
+      <tbody>
+        <tr><td class="it"><span class="hf-ttl before"><span class="hf-cs">TRADE STUDIES</span> 101</span><span class="code">LB-20417</span></td><td><span class="hf-arrow"><i data-i="arrow" data-c="sm"></i></span></td>
+          <td><span class="hf-ttl"><span class="hf-ins">Trade Studies</span> 101</span></td>
+          <td><span class="hf-rule"><i data-i="info" data-c="xs"></i>ALL CAPS title</span></td><td class="fld">Library catalog</td><td><span class="since">8 Nov</span></td>
+          <td><div class="seg"><span class="on"><i data-i="check" data-c="xs"></i>Accept</span><span>Skip</span></div></td></tr>
+        <tr><td class="it"><span class="hf-ttl before">traceability<span class="hf-del">_</span>mbse<span class="hf-del">_</span>v2</span><span class="code">LB-20981</span></td><td><span class="hf-arrow"><i data-i="arrow" data-c="sm"></i></span></td>
+          <td><span class="hf-ttl"><span class="hf-ins">T</span>raceability<span class="hf-ins">&nbsp;MBSE&nbsp;</span>v2</span></td>
+          <td><span class="hf-rule"><i data-i="info" data-c="xs"></i>Underscores in title</span></td><td class="fld">Library catalog</td><td><span class="since">8 Nov</span></td>
+          <td><div class="seg"><span class="on"><i data-i="check" data-c="xs"></i>Accept</span><span>Skip</span></div></td></tr>
+        <tr><td class="it"><span class="hf-ttl before">Requirements 101<span class="hf-del"> (copy)</span></span><span class="code">LB-19022</span></td><td><span class="hf-arrow"><i data-i="arrow" data-c="sm"></i></span></td>
+          <td><div class="hf-ttl">Requirements 101</div>
+            <div class="hf-warn"><i data-i="alert" data-c="xs"></i>Same title as <u>Requirements 101 <span class="mono" style="font-size:11.5px">LB-19021</span></u> · consider retiring the copy</div></td>
+          <td><span class="hf-rule"><i data-i="info" data-c="xs"></i>“(copy)” in title</span></td><td class="fld">Library catalog</td><td><span class="since">8 Nov</span></td>
+          <td><div class="seg"><span class="on"><i data-i="check" data-c="xs"></i>Accept</span><span>Skip</span></div></td></tr>
+      </tbody>
+    </table>
+    <div class="hf-auto">
+      <div><div class="grp">Fixed on every import, no review</div>
+        <div class="row" style="gap:6px;flex-wrap:wrap"><span class="tag">Extra spaces</span><span class="tag">Trailing dots</span><span class="tag">Known acronyms kept: <span class="mono" style="font-size:11.5px">MBSE · SysML · V&amp;V · ICD</span></span></div></div>
+      <span class="hf-sep"></span>
+      <div class="hf-tgl"><span class="toggle"></span><div><div>Also fix ALL CAPS and underscores without asking</div>
+        <div class="help">Title changes wait here until you turn this on. Every fix is logged and can be undone.</div></div></div>
+    </div>
+    <div class="hx-bar"><span class="c-ok" style="display:flex"><i data-i="check" data-c="sm"></i></span><b>3 accepted</b><span class="muted">0 skipped</span><span class="div"></span>
+      <span class="muted">The Library catalog keeps its original titles; your fixes are kept on every import.</span>
+      <span class="sp btn primary"><i data-i="check" data-c="sm"></i> Apply 3 fixes</span></div>
+  </section>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

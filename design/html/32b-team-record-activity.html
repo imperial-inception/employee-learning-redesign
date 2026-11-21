@@ -1,0 +1,103 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Record for your team · Activity</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* 32b · Record for your team, step 1 Activity. Same frame as 32-team-record; page-local classes use the trc- prefix. */
+#page{height:100%;display:flex;flex-direction:column;align-items:center}
+.trc-wrap{width:100%;max-width:880px;flex:1;min-height:0;display:flex;flex-direction:column}
+.trc-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* compact stepper: one line, labels only */
+.trc-stepper{display:flex;align-items:center;gap:12px;list-style:none;margin-bottom:16px}
+.trc-stepper li{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--muted);white-space:nowrap}
+.trc-stepper li .st{width:16px;height:16px}
+.trc-num{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.trc-stepper .trc-done{color:var(--text-2)}
+.trc-stepper .trc-cur{color:var(--text)}
+.trc-stepper .trc-cur .trc-num{border-color:var(--accent);background:var(--accent);color:#fff}
+.trc-optl{font-weight:400;color:var(--faint);font-size:12px}
+.trc-stepper .trc-ln{flex:1;height:1px;background:var(--line-2);min-width:24px}
+
+/* the one panel */
+.trc-card{flex:0 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.trc-sh{display:flex;align-items:center;gap:10px;padding:18px 20px 4px}
+.trc-sh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.trc-form{padding:12px 20px 18px;display:flex;flex-direction:column;gap:18px}
+.trc-f .label{display:flex;align-items:center;gap:8px}
+.trc-f .label .trc-o{font-weight:400;color:var(--faint);font-size:12px}
+.trc-types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.trc-opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:10px}
+.trc-opt.trc-on{border-color:var(--accent-line);background:var(--accent-bg)}
+.trc-opt .radio{margin-top:3px}
+.trc-opt .trc-t{display:flex;align-items:center;gap:8px;font-weight:550}
+.trc-opt .trc-c{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+.trc-row3{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:12px}
+.trc-f .input .i{color:var(--muted)}
+.trc-f .input.trc-ph{color:var(--faint)}
+.trc-f .textarea{min-height:66px}
+.trc-f .help .i{color:var(--faint);margin-right:2px}
+
+/* footer */
+.trc-foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
+.trc-sum{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-right:auto}
+.trc-sum .i{color:var(--faint)}
+.trc-sum b{color:var(--text-2);font-weight:550}
+</style></head>
+<body data-ws="employee" data-active="team" data-role="manager">
+<main id="page">
+ <div class="trc-wrap">
+  <div class="crumbs"><span>Team</span><span class="sl">/</span><span style="color:var(--text-2)">Record for your team</span></div>
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Record for your team</h1>
+      <p class="sub">Record a team session or a shared course once. Everyone you tick gets their own record.</p></div>
+    <div class="acts"><span class="btn sm ghost"><i data-i="x" data-c="sm"></i> Close <span class="kbd">Esc</span></span></div>
+  </header>
+
+  <ol class="trc-stepper">
+    <li class="trc-cur"><span class="trc-num">1</span>Activity</li><li class="trc-ln"></li>
+    <li><span class="trc-num">2</span>Who attended</li><li class="trc-ln"></li>
+    <li><span class="trc-num">3</span>Evidence <span class="trc-optl">optional</span></li>
+  </ol>
+
+  <section class="panel glow trc-card">
+    <div class="trc-sh"><h2>What was the session?</h2><span class="sp trc-k">STEP 1 OF 3</span></div>
+
+    <div class="trc-form">
+      <div class="trc-f">
+        <span class="label">Session type</span>
+        <div class="trc-types">
+          <div class="trc-opt trc-on"><span class="radio on"></span>
+            <div class="grow"><div class="trc-t"><span class="tag"><span class="d rel"></span>Relational</span></div>
+              <div class="trc-c">Learning with and from people: a workshop, review board, talk or shadowing session.</div></div></div>
+          <div class="trc-opt"><span class="radio"></span>
+            <div class="grow"><div class="trc-t"><span class="tag"><span class="d formal"></span>Formal</span></div>
+              <div class="trc-c">A course delivered to the group, such as an instructor-led course from the catalog.</div></div></div>
+        </div>
+        <div class="help">Experiential learning happens in each person's own job, so they record it themselves.</div>
+      </div>
+
+      <div class="trc-f"><span class="label">Title</span><div class="input">Interface review workshop</div></div>
+
+      <div class="trc-row3">
+        <div class="trc-f"><span class="label">Date</span><div class="input"><i data-i="cal" data-c="sm"></i>Thu 20 Nov 2026<span class="sp muted" style="font-size:12.5px">yesterday</span></div></div>
+        <div class="trc-f"><span class="label">Duration</span><div class="input"><i data-i="clock" data-c="sm"></i><span class="mono">2</span> hours</div></div>
+        <div class="trc-f"><span class="label">Led by</span><div class="input"><div class="avatar xs a2">DO</div>Daniel Okafor<span class="sp muted" style="font-size:12.5px">on your team</span><i data-i="cd" data-c="xs"></i></div></div>
+      </div>
+
+      <div class="trc-f"><span class="label">Link to a catalog item <span class="trc-o">optional</span></span>
+        <div class="input trc-ph"><i data-i="search" data-c="sm"></i>Search the catalog by title or code</div>
+        <div class="help">Link one when the session delivered a catalog course, so it counts toward goals and pathways that include that course.</div></div>
+
+      <div class="trc-f"><span class="label">What it covered <span class="trc-o">optional · copied into each record</span></span>
+        <div class="textarea">Walked through the actuation ICD change log: how to raise, assess and close an interface change, and who signs off at each stage.</div></div>
+    </div>
+
+    <div class="trc-foot">
+      <div class="trc-sum"><i data-i="users" data-c="sm"></i><span><b>Next: who attended.</b> Everyone you tick gets their own record.</span></div>
+      <span class="btn">Save draft</span>
+      <span class="btn primary">Continue <span class="kbd">Ctrl Enter</span></span>
+    </div>
+  </section>
+ </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

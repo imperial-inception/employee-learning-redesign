@@ -1,0 +1,143 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Professional role</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;border:0;filter:blur(1.5px) saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.58)}
+[data-theme=light] .scrim{background:rgba(250,250,250,.6)}
+.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:1000px;overflow:hidden}
+
+/* header / footer (same as the goal editor) */
+.dh{display:flex;align-items:center;gap:10px;height:56px;padding:0 16px 0 20px;border-bottom:1px solid var(--line)}
+.dh .ic{width:28px;height:28px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.dh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.dh .x{width:28px;height:28px;display:grid;place-items:center;border-radius:7px;color:var(--muted)}
+.df{display:flex;align-items:center;gap:8px;height:62px;padding:0 16px 0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.pr-vis{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.pr-vis b{font-weight:550;color:var(--text-2)}
+
+/* body */
+.db{display:grid;grid-template-columns:minmax(0,1fr) 404px}
+.pr-col{padding:20px 24px 18px}
+.pr-col.r{border-left:1px solid var(--line);padding:20px 22px 18px}
+.pr-lb{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:550;color:var(--text-2);margin-bottom:8px}
+.pr-lb .o{font-weight:400;color:var(--faint)}
+.pr-lb .sp{font-weight:400;font-size:12px;color:var(--muted)}
+.pr-hp{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--muted);margin-top:7px;line-height:1.45}
+.pr-hp .i{margin-top:2px}
+
+/* role choices */
+.pr-list{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pr-opt{display:flex;align-items:center;gap:12px;padding:10px 14px;border-top:1px solid var(--line)}
+.pr-opt:first-child{border-top:none}
+.pr-opt .radio{flex:none}
+.pr-nm{font-size:13.5px;font-weight:550;display:flex;align-items:center;gap:8px}
+.pr-ds{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pr-opt.on{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.pr-opt .pill{margin-left:auto}
+
+/* HR title, read-only */
+.pr-hr{margin-top:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);padding:12px 14px}
+.pr-k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);display:flex;align-items:center;gap:6px}
+.pr-k .lk{margin-left:auto;color:var(--faint)}
+.pr-hr .v{font-size:14px;font-weight:550;margin-top:5px;color:var(--text-2)}
+.pr-hr p{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.45}
+.pr-fn{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:12px;color:var(--muted)}
+.pr-fn .lnk{color:var(--text-2);font-weight:550;display:inline-flex;align-items:center;gap:3px;text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:3px}
+
+/* what changes */
+.pr-chg{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pr-from{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted)}
+.pr-from b{color:var(--text);font-weight:550}
+.pr-ci{display:flex;gap:11px;padding:10px 14px;border-top:1px solid var(--line)}
+.pr-from+.pr-ci{border-top:none}
+.pr-ci>.i{color:var(--muted);margin-top:1px}
+.pr-ci .ttl{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550}
+.pr-ci .ttl .mono{margin-left:auto;font-size:12px;color:var(--text-2);font-weight:500}
+.pr-ci p{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.45}
+.pr-ci p .code{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.pr-ci.same .ttl{color:var(--text-2)}
+.pr-f{margin-top:18px}
+.pr-ta{position:relative;min-height:84px;padding-bottom:24px;font-size:13px}
+.pr-ta .cc{position:absolute;right:12px;bottom:7px;font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.input .i{color:var(--muted)}
+</style></head>
+<body data-ws="employee" data-active="team" data-role="manager">
+<iframe id="bg"></iframe>
+<div class="scrim"></div>
+
+<div class="dlg overlay" role="dialog" aria-label="Professional role for Priya Nair">
+  <div class="dh">
+    <span class="ic"><i data-i="brief" data-c="sm"></i></span>
+    <h2>Professional role for Priya Nair</h2>
+    <span class="tag">Systems engineering job family</span>
+    <span class="sp faint" style="font-size:12px">Set by you 12 Sep</span><span class="kbd" style="margin-left:6px">Esc</span>
+    <span class="x"><i data-i="x" data-c="sm"></i></span>
+  </div>
+
+  <div class="db">
+    <!-- left: the choice -->
+    <div class="pr-col">
+      <div class="pr-lb">Choose her role <span class="sp mono">5 choices</span></div>
+      <div class="pr-list">
+        <div class="pr-opt"><span class="radio"></span>
+          <div class="grow"><div class="pr-nm">Associate Systems Engineer</div><div class="pr-ds">Delivers defined tasks in one subsystem, with guidance.</div></div></div>
+        <div class="pr-opt"><span class="radio"></span>
+          <div class="grow"><div class="pr-nm">Systems Engineer</div><div class="pr-ds">Owns requirements, analysis and verification for a subsystem.</div></div></div>
+        <div class="pr-opt"><span class="radio"></span>
+          <div class="grow"><div class="pr-nm">Interface Architect</div><div class="pr-ds">Defines and controls interfaces between subsystems and suppliers.</div></div>
+          <span class="pill sm p-neu">Current</span></div>
+        <div class="pr-opt on"><span class="radio on"></span>
+          <div class="grow"><div class="pr-nm">Senior Systems Engineer</div><div class="pr-ds">Leads technical work across subsystems and reviews others' work.</div></div>
+          <span class="pill sm p-acc">Selected</span></div>
+        <div class="pr-opt"><span class="radio"></span>
+          <div class="grow"><div class="pr-nm">Lead System Architect</div><div class="pr-ds">Sets the system architecture and chairs the technical board.</div></div></div>
+      </div>
+
+      <div class="pr-f"><label class="pr-lb">Starts on</label>
+        <div class="input" style="width:300px"><i data-i="cal" data-c="sm"></i><span class="mono" style="font-size:13px">Mon 1 Dec 2026</span><span class="sp faint" style="font-size:12px">in 10 days</span></div>
+        <div class="pr-hp"><i data-i="info" data-c="xs"></i><span>Until then her expectations stay those of an Interface Architect.</span></div></div>
+
+      <div class="pr-hr">
+        <div class="pr-k">JOB TITLE · HR DIRECTORY<span class="lk"><i data-i="lock" data-c="xs"></i></span></div>
+        <div class="v">Lead Systems Engineer</div>
+        <p>Read-only, from the HR directory. It is a separate record from her professional role, and changing one never changes the other. Only the role sets her expectations and learning here.</p>
+      </div>
+
+      <div class="pr-fn"><i data-i="sliders" data-c="xs"></i><span>Role choices are configured by admins for each job family, up to 5.</span><span class="lnk">Rules › Roles <i data-i="cr" data-c="xs"></i></span></div>
+    </div>
+
+    <!-- right: what the change does -->
+    <div class="pr-col r">
+      <div class="pr-lb">What changes for Priya</div>
+      <div class="pr-chg">
+        <div class="pr-from"><span>Interface Architect</span><i data-i="arrow" data-c="xs"></i><b>Senior Systems Engineer</b></div>
+        <div class="pr-ci"><i data-i="file" data-c="sm"></i>
+          <div class="grow"><div class="ttl">Job expectations<span class="mono">6 areas · 2 new</span></div>
+            <p>New: technical leadership and mentoring. Her Next level page will compare against Lead System Architect.</p></div></div>
+        <div class="pr-ci"><i data-i="book" data-c="sm"></i>
+          <div class="grow"><div class="ttl">Suggested learning<span class="mono">7 → 9</span></div>
+            <p>4 new suggestions, 2 no longer suggested. Optional, as before.</p></div></div>
+        <div class="pr-ci"><i data-i="flag" data-c="sm"></i>
+          <div class="grow"><div class="ttl">Required learning<span class="mono">1 new</span></div>
+            <p>Technical Review Leadership <span class="code">TR-320</span>, from an admin rule for this role. Due 1 Mar, 90 days after the start date.</p></div></div>
+        <div class="pr-ci same"><i data-i="check" data-c="sm"></i>
+          <div class="grow"><div class="ttl">Stays the same</div>
+            <p>Her goals, her plan and everything already approved.</p></div></div>
+      </div>
+
+      <div class="pr-f" style="margin-top:20px"><label class="pr-lb">Note to Priya <span class="o">optional</span></label>
+        <div class="textarea pr-ta">You've run the actuation ICD board well. This sets expectations for leading reviews across subsystems; let's go through the new areas at our 1:1 on Tuesday.<span class="cc">156 / 280</span></div>
+        <div class="pr-hp"><i data-i="eye" data-c="xs"></i><span>Shared: Priya sees this with the change. Not a private note.</span></div></div>
+    </div>
+  </div>
+
+  <div class="df">
+    <span class="pr-vis"><i data-i="eye" data-c="sm"></i><b>Priya is notified.</b><span>She sees her new role, that you set it, and your note.</span></span>
+    <span class="sp btn ghost">Cancel</span>
+    <span class="btn primary">Save role <span class="kbd">Ctrl Enter</span></span>
+  </div>
+</div>
+<script>document.getElementById('bg').src='20-person.html'+location.search;</script>
+<script src="assets/shell.js"></script>
+</body></html>

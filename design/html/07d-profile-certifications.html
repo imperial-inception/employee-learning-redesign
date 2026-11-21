@@ -1,0 +1,146 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Profile certifications</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ---- copied from 07-profile (header + section tabs), keep in sync ---- */
+.acc{color:var(--accent-2)}[data-theme=light] .acc{color:var(--accent)}
+.idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.avatar.xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.idl b{color:var(--text);font-weight:550}
+.idl .lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .idl .lnk{color:var(--accent)}
+.idl .ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.idl .sl{color:var(--faint)}
+.idh .acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.ptabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.ptabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.ptabs a .i{color:var(--faint)}
+.ptabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ptabs a.on .i{color:var(--text)}
+.ptabs .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.ptabs a.on .n{color:var(--text-2)}
+.ptabs .dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.ptabs .push{margin-left:auto}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px;align-items:start}
+.cc{display:flex;flex-direction:column;gap:16px;min-width:0}
+.src{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:550;white-space:nowrap}
+.src.mc{background:var(--ok-bg);color:var(--ok)}
+.src.sr{border:1px dashed var(--line-2);color:var(--muted);font-weight:500}
+.never{display:flex;gap:8px;font-size:12px;color:var(--muted);padding:12px 16px 14px;line-height:1.45}
+.never .i{margin-top:2px}
+
+/* ---- this view: Certifications tab (pcx-) ---- */
+.pcx-hb{margin-left:auto}
+.pcx-r{display:grid;grid-template-columns:30px minmax(0,1fr) 92px 148px 168px;align-items:center;column-gap:14px;padding:11px 16px;border-top:1px solid var(--line);min-height:62px}
+.pcx-r.pcx-hd{min-height:34px;padding:0 16px;border-top:none;background:var(--surface-2);font-size:12px;font-weight:500;color:var(--muted)}
+.pcx-r.pcx-sel{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.pcx-ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.pcx-r .t{font-weight:500}
+.pcx-r .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pcx-d{font:500 12.5px "Geist Mono",monospace;color:var(--text-2);white-space:nowrap}
+.pcx-d small{display:flex;align-items:center;gap:4px;font:500 11.5px Geist,"Segoe UI",sans-serif;margin-top:3px}
+.pcx-soon{color:var(--warn)}
+.pcx-quiet{color:var(--muted);font-family:Geist,"Segoe UI",sans-serif}
+.pcx-exp{color:var(--muted)}
+.pcx-nr{color:var(--faint);font:italic 400 12.5px Geist,"Segoe UI",sans-serif}
+.pcx-v small{display:block;font-size:11.5px;color:var(--faint);margin-top:4px;white-space:nowrap}
+.pcx-v small .acc{font-weight:500}
+.pcx-ln{border-top:1px solid var(--line)}
+
+/* attach panel */
+.pcx-sub{font-size:12px;color:var(--muted);margin-left:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pcx-body{padding:14px 16px 4px;display:flex;flex-direction:column;gap:13px}
+.pcx-drop{border:1.5px dashed var(--line-2);border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px 16px;background:linear-gradient(180deg,var(--hover),transparent)}
+.pcx-drop .pcx-ic{width:36px;height:36px;border-radius:9px;margin-bottom:10px}
+.pcx-drop b{font-weight:550}
+.pcx-drop .muted{font-size:12px;margin-top:4px}
+.pcx-body .label{font-size:12px;margin-bottom:5px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:6px}
+.pcx-body .label .opt{color:var(--faint);font-weight:400}
+.pcx-body .input{height:34px;font-size:13px;background:var(--surface-2);padding:0 10px;color:var(--faint)}
+.pcx-body .input .i{color:var(--faint)}
+.pcx-body .help{margin-top:0;line-height:1.45}
+.pcx-ft{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid var(--line);margin-top:12px}
+.pcx-rn{display:flex;gap:9px;padding:13px 16px;font-size:12.5px;color:var(--text-2);line-height:1.5}
+.pcx-rn .i{margin-top:3px;color:var(--muted)}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <header class="idh">
+    <div class="avatar xl">JL</div>
+    <div>
+      <h1>Jordan Lee</h1>
+      <div class="idl"><b>Engineer, Systems II</b><span class="ro"><i data-i="lock" data-c="xs"></i>From HR directory</span><span class="lnk">Edit in HR directory <i data-i="ext" data-c="xs"></i></span>
+        <span class="sl">·</span>Architecture &amp; integration<span class="sl">·</span>Employee ID <span class="mono">104822</span></div>
+      <div class="idl">Professional role <b>Systems Engineer</b><span>· assigned by Sam</span><span class="sl">·</span><span class="lnk">View job expectations <i data-i="arrow" data-c="xs"></i></span></div>
+    </div>
+    <div class="acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
+  </header>
+
+  <nav class="ptabs">
+    <a><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a><i data-i="brief" data-c="sm"></i>Experience<span class="n">5</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="n">5</span></a>
+    <a class="on"><i data-i="shield" data-c="sm"></i>Certifications<span class="n">4</span></a>
+    <a><i data-i="cap" data-c="sm"></i>Education<span class="n">3</span></a>
+    <a><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a><i data-i="msg" data-c="sm"></i>Feedback<span class="n">6</span></a>
+    <a class="push"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="n">hidden</span></a>
+    <a><i data-i="link" data-c="sm"></i>Connected agents<span class="dot"></span></a>
+  </nav>
+
+  <div class="cols">
+    <div class="cc">
+      <section class="panel">
+        <div class="panel-h"><h2>Certifications</h2><span class="cnt">4</span>
+          <span class="btn sm primary pcx-hb"><i data-i="plus" data-c="xs"></i> Add certification</span></div>
+        <div class="pcx-r pcx-hd"><span></span><span>Certification · issuer</span><span>Earned</span><span>Expires</span><span>Verification</span></div>
+
+        <div class="pcx-r"><span class="pcx-ic"><i data-i="shield" data-c="sm"></i></span>
+          <div style="min-width:0"><div class="t ellipsis">Systems Engineering Associate</div><div class="c ellipsis">Professional engineering society</div></div>
+          <span class="pcx-d">Mar 2023</span>
+          <div class="pcx-d">9 Jan 2027<small class="pcx-soon"><i data-i="clock" data-c="xs"></i>in 49 days</small></div>
+          <div class="pcx-v"><span class="src mc"><i data-i="check" data-c="xs"></i>Verified from file</span><small>certificate.pdf</small></div></div>
+
+        <div class="pcx-r"><span class="pcx-ic"><i data-i="shield" data-c="sm"></i></span>
+          <div style="min-width:0"><div class="t ellipsis">MBSE Practitioner · SysML v2</div><div class="c ellipsis">Academy</div></div>
+          <span class="pcx-d">Jun 2025</span>
+          <span class="pcx-d pcx-quiet">No expiry</span>
+          <div class="pcx-v"><span class="src mc"><i data-i="check" data-c="xs"></i>Verified from file</span><small>mbse-practitioner.pdf</small></div></div>
+
+        <div class="pcx-r pcx-sel"><span class="pcx-ic"><i data-i="shield" data-c="sm"></i></span>
+          <div style="min-width:0"><div class="t ellipsis">Requirements Engineering Foundation</div><div class="c ellipsis">Requirements engineering board</div></div>
+          <span class="pcx-d">Nov 2021</span>
+          <span class="pcx-nr">Not recorded</span>
+          <div class="pcx-v"><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><small><span class="acc">Attach certificate</span></small></div></div>
+
+        <div class="pcx-r"><span class="pcx-ic"><i data-i="shield" data-c="sm"></i></span>
+          <div style="min-width:0"><div class="t ellipsis">Functional Safety Fundamentals</div><div class="c ellipsis">Academy</div></div>
+          <span class="pcx-d">Sep 2020</span>
+          <div class="pcx-d pcx-exp">Sep 2023<small>Expired</small></div>
+          <div class="pcx-v"><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><small><span class="acc">Attach certificate</span></small></div></div>
+
+        <div class="never pcx-ln"><i data-i="info" data-c="xs"></i><span>Verified from file: a certificate file is on record. Self-reported: you entered it, with no file yet. A missing date reads “Not recorded”.</span></div>
+      </section>
+    </div>
+
+    <div class="cc">
+      <section class="panel">
+        <div class="panel-h"><h2>Attach certificate</h2><span class="pcx-sub">· Requirements Engineering Foundation</span></div>
+        <div class="pcx-body">
+          <div class="pcx-drop"><span class="pcx-ic"><i data-i="upload" data-c="sm"></i></span>
+            <b>Drop the certificate here or browse</b><div class="muted">PDF, PNG or JPG · up to 10 MB</div></div>
+          <div><span class="label">Expires <span class="opt">· optional</span></span><div class="input"><i data-i="cal" data-c="xs"></i>Not recorded · add a date</div></div>
+          <div class="help">With a file attached it shows as Verified from file. Sam can open the file; colleagues see only the name and the badge.</div>
+        </div>
+        <div class="pcx-ft"><span class="btn ghost">Cancel</span><span class="sp"></span><span class="btn"><i data-i="clip" data-c="sm"></i> Attach</span></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h"><h2>Renewals</h2></div>
+        <div class="pcx-rn"><i data-i="bell" data-c="xs"></i><span>You get a reminder 60 days before a certification expires. Renew with the issuer, then attach the new certificate here. Expired ones stay listed, marked Expired.</span></div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,147 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Reminders</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.tabs span.n{height:auto;padding:0;margin:0}
+.lay{display:grid;grid-template-columns:1fr 404px;gap:18px;margin-top:18px;align-items:start}
+.rm-col{display:flex;flex-direction:column;gap:18px}
+/* rules */
+.rm-main{overflow:hidden}
+.rm-lead{display:flex;align-items:center;gap:8px;padding:11px 18px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.rm-lead .i{color:var(--faint)}
+.rm-rule{padding:16px 18px 16px;border-top:1px solid var(--line)}
+.rm-lead + .rm-rule{border-top:none}
+.rm-hd{display:flex;align-items:center;gap:11px}
+.rm-ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--surface-3);color:var(--text-2);flex:none}
+.rm-ic.w{background:var(--warn-bg);color:var(--warn)}
+.rm-ic.a{background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .rm-ic.a{color:var(--accent)}
+.rm-hd b{font-size:14px;font-weight:600}
+.rm-to{font-size:12px;color:var(--muted);margin-top:1px}
+.rm-sent{margin:12px 0 0 41px;font-size:13.5px;color:var(--text-2);line-height:2.1}
+.rm-val{height:26px;padding:0 9px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-2);font:550 12.5px Geist,sans-serif;color:var(--text);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;vertical-align:middle}
+.rm-val .i{color:var(--faint)}
+.rm-val.new{border-color:var(--accent-line);background:var(--accent-bg);box-shadow:0 0 0 3px var(--accent-bg)}
+.rm-was{font:400 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:2px}
+.rm-tg{font:600 10px "Geist Mono",monospace;letter-spacing:.05em;color:var(--accent-2);margin-left:4px}
+[data-theme=light] .rm-tg{color:var(--accent)}
+.rm-note{margin:6px 0 0 41px;font-size:12px;color:var(--muted);display:flex;gap:7px;align-items:flex-start;line-height:1.45}
+.rm-note .i{color:var(--faint);margin-top:1px}
+.rm-ch{display:flex;align-items:center;gap:8px;margin:12px 0 0 41px}
+.rm-chl{font-size:12px;color:var(--muted);margin-right:2px}
+.rm-c{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 9px 0 7px;border-radius:7px;border:1px solid var(--line-2);font-size:12.5px;color:var(--text-2)}
+.rm-c .check{width:14px;height:14px}
+.rm-c.off{color:var(--muted)}
+.dirty{display:flex;align-items:center;gap:10px;height:58px;padding:0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.dirty .dt{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.dirty .tx{font-size:13px;color:var(--text-2)}
+.dirty .tx b{color:var(--text);font-weight:550}
+/* delivery */
+.rm-sec{padding:12px 16px 13px;border-top:1px solid var(--line)}
+.panel-h + .rm-sec{border-top:none}
+.rm-sec .grp{margin-bottom:8px}
+.rm-opt{display:flex;align-items:center;gap:10px;padding:3px 0}
+.rm-opt .i{color:var(--muted)}
+.rm-opt b{font-size:13px;font-weight:550;display:block}
+.rm-opt small{font-size:12px;color:var(--muted);display:block}
+.rm-hint{font-size:12px;color:var(--muted);line-height:1.5;margin-top:7px}
+.rm-in{height:32px;font:500 12.5px "Geist Mono",monospace;width:auto;display:inline-flex}
+.rm-in .i{color:var(--muted)}
+.rm-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rm-row .rm-lbl{font-size:12.5px;color:var(--muted)}
+.rm-ck{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-2)}
+.rm-ck .check{width:14px;height:14px}
+/* preview */
+.rm-msg{margin:12px 16px 14px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.rm-mh{display:flex;align-items:center;gap:9px;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.rm-mk{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--cyan));flex:none}
+.rm-mk .i{width:13px;height:13px}
+.rm-mh b{font-size:12.5px;font-weight:600}
+.rm-mh .m{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.rm-sub{padding:10px 12px 4px;font-size:13px;font-weight:600}
+.rm-it{display:flex;align-items:center;gap:9px;padding:6px 12px;font-size:12.5px;color:var(--text-2)}
+.rm-it .i{color:var(--accent-2)}
+[data-theme=light] .rm-it .i{color:var(--accent)}
+.rm-it .rm-cd{font:400 11.5px "Geist Mono",monospace;color:var(--faint)}
+.rm-it .m{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--muted);white-space:nowrap}
+.rm-it .m.w{color:var(--warn)}
+.rm-mf{display:flex;align-items:center;gap:10px;padding:4px 12px 10px}
+.rm-mf .more{font-size:12px;color:var(--muted)}
+</style></head>
+<body data-ws="admin" data-active="rules">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Rules &amp; populations</h1>
+      <p class="sub">Who gets which framework, and which learning is required for whom.</p></div>
+    <div class="acts"><span class="btn"><i data-i="file" data-c="sm"></i> Change history</span></div>
+  </header>
+  <div class="tabs"><span>Frameworks <span class="n">2</span></span><span>Populations <span class="n">6</span></span><span>Required learning <span class="n">4</span></span><span>Roles <span class="n">3</span></span><span class="on">Reminders</span><span>Feedback form</span></div>
+
+  <div class="lay">
+    <section class="panel rm-main">
+      <div class="panel-h"><h2>Reminder rules</h2><span class="cnt">3</span><span class="lnk">Defaults for everyone</span></div>
+      <div class="rm-lead"><i data-i="info" data-c="xs"></i>Reminders nudge and offer help. They never change a status or count against anyone.</div>
+
+      <div class="rm-rule">
+        <div class="rm-hd"><span class="rm-ic a"><i data-i="clock" data-c="sm"></i></span><div class="grow"><b>Due soon</b><div class="rm-to">To the employee · required learning and required pathway updates</div></div><span class="toggle on"></span></div>
+        <div class="rm-sent">Remind <span class="rm-val">14 days</span> and <span class="rm-val">3 days</span> before the due date.</div>
+        <div class="rm-ch"><span class="rm-chl">Channels</span><span class="rm-c"><span class="check on"><i data-i="check" data-c="xs"></i></span>Email</span><span class="rm-c"><span class="check on"><i data-i="check" data-c="xs"></i></span>Chat</span></div>
+      </div>
+
+      <div class="rm-rule">
+        <div class="rm-hd"><span class="rm-ic w"><i data-i="alert" data-c="sm"></i></span><div class="grow"><b>Overdue</b><div class="rm-to">To the employee, then their manager</div></div><span class="toggle on"></span></div>
+        <div class="rm-sent">Remind <span class="rm-val">the day after</span> the due date, then <span class="rm-val">every 7 days</span>. After <span class="rm-val new">14 days</span><span class="rm-was">was 7</span><span class="rm-tg">UNSAVED</span>, add it to the manager's digest so they can help.</div>
+        <div class="rm-ch"><span class="rm-chl">Channels</span><span class="rm-c"><span class="check on"><i data-i="check" data-c="xs"></i></span>Email</span><span class="rm-c"><span class="check on"><i data-i="check" data-c="xs"></i></span>Chat</span></div>
+      </div>
+
+      <div class="rm-rule">
+        <div class="rm-hd"><span class="rm-ic"><i data-i="inbox" data-c="sm"></i></span><div class="grow"><b>Review waiting</b><div class="rm-to">To the manager who reviews it</div></div><span class="toggle on"></span></div>
+        <div class="rm-sent">Remind the manager when a submission has waited <span class="rm-val">5 days</span>. On day <span class="rm-val">7</span>, show it as late in their digest.</div>
+        <div class="rm-note"><i data-i="info" data-c="xs"></i><span>On time is judged by the submission date, so a slow review never counts against the employee.</span></div>
+        <div class="rm-ch"><span class="rm-chl">Channels</span><span class="rm-c"><span class="check on"><i data-i="check" data-c="xs"></i></span>Email</span><span class="rm-c off"><span class="check"></span>Chat</span></div>
+      </div>
+
+      <div class="dirty"><span class="dt"></span><span class="tx"><b>1 unsaved change</b> · overdue: the manager hears after 14 days instead of 7</span><span class="sp"></span><span class="btn">Discard</span><span class="btn primary">Save <span class="kbd" style="background:transparent;border-color:rgba(127,127,127,.4);color:inherit;opacity:.7">Ctrl S</span></span></div>
+    </section>
+
+    <div class="rm-col">
+      <section class="panel">
+        <div class="panel-h"><h2>Delivery</h2><span class="cnt">applies to all rules</span></div>
+        <div class="rm-sec">
+          <div class="grp">Channels</div>
+          <div class="rm-opt"><i data-i="send" data-c="sm"></i><div class="grow"><b>Email</b><small>Work address from the HR directory</small></div><span class="toggle on"></span></div>
+          <div class="rm-opt"><i data-i="msg" data-c="sm"></i><div class="grow"><b>Chat</b><small>Direct message from Skill Portal</small></div><span class="toggle on"></span></div>
+          <div class="rm-hint">People can switch one channel off, never both.</div>
+        </div>
+        <div class="rm-sec">
+          <div class="grp">Daily digest</div>
+          <div class="rm-row"><span class="input rm-in"><i data-i="clock" data-c="sm"></i>09:00</span><span class="rm-lbl">in each person's time zone</span></div>
+          <div class="rm-hint">Reminders wait for the digest instead of arriving one by one.</div>
+        </div>
+        <div class="rm-sec">
+          <div class="grp">Quiet hours</div>
+          <div class="rm-row"><span class="input rm-in"><i data-i="moon" data-c="sm"></i>19:00 – 08:00</span><span class="rm-ck"><span class="check on"><i data-i="check" data-c="xs"></i></span>Weekends</span><span class="rm-ck"><span class="check on"><i data-i="check" data-c="xs"></i></span>Public holidays</span></div>
+        </div>
+        <div class="rm-sec">
+          <div class="grp">Combine</div>
+          <div class="rm-opt"><i data-i="inbox" data-c="sm"></i><div class="grow"><b>One message per person per day</b><small>5 due items = 1 message · no item twice in 3 days</small></div><span class="toggle on"></span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-h"><i data-i="eye" data-c="sm"></i><h2>Example digest</h2><span class="lnk">sample data</span></div>
+        <div class="rm-msg">
+          <div class="rm-mh"><span class="rm-mk"><i data-i="cap"></i></span><b>Skill Portal</b><span class="m">Mon 09:00 · email</span></div>
+          <div class="rm-sub">5 learning items need you this week</div>
+          <div class="rm-it"><i data-i="flag" data-c="sm"></i>Configuration Control <span class="rm-cd">CM-140</span><span class="m w">due in 3 days</span></div>
+          <div class="rm-it"><i data-i="flag" data-c="sm"></i>Interface Management <span class="rm-cd">IM-201</span><span class="m">due in 14 days</span></div>
+          <div class="rm-it"><i data-i="inbox" data-c="sm"></i>2 submissions wait for your review<span class="m">oldest 5 days</span></div>
+          <div class="rm-mf"><span class="more">+ 1 more</span><span class="sp btn sm">Open Skill Portal</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

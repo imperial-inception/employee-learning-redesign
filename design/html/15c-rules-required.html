@@ -1,0 +1,154 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Required learning</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.tabs span.n{height:auto;padding:0;margin:0}
+.lay{display:grid;grid-template-columns:1fr 372px;gap:18px;margin-top:18px;align-items:start}
+.rq-col{display:flex;flex-direction:column;gap:18px}
+/* rules table */
+.rq-main{overflow:hidden}
+.rq-g{display:grid;grid-template-columns:minmax(0,1.2fr) 150px minmax(0,1fr) 140px;gap:18px}
+.rq-th{height:36px;align-items:center;padding:0 18px;border-bottom:1px solid var(--line);font-size:12px;font-weight:500;color:var(--muted)}
+.rq-row{padding:13px 18px;border-top:1px solid var(--line);align-items:start}
+.rq-th + .rq-row{border-top:none}
+.rq-it{display:flex;gap:10px;align-items:flex-start;min-width:0}
+.rq-it > .i{color:var(--accent-2);margin-top:2px}
+[data-theme=light] .rq-it > .i{color:var(--accent)}
+.rq-tt{font-size:13.5px;font-weight:600;line-height:1.35}
+.rq-cd{font:400 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:6px}
+.rq-pop{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12.5px;color:var(--muted);white-space:nowrap}
+.rq-pop .i{color:var(--faint)}
+.rq-pop .mono{font-size:11.5px;color:var(--text-2)}
+.rq-due{font:500 12.5px "Geist Mono",monospace;color:var(--text);padding-top:1px}
+.rq-sm{font:400 12px Geist,sans-serif;color:var(--muted);margin-top:4px}
+.rq-rs{font-size:12.5px;color:var(--text-2);line-height:1.5;padding-top:1px}
+.rq-ap{display:flex;gap:8px;align-items:flex-start;padding-top:1px}
+.rq-ap .avatar{margin-top:1px}
+.rq-ap b{font-size:12.5px;font-weight:550;display:block;line-height:1.35}
+.rq-ap .rq-sm{margin-top:2px;font-family:"Geist Mono",monospace;font-size:11.5px}
+.rq-you{font:500 10.5px "Geist Mono",monospace;color:var(--faint);margin-left:4px}
+/* pending removal, inside the CM-140 row */
+.rq-req{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:2px 0 0 26px;padding:10px 12px;border-radius:9px;border:1px dashed var(--line-2);background:linear-gradient(90deg,var(--warn-bg),transparent 65%),var(--surface)}
+.rq-req > .i{color:var(--warn)}
+.rq-req .tx{font-size:12.5px;color:var(--text-2);line-height:1.45}
+.rq-req .tx b{color:var(--text);font-weight:550}
+.rq-req .tx .q{color:var(--muted)}
+.rq-pol{display:flex;gap:10px;align-items:flex-start;padding:13px 18px;border-top:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted);line-height:1.5}
+.rq-pol .i{color:var(--text-2);margin-top:2px}
+.rq-pol b{color:var(--text-2);font-weight:550}
+/* overrides */
+.rq-lead{padding:11px 16px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.rq-ov{padding:12px 16px;border-top:1px solid var(--line)}
+.rq-lead + .rq-ov{border-top:none}
+.rq-ovh{display:flex;align-items:center;gap:8px}
+.rq-ovh b{font-size:13px;font-weight:600}
+.rq-ovh .pill{margin-left:auto}
+.rq-ovw{font-size:12.5px;color:var(--text-2);margin:7px 0 0 28px}
+.rq-ovw .mono{font-size:11.5px;color:var(--muted);margin-right:4px}
+.rq-ovr{font-size:12.5px;color:var(--text-2);margin:4px 0 0 28px;line-height:1.45}
+.rq-ovr .q{color:var(--muted)}
+.rq-ovb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin:7px 0 0 28px}
+.rq-ovb .i{color:var(--faint)}
+.rq-ovb .mono{font-size:11.5px}
+.rq-ft{display:flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.rq-ft .lnk{margin-left:auto;display:flex;align-items:center;gap:4px}
+/* how employees see it */
+.rq-pv{padding:14px 16px}
+.rq-pv .grp{margin-bottom:8px}
+.rq-card{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--surface-2)}
+.rq-card .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550}
+.rq-card .hd .i{color:var(--accent-2)}
+[data-theme=light] .rq-card .hd .i{color:var(--accent)}
+.rq-card .hd .m{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--text-2)}
+.rq-card .why{margin:6px 0 0 22px}
+.rq-pvn{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+</style></head>
+<body data-ws="admin" data-active="rules">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Rules &amp; populations</h1>
+      <p class="sub">Who gets which framework, and which learning is required for whom.</p></div>
+    <div class="acts"><span class="btn"><i data-i="file" data-c="sm"></i> Change history</span><span class="btn primary"><i data-i="plus" data-c="sm"></i> Require learning</span></div>
+  </header>
+  <div class="tabs"><span>Frameworks <span class="n">2</span></span><span>Populations <span class="n">6</span></span><span class="on">Required learning <span class="n">4</span></span><span>Roles <span class="n">3</span></span><span>Reminders</span><span>Feedback form</span></div>
+
+  <div class="lay">
+    <section class="panel rq-main">
+      <div class="panel-h"><h2>Required learning</h2><span class="cnt">4 rules</span><span class="lnk">2 ended rules <i data-i="cr" data-c="xs"></i></span></div>
+      <div class="rq-g rq-th"><span>Learning · population</span><span>Due</span><span>Reason</span><span>Approved by</span></div>
+
+      <div class="rq-g rq-row">
+        <div class="rq-it"><i data-i="flag" data-c="sm"></i><div class="grow"><div class="rq-tt">Interface Management<span class="rq-cd">IM-201</span></div>
+          <div class="rq-pop"><i data-i="users" data-c="xs"></i>Systems Engineering &amp; Integration <span class="mono">214</span></div></div></div>
+        <div class="rq-due">by 31 Mar 2027<div class="rq-sm">fixed date</div></div>
+        <div class="rq-rs">Integration leads own interface control from Q2 2027.</div>
+        <div class="rq-ap"><div class="avatar xs a4">PN</div><div><b>Priya Nair</b><div class="rq-sm">2 Oct 2026</div></div></div>
+      </div>
+
+      <div class="rq-g rq-row">
+        <div class="rq-it"><i data-i="flag" data-c="sm"></i><div class="grow"><div class="rq-tt">Configuration Control<span class="rq-cd">CM-140</span></div>
+          <div class="rq-pop"><i data-i="users" data-c="xs"></i>Systems Engineering &amp; Integration <span class="mono">214</span></div></div></div>
+        <div class="rq-due">60 days<div class="rq-sm">after joining the population</div></div>
+        <div class="rq-rs">Internal audit found design changes made without configuration review.</div>
+        <div class="rq-ap"><div class="avatar xs a6">SP</div><div><b>Sam Patel</b><div class="rq-sm">14 Aug 2026</div></div></div>
+        <div class="rq-req"><i data-i="alert" data-c="sm"></i>
+          <div class="grow tx"><b>Sam Patel asked to remove this</b> · 19 Nov · <span class="q">“Configuration review is now a required step in the change tool.”</span><br><span class="q">Stays required until a second approver agrees. Sam can't approve his own request.</span></div>
+          <span class="btn sm">Review request</span></div>
+      </div>
+
+      <div class="rq-g rq-row">
+        <div class="rq-it"><i data-i="flag" data-c="sm"></i><div class="grow"><div class="rq-tt">V&amp;V Planning Essentials<span class="rq-cd">VV-230</span></div>
+          <div class="rq-pop"><i data-i="users" data-c="xs"></i>Requirements &amp; Verification <span class="mono">158</span></div></div></div>
+        <div class="rq-due">90 days<div class="rq-sm">after joining the population</div></div>
+        <div class="rq-rs">Test readiness reviews need a verification plan for every requirement set.</div>
+        <div class="rq-ap"><div class="avatar xs">JL</div><div><b>Jordan Lee<span class="rq-you">YOU</span></b><div class="rq-sm">9 Sep 2026</div></div></div>
+      </div>
+
+      <div class="rq-g rq-row">
+        <div class="rq-it"><i data-i="flag" data-c="sm"></i><div class="grow"><div class="rq-tt">Digital Thread Basics<span class="rq-cd">DT-120</span></div>
+          <div class="rq-pop"><i data-i="users" data-c="xs"></i>Digital Thread <span class="mono">96</span></div></div></div>
+        <div class="rq-due">by 30 Jun 2027<div class="rq-sm">fixed date</div></div>
+        <div class="rq-rs">Model handoffs between teams move to the digital thread in 2027.</div>
+        <div class="rq-ap"><div class="avatar xs a6">SP</div><div><b>Sam Patel</b><div class="rq-sm">28 Oct 2026</div></div></div>
+      </div>
+
+      <div class="rq-pol"><i data-i="lock" data-c="sm"></i><span><b>Removing a requirement needs a second approver,</b> and so does exempting one person from it. Whoever asks can't approve. Learning that matches a population stays optional unless a rule or override here makes it required. Company-wide required training stays in the LMS.</span></div>
+    </section>
+
+    <div class="rq-col">
+      <section class="panel">
+        <div class="panel-h"><h2>Overrides</h2><span class="cnt">3 active</span><span class="lnk"><i data-i="plus" data-c="xs"></i> Override</span></div>
+        <div class="rq-lead">One person, one item, always with a reason.</div>
+        <div class="rq-ov">
+          <div class="rq-ovh"><div class="avatar xs a6">OH</div><b>Omar Haddad</b><span class="pill sm p-acc">Made required</span></div>
+          <div class="rq-ovw"><span class="mono">CM-140</span>Configuration Control · by 31 Jan 2027</div>
+          <div class="rq-ovr"><span class="q">Reason:</span> joins the configuration board in January.</div>
+          <div class="rq-ovb"><i data-i="user" data-c="xs"></i>Set by Jordan Lee · <span class="mono">12 Nov</span></div>
+        </div>
+        <div class="rq-ov">
+          <div class="rq-ovh"><div class="avatar xs">WC</div><b>Wei Chen</b><span class="pill sm p-neu">Not required</span></div>
+          <div class="rq-ovw"><span class="mono">IM-201</span>Interface Management</div>
+          <div class="rq-ovr"><span class="q">Reason:</span> already chairs the interface control board; equivalent experience approved.</div>
+          <div class="rq-ovb"><i data-i="users" data-c="xs"></i>Jordan Lee, second approver Priya Nair · <span class="mono">5 Nov</span></div>
+        </div>
+        <div class="rq-ov">
+          <div class="rq-ovh"><div class="avatar xs">FR</div><b>Fatima Rahman</b><span class="pill sm p-info">Due date moved</span></div>
+          <div class="rq-ovw"><span class="mono">VV-230</span>V&amp;V Planning Essentials · by 15 Mar 2027</div>
+          <div class="rq-ovr"><span class="q">Reason:</span> on a customer-site rotation until February.</div>
+          <div class="rq-ovb"><i data-i="user" data-c="xs"></i>Set by Sam Patel · <span class="mono">3 Nov</span></div>
+        </div>
+        <div class="rq-ft"><span>4 ended overrides</span><span class="lnk">Show <i data-i="cr" data-c="xs"></i></span></div>
+      </section>
+
+      <section class="panel rq-pv">
+        <div class="grp">How employees see it</div>
+        <div class="rq-card"><div class="hd"><i data-i="flag" data-c="sm"></i>Configuration Control<span class="m">due 14 Jan</span></div>
+          <div class="why"><b>Why</b>Required for your population: internal audit found design changes made without configuration review.</div></div>
+        <div class="rq-pvn">It shows under Required on Home, with this reason and the due date. Everything else that matches stays optional.</div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

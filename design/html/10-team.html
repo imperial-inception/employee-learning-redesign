@@ -58,6 +58,11 @@
 [data-theme=light] .att.acc{color:var(--accent)}
 .att .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
 tr.hl td{background:var(--hover)}
+/* professional role: editable in place (opens the inline role picker) */
+.tm-role{display:inline-flex;align-items:center;gap:4px;height:26px;font-size:12.5px;color:var(--text-2)}
+.tp td:nth-child(2){padding-right:4px}
+.tm-role .i{color:var(--faint)}
+.tm-role.nr{color:var(--faint)}
 
 .foot{display:flex;align-items:flex-start;gap:9px;margin-top:12px;font-size:12px;color:var(--muted);line-height:1.5}
 .foot .i{margin-top:2px;flex:none}
@@ -97,60 +102,60 @@ tr.hl td{background:var(--hover)}
       <thead><tr><th>Person</th><th>Professional role<span class="h2">set by you</span></th><th>Focus goal</th><th>Plan progress</th><th>In review</th><th>Last approved</th><th>Profile</th><th>For you</th></tr></thead>
       <tbody>
         <tr><td><div class="who"><div class="avatar a6">AK</div><div><b>Aisha Khan</b><small>Senior Systems Engineer</small></div></div></td>
-          <td>Architecture</td><td><div class="goal">SysML v2 modelling</div></td>
+          <td><span class="tm-role">Senior Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">SysML v2 modelling</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:83%"></span><span class="n" style="width:17%"></span></div><span class="mono">5<em>/6</em></span></div></td>
           <td><span class="zero">0</span></td><td><span class="date">17 Nov</span></td>
           <td><div class="prof"><div class="segs"><span class="on"></span><span class="on"></span><span class="on"></span></div>All 3</div></td><td></td></tr>
         <tr><td><div class="who"><div class="avatar a5">AK</div><div><b>Alex Kim</b><small>Systems Engineer</small></div></div></td>
-          <td>Interfaces</td><td><div class="goal">Interface management</div></td>
+          <td><span class="tm-role">Interface Architect<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">Interface management</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:20%"></span><span class="r" style="width:20%"></span><span class="n" style="width:60%"></span></div><span class="mono">1<em>/5</em></span></div></td>
           <td><span class="ir"><i data-i="st-rev"></i>1</span></td><td><span class="date">28 Oct</span></td>
           <td><div class="prof"><div class="segs"><span class="on"></span><span class="on"></span><span></span></div>Experience, skills</div></td><td></td></tr>
         <tr><td><div class="who"><div class="avatar a2">DO</div><div><b>Daniel Okafor</b><small>Requirements Engineer</small></div></div></td>
-          <td>Requirements</td><td><div class="goal">Requirements quality</div></td>
+          <td><span class="tm-role">Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">Requirements quality</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:80%"></span><span class="n" style="width:20%"></span></div><span class="mono">4<em>/5</em></span></div></td>
           <td><span class="zero">0</span></td><td><span class="date">19 Nov</span></td>
           <td><div class="prof"><div class="segs"><span class="on"></span><span class="on"></span><span class="on"></span></div>All 3</div></td><td></td></tr>
         <tr><td><div class="who"><div class="avatar">FR</div><div><b>Fatima Rahman</b><small>Configuration Analyst</small></div></div></td>
-          <td>Configuration</td><td><div class="goal">Configuration control</div></td>
+          <td><span class="tm-role">Associate Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">Configuration control</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:60%"></span><span class="x" style="width:20%"></span><span class="n" style="width:20%"></span></div><span class="mono">3<em>/5</em></span></div></td>
           <td><span class="zero">0</span></td><td><span class="date">12 Nov</span></td>
           <td><div class="prof"><div class="segs"><span class="on"></span><span class="on"></span><span class="on"></span></div>All 3</div></td><td></td></tr>
         <tr><td><div class="who"><div class="avatar a2">LS</div><div><b>Lucas Silva</b><small>Systems Engineer</small></div></div></td>
-          <td><span class="nr">Not recorded</span></td><td><span class="muted">No active goal</span></td>
+          <td><span class="tm-role nr">Not recorded<i data-i="cd" data-c="xs"></i></span></td><td><span class="muted">No active goal</span></td>
           <td><span class="faint">No plan</span></td>
           <td><span class="zero">0</span></td><td><span class="date">21 Oct</span></td>
           <td><div class="prof"><div class="segs"><span></span><span></span><span></span></div><span class="nr">Not recorded</span></div></td><td></td></tr>
         <tr><td><div class="who"><div class="avatar a3">MG</div><div><b>Maria Gomez</b><small>Test Engineer</small></div></div></td>
-          <td>Integration &amp; test</td><td><div class="goal">Lead interface reviews</div></td>
+          <td><span class="tm-role">Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">Lead interface reviews</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:60%"></span><span class="r" style="width:20%"></span><span class="n" style="width:20%"></span></div><span class="mono">3<em>/5</em></span></div></td>
           <td><span class="ir"><i data-i="st-rev"></i>1</span></td><td><span class="date">14 Nov</span></td>
           <td><div class="prof"><div class="segs"><span class="on"></span><span class="on"></span><span class="on"></span></div>All 3</div></td><td></td></tr>
         <tr><td><div class="who"><div class="avatar a5">NR</div><div><b>Nina Rossi</b><small>Requirements Engineer</small></div></div></td>
-          <td>Requirements</td><td><span class="muted">No active goal</span></td>
+          <td><span class="tm-role">Associate Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><span class="muted">No active goal</span></td>
           <td><span class="faint">No plan</span></td>
           <td><span class="zero">0</span></td><td><span class="nr">Not recorded</span></td>
           <td><div class="prof"><div class="segs"><span></span><span class="on"></span><span></span></div>Skills only</div></td><td></td></tr>
         <tr class="hl"><td><div class="who"><div class="avatar a6">OH</div><div><b>Omar Haddad</b><small>Systems Engineer · joined 3 Nov</small></div></div></td>
-          <td><span class="nr">Not recorded</span></td><td><span class="muted">No active goal</span></td>
+          <td><span class="tm-role nr">Not recorded<i data-i="cd" data-c="xs"></i></span></td><td><span class="muted">No active goal</span></td>
           <td><span class="faint">No plan</span></td>
           <td><span class="zero">0</span></td><td><span class="nr">Not recorded</span></td>
           <td><div class="prof"><div class="segs"><span></span><span></span><span></span></div><span class="nr">Not recorded</span></div></td>
-          <td><span class="att acc"><span class="dot"></span>Agree a first goal</span></td></tr>
-        <tr class="hl"><td><div class="who"><div class="avatar a4">PN</div><div><b>Priya Nair</b><small>Systems Engineer</small></div></div></td>
-          <td>Architecture</td><td><div class="goal">Model-based architecture</div></td>
-          <td><div class="pp"><div class="bar"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="n" style="width:40%"></span></div><span class="mono">2<em>/5</em></span></div></td>
+          <td><span class="att acc"><span class="dot"></span>Set a first goal</span></td></tr>
+        <tr class="hl"><td><div class="who"><div class="avatar a4">PN</div><div><b>Priya Nair</b><small>Lead Systems Engineer</small></div></div></td>
+          <td><span class="tm-role">Interface Architect<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal" title="Lead interface control for the flight-control upgrade">Lead interface control…</div></td>
+          <td><div class="pp"><div class="bar"><span class="a" style="width:50%"></span><span class="r" style="width:17%"></span><span class="n" style="width:33%"></span></div><span class="mono">3<em>/6</em></span></div></td>
           <td><span class="ir"><i data-i="st-rev"></i>1</span></td><td><span class="date">4 Nov</span></td>
           <td><div class="prof"><div class="segs"><span class="on"></span><span class="on"></span><span class="on"></span></div>All 3</div></td>
           <td><span class="att warn"><span class="dot"></span>Review due tomorrow</span></td></tr>
         <tr class="hl"><td><div class="who"><div class="avatar a2">TB</div><div><b>Tom Becker</b><small>Test Engineer</small></div></div></td>
-          <td>Integration &amp; test</td><td><div class="goal">System integration basics</div></td>
+          <td><span class="tm-role">Associate Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">System integration basics</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:20%"></span><span class="x" style="width:20%"></span><span class="n" style="width:60%"></span></div><span class="mono">1<em>/5</em></span></div></td>
           <td><span class="zero">0</span></td><td><span class="date">2 Oct</span></td>
           <td><div class="prof"><div class="segs"><span></span><span></span><span></span></div><span class="nr">Not recorded</span></div></td>
           <td><span class="att ret"><span class="dot"></span>Returned 18 days ago</span></td></tr>
         <tr><td><div class="who"><div class="avatar">WC</div><div><b>Wei Chen</b><small>Systems Engineer</small></div></div></td>
-          <td>Verification</td><td><div class="goal">Verification planning</div></td>
+          <td><span class="tm-role">Senior Systems Engineer<i data-i="cd" data-c="xs"></i></span></td><td><div class="goal">Verification planning</div></td>
           <td><div class="pp"><div class="bar"><span class="a" style="width:33%"></span><span class="r" style="width:17%"></span><span class="n" style="width:50%"></span></div><span class="mono">2<em>/6</em></span></div></td>
           <td><span class="ir"><i data-i="st-rev"></i>1</span></td><td><span class="date">7 Nov</span></td>
           <td><div class="prof"><div class="segs"><span></span><span class="on"></span><span></span></div>Skills only</div></td><td></td></tr>

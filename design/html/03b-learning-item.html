@@ -1,0 +1,158 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Learning item</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* learning item detail (prefix ld-) */
+.ld-hd{display:flex;align-items:flex-start;gap:14px}
+.ld-ic{width:40px;height:40px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);flex:none;margin-top:1px}
+.ld-code{font:500 14px "Geist Mono",monospace;color:var(--faint);letter-spacing:0;margin-left:8px;vertical-align:3px}
+.ld-tags{display:flex;align-items:center;gap:6px;margin-top:10px}
+.ld-st{display:inline-flex;align-items:center;gap:7px;margin-left:8px;font-size:12.5px;color:var(--muted)}
+.ld-st .st{width:14px;height:14px}
+.ld-lay{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:22px;align-items:start}
+.ld-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+/* what it covers */
+.ld-body{padding:14px 16px 16px}
+.ld-desc{font-size:13.5px;line-height:1.6;color:var(--text-2);max-width:760px}
+.ld-out{display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin-top:14px}
+.ld-out div{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--text)}
+.ld-out .i{color:var(--ok);margin-top:2px}
+.ld-how{display:flex;align-items:center;gap:22px;margin-top:16px;padding-top:13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.ld-how span{display:inline-flex;align-items:center;gap:7px}
+.ld-how .i{color:var(--faint)}
+
+/* where it fits: prerequisites + pathways */
+.ld-fit{display:grid;grid-template-columns:1fr 1fr}
+.ld-half{padding:4px 0 14px;min-width:0}
+.ld-half+.ld-half{border-left:1px solid var(--line)}
+.ld-sec{display:flex;align-items:center;gap:8px;font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:12px 16px 6px;text-transform:uppercase}
+.ld-sec .sp{font:500 12px Geist,"Segoe UI",sans-serif;letter-spacing:0;text-transform:none;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.ld-sec .sp .i{color:var(--ok)}
+.ld-r{display:flex;align-items:center;gap:10px;padding:8px 16px;min-height:46px}
+.ld-r .st,.ld-r>.i{flex:none}
+.ld-r>.i{color:var(--muted)}
+.ld-r .t{font-size:13px;font-weight:500;color:var(--text)}
+.ld-r .cd{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-left:6px;white-space:nowrap}
+.ld-r .t{white-space:nowrap}
+.ld-r .c{font-size:12px;color:var(--muted);margin-top:1px}
+.ld-r .s{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap;text-align:right}
+.ld-r .s .mono{font-size:11.5px}
+.ld-note{display:flex;gap:7px;align-items:flex-start;margin:6px 16px 0;font-size:12px;color:var(--muted);line-height:1.45}
+.ld-note .i{flex:none;margin-top:2px}
+
+/* related */
+.ld-rel .li{align-items:flex-start;padding:12px 16px;gap:11px}
+.ld-rel .li .st,.ld-rel .li>.i{margin-top:2px}
+.ld-rel .why{margin-top:3px}
+.ld-rel .meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-top:3px}
+
+/* why it fits you (glow) */
+.ld-why{overflow:hidden}
+.ld-why .panel-h{border-bottom:none;height:44px}
+.ld-why .panel-h .lnk{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.ld-w{display:flex;gap:11px;padding:0 16px 12px;font-size:13px;line-height:1.5;color:var(--muted)}
+.ld-w b{display:block;color:var(--text);font-weight:550}
+.ld-w .ldi{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent-2);flex:none;margin-top:1px}
+[data-theme=light] .ld-w .ldi{color:var(--accent)}
+.ld-act{padding:4px 16px 16px}
+.ld-act .label{display:flex;align-items:center;gap:6px}
+.ld-act .label .faint{font-weight:400}
+.ld-act .input{background:var(--surface-2)}
+.ld-act .input .i{color:var(--muted)}
+.ld-act .input .cdn{margin-left:auto;display:flex;color:var(--faint)}
+.ld-btns{display:flex;gap:8px;margin-top:14px}
+.ld-btns .primary{flex:1;justify-content:center}
+.ld-hr{height:1px;background:var(--line);margin:0 16px}
+.ld-cnt{padding:0 16px 6px;font-size:13px;color:var(--text-2)}
+.ld-cnt b{font-family:"Geist Mono",monospace;font-weight:600;color:var(--text)}
+.ld-p{display:flex;align-items:center;gap:10px;height:40px;padding:0 16px;font-size:13px}
+.ld-p .t{font-weight:500}
+.ld-p .c{font-size:12px;color:var(--muted)}
+.ld-p>.i{margin-left:auto;color:var(--faint)}
+</style></head>
+<body data-ws="employee" data-active="find" data-role="manager">
+<main id="page">
+  <div class="crumbs"><span>Learning</span><span class="sl">/</span><span>Find</span><span class="sl">/</span><span style="color:var(--text-2)">Interface Management</span></div>
+  <header class="ph" style="margin-bottom:20px">
+    <div class="ld-hd"><div class="ld-ic"><i data-i="book"></i></div>
+      <div><h1>Interface Management<span class="ld-code">IM-201</span></h1>
+        <div class="ld-tags"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">L2</span><span class="tag mono">2 h</span><span class="tag">Academy</span>
+          <span class="ld-st"><i data-i="st-not"></i>Not started · not in your plan</span></div></div></div>
+    <div class="acts"><div class="seg"><span class="on"><i data-i="search" data-c="xs"></i> Find</span><span><i data-i="route" data-c="xs"></i> Pathways</span><span><i data-i="record" data-c="xs"></i> My learning</span></div></div>
+  </header>
+
+  <div class="ld-lay">
+    <div class="ld-col">
+      <section class="panel">
+        <div class="panel-h"><h2>What it covers</h2><span class="lnk">Engineering Academy · revision 2 · updated <span class="mono" style="font-size:12px">20 Nov</span></span></div>
+        <div class="ld-body">
+          <p class="ld-desc">Define, control and coordinate interfaces between system elements and the teams that own them. You follow one subsystem from a first list of interfaces to a baselined interface control document.</p>
+          <div class="ld-out">
+            <div><i data-i="check" data-c="sm"></i>Identify and classify interfaces: physical, functional and data</div>
+            <div><i data-i="check" data-c="sm"></i>Write and baseline an interface control document (ICD)</div>
+            <div><i data-i="check" data-c="sm"></i>Run an interface working group and handle change requests</div>
+            <div><i data-i="check" data-c="sm"></i>Spot interface risks before integration starts</div>
+          </div>
+          <div class="ld-how"><span><i data-i="clock" data-c="sm"></i>Self-paced online, about 2 h</span><span><i data-i="file" data-c="sm"></i>4 modules and a short knowledge check</span><span><i data-i="ext" data-c="sm"></i>Taken and completed in the LMS</span></div>
+        </div>
+      </section>
+
+      <section class="panel ld-fit">
+        <div class="ld-half">
+          <div class="ld-sec">Before you start<span class="sp"><i data-i="check" data-c="xs"></i>You're ready</span></div>
+          <div class="ld-r"><i data-i="st-ok"></i><div class="grow"><div class="t">Systems Engineering Fundamentals<span class="cd">SE-101</span></div><div class="c">Required · approved <span class="mono" style="font-size:11.5px">14 Oct</span></div></div>
+            <span class="s"><span style="color:var(--ok);font-weight:550">Approved</span></span></div>
+          <div class="ld-r"><i data-i="st-rev"></i><div class="grow"><div class="t">Functional Architecture<span class="cd">FA-110</span></div><div class="c">Recommended, not required · Sam reviews by <span class="mono" style="font-size:11.5px">25 Nov</span></div></div>
+            <span class="s"><span style="color:var(--warn);font-weight:550">In review</span></span></div>
+        </div>
+        <div class="ld-half">
+          <div class="ld-sec">In 2 pathways</div>
+          <div class="ld-r"><i data-i="route" data-c="sm"></i><div class="grow"><div class="t">Interface definition &amp; control</div><div class="c">Step 1 of 4 · about 9 h</div></div><span class="s">View <i data-i="cr" data-c="xs"></i></span></div>
+          <div class="ld-r"><i data-i="route" data-c="sm"></i><div class="grow"><div class="t">Integration &amp; test essentials</div><div class="c">Step 3 of 6 · about 14 h</div></div><span class="s">View <i data-i="cr" data-c="xs"></i></span></div>
+          <div class="ld-note"><i data-i="info" data-c="xs"></i><span>Adding the course doesn't adopt a pathway. If you adopt one later, IM-201 isn't added twice.</span></div>
+        </div>
+      </section>
+
+      <section class="panel ld-rel">
+        <div class="panel-h"><h2>Related</h2><span class="cnt">3</span><span class="lnk">More like this <i data-i="cr" data-c="xs"></i></span></div>
+        <div class="li"><i data-i="st-not"></i>
+          <div class="grow"><div class="t">Develop System &amp; Component ICS</div>
+            <div class="meta"><span class="d formal"></span>Formal · 1.5 h</div>
+            <div class="why"><b>Why</b>the usual next step: writing interface control specifications</div></div>
+          <span class="btn sm"><i data-i="plus" data-c="xs"></i> Add</span></div>
+        <div class="li"><i data-i="st-prog"></i>
+          <div class="grow"><div class="row" style="gap:8px"><span class="t">Shadow an interface review board</span><span class="pill sm p-acc">In your plan</span></div>
+            <div class="meta"><span class="d rel"></span>Relational · started 10 Nov</div>
+            <div class="why"><b>Why</b>you see interface decisions made that IM-201 explains</div></div></div>
+        <div class="li"><i data-i="st-not"></i>
+          <div class="grow"><div class="t">Multi-tool practice for moderate issue resolution</div>
+            <div class="meta"><span class="d exp"></span>Experiential · done on the job</div>
+            <div class="why"><b>Why</b>practise on real cross-functional interface issues</div></div>
+          <span class="btn sm"><i data-i="plus" data-c="xs"></i> Add</span></div>
+      </section>
+    </div>
+
+    <aside class="panel glow ld-why">
+      <div class="panel-h"><h2>Why it fits you</h2><span class="lnk">FROM YOUR SKILLS &amp; GOALS</span></div>
+      <div class="ld-w"><span class="ldi"><i data-i="target" data-c="sm"></i></span><div><b>Closes your “Integration &amp; interfaces” gap</b>No approved evidence there yet. It's one of the 6 skill areas for your next level.</div></div>
+      <div class="ld-w"><span class="ldi"><i data-i="flag" data-c="sm"></i></span><div><b>Fits your goal “Lead an interface review”</b>Nothing is linked to that goal yet.</div></div>
+      <div class="ld-w"><span class="ldi"><i data-i="users" data-c="sm"></i></span><div><b>Builds on what you're already doing</b>You started “Shadow an interface review board” on 10 Nov.</div></div>
+      <div class="ld-act">
+        <span class="label">Link to a goal <span class="faint">· optional</span></span>
+        <div class="input"><i data-i="flag" data-c="sm"></i>Lead an interface review<span class="cdn"><i data-i="cd" data-c="xs"></i></span></div>
+        <div class="help">Approved learning linked to a goal moves that goal's progress.</div>
+        <div class="ld-btns"><span class="btn lg primary"><i data-i="plus" data-c="sm"></i> Add to plan</span><span class="btn lg">Open in LMS <i data-i="ext" data-c="sm"></i></span></div>
+        <div class="ld-note" style="margin:10px 0 0"><i data-i="info" data-c="xs"></i><span>You take it in the LMS, then record it here. It counts once Sam approves it.</span></div>
+      </div>
+      <div class="ld-hr"></div>
+      <div class="ld-sec" style="padding-top:14px">Colleagues who completed it</div>
+      <div class="ld-cnt"><b>23</b> colleagues who share their learning completed it, including</div>
+      <div class="ld-p"><div class="avatar sm a2">PN</div><span class="t">Priya Nair</span><span class="c">Architecture &amp; integration</span><i data-i="cr" data-c="xs"></i></div>
+      <div class="ld-p"><div class="avatar sm a5">WC</div><span class="t">Wei Chen</span><span class="c">Architecture &amp; integration</span><i data-i="cr" data-c="xs"></i></div>
+      <div class="ld-p"><div class="avatar sm">MG</div><span class="t">Maria Gomez</span><span class="c">Integration lab</span><i data-i="cr" data-c="xs"></i></div>
+      <div class="ld-note" style="margin:6px 16px 16px"><i data-i="lock" data-c="xs"></i><span>Only colleagues who chose to share their learning are counted or named.</span></div>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

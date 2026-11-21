@@ -1,0 +1,161 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Professional roles</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.tabs span.n{height:auto;padding:0;margin:0}
+.lay{display:grid;grid-template-columns:292px 1fr;gap:18px;margin-top:18px;align-items:start}
+h3.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+h3.k .lnk{margin-left:auto;font:500 12px Geist,sans-serif;letter-spacing:0;color:var(--muted);display:flex;align-items:center;gap:4px}
+/* job families */
+.ro-fam .li{gap:10px;padding:9px 14px;min-height:56px}
+.ro-fam .li.on{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.ro-fi{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;border:1px solid var(--line-2);color:var(--muted);flex:none}
+.ro-fam .li.on .ro-fi{background:var(--accent-bg);border-color:transparent;color:var(--accent-2)}
+[data-theme=light] .ro-fam .li.on .ro-fi{color:var(--accent)}
+.ro-fam .t{font-size:13px}
+.ro-fam .c{font-size:12px;color:var(--muted)}
+.ro-fam .m{font:500 12px "Geist Mono",monospace;color:var(--text-2)}
+.ro-ft{display:flex;gap:8px;align-items:flex-start;padding:12px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45}
+.ro-ft .i{color:var(--danger);margin-top:1px}
+/* detail */
+.ro-det{overflow:hidden}
+.ro-det .panel-h{height:56px}
+.ro-det .panel-h h2{font-size:15px}
+.ro-hic{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent-2);flex:none}
+[data-theme=light] .ro-hic{color:var(--accent)}
+.ro-src{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.ro-src .i{color:var(--faint)}
+.ro-body{display:grid;grid-template-columns:1.45fr 1fr}
+.ro-body > div{padding:18px 20px;display:flex;flex-direction:column;gap:20px}
+.ro-body > div + div{border-left:1px solid var(--line)}
+.ro-box{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.ro-lead{display:flex;align-items:center;gap:8px;padding:10px 14px;font-size:12.5px;color:var(--text-2);border-bottom:1px solid var(--line)}
+.ro-lead .i{color:var(--muted)}
+.ro-r{display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 12px 8px 8px;border-top:1px solid var(--line);background:var(--surface)}
+.ro-lead + .ro-r{border-top:none}
+.ro-grip{width:8px;height:13px;margin:0 2px 0 4px;flex:none;background:radial-gradient(circle,var(--faint) 1.15px,transparent 1.5px) 0 0/4px 4.4px}
+.ro-ix{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font:600 11px "Geist Mono",monospace;background:var(--surface-3);color:var(--text-2);flex:none}
+.ro-nm{font-size:13.5px;font-weight:600;line-height:1.3}
+.ro-ds{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+.ro-hd{text-align:right;flex:none;width:40px;font:500 12.5px "Geist Mono",monospace;color:var(--text)}
+.ro-lead .ro-ph{margin-left:auto;font-size:12px;color:var(--faint);margin-right:24px}
+.ro-mo{color:var(--faint);display:flex;flex:none}
+/* the pending edit */
+.ro-r.ed{align-items:flex-start;background:linear-gradient(90deg,var(--accent-bg),transparent 70%),var(--surface);box-shadow:inset 2px 0 0 var(--accent);padding-top:10px;padding-bottom:10px}
+.ro-r.ed .ro-grip,.ro-r.ed .ro-ix{margin-top:2px}
+.ro-r.ed .ro-ix{background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .ro-r.ed .ro-ix{color:var(--accent)}
+.ro-edin{display:block;margin-top:7px;min-height:34px;height:auto;padding:7px 10px;font-size:12.5px;line-height:1.45;align-items:flex-start;border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-bg)}
+.ro-caret{display:inline-block;width:1.5px;height:15px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.ro-was{font-size:12px;color:var(--faint);margin-top:6px}
+.ro-was s{color:var(--muted)}
+.ro-tg{font:600 10px "Geist Mono",monospace;letter-spacing:.05em;color:var(--accent-2);margin-left:8px;vertical-align:1px}
+[data-theme=light] .ro-tg{color:var(--accent)}
+.ro-r.ed .ro-hd{padding-top:2px}
+/* not recorded + add */
+.ro-r.nr .ro-ix{background:transparent;box-shadow:inset 0 0 0 1px var(--line-2);color:var(--faint)}
+.ro-r.nr .ro-nm{color:var(--muted);font-weight:500}
+.ro-r.nr .ro-hd{color:var(--warn)}
+.ro-add{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);background:var(--surface)}
+.ro-add .sp{font-size:12px}
+/* right column */
+.ro-cmp{display:flex;flex-direction:column;gap:10px}
+.ro-cm{display:flex;gap:11px;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.ro-cm .ro-ci{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;flex:none;background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .ro-cm .ro-ci{color:var(--accent)}
+.ro-cm.hr .ro-ci{background:var(--surface-3);color:var(--muted)}
+.ro-cm b{font-size:13px;font-weight:600;display:block}
+.ro-cm p{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:3px}
+.ro-cm p em{font-style:normal;color:var(--text-2)}
+.ro-chain{display:flex;flex-wrap:wrap;align-items:center;gap:5px 6px;font-size:12px;color:var(--text-2)}
+.ro-chain .i{color:var(--faint)}
+.ro-chain span.ro-step{height:22px;padding:0 7px;border-radius:6px;border:1px solid var(--line-2);display:inline-flex;align-items:center;white-space:nowrap}
+.ro-note{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:10px}
+.ro-note b{color:var(--text-2);font-weight:550}
+.ro-pts{display:flex;flex-direction:column;gap:9px}
+.ro-pts div{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;color:var(--text-2);line-height:1.45}
+.ro-pts .i{color:var(--muted);margin-top:2px}
+.dirty{display:flex;align-items:center;gap:10px;height:58px;padding:0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.dirty .dt{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.dirty .tx{font-size:13px;color:var(--text-2)}
+.dirty .tx b{color:var(--text);font-weight:550}
+.dirty .tx .mono{font-size:12px}
+</style></head>
+<body data-ws="admin" data-active="rules">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Rules &amp; populations</h1>
+      <p class="sub">Who gets which framework, and which learning is required for whom.</p></div>
+    <div class="acts"><span class="btn"><i data-i="file" data-c="sm"></i> Change history</span></div>
+  </header>
+  <div class="tabs"><span>Frameworks <span class="n">2</span></span><span>Populations <span class="n">6</span></span><span>Required learning <span class="n">4</span></span><span class="on">Roles <span class="n">3</span></span><span>Reminders</span><span>Feedback form</span></div>
+
+  <div class="lay">
+    <section class="panel ro-fam">
+      <div class="panel-h"><h2>Job families</h2><span class="cnt">with roles</span><span class="lnk"><i data-i="plus" data-c="xs"></i> Add</span></div>
+      <div class="li on"><span class="ro-fi"><i data-i="brief" data-c="sm"></i></span><div class="grow"><div class="t">Systems engineering</div><div class="c">5 roles</div></div><span class="m">636</span></div>
+      <div class="li"><span class="ro-fi"><i data-i="brief" data-c="sm"></i></span><div class="grow"><div class="t">Test engineering</div><div class="c">4 roles</div></div><span class="m">188</span></div>
+      <div class="li"><span class="ro-fi"><i data-i="brief" data-c="sm"></i></span><div class="grow"><div class="t">Digital engineering</div><div class="c">3 roles</div></div><span class="m">167</span></div>
+      <div class="ro-ft"><i data-i="alert" data-c="xs"></i><span>Job families and counts use HR directory data from 20 Nov. Today's refresh failed at 00:57.</span></div>
+    </section>
+
+    <section class="panel ro-det">
+      <div class="panel-h"><span class="ro-hic"><i data-i="brief" data-c="sm"></i></span><h2>Systems engineering</h2><span class="ro-src"><i data-i="lock" data-c="xs"></i>job family from HR directory</span>
+        <span class="sp"></span><span class="pill sm p-neu">5 of 5 roles</span><span class="btn sm ghost" style="padding:0 6px"><i data-i="more" data-c="sm"></i></span></div>
+      <div class="ro-body">
+        <div>
+          <div>
+            <h3 class="k">PROFESSIONAL ROLES, IN ORDER <span class="lnk">Drag to reorder · max 5</span></h3>
+            <div class="ro-box">
+              <div class="ro-lead"><i data-i="users" data-c="sm"></i>Managers assign these to their direct reports.<span class="ro-ph">People</span></div>
+              <div class="ro-r"><span class="ro-grip"></span><span class="ro-ix">1</span><div class="grow"><div class="ro-nm">Associate Systems Engineer</div><div class="ro-ds">Delivers defined tasks in one subsystem, with guidance.</div></div>
+                <div class="ro-hd">96</div><span class="ro-mo"><i data-i="more" data-c="sm"></i></span></div>
+              <div class="ro-r"><span class="ro-grip"></span><span class="ro-ix">2</span><div class="grow"><div class="ro-nm">Systems Engineer</div><div class="ro-ds">Owns requirements, analysis and verification for a subsystem.</div></div>
+                <div class="ro-hd">208</div><span class="ro-mo"><i data-i="more" data-c="sm"></i></span></div>
+              <div class="ro-r"><span class="ro-grip"></span><span class="ro-ix">3</span><div class="grow"><div class="ro-nm">Interface Architect</div><div class="ro-ds">Defines and controls interfaces between subsystems and suppliers.</div></div>
+                <div class="ro-hd">58</div><span class="ro-mo"><i data-i="more" data-c="sm"></i></span></div>
+              <div class="ro-r"><span class="ro-grip"></span><span class="ro-ix">4</span><div class="grow"><div class="ro-nm">Senior Systems Engineer</div><div class="ro-ds">Leads technical work across subsystems and reviews others' work.</div></div>
+                <div class="ro-hd">141</div><span class="ro-mo"><i data-i="more" data-c="sm"></i></span></div>
+              <div class="ro-r ed"><span class="ro-grip"></span><span class="ro-ix">5</span><div class="grow"><div class="ro-nm">Lead System Architect<span class="ro-tg">UNSAVED</span></div>
+                  <div class="input ro-edin">Sets the system architecture, chairs the technical board and mentors senior engineers.<span class="ro-caret"></span></div>
+                  <div class="ro-was">Was: <s>Sets the system architecture and chairs the technical board.</s></div></div>
+                <div class="ro-hd">37</div><span class="ro-mo" style="margin-top:2px"><i data-i="more" data-c="sm"></i></span></div>
+              <div class="ro-r nr"><span class="ro-grip" style="visibility:hidden"></span><span class="ro-ix">–</span><div class="grow"><div class="ro-nm">Not recorded</div><div class="ro-ds">No role assigned yet. Not the same as having none of these skills.</div></div>
+                <div class="ro-hd">96</div><span class="ro-mo" style="visibility:hidden"><i data-i="more" data-c="sm"></i></span></div>
+              <div class="ro-add"><i data-i="plus" data-c="xs"></i>Add role<span class="sp">5 of 5 used. Remove or merge one first.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <h3 class="k">ROLE IS NOT THE HR JOB TITLE</h3>
+            <div class="ro-cmp">
+              <div class="ro-cm"><span class="ro-ci"><i data-i="sliders" data-c="sm"></i></span><div><b>Professional role</b>
+                <p>Chosen from this list by the person's manager. It decides which job expectations they see.</p></div></div>
+              <div class="ro-cm hr"><span class="ro-ci"><i data-i="lock" data-c="sm"></i></span><div><b>HR job title</b>
+                <p>From the HR directory and read-only here. They can differ: <em>Senior Systems Engineer</em> in HR, <em>Interface Architect</em> as a role.</p></div></div>
+            </div>
+          </div>
+          <div>
+            <h3 class="k">ORDER IS THE PATH</h3>
+            <div class="ro-chain"><span class="ro-step">Interface Architect</span><i data-i="arrow" data-c="xs"></i><span class="ro-step">Senior Systems Engineer</span></div>
+            <p class="ro-note">Next level compares a person's role with the <b>one after it</b> in this list. The last role has no next step, so reorder with care.</p>
+          </div>
+          <div>
+            <h3 class="k">WHEN YOU SAVE</h3>
+            <div class="ro-pts">
+              <div><i data-i="check" data-c="sm"></i><span>Edits and renames keep every assignment.</span></div>
+              <div><i data-i="refresh" data-c="sm"></i><span>Removing a role asks the holders' managers to choose again. Until then they show Not recorded.</span></div>
+              <div><i data-i="file" data-c="sm"></i><span>Every change goes to the audit log.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dirty"><span class="dt"></span><span class="tx"><b>1 unsaved change</b> · edited the description of Lead System Architect · <span class="mono">37</span> people keep their role</span><span class="sp"></span><span class="btn">Discard</span><span class="btn primary">Save roles <span class="kbd" style="background:transparent;border-color:rgba(127,127,127,.4);color:inherit;opacity:.7">Ctrl S</span></span></div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

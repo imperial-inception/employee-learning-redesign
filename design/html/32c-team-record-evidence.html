@@ -1,0 +1,171 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Record for your team · Evidence</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* 32c · Record for your team, step 3 Evidence (optional). Same frame as 32-team-record; page-local classes use the trc- prefix. */
+#page{height:100%;display:flex;flex-direction:column;align-items:center}
+.trc-wrap{width:100%;max-width:880px;flex:1;min-height:0;display:flex;flex-direction:column}
+.trc-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* compact stepper: one line, labels only */
+.trc-stepper{display:flex;align-items:center;gap:12px;list-style:none;margin-bottom:16px}
+.trc-stepper li{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--muted);white-space:nowrap}
+.trc-stepper li .st{width:16px;height:16px}
+.trc-num{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.trc-stepper .trc-done{color:var(--text-2)}
+.trc-stepper .trc-cur{color:var(--text)}
+.trc-stepper .trc-cur .trc-num{border-color:var(--accent);background:var(--accent);color:#fff}
+.trc-optl{font-weight:400;color:var(--faint);font-size:12px}
+.trc-stepper .trc-ln{flex:1;height:1px;background:var(--line-2);min-width:24px}
+.trc-stepper .trc-ln.trc-done{background:var(--ok);opacity:.55}
+
+/* the one panel */
+.trc-card{flex:0 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.trc-act{display:flex;align-items:center;gap:10px;height:48px;padding:0 20px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.trc-act:first-child{border-radius:12px 12px 0 0}
+.trc-act .trc-k{width:74px;flex:none}
+.trc-act b{font-weight:550}
+.trc-act .muted{font-size:12.5px}
+.trc-lnk{font-size:12.5px;color:var(--muted)}
+.trc-stack{display:flex}
+.trc-stack .avatar{width:22px;height:22px;font-size:8.5px;box-shadow:0 0 0 2px var(--surface-2)}
+.trc-stack .avatar+.avatar{margin-left:-2px}
+
+.trc-sh{display:flex;align-items:center;gap:10px;padding:16px 20px 10px}
+.trc-sh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.trc-sh .trc-cnt{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.trc-sh .trc-o{font-size:12px;color:var(--faint)}
+
+.trc-files{margin:0 20px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.trc-fr{display:flex;align-items:center;gap:12px;min-height:52px;padding:8px 14px;border-top:1px solid var(--line)}
+.trc-fr:first-child{border-top:none}
+.trc-ft{width:30px;height:32px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;font:600 9.5px "Geist Mono",monospace;letter-spacing:.04em;color:var(--danger);flex:none}
+.trc-fr .trc-t{font-weight:500}
+.trc-fr .trc-c{font-size:12.5px;color:var(--muted);margin-top:1px}
+.trc-fr .trc-m{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.trc-ok{color:var(--ok);font-size:12px;display:flex;align-items:center;gap:5px}
+.trc-x{color:var(--faint);display:grid;place-items:center;width:24px;height:24px}
+.trc-drop{display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-top:1px dashed var(--line-2);font-size:12.5px;color:var(--muted);background:linear-gradient(180deg,var(--hover),transparent)}
+.trc-drop b{color:var(--text-2);font-weight:550}
+.trc-drop .trc-acc{color:var(--accent-2);font-weight:550}
+[data-theme=light] .trc-drop .trc-acc{color:var(--accent)}
+.trc-vis{display:flex;align-items:center;gap:8px;padding:9px 20px 0;font-size:12px;color:var(--muted)}
+.trc-vis .i{color:var(--faint)}
+
+/* how records are created + what each person gets */
+.trc-two{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px 20px 18px}
+.trc-two .label{margin-bottom:9px}
+.trc-opt{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1px solid var(--accent-line);background:var(--accent-bg);border-radius:10px}
+.trc-opt .radio{margin-top:2px}
+.trc-opt .trc-t{font-weight:550;line-height:1.35}
+.trc-opt .trc-c{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.45}
+.trc-opt .pill{margin-top:8px}
+.trc-flow{margin-top:12px;display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--text-2)}
+.trc-flow div{display:flex;align-items:center;gap:9px}
+.trc-flow .trc-n{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;background:var(--surface-3);color:var(--muted);flex:none}
+
+.trc-pv{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.trc-pvh{display:flex;align-items:center;gap:9px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.trc-pvh .avatar{width:22px;height:22px;font-size:9px}
+.trc-pvh b{font-weight:550;font-size:13px}
+.trc-pvb{padding:10px 14px 12px}
+.trc-pvb .trc-tt{font-weight:600;font-size:14px;letter-spacing:-.01em}
+.trc-pvb .trc-tags{display:flex;align-items:center;gap:6px;margin-top:7px}
+.trc-pr{display:flex;align-items:center;gap:10px;font-size:12.5px;margin-top:8px}
+.trc-pr .trc-k{width:84px;flex:none}
+.trc-pr .trc-v{color:var(--text-2);min-width:0}
+.trc-pr .trc-v.trc-ph{color:var(--faint)}
+
+/* footer summary */
+.trc-foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
+.trc-sum{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-right:auto}
+.trc-sum b{font-weight:600}
+.trc-sum .trc-sep{color:var(--faint)}
+</style></head>
+<body data-ws="employee" data-active="team" data-role="manager">
+<main id="page">
+ <div class="trc-wrap">
+  <div class="crumbs"><span>Team</span><span class="sl">/</span><span style="color:var(--text-2)">Record for your team</span></div>
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Record for your team</h1>
+      <p class="sub">Record a team session or a shared course once. Everyone you tick gets their own record.</p></div>
+    <div class="acts"><span class="btn sm ghost"><i data-i="x" data-c="sm"></i> Close <span class="kbd">Esc</span></span></div>
+  </header>
+
+  <ol class="trc-stepper">
+    <li class="trc-done"><i data-i="st-ok"></i>Activity</li><li class="trc-ln trc-done"></li>
+    <li class="trc-done"><i data-i="st-ok"></i>Who attended</li><li class="trc-ln trc-done"></li>
+    <li class="trc-cur"><span class="trc-num">3</span>Evidence <span class="trc-optl">optional</span></li>
+  </ol>
+
+  <section class="panel glow trc-card">
+    <!-- steps 1 and 2, collapsed to one line each -->
+    <div class="trc-act">
+      <span class="trc-k">ACTIVITY</span>
+      <span class="tag"><span class="d rel"></span>Relational</span>
+      <b>Interface review workshop</b>
+      <span class="muted">Thu 20 Nov · 2 h · led by Daniel Okafor</span>
+      <span class="sp trc-lnk">Edit</span>
+    </div>
+    <div class="trc-act">
+      <span class="trc-k">ATTENDED</span>
+      <div class="trc-stack"><div class="avatar a6">AK</div><div class="avatar a5">AK</div><div class="avatar a2">DO</div><div class="avatar a4">FR</div><div class="avatar">LS</div><div class="avatar a3">MG</div><div class="avatar a5">TB</div><div class="avatar">WC</div></div>
+      <b>8 people</b>
+      <span class="muted">Priya Nair ticked too, but already has this approved</span>
+      <span class="sp trc-lnk">Edit</span>
+    </div>
+
+    <!-- step 3: shared evidence -->
+    <div class="trc-sh">
+      <h2>Shared evidence</h2><span class="trc-cnt">2</span><span class="trc-o">optional</span>
+      <span class="sp muted" style="font-size:12.5px">Attached once, copied to each of the 8 records</span>
+    </div>
+    <div class="trc-files">
+      <div class="trc-fr"><span class="trc-ft">PDF</span>
+        <div class="grow"><div class="trc-t">interface-review-workshop-slides.pdf</div><div class="trc-c">Slides Daniel presented</div></div>
+        <span class="trc-m">2.4 MB</span><span class="trc-ok"><i data-i="check" data-c="xs"></i>Uploaded</span><span class="trc-x"><i data-i="x" data-c="sm"></i></span></div>
+      <div class="trc-fr"><span class="trc-ft">PDF</span>
+        <div class="grow"><div class="trc-t">attendance-sheet-20-nov.pdf</div><div class="trc-c">Signed attendance sheet</div></div>
+        <span class="trc-m">180 KB</span><span class="trc-ok"><i data-i="check" data-c="xs"></i>Uploaded</span><span class="trc-x"><i data-i="x" data-c="sm"></i></span></div>
+      <div class="trc-drop"><i data-i="upload" data-c="sm"></i><span><b>Drop files here</b> or <span class="trc-acc">browse</span> · or add a link</span><span class="sp faint" style="font-size:12px">PDF, Office files or images · up to 25 MB each</span></div>
+    </div>
+    <div class="trc-vis"><i data-i="eye" data-c="xs"></i><span>Each person and you as their reviewer can see these files. People can still add their own evidence.</span></div>
+
+    <div class="trc-two">
+      <div>
+        <span class="label">How the records are created</span>
+        <div class="trc-opt"><span class="radio on"></span>
+          <div class="grow"><div class="trc-t">Ask each person to add a short reflection, then approve</div>
+            <div class="trc-c">Chosen on the previous step. <span style="color:var(--text-2)">Change</span></div>
+            <span class="pill sm p-acc">Recommended</span></div></div>
+        <div class="trc-flow">
+          <div><span class="trc-n">1</span>Each person gets a pre-filled draft with these files</div>
+          <div><span class="trc-n">2</span>They add two or three lines and submit</div>
+          <div><span class="trc-n">3</span>You approve each one in Reviews; on time is judged by when they submit</div>
+        </div>
+      </div>
+      <div>
+        <span class="label">What each person gets</span>
+        <div class="trc-pv">
+          <div class="trc-pvh"><div class="avatar a6">AK</div><b>Aisha Khan</b><span class="sp pill sm p-neu">Draft · waiting for Aisha</span></div>
+          <div class="trc-pvb">
+            <div class="trc-tt">Interface review workshop</div>
+            <div class="trc-tags"><span class="tag"><span class="d rel"></span>Relational</span><span class="tag mono">20 NOV · 2 H</span></div>
+            <div class="trc-pr"><span class="trc-k">LED BY</span><span class="trc-v">Daniel Okafor</span></div>
+            <div class="trc-pr"><span class="trc-k">EVIDENCE</span><span class="trc-v">2 files, shared</span></div>
+            <div class="trc-pr"><span class="trc-k">REFLECTION</span><span class="trc-v trc-ph">Aisha adds 2–3 lines</span></div>
+            <div class="trc-pr"><span class="trc-k">RECORDED</span><span class="trc-v">Created by you · you review it</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trc-foot">
+      <div class="trc-sum"><b>8 records will be created</b><span class="trc-sep">·</span><span class="muted">1 skipped (Priya already approved)</span></div>
+      <span class="btn ghost"><i data-i="cl" data-c="sm"></i> Back</span>
+      <span class="btn primary">Create 8 records <span class="kbd">Ctrl Enter</span></span>
+    </div>
+  </section>
+ </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,122 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Colleague profile</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.cp-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.cp-idh{display:flex;align-items:center;gap:18px;margin-bottom:16px}
+.avatar.cp-xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.cp-idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.cp-idl b{color:var(--text);font-weight:550}
+.cp-ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.cp-sl{color:var(--faint)}
+.cp-acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.cp-lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .cp-lnk{color:var(--accent)}
+
+.cp-note{padding:10px 14px;margin-bottom:16px}
+.cp-note .cp-ic{color:var(--muted)}
+.cp-note b{font-weight:600}
+
+.cp-cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px;align-items:start}
+.cp-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+
+/* experience (same look as Profile) */
+.cp-ex .li{align-items:flex-start;padding:13px 16px;gap:12px}
+.cp-ex .cp-bx{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);flex:none}
+.cp-ex .c{margin-top:2px}
+.cp-src{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:550;white-space:nowrap}
+.cp-src.mc{background:var(--ok-bg);color:var(--ok)}
+.cp-src.sr{border:1px dashed var(--line-2);color:var(--muted);font-weight:500}
+.cp-hit{box-shadow:inset 2px 0 0 var(--accent)}
+
+/* tools (same meter as Profile) */
+.cp-tl .li{min-height:46px;padding:0 16px;gap:14px}
+.cp-tl .cp-nm{width:170px;flex:none;font-weight:500}
+.cp-meter{display:flex;gap:3px;flex:none}
+.cp-meter span{width:22px;height:6px;border-radius:2px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.cp-meter span.on{background:var(--text-2);box-shadow:none}
+.cp-tl .cp-lv{width:72px;flex:none;font-size:12.5px;color:var(--text-2)}
+.cp-tl .cp-up{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint);white-space:nowrap}
+.cp-match{font-size:11.5px;font-weight:550;color:var(--accent-2);display:inline-flex;align-items:center;gap:5px}
+[data-theme=light] .cp-match{color:var(--accent)}
+
+/* why matched */
+.cp-why{padding:16px 18px 18px}
+.cp-why .why{font-size:13px;margin-top:8px;line-height:1.5}
+.cp-mr{display:flex;align-items:flex-start;gap:10px;margin-top:12px;font-size:12.5px}
+.cp-mr .cp-w{width:74px;flex:none;color:var(--muted)}
+.cp-mr .cp-v{color:var(--text-2);line-height:1.45}
+.cp-mr .cp-v b{color:var(--text);font-weight:550}
+.cp-why .cp-ft{display:flex;gap:7px;align-items:flex-start;margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.5}
+.cp-why .cp-ft .i{margin-top:2px}
+
+.cp-sk{padding:0 0 4px}
+.cp-sk .cp-tags{display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px 12px}
+.cp-sk .tag.cp-on{border-color:var(--accent-line);color:var(--accent-2);background:var(--accent-bg)}
+[data-theme=light] .cp-sk .tag.cp-on{color:var(--accent)}
+.cp-sk .cp-c{font-size:12px;color:var(--faint);padding:0 16px 12px}
+</style></head>
+<body data-ws="employee" data-active="colleagues" data-role="manager">
+<main id="page">
+  <div class="crumbs"><i data-i="users" data-c="xs"></i><span data-go="colleagues">Colleagues</span><span class="sl">/</span><span style="color:var(--text-2)">Priya Nair</span>
+    <span class="sp mono faint" style="font-size:11.5px">1 OF 6 FOR “SYSML” <i data-i="cu" data-c="xs"></i><i data-i="cd" data-c="xs"></i></span></div>
+
+  <header class="cp-idh">
+    <div class="avatar cp-xl a2">PN</div>
+    <div>
+      <h1>Priya Nair</h1>
+      <div class="cp-idl"><b>Lead Systems Engineer</b><span class="cp-sl">·</span>Architecture &amp; integration<span class="cp-ro"><i data-i="lock" data-c="xs"></i>From HR directory</span></div>
+      <div class="cp-idl"><span>Shares <b>skills</b>, <b>tools</b> and <b>experience</b></span><span class="cp-sl">·</span>visible to colleagues by her choice</div>
+    </div>
+    <div class="cp-acts"><span class="btn primary"><i data-i="msg" data-c="sm"></i> Message</span></div>
+  </header>
+
+  <div class="banner info cp-note"><span class="cp-ic"><i data-i="eyeoff" data-c="sm"></i></span>
+    <span style="font-size:13px"><b>You see only what Priya chose to share.</b> <span class="t2">Her goals, learning records and feedback are never shown, and nothing here rates her.</span></span>
+    <span class="acts" style="align-items:center"><span class="muted" style="font-size:12.5px">You're her manager:</span><span class="btn sm">Open in Team <i data-i="cr" data-c="xs"></i></span></span></div>
+
+  <div class="cp-cols">
+    <div class="cp-col">
+      <section class="panel cp-ex">
+        <div class="panel-h"><h2>Experience</h2><span class="cnt">3</span><span class="lnk" style="cursor:default">Manager-confirmed or self-reported, as she shared it</span></div>
+        <div class="li cp-hit"><span class="cp-bx"><i data-i="brief" data-c="sm"></i></span>
+          <div class="grow"><div class="t">SysML v2 model owner · flight controls</div>
+            <div class="c ellipsis"><span class="mono">2023 – now</span> · owns the architecture model and its modelling conventions</div></div>
+          <span class="cp-src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span></div>
+        <div class="li"><span class="cp-bx"><i data-i="brief" data-c="sm"></i></span>
+          <div class="grow"><div class="t">Interface control lead · cabin systems ICDs</div>
+            <div class="c ellipsis"><span class="mono">2021 – 2023</span> · ran the interface review board for two design reviews</div></div>
+          <span class="cp-src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span></div>
+        <div class="li"><span class="cp-bx"><i data-i="brief" data-c="sm"></i></span>
+          <div class="grow"><div class="t">RFLP model walkthroughs for newer engineers</div>
+            <div class="c ellipsis"><span class="mono">2025 – now</span> · one-hour sessions on reading and extending the model</div></div>
+          <span class="cp-src sr"><i data-i="user" data-c="xs"></i>Self-reported</span></div>
+      </section>
+
+      <section class="panel cp-tl">
+        <div class="panel-h"><h2>Tools</h2><span class="cnt">3</span><span class="faint" style="font-size:12px;margin-left:6px">self-rated confidence · Basic, Working, Advanced, Expert</span></div>
+        <div class="li cp-hit"><span class="cp-nm">SysML v2</span><span class="cp-meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="cp-lv">Expert</span><span class="cp-match"><i data-i="search" data-c="xs"></i>matches “SysML”</span><span class="cp-up">updated 2 Nov</span></div>
+        <div class="li"><span class="cp-nm">Requirements tool</span><span class="cp-meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span><span class="cp-lv">Advanced</span><span class="cp-up">updated 2 Nov</span></div>
+        <div class="li"><span class="cp-nm">PLM system</span><span class="cp-meter"><span class="on"></span><span class="on"></span><span></span><span></span></span><span class="cp-lv">Working</span><span class="cp-up">updated 9 Jun</span></div>
+      </section>
+    </div>
+
+    <aside class="cp-col">
+      <section class="panel glow cp-why">
+        <div class="cp-k">WHY PRIYA MATCHED “SYSML”</div>
+        <div class="why"><b>Why</b>SysML v2 is one of her tools and part of an experience her manager confirmed.</div>
+        <div class="cp-mr"><span class="cp-w">Tools</span><span class="cp-v"><b>SysML v2</b> · Expert, self-rated</span></div>
+        <div class="cp-mr"><span class="cp-w">Experience</span><span class="cp-v"><b>SysML v2 model owner</b> · Manager-confirmed</span></div>
+        <div class="cp-mr"><span class="cp-w">Skills</span><span class="cp-v"><b>SysML</b> · listed by Priya</span></div>
+        <div class="cp-ft"><i data-i="info" data-c="xs"></i><span>Matches come only from what Priya shares. Results are ordered by how well they match your search, never by a rating of the person.</span></div>
+      </section>
+
+      <section class="panel cp-sk">
+        <div class="panel-h"><h2>Skills</h2><span class="cnt">5</span></div>
+        <div class="cp-tags"><span class="tag cp-on">SysML</span><span class="tag">MBSE</span><span class="tag">Interface control</span><span class="tag">ICDs</span><span class="tag">Requirements traceability</span></div>
+        <div class="cp-c">Topics Priya listed herself. Not verified.</div>
+      </section>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

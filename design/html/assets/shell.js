@@ -124,8 +124,35 @@
     bell: '22-notifications', cmdk: '02-command' };
   const themeQ = () => document.documentElement.getAttribute('data-theme') === 'light' ? '?theme=light' : '';
   document.head.insertAdjacentHTML('beforeend', '<style>[data-go]{cursor:pointer}</style>');
+  // In-page tabs, steps and report types: matched by their label, per screen family (first two characters of the file name).
+  const SUB = {
+    '03': { 'Find': '03-learning', 'Pathways': '19-pathways', 'My learning': '06-my-learning' },
+    '06': { 'Find': '03-learning', 'Pathways': '19-pathways', 'My learning': '06-my-learning' },
+    '19': { 'Find': '03-learning', 'Pathways': '19-pathways', 'My learning': '06-my-learning' },
+    '05': { 'Activity': '05b-record-activity', 'What you learned': '05c-record-learned', "How you'll apply it": '05d-record-apply',
+      'Evidence': '05-record-new', 'Quick feedback': '05e-record-feedback', 'Review & submit': '05f-record-review' },
+    '07': { 'Overview': '07-profile', 'Experience': '07b-profile-experience', 'Tools': '07c-profile-tools', 'Certifications': '07d-profile-certifications',
+      'Education': '07e-profile-education', 'Job expectations': '07f-profile-job-expectations', 'Feedback': '07g-profile-feedback',
+      'Privacy': '07h-profile-privacy', 'Connected agents': '23-agent-confirm' },
+    '11': { 'Team learning evidence': '11-reports', 'Audit-ready evidence by framework': '11b-report-framework', 'Review turnaround': '11c-report-turnaround', 'Goal progress': '11d-report-goal-progress' },
+    '12': { 'Conflicts': '12-admin-health', 'Gaps': '12b-health-gaps', 'Formal items missing a link': '12c-health-missing-links', 'Formatting': '12d-health-formatting' },
+    '15': { 'Frameworks': '15b-rules-frameworks', 'Populations': '15-admin-rules', 'Required learning': '15c-rules-required', 'Roles': '15d-rules-roles', 'Reminders': '15e-rules-reminders', 'Feedback form': '15f-rules-feedback-form' },
+    '32': { 'Activity': '32b-team-record-activity', 'Who attended': '32-team-record', 'Evidence': '32c-team-record-evidence' },
+    '20': { 'Change role': '20b-person-role' }
+  };
+  const fam = (location.pathname.split('/').pop() || '').slice(0, 2);
+  const subTarget = start => {
+    const map = SUB[fam]; if (!map) return null;
+    for (let el = start, i = 0; el && el !== document.body && i < 4; el = el.parentElement, i++) {
+      const t = (el.textContent || '').replace(/\s+/g, ' ').trim();
+      if (t.length > 70) break;
+      for (const label in map) if (t === label || (t.startsWith(label) && /^[\s\d·•]|^ ?(hidden|optional|\d)/.test(t.slice(label.length)))) return map[label];
+    }
+    return null;
+  };
   document.addEventListener('click', e => {
-    const el = e.target.closest('[data-go]'); if (!el || !GO[el.dataset.go]) return;
+    const el = e.target.closest('[data-go]');
+    if (!el || !GO[el.dataset.go]) { const to = subTarget(e.target); if (to) { e.preventDefault(); location.href = to + '.html' + themeQ(); } return; }
     e.preventDefault(); location.href = GO[el.dataset.go] + '.html' + themeQ();
   });
   document.addEventListener('keydown', e => {

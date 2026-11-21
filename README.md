@@ -78,6 +78,27 @@ High-fidelity redesign of **Skill Portal**, an employee development app whose go
 | ![LMS inbox](design/screens/28-lms-inbox.png) | **28 · LMS completions inbox**: no more retyping. [light](design/screens/28-lms-inbox-light.png) |
 | ![Mobile](design/screens/29-mobile.png) | **29 · On the go**: employee home and manager review on a phone. [light](design/screens/29-mobile-light.png) |
 
+### Sub-views: tabs, steps and dialogs (32)
+
+A file named `NNx-name` is another state of screen `NN`, built in the same task. Each has a dark PNG (linked) and a `-light.png`, and its spec sits under its parent in `docs/SCREENS.md`.
+
+| Screen | Sub-views |
+|---|---|
+| 02 Command palette | [Profile menu](design/screens/02b-profile-menu.png) |
+| 03 Learning | [Course detail](design/screens/03b-learning-item.png) |
+| 04 Goals & pathways | [Goal set by your manager](design/screens/04b-goals-manager-set.png) |
+| 05 Record learning (step 4) | [1 Activity](design/screens/05b-record-activity.png) · [2 What you learned](design/screens/05c-record-learned.png) · [3 How you'll apply it](design/screens/05d-record-apply.png) · [5 Quick feedback](design/screens/05e-record-feedback.png) · [6 Review & submit](design/screens/05f-record-review.png) |
+| 07 Profile (Overview) | [Experience](design/screens/07b-profile-experience.png) · [Tools](design/screens/07c-profile-tools.png) · [Certifications](design/screens/07d-profile-certifications.png) · [Education](design/screens/07e-profile-education.png) · [Job expectations](design/screens/07f-profile-job-expectations.png) · [Feedback](design/screens/07g-profile-feedback.png) · [Privacy](design/screens/07h-profile-privacy.png) |
+| 08 Colleagues | [A colleague's profile](design/screens/08b-colleague-profile.png) |
+| 10 Team | [Set a role inline](design/screens/10b-team-role-picker.png) |
+| 11 Reports | [By framework](design/screens/11b-report-framework.png) · [Review turnaround](design/screens/11c-report-turnaround.png) · [Goal progress](design/screens/11d-report-goal-progress.png) |
+| 12 Data health (Conflicts) | [Gaps](design/screens/12b-health-gaps.png) · [Missing links](design/screens/12c-health-missing-links.png) · [Formatting](design/screens/12d-health-formatting.png) |
+| 15 Rules & populations (Populations) | [Frameworks](design/screens/15b-rules-frameworks.png) · [Required learning](design/screens/15c-rules-required.png) · [Roles](design/screens/15d-rules-roles.png) · [Reminders](design/screens/15e-rules-reminders.png) · [Feedback form](design/screens/15f-rules-feedback-form.png) |
+| 20 One person | [Choose her professional role](design/screens/20b-person-role.png) · [Set a goal for her](design/screens/20c-person-goal.png) |
+| 32 Record for your team (step 2) | [1 Activity](design/screens/32b-team-record-activity.png) · [3 Evidence](design/screens/32c-team-record-evidence.png) |
+
+**Roles and manager-set goals:** a manager picks each direct report's professional role (20b, or inline on Team 10b) from the choices admins configure (15d), and can set a goal for a direct report (20c); the employee sees it labelled “Set by …” (04b).
+
 ## Using this with Codex (summary)
 
 1. Copy `design/`, `docs/`, `codex/` and `CODEX_PROMPT.md` into the app repository.

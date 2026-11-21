@@ -1,0 +1,151 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Job expectations</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* profile header + section tabs: same rules as 07-profile, prefixed */
+.je-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.je-idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.avatar.je-xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.je-idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.je-idl b{color:var(--text);font-weight:550}
+.je-lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .je-lnk{color:var(--accent)}
+.je-ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.je-sl{color:var(--faint)}
+.je-acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.je-tabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.je-tabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.je-tabs a .i{color:var(--faint)}
+.je-tabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.je-tabs a.on .i{color:var(--text)}
+.je-tabs .je-n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.je-tabs .je-dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.je-tabs .je-push{margin-left:auto}
+
+.je-cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px}
+.je-side{display:flex;flex-direction:column;gap:16px;min-width:0}
+
+/* expectation table */
+.je-hd,.je-ar{display:grid;grid-template-columns:236px minmax(0,1.25fr) minmax(0,1fr);gap:24px;padding:0 18px}
+.je-hd{height:34px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.je-ar{padding:14px 18px 15px;border-top:1px solid var(--line);align-items:start}
+.je-hd + .je-ar{border-top:none}
+.je-an{display:flex;align-items:center;gap:10px;font-weight:550;font-size:13.5px;letter-spacing:-.005em}
+.je-ix{font:500 11px "Geist Mono",monospace;color:var(--faint);width:18px;flex:none}
+.je-ex{font-size:13px;line-height:1.5;color:var(--text-2)}
+.je-ex.na{color:var(--muted)}
+.je-lk{font-size:12.5px;line-height:1.5;color:var(--muted)}
+.je-ft{display:flex;align-items:center;gap:8px;padding:12px 18px 13px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.je-ft .mono{font-size:11.5px;color:var(--faint)}
+
+/* right column */
+.je-sum{padding:18px 20px 20px}
+.je-lvls{position:relative;margin-top:14px;display:flex;flex-direction:column;gap:10px}
+.je-lvls::before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:1.5px;background:var(--line-2)}
+.je-lvl{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:500;color:var(--text-2)}
+.je-lvl .je-o{width:10px;height:10px;border-radius:50%;background:var(--surface-3);box-shadow:0 0 0 1.5px var(--muted);position:relative;flex:none}
+.je-lvl .mono{margin-left:auto;font-size:10.5px;letter-spacing:.06em;color:var(--faint)}
+.je-lvl.now{color:var(--text)}
+.je-lvl.now .je-o{background:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.je-lvl.now .mono{color:var(--accent-2)}
+[data-theme=light] .je-lvl.now .mono{color:var(--accent)}
+.je-cmp{margin-top:18px;padding-top:15px;border-top:1px solid var(--line);font-size:13px;line-height:1.55;color:var(--muted)}
+.je-cmp .je-lnk{font-weight:550}
+.je-sum .btn.primary{width:100%;justify-content:center;margin-top:16px}
+.je-how{padding:14px 18px 16px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.je-how h3{font-size:12.5px;font-weight:600;color:var(--text-2);display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.je-how ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.je-how li{display:flex;gap:9px;align-items:flex-start}
+.je-how li .i{margin-top:2px;color:var(--muted)}
+.je-how b{color:var(--text-2);font-weight:550}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <header class="je-idh">
+    <div class="avatar je-xl">JL</div>
+    <div>
+      <h1>Jordan Lee</h1>
+      <div class="je-idl"><b>Engineer, Systems II</b><span class="je-ro"><i data-i="lock" data-c="xs"></i>From HR directory</span><span class="je-lnk">Edit in HR directory <i data-i="ext" data-c="xs"></i></span>
+        <span class="je-sl">·</span>Architecture &amp; integration<span class="je-sl">·</span>Employee ID <span class="mono">104822</span></div>
+      <div class="je-idl">Professional role <b>Systems Engineer</b><span>· assigned by Sam</span><span class="je-sl">·</span><span class="je-lnk">View job expectations <i data-i="arrow" data-c="xs"></i></span></div>
+    </div>
+    <div class="je-acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
+  </header>
+
+  <nav class="je-tabs">
+    <a href="07-profile.html"><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a><i data-i="brief" data-c="sm"></i>Experience<span class="je-n">5</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="je-n">5</span></a>
+    <a><i data-i="shield" data-c="sm"></i>Certifications<span class="je-n">4</span></a>
+    <a><i data-i="cap" data-c="sm"></i>Education<span class="je-n">3</span></a>
+    <a class="on" href="07f-profile-job-expectations.html"><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a href="07g-profile-feedback.html"><i data-i="msg" data-c="sm"></i>Feedback<span class="je-n">6</span></a>
+    <a class="je-push" href="07h-profile-privacy.html"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="je-n">hidden</span></a>
+    <a href="23-agent-confirm.html"><i data-i="link" data-c="sm"></i>Connected agents<span class="je-dot"></span></a>
+  </nav>
+
+  <div class="je-cols">
+    <section class="panel">
+      <div class="panel-h"><h2>Expected at Individual contributor 1</h2><span class="cnt">6 areas</span>
+        <span class="sp je-ro"><i data-i="lock" data-c="xs"></i>Read-only · Job catalog</span></div>
+      <div class="je-hd"><span>Area</span><span>What's expected at IC1</span><span>Looks like on the job</span></div>
+
+      <div class="je-ar">
+        <div class="je-an"><span class="je-ix">01</span>Requirements &amp; traceability</div>
+        <div class="je-ex">You write clear requirements for single functions and keep their trace links current, with a lead reviewing them.</div>
+        <div class="je-lk">Requirements for one function, traced and checked at a design review</div>
+      </div>
+      <div class="je-ar">
+        <div class="je-an"><span class="je-ix">02</span>Architecture modelling</div>
+        <div class="je-ex">You extend existing SysML v2 models under close guidance and follow the team's modelling conventions.</div>
+        <div class="je-lk">Model updates accepted into the baseline without rework</div>
+      </div>
+      <div class="je-ar">
+        <div class="je-an"><span class="je-ix">03</span>Integration &amp; interfaces</div>
+        <div class="je-ex">You keep interface data current in existing ICDs and raise the mismatches you find.</div>
+        <div class="je-lk">Interface changes logged and raised at the weekly interface sync</div>
+      </div>
+      <div class="je-ar">
+        <div class="je-an"><span class="je-ix">04</span>V&amp;V planning</div>
+        <div class="je-ex">You write test cases and verification procedures from a plan someone else owns.</div>
+        <div class="je-lk">Test cases traced to the requirements they verify</div>
+      </div>
+      <div class="je-ar">
+        <div class="je-an"><span class="je-ix">05</span>Communication</div>
+        <div class="je-ex">You report status on your own tasks clearly and raise risks to your lead early.</div>
+        <div class="je-lk">Short, accurate status updates; risks raised before dates slip</div>
+      </div>
+      <div class="je-ar">
+        <div class="je-an"><span class="je-ix">06</span>Mentoring</div>
+        <div class="je-ex na">Not expected at IC1. Sharing what you learn with your team is welcome.</div>
+        <div class="je-lk">Optional: walk a newer colleague through a method you use</div>
+      </div>
+
+      <div class="je-ft"><i data-i="book" data-c="xs"></i><span>Systems engineering job family · Systems Engineer · Individual contributor 1</span>
+        <span class="sp mono">CATALOG V2026.2 · PUBLISHED 1 SEP 2026</span></div>
+    </section>
+
+    <aside class="je-side">
+      <section class="panel glow je-sum">
+        <div class="je-k">SYSTEMS ENGINEER · JOB CATALOG</div>
+        <div class="je-lvls">
+          <div class="je-lvl now"><span class="je-o"></span><span>Individual contributor 1</span><span class="mono">YOU NOW</span></div>
+          <div class="je-lvl"><span class="je-o"></span><span>Individual contributor 2</span><span class="mono">NEXT</span></div>
+        </div>
+        <div class="je-cmp"><span class="je-lnk">Compare with Individual contributor 2 <i data-i="arrow" data-c="xs"></i> Next level</span><br>
+          See what changes in each of the 6 areas and where your approved evidence already is.</div>
+        <span class="btn primary lg">Open Next level <i data-i="arrow" data-c="sm"></i></span>
+      </section>
+
+      <section class="panel je-how">
+        <h3><i data-i="info" data-c="sm"></i>How to read this</h3>
+        <ul>
+          <li><i data-i="lock" data-c="xs"></i><span><b>Read-only.</b> Expectations come from the Job catalog and are the same for everyone at this level. If something looks wrong, ask Sam.</span></li>
+          <li><i data-i="msg" data-c="xs"></i><span><b>Not an assessment.</b> Nothing here rates you. Use it to plan with Sam at your 1:1.</span></li>
+          <li><i data-i="eyeoff" data-c="xs"></i><span><b>Private.</b> Colleagues never see your job expectations.</span></li>
+        </ul>
+      </section>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

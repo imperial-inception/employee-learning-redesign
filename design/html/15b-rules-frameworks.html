@@ -1,0 +1,175 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Frameworks</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.tabs span.n{height:auto;padding:0;margin:0}
+.lay{display:grid;grid-template-columns:292px 1fr;gap:18px;margin-top:18px;align-items:start}
+.fw-col{display:flex;flex-direction:column;gap:18px}
+h3.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+h3.k .lnk{margin-left:auto;font:500 12px Geist,sans-serif;letter-spacing:0;color:var(--muted);display:flex;align-items:center;gap:4px}
+/* framework list */
+.fw-list .li{align-items:flex-start;gap:11px;padding:12px 14px}
+.fw-list .li.on{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.fw-ic{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;border:1px solid var(--line-2);color:var(--muted);flex:none}
+.fw-list .li.on .fw-ic{background:var(--accent-bg);border-color:transparent;color:var(--accent-2)}
+[data-theme=light] .fw-list .li.on .fw-ic{color:var(--accent)}
+.fw-list .t{font-size:13px}
+.fw-meta{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px;color:var(--muted);white-space:nowrap}
+.fw-meta .mono{font-size:11.5px;color:var(--text-2)}
+.fw-ft{display:flex;gap:8px;align-items:flex-start;padding:12px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45}
+.fw-ft .i{margin-top:2px;color:var(--faint)}
+/* version history */
+.fw-hist{padding-bottom:6px}
+.fw-he{display:flex;gap:11px;padding:11px 14px 5px 16px;position:relative}
+.fw-he::before{content:"";position:absolute;left:19px;top:24px;bottom:-12px;width:1px;background:var(--line-2)}
+.fw-he:last-child::before{display:none}
+.fw-dot{width:7px;height:7px;border-radius:50%;background:var(--faint);margin-top:6px;flex:none;position:relative}
+.fw-dot.dr{background:var(--warn)}.fw-dot.pb{background:var(--ok)}
+.fw-hx{flex:1;min-width:0;font-size:12.5px;color:var(--text-2);line-height:1.45}
+.fw-hx b{color:var(--text);font-weight:550}
+.fw-hc{font-size:12px;color:var(--muted);margin-top:2px}
+.fw-tm{font:500 11.5px "Geist Mono",monospace;color:var(--faint);white-space:nowrap;margin-top:1px}
+/* detail */
+.fw-det{overflow:hidden}
+.fw-det .panel-h{height:56px}
+.fw-det .panel-h h2{font-size:15px}
+.fw-hic{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent-2);flex:none}
+[data-theme=light] .fw-hic{color:var(--accent)}
+.fw-saved{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-right:4px}
+.fw-saved .i{color:var(--ok)}
+.fw-body{display:grid;grid-template-columns:1.12fr 1fr}
+.fw-body > div{padding:18px 20px;display:flex;flex-direction:column;gap:20px}
+.fw-body > div + div{border-left:1px solid var(--line)}
+.fw-box{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.fw-ar{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;border-top:1px solid var(--line);font-size:13px}
+.fw-ar:first-child{border-top:none}
+.fw-ix{font:500 11px "Geist Mono",monospace;color:var(--faint);width:18px;flex:none}
+.fw-an{flex:1;min-width:0;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fw-n{font:500 12px "Geist Mono",monospace;color:var(--text-2);width:30px;text-align:right;flex:none}
+.fw-ar .i{color:var(--faint)}
+.fw-ar.new{background:linear-gradient(90deg,var(--ok-bg),transparent 60%);box-shadow:inset 2px 0 0 var(--ok)}
+.fw-tg{font:600 10px "Geist Mono",monospace;letter-spacing:.05em;white-space:nowrap}
+.fw-tg.add{color:var(--ok)}
+.fw-tg.chg{color:var(--accent-2)}
+[data-theme=light] .fw-tg.chg{color:var(--accent)}
+.fw-was{font:400 11.5px "Geist Mono",monospace;color:var(--faint)}
+.fw-note{font-size:12.5px;color:var(--muted);line-height:1.5;margin:-2px 0 10px}
+.fw-note b{color:var(--text-2);font-weight:550}
+.fw-lv{display:flex;align-items:center;gap:11px;height:38px;padding:0 12px;border-top:1px solid var(--line);font-size:12.5px}
+.fw-lv:first-child{border-top:none}
+.fw-lc{font:600 11px "Geist Mono",monospace;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);color:var(--text-2);display:inline-grid;place-items:center;flex:none}
+.fw-lv b{font-weight:550;width:98px;flex:none;font-size:13px}
+.fw-ld{flex:1;color:var(--muted);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fw-pop{display:flex;align-items:center;gap:10px;padding:10px 12px}
+.fw-pr{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font:600 11px "Geist Mono",monospace;background:var(--surface-3);color:var(--text-2);flex:none}
+.fw-pop .t{font-size:13px;font-weight:550}
+.fw-pop .c{font-size:12px;color:var(--muted);margin-top:1px}
+.fw-pm{font:500 12.5px "Geist Mono",monospace;color:var(--text)}
+.fw-df{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--text-2);line-height:1.45}
+.fw-df + .fw-df{margin-top:10px}
+.fw-sg{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font:700 12px "Geist Mono",monospace;flex:none}
+.fw-sg.add{background:var(--ok-bg);color:var(--ok)}
+.fw-sg.chg{background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .fw-sg.chg{color:var(--accent)}
+.fw-sg.eq{background:var(--surface-3);color:var(--muted)}
+.fw-df b{color:var(--text);font-weight:550}
+.fw-df .c{color:var(--muted);font-size:12px}
+.fw-chk{display:flex;flex-direction:column;gap:9px}
+.fw-chk div{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--text-2);line-height:1.45}
+.fw-chk .i{color:var(--ok);margin-top:2px}
+.fw-chk .w .i{color:var(--warn)}
+.fw-chk .w{color:var(--muted)}
+.dirty{display:flex;align-items:center;gap:10px;height:58px;padding:0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.dirty .dt{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.dirty .tx{font-size:13px;color:var(--text-2)}
+.dirty .tx b{color:var(--text);font-weight:550}
+.dirty .tx .mono{font-size:12px}
+</style></head>
+<body data-ws="admin" data-active="rules">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Rules &amp; populations</h1>
+      <p class="sub">Who gets which framework, and which learning is required for whom.</p></div>
+    <div class="acts"><span class="btn"><i data-i="file" data-c="sm"></i> Change history</span></div>
+  </header>
+  <div class="tabs"><span class="on">Frameworks <span class="n">2</span></span><span>Populations <span class="n">6</span></span><span>Required learning <span class="n">4</span></span><span>Roles <span class="n">3</span></span><span>Reminders</span><span>Feedback form</span></div>
+
+  <div class="lay">
+    <div class="fw-col">
+      <section class="panel fw-list">
+        <div class="panel-h"><h2>Frameworks</h2><span class="cnt">2</span><span class="lnk"><i data-i="plus" data-c="xs"></i> New draft</span></div>
+        <div class="li"><span class="fw-ic"><i data-i="grid" data-c="sm"></i></span><div class="grow"><div class="t">Competency framework v1</div>
+          <div class="fw-meta"><span class="pill sm p-ok">Published</span><span>used by <span class="mono">1,001</span> people</span></div></div></div>
+        <div class="li on"><span class="fw-ic"><i data-i="grid" data-c="sm"></i></span><div class="grow"><div class="t">Competency framework v2</div>
+          <div class="fw-meta"><span class="pill sm p-rev">Draft</span><span><span class="mono">121</span> move to it on publish</span></div></div></div>
+        <div class="fw-ft"><i data-i="info" data-c="xs"></i><span>Each population uses one framework. Choose it on the Populations tab. The <span class="mono">37</span> people in no population see none.</span></div>
+      </section>
+
+      <section class="panel fw-hist">
+        <div class="panel-h"><h2>Version history</h2><span class="lnk">All changes <i data-i="cr" data-c="xs"></i></span></div>
+        <div class="fw-he"><span class="fw-dot dr"></span><div class="fw-hx"><b>v2 draft edited</b> by Jordan Lee<div class="fw-hc">Moved “Model reviews” to a new area</div></div><span class="fw-tm">21 Nov</span></div>
+        <div class="fw-he"><span class="fw-dot dr"></span><div class="fw-hx"><b>v2 draft started</b> by Priya Nair<div class="fw-hc">Copied from v1 for Model-Based Design</div></div><span class="fw-tm">4 Nov</span></div>
+        <div class="fw-he"><span class="fw-dot"></span><div class="fw-hx"><b>v1 used by Digital Thread</b><div class="fw-hc">New population, added by Sam Patel</div></div><span class="fw-tm">3 Mar</span></div>
+        <div class="fw-he"><span class="fw-dot pb"></span><div class="fw-hx"><b>v1 published</b> by Jordan Lee<div class="fw-hc">6 areas · 42 competencies</div></div><span class="fw-tm">12 Jan</span></div>
+      </section>
+    </div>
+
+    <section class="panel fw-det">
+      <div class="panel-h"><span class="fw-hic"><i data-i="grid" data-c="sm"></i></span><h2>Competency framework v2</h2><span class="pill sm p-rev">Draft</span>
+        <span class="sp fw-saved"><i data-i="check" data-c="xs"></i>Saved 14:20</span><span class="btn sm ghost">Rename</span><span class="btn sm ghost" style="padding:0 6px"><i data-i="more" data-c="sm"></i></span></div>
+      <div class="fw-body">
+        <div>
+          <div>
+            <h3 class="k">AREAS <span>7 · <span style="color:var(--text-2)">45</span> COMPETENCIES</span><span class="lnk"><i data-i="plus" data-c="xs"></i> Area</span></h3>
+            <div class="fw-box">
+              <div class="fw-ar"><span class="fw-ix">01</span><span class="fw-an">Requirements &amp; traceability</span><span class="fw-n">9</span><i data-i="cr" data-c="xs"></i></div>
+              <div class="fw-ar"><span class="fw-ix">02</span><span class="fw-an">Architecture modelling</span><span class="fw-tg chg">1 MOVED OUT</span><span class="fw-was">was 8</span><span class="fw-n">7</span><i data-i="cr" data-c="xs"></i></div>
+              <div class="fw-ar"><span class="fw-ix">03</span><span class="fw-an">Integration &amp; interfaces</span><span class="fw-n">7</span><i data-i="cr" data-c="xs"></i></div>
+              <div class="fw-ar"><span class="fw-ix">04</span><span class="fw-an">V&amp;V planning</span><span class="fw-n">7</span><i data-i="cr" data-c="xs"></i></div>
+              <div class="fw-ar"><span class="fw-ix">05</span><span class="fw-an">Communication</span><span class="fw-n">6</span><i data-i="cr" data-c="xs"></i></div>
+              <div class="fw-ar"><span class="fw-ix">06</span><span class="fw-an">Mentoring</span><span class="fw-n">5</span><i data-i="cr" data-c="xs"></i></div>
+              <div class="fw-ar new"><span class="fw-ix">07</span><span class="fw-an">Model governance</span><span class="fw-tg add">NEW</span><span class="fw-n">4</span><i data-i="cr" data-c="xs"></i></div>
+            </div>
+          </div>
+          <div>
+            <h3 class="k">COURSE LEVELS <span class="lnk">Same as v1 · items in catalog</span></h3>
+            <p class="fw-note">Levels say how deep a <b>course</b> goes. People never get a level; managers assign professional roles instead.</p>
+            <div class="fw-box">
+              <div class="fw-lv"><span class="fw-lc">L1</span><b>Foundation</b><span class="fw-ld">Introduces terms and concepts. No prior knowledge.</span><span class="fw-n">148</span></div>
+              <div class="fw-lv"><span class="fw-lc">L2</span><b>Guided practice</b><span class="fw-ld">Applies a method in a guided exercise.</span><span class="fw-n">201</span></div>
+              <div class="fw-lv"><span class="fw-lc">L3</span><b>Applied</b><span class="fw-ld">Applies a method to a real project artifact.</span><span class="fw-n">129</span></div>
+              <div class="fw-lv"><span class="fw-lc">L4</span><b>Advanced</b><span class="fw-ld">Adapts or governs a method across a program.</span><span class="fw-n">46</span></div>
+              <div class="fw-lv"><span class="fw-lc">L5</span><b>Expert</b><span class="fw-ld">Shapes how a method is used across the company.</span><span class="fw-n">12</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div>
+            <h3 class="k">USED BY <span class="lnk">Populations <i data-i="cr" data-c="xs"></i></span></h3>
+            <div class="fw-box"><div class="fw-pop"><span class="fw-pr">4</span><div class="grow"><div class="t">Model-Based Design</div><div class="c">2 conditions · on v1 until you publish v2</div></div><span class="fw-pm">121</span></div></div>
+            <p class="fw-note" style="margin:9px 0 0">The other 4 populations (<span class="mono">880</span> people) stay on v1.</p>
+          </div>
+          <div>
+            <h3 class="k">WHAT CHANGES FROM V1</h3>
+            <div class="fw-df"><span class="fw-sg add">+</span><div><b>Model governance</b> area<div class="c">4 competencies: 3 new, 1 moved in</div></div></div>
+            <div class="fw-df"><span class="fw-sg chg">~</span><div><b>Model reviews</b> moves to Model governance<div class="c">from Architecture modelling, 8 → 7</div></div></div>
+            <div class="fw-df"><span class="fw-sg eq">=</span><div>Course levels L1–L5 unchanged<div class="c">no catalog item changes level</div></div></div>
+          </div>
+          <div>
+            <h3 class="k">CHECKS</h3>
+            <div class="fw-chk">
+              <div><i data-i="check" data-c="sm"></i><span>Every v1 competency maps to one in v2, so approved evidence keeps its credit</span></div>
+              <div><i data-i="check" data-c="sm"></i><span>All 45 competencies have a description</span></div>
+              <div class="w"><i data-i="alert" data-c="sm"></i><span>2 new competencies have no catalog items yet. People see “No learning yet”, not a gap.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dirty"><span class="dt"></span><span class="tx"><b>Draft v2</b> · publishing moves Model-Based Design (<span class="mono">121</span>) to v2 · nothing else changes</span><span class="sp"></span><span class="btn">Compare with v1</span><span class="btn primary">Publish v2</span></div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

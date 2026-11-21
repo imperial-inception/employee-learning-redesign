@@ -57,9 +57,9 @@
 .opt .t{font-weight:550;display:flex;align-items:center;gap:8px}
 .opt .c{font-size:12.5px;color:var(--muted);margin-top:2px}
 .opt .pill{height:20px;font-size:11.5px;margin-left:auto}
-.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;flex:none;margin-top:1px}
-.radio.on{border-color:var(--accent)}
-.radio.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.tr-radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;flex:none;margin-top:1px}
+.tr-radio.on{border-color:var(--accent)}
+.tr-radio.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
 
 /* footer summary */
 .foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
@@ -116,10 +116,10 @@
     <div class="how">
       <span class="label">How should the records be created?</span>
       <div class="opts">
-        <div class="opt on"><span class="radio on"></span>
+        <div class="opt on"><span class="tr-radio on"></span>
           <div class="grow"><div class="t">Ask each person to add a short reflection, then approve<span class="pill p-acc">Recommended</span></div>
             <div class="c">Each person gets a pre-filled record and adds two or three lines. You approve them in Reviews.</div></div></div>
-        <div class="opt"><span class="radio"></span>
+        <div class="opt"><span class="tr-radio"></span>
           <div class="grow"><div class="t">Count as approved now (you confirm attendance)<span class="pill p-rev">Policy: needs HR/quality sign-off</span></div>
             <div class="c">Records count right away and show you as both creator and approver.</div></div></div>
       </div>

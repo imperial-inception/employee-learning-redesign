@@ -1,0 +1,150 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Profile experience</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* ---- copied from 07-profile (header + section tabs), keep in sync ---- */
+.acc{color:var(--accent-2)}[data-theme=light] .acc{color:var(--accent)}
+.idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.avatar.xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.idl b{color:var(--text);font-weight:550}
+.idl .lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .idl .lnk{color:var(--accent)}
+.idl .ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.idl .sl{color:var(--faint)}
+.idh .acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.ptabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.ptabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.ptabs a .i{color:var(--faint)}
+.ptabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ptabs a.on .i{color:var(--text)}
+.ptabs .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.ptabs a.on .n{color:var(--text-2)}
+.ptabs .dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.ptabs .push{margin-left:auto}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px;align-items:start}
+.cc{display:flex;flex-direction:column;gap:16px;min-width:0}
+.ex .li{align-items:flex-start;padding:14px 16px;gap:12px}
+.ex .li .ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);flex:none}
+.ex .c{margin-top:2px}
+.src{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:550;white-space:nowrap}
+.src.mc{background:var(--ok-bg);color:var(--ok)}
+.src.sr{border:1px dashed var(--line-2);color:var(--muted);font-weight:500}
+.ex .by{font-size:11.5px;color:var(--faint);margin-top:4px;text-align:right;white-space:nowrap}
+.never{display:flex;gap:8px;font-size:12px;color:var(--muted);padding:12px 16px 14px;line-height:1.45}
+.never .i{margin-top:2px}
+
+/* ---- this view: Experience tab (pe-) ---- */
+.pe-sort{font-size:12px;color:var(--faint);margin-left:6px}
+.pe-add{margin-left:auto;display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 9px;border-radius:7px;font-size:12.5px;color:var(--text);background:var(--sel)}
+.pe-nr{color:var(--faint);font-style:italic}
+.ex .by .acc{font-weight:500}
+.pe-foot{border-top:1px solid var(--line)}
+
+/* add form, right-side panel */
+.pe-x{margin-left:auto;width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--muted);margin-right:-8px}
+.pe-body{padding:14px 16px 4px;display:flex;flex-direction:column;gap:13px}
+.pe-body .label{font-size:12px;margin-bottom:5px;color:var(--muted);font-weight:500;display:flex;align-items:center;gap:6px}
+.pe-body .label .opt{color:var(--faint);font-weight:400}
+.pe-body .input{height:34px;font-size:13px;background:var(--surface-2);padding:0 10px}
+.pe-body .input .i{color:var(--faint)}
+.pe-body .input .pe-chev{margin-left:auto;color:var(--faint);display:flex}
+.pe-body .input.pe-ph{color:var(--faint)}
+.pe-body .input.pe-focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.pe-body .textarea{background:var(--surface-2);font-size:13px;line-height:1.5;padding:8px 10px;min-height:76px}
+.pe-g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pe-cnt{display:flex;justify-content:flex-end;font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:5px}
+.pe-cb{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2);margin-top:8px}
+.pe-cb .check .i{width:10px;height:10px}
+.pe-conf{display:flex;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface-2)}
+.pe-conf .check{margin-top:1px}
+.pe-conf .check .i{width:10px;height:10px}
+.pe-conf b{font-weight:550;display:block;font-size:13px}
+.pe-conf .c{font-size:12px;color:var(--muted);margin-top:2px}
+.pe-vis{display:flex;gap:8px;font-size:12px;color:var(--muted);line-height:1.45}
+.pe-vis .i{margin-top:2px}
+.pe-ft{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid var(--line);margin-top:12px}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <header class="idh">
+    <div class="avatar xl">JL</div>
+    <div>
+      <h1>Jordan Lee</h1>
+      <div class="idl"><b>Engineer, Systems II</b><span class="ro"><i data-i="lock" data-c="xs"></i>From HR directory</span><span class="lnk">Edit in HR directory <i data-i="ext" data-c="xs"></i></span>
+        <span class="sl">·</span>Architecture &amp; integration<span class="sl">·</span>Employee ID <span class="mono">104822</span></div>
+      <div class="idl">Professional role <b>Systems Engineer</b><span>· assigned by Sam</span><span class="sl">·</span><span class="lnk">View job expectations <i data-i="arrow" data-c="xs"></i></span></div>
+    </div>
+    <div class="acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
+  </header>
+
+  <nav class="ptabs">
+    <a><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a class="on"><i data-i="brief" data-c="sm"></i>Experience<span class="n">5</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="n">5</span></a>
+    <a><i data-i="shield" data-c="sm"></i>Certifications<span class="n">4</span></a>
+    <a><i data-i="cap" data-c="sm"></i>Education<span class="n">3</span></a>
+    <a><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a><i data-i="msg" data-c="sm"></i>Feedback<span class="n">6</span></a>
+    <a class="push"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="n">hidden</span></a>
+    <a><i data-i="link" data-c="sm"></i>Connected agents<span class="dot"></span></a>
+  </nav>
+
+  <div class="cols">
+    <div class="cc">
+      <section class="panel ex">
+        <div class="panel-h"><h2>Experience</h2><span class="cnt">5</span><span class="pe-sort">newest first</span>
+          <span class="pe-add"><i data-i="plus" data-c="xs"></i> Add</span></div>
+        <div>
+          <div class="li"><span class="ic"><i data-i="brief" data-c="sm"></i></span>
+            <div class="grow"><div class="t">Interface control lead · actuation upgrade program</div>
+              <div class="c ellipsis"><span class="mono">Oct 2024 – now</span> · owns the actuator ICDs and the weekly interface sync</div></div>
+            <div><span class="src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span><div class="by">Sam · <span class="mono">12 Aug</span></div></div></div>
+          <div class="li"><span class="ic"><i data-i="brief" data-c="sm"></i></span>
+            <div class="grow"><div class="t">Integration test witness · flight control rig</div>
+              <div class="c ellipsis"><span class="mono">Mar – Sep 2024</span> · witnessed and signed off 14 rig integration tests</div></div>
+            <div><span class="src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span><div class="by">Sam · <span class="mono">2 Oct</span></div></div></div>
+          <div class="li"><span class="ic"><i data-i="brief" data-c="sm"></i></span>
+            <div class="grow"><div class="t">Trade study author · power distribution concept</div>
+              <div class="c ellipsis"><span class="mono">Jun 2023</span> · compared three architectures for the concept review</div></div>
+            <div><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><div class="by">Asked Sam · <span class="mono">18 Nov</span></div></div></div>
+          <div class="li"><span class="ic"><i data-i="brief" data-c="sm"></i></span>
+            <div class="grow"><div class="t">Requirements analyst · cabin systems</div>
+              <div class="c ellipsis"><span class="mono">2021 – 2024</span> · wrote and traced requirements for two design reviews</div></div>
+            <div><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><div class="by"><span class="acc">Ask Sam to confirm</span></div></div></div>
+          <div class="li"><span class="ic"><i data-i="brief" data-c="sm"></i></span>
+            <div class="grow"><div class="t">Graduate rotation · systems integration lab</div>
+              <div class="c ellipsis"><span class="mono">2019 – 2021</span> · What you did: <span class="pe-nr">Not recorded</span> · <span class="acc">Add details</span></div></div>
+            <div><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><div class="by"><span class="acc">Ask Sam to confirm</span></div></div></div>
+        </div>
+        <div class="never pe-foot"><i data-i="info" data-c="xs"></i><span>Manager-confirmed experience counts as evidence in Next level; self-reported entries count once Sam confirms them. Missing details read “Not recorded” and never mean a missing skill.</span></div>
+      </section>
+    </div>
+
+    <div class="cc">
+      <section class="panel glow pe-form">
+        <div class="panel-h"><h2>Add experience</h2><span class="pe-x"><i data-i="x" data-c="sm"></i></span></div>
+        <div class="pe-body">
+          <div><span class="label">Title or role</span><div class="input pe-focus">Interface working group chair</div></div>
+          <div><span class="label">Project</span><div class="input">Actuation upgrade program<span class="pe-chev"><i data-i="cd" data-c="xs"></i></span></div></div>
+          <div>
+            <div class="pe-g2">
+              <div><span class="label">From</span><div class="input"><i data-i="cal" data-c="xs"></i><span class="mono" style="font-size:12.5px">Jan 2026</span></div></div>
+              <div><span class="label">To</span><div class="input pe-ph"><i data-i="cal" data-c="xs"></i>Now</div></div>
+            </div>
+            <div class="pe-cb"><span class="check on"><i data-i="check"></i></span>I still do this</div>
+          </div>
+          <div><span class="label">What you did</span>
+            <div class="textarea">Chair the monthly interface working group: agenda, decisions log and open actions across four suppliers.</div>
+            <div class="pe-cnt">104 / 280</div></div>
+          <div><span class="label">Link <span class="opt">· optional</span></span><div class="input pe-ph"><i data-i="link" data-c="xs"></i>Paste a link to a document or intranet page</div></div>
+          <div class="pe-conf"><span class="check on"><i data-i="check"></i></span>
+            <div><b>Ask Sam to confirm after saving</b><div class="c">It shows as Self-reported until Sam confirms it.</div></div></div>
+          <div class="pe-vis"><i data-i="eye" data-c="xs"></i><span>Sam can see it. Colleagues only if Privacy allows (off now).</span></div>
+        </div>
+        <div class="pe-ft"><span class="btn ghost">Cancel</span><span class="sp"></span><span class="btn primary">Add experience <span class="kbd">Ctrl Enter</span></span></div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

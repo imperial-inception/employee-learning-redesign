@@ -1,0 +1,139 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Privacy</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* profile header + section tabs: same rules as 07-profile, prefixed */
+.pv-k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.pv-idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
+.avatar.pv-xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
+.pv-idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
+.pv-idl b{color:var(--text);font-weight:550}
+.pv-lnk{color:var(--accent-2);display:inline-flex;align-items:center;gap:4px}
+[data-theme=light] .pv-lnk{color:var(--accent)}
+.pv-ro{display:inline-flex;align-items:center;gap:5px;height:20px;padding:0 6px;border-radius:5px;background:var(--surface-3);font-size:11.5px;color:var(--muted)}
+.pv-sl{color:var(--faint)}
+.pv-acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
+.pv-tabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.pv-tabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.pv-tabs a .i{color:var(--faint)}
+.pv-tabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.pv-tabs a.on .i{color:var(--text)}
+.pv-tabs .pv-n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.pv-tabs a.on .pv-n{color:var(--text-2)}
+.pv-tabs .pv-dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.pv-tabs .pv-push{margin-left:auto}
+
+.pv-cols{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:16px;align-items:start}
+.pv-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+
+/* directory visibility */
+.pv-state{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.pv-ic{width:36px;height:36px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);flex:none}
+.pv-state b{font-size:14.5px;font-weight:600;letter-spacing:-.01em;display:flex;align-items:center;gap:9px}
+.pv-state .pv-c{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+.pv-sec{display:flex;align-items:center;gap:8px;padding:12px 18px 4px;border-top:1px solid var(--line)}
+.pv-sec .pv-hint{font-size:12px;color:var(--faint);margin-left:auto}
+.pv-opt{display:flex;align-items:flex-start;gap:12px;padding:10px 18px}
+.pv-opt .check{margin-top:2px}
+.pv-opt .pv-t{font-weight:550;color:var(--text-2)}
+.pv-opt .pv-c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pv-opt .pv-tg{display:flex;gap:6px;margin-top:7px;opacity:.55}
+.pv-always{display:flex;align-items:flex-start;gap:10px;margin:8px 18px 0;padding:11px 12px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+.pv-always .i{margin-top:2px}
+.pv-always b{color:var(--text-2);font-weight:550}
+.pv-ft{display:flex;align-items:center;gap:8px;padding:13px 18px 15px;font-size:12px;color:var(--muted)}
+
+.pv-now{display:flex;align-items:flex-start;gap:12px;padding:14px 18px 16px}
+.pv-now .pv-t{font-weight:550}
+.pv-now .pv-c{font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.5}
+
+/* never shown */
+.pv-nv .li{min-height:46px;gap:12px}
+.pv-nv .li .i{color:var(--muted)}
+.pv-nv .li .c{font-size:12px}
+.pv-ai{padding:14px 18px 16px}
+.pv-ai h3{font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+.pv-ai p{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:6px}
+.pv-ai .pv-x{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pv-ai .pv-x .tag .i{color:var(--muted)}
+.pv-dl{padding:14px 18px 16px}
+.pv-dl .pv-t{font-weight:600;font-size:13.5px}
+.pv-dl .pv-c{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <header class="pv-idh">
+    <div class="avatar pv-xl">JL</div>
+    <div>
+      <h1>Jordan Lee</h1>
+      <div class="pv-idl"><b>Engineer, Systems II</b><span class="pv-ro"><i data-i="lock" data-c="xs"></i>From HR directory</span><span class="pv-lnk">Edit in HR directory <i data-i="ext" data-c="xs"></i></span>
+        <span class="pv-sl">·</span>Architecture &amp; integration<span class="pv-sl">·</span>Employee ID <span class="mono">104822</span></div>
+      <div class="pv-idl">Professional role <b>Systems Engineer</b><span>· assigned by Sam</span><span class="pv-sl">·</span><span class="pv-lnk">View job expectations <i data-i="arrow" data-c="xs"></i></span></div>
+    </div>
+    <div class="pv-acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
+  </header>
+
+  <nav class="pv-tabs">
+    <a href="07-profile.html"><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a><i data-i="brief" data-c="sm"></i>Experience<span class="pv-n">5</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="pv-n">5</span></a>
+    <a><i data-i="shield" data-c="sm"></i>Certifications<span class="pv-n">4</span></a>
+    <a><i data-i="cap" data-c="sm"></i>Education<span class="pv-n">3</span></a>
+    <a href="07f-profile-job-expectations.html"><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a href="07g-profile-feedback.html"><i data-i="msg" data-c="sm"></i>Feedback<span class="pv-n">6</span></a>
+    <a class="pv-push on" href="07h-profile-privacy.html"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="pv-n">hidden</span></a>
+    <a href="23-agent-confirm.html"><i data-i="link" data-c="sm"></i>Connected agents<span class="pv-dot"></span></a>
+  </nav>
+
+  <div class="pv-cols">
+    <div class="pv-col">
+      <section class="panel">
+        <div class="panel-h"><h2>Colleague directory</h2><span class="sp faint" style="font-size:12px">Changes save as you make them</span></div>
+        <div class="pv-state"><span class="pv-ic"><i data-i="eyeoff"></i></span>
+          <div class="grow"><b>You're hidden from colleagues <span class="pill sm p-neu">Off</span></b>
+            <div class="pv-c">Off by default. Nobody finds you in Colleagues or in People search results until you turn this on.</div></div>
+          <span class="btn primary"><i data-i="eye" data-c="sm"></i> Turn on visibility</span></div>
+
+        <div class="pv-sec"><span class="pv-k">WHAT TO SHARE WHEN ON</span><span class="pv-hint"><i data-i="lock" data-c="xs"></i> Available once you're visible · nothing is ticked by default</span></div>
+        <div class="pv-opt"><span class="check dis"></span>
+          <div class="grow"><div class="pv-t">Skills</div><div class="pv-c">The topics you listed yourself</div>
+            <div class="pv-tg"><span class="tag">SysML</span><span class="tag">MBSE</span><span class="tag">Interfaces</span></div></div></div>
+        <div class="pv-opt"><span class="check dis"></span>
+          <div class="grow"><div class="pv-t">Tools <span class="mono" style="font-size:11.5px;font-weight:500">4</span></div><div class="pv-c">With your self-rated confidence</div>
+            <div class="pv-tg"><span class="tag">SysML v2 · Working</span><span class="tag">Requirements tool · Advanced</span><span class="tag">PLM system · Basic</span><span class="tag">Python · Working</span></div></div></div>
+        <div class="pv-opt"><span class="check dis"></span>
+          <div class="grow"><div class="pv-t">Experience <span class="mono" style="font-size:11.5px;font-weight:500">2</span></div><div class="pv-c">Each entry keeps its label: Manager-confirmed or Self-reported</div></div></div>
+        <div class="pv-always"><i data-i="lock" data-c="xs"></i><span><b>Always shown once you're visible:</b> your name, HR job title and team, from the HR directory.</span></div>
+        <div class="pv-ft"><i data-i="info" data-c="xs"></i><span>Turn it off any time and you leave colleague search straight away.</span></div>
+      </section>
+
+      <section class="panel pv-now">
+        <span class="pv-ic"><i data-i="users"></i></span>
+        <div class="grow"><div class="pv-t">What colleagues see today: nothing</div>
+          <div class="pv-c">You don't appear in Colleagues or in People results in search. Preview as colleague (top right) shows exactly what they would see.</div></div>
+      </section>
+    </div>
+
+    <aside class="pv-col">
+      <section class="panel pv-nv">
+        <div class="panel-h"><i data-i="eyeoff" data-c="sm c-muted"></i><h2>Never shown to colleagues</h2></div>
+        <div class="li"><i data-i="target"></i><div class="grow"><div class="t">Goals</div><div class="c">including goals Sam set for you</div></div></div>
+        <div class="li"><i data-i="record"></i><div class="grow"><div class="t">Learning records</div><div class="c">submissions, reviews and approvals</div></div></div>
+        <div class="li"><i data-i="msg"></i><div class="grow"><div class="t">Feedback</div><div class="c">anything Sam shares with you</div></div></div>
+        <div class="li"><i data-i="file"></i><div class="grow"><div class="t">Job expectations</div><div class="c">your job profile level in the Job catalog</div></div></div>
+      </section>
+
+      <section class="panel pv-ai">
+        <h3><i data-i="spark" data-c="sm c-accent"></i>The AI advisor</h3>
+        <p>It answers from the learning catalog and pathways you're allowed to see. These are never sent to it:</p>
+        <div class="pv-x"><span class="tag"><i data-i="lock" data-c="xs"></i>Your profile</span><span class="tag"><i data-i="lock" data-c="xs"></i>Your goal text</span><span class="tag"><i data-i="lock" data-c="xs"></i>Manager notes</span></div>
+      </section>
+
+      <section class="panel pv-dl">
+        <div class="row"><span class="pv-t grow">Your data</span><span class="btn sm"><i data-i="download" data-c="xs"></i> Download my data</span></div>
+        <div class="pv-c">A copy of your profile, goals, learning records and shared feedback, as JSON and CSV.</div>
+      </section>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,140 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Feedback form</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.tabs span.n{height:auto;padding:0;margin:0}
+.lay{display:grid;grid-template-columns:1fr 436px;gap:18px;margin-top:18px;align-items:start}
+h3.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+h3.k .lnk{margin-left:auto;font:500 12px Geist,sans-serif;letter-spacing:0;color:var(--muted);display:flex;align-items:center;gap:4px}
+/* editor */
+.ff-main{overflow:hidden}
+.ff-lead{display:flex;align-items:center;gap:8px;padding:11px 18px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.ff-lead .i{color:var(--faint)}
+.ff-lead b{color:var(--text-2);font-weight:550}
+.ff-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:22px}
+.ff-box{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.ff-q{display:flex;align-items:flex-start;gap:10px;padding:13px 14px 13px 8px;border-top:1px solid var(--line);background:var(--surface)}
+.ff-q:first-child{border-top:none}
+.ff-grip{width:8px;height:13px;margin:4px 2px 0 4px;flex:none;background:radial-gradient(circle,var(--faint) 1.15px,transparent 1.5px) 0 0/4px 4.4px}
+.ff-ix{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font:600 11px "Geist Mono",monospace;background:var(--surface-3);color:var(--text-2);flex:none}
+.ff-qt{font-size:13.5px;font-weight:600;line-height:22px}
+.ff-opts{display:flex;align-items:center;gap:6px;margin-top:8px;flex-wrap:wrap}
+.ff-o{height:26px;padding:0 10px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-2);font-size:12.5px;font-weight:500;color:var(--text-2);display:inline-flex;align-items:center}
+.ff-oa{height:26px;padding:0 9px;border-radius:7px;border:1px dashed var(--line-2);font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.ff-tx{margin-top:8px;height:30px;font-size:12.5px;color:var(--faint);width:100%}
+.ff-sel{height:28px;padding:0 8px 0 9px;border-radius:7px;background:var(--surface-3);color:var(--text-2);font-size:12.5px;font-weight:500;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex:none}
+.ff-sel .i{color:var(--faint)}
+.ff-rq{display:inline-flex;align-items:center;gap:7px;height:28px;font-size:12.5px;color:var(--text-2);width:96px;flex:none;white-space:nowrap}
+.ff-rq.off{color:var(--muted)}
+.ff-mo{color:var(--faint);display:flex;flex:none;margin-top:6px}
+.ff-q.ed{background:linear-gradient(90deg,var(--accent-bg),transparent 70%),var(--surface);box-shadow:inset 2px 0 0 var(--accent)}
+.ff-q.ed .ff-ix{background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .ff-q.ed .ff-ix{color:var(--accent)}
+.ff-tg{font:600 10px "Geist Mono",monospace;letter-spacing:.05em;color:var(--accent-2);margin-left:8px;vertical-align:1px}
+[data-theme=light] .ff-tg{color:var(--accent)}
+.ff-was{font-size:12px;color:var(--faint);margin-top:3px}
+.ff-was s{color:var(--muted)}
+.ff-add{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);background:var(--surface)}
+.ff-add .sp{font-size:12px}
+.ff-who{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ff-wc{display:flex;gap:11px;padding:12px 13px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.ff-wi{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;flex:none;background:var(--ok-bg);color:var(--ok)}
+.ff-wc.no .ff-wi{background:var(--surface-3);color:var(--muted)}
+.ff-wc b{font-size:13px;font-weight:600;display:block}
+.ff-wc p{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:3px}
+.dirty{display:flex;align-items:center;gap:10px;height:58px;padding:0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.dirty .dt{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.dirty .tx{font-size:13px;color:var(--text-2)}
+.dirty .tx b{color:var(--text);font-weight:550}
+.dirty .tx .mono{font-size:12px}
+/* live preview */
+.ff-pv .panel-h .i{color:var(--muted)}
+.ff-fr{margin:14px 16px 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg);padding:16px 16px 14px}
+.ff-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;margin-bottom:12px}
+.ff-steps span{height:3px;border-radius:3px;background:var(--surface-3)}
+.ff-steps span.dn{background:var(--ok);opacity:.75}
+.ff-steps span.cu{background:var(--accent)}
+.ff-k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.ff-fr h4{font-size:16px;font-weight:600;letter-spacing:-.015em;margin-top:4px}
+.ff-fr .ff-sb{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.ff-pq{margin-top:14px}
+.ff-pq .ff-pl{font-size:13px;font-weight:550}
+.ff-pq .ff-pl small{font-weight:400;color:var(--faint);font-size:12px;margin-left:4px}
+.ff-pk{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:7px}
+.ff-pk span{height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);display:grid;place-items:center;font-size:12.5px;font-weight:500;color:var(--text-2)}
+.ff-pk span.on{border-color:var(--accent);background:var(--accent-bg);color:var(--text);box-shadow:inset 0 0 0 1px var(--accent)}
+.ff-pt{margin-top:7px;padding:8px 10px;min-height:52px;font-size:12.5px;color:var(--faint);line-height:1.45;position:relative}
+.ff-pt .ff-cnt{position:absolute;right:9px;bottom:6px;font:500 10.5px "Geist Mono",monospace;color:var(--faint)}
+.ff-pn{display:flex;align-items:flex-start;gap:7px;margin-top:12px;font-size:12px;color:var(--muted);line-height:1.45}
+.ff-pn .i{color:var(--faint);margin-top:1px}
+.ff-pf{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.ff-pf .btn{pointer-events:none}
+</style></head>
+<body data-ws="admin" data-active="rules">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Rules &amp; populations</h1>
+      <p class="sub">Who gets which framework, and which learning is required for whom.</p></div>
+    <div class="acts"><span class="btn"><i data-i="file" data-c="sm"></i> Change history</span></div>
+  </header>
+  <div class="tabs"><span>Frameworks <span class="n">2</span></span><span>Populations <span class="n">6</span></span><span>Required learning <span class="n">4</span></span><span>Roles <span class="n">3</span></span><span>Reminders</span><span class="on">Feedback form</span></div>
+
+  <div class="lay">
+    <section class="panel ff-main">
+      <div class="panel-h"><h2>Quick feedback</h2><span class="pill sm p-ok">v3 published 2 Sep</span><span class="lnk">Earlier versions <i data-i="cr" data-c="xs"></i></span></div>
+      <div class="ff-lead"><i data-i="record" data-c="sm"></i><span>Employees answer this in <b>Record learning, step 5 of 6</b>, for every activity they record. Two taps and an optional comment.</span></div>
+      <div class="ff-body">
+        <div>
+          <h3 class="k">QUESTIONS <span class="lnk">Drag to reorder</span></h3>
+          <div class="ff-box">
+            <div class="ff-q"><span class="ff-grip"></span><span class="ff-ix">1</span>
+              <div class="grow"><div class="ff-qt">Was this worth the time?</div>
+                <div class="ff-opts"><span class="ff-o">Yes</span><span class="ff-o">Partly</span><span class="ff-o">No</span></div></div>
+              <span class="ff-sel">Single choice<i data-i="cd" data-c="xs"></i></span><span class="ff-rq"><span class="toggle on"></span>Required</span><span class="ff-mo"><i data-i="more" data-c="sm"></i></span></div>
+            <div class="ff-q"><span class="ff-grip"></span><span class="ff-ix">2</span>
+              <div class="grow"><div class="ff-qt">Would you suggest it to a colleague?</div>
+                <div class="ff-opts"><span class="ff-o">Yes</span><span class="ff-o">Maybe</span><span class="ff-o">No</span></div></div>
+              <span class="ff-sel">Single choice<i data-i="cd" data-c="xs"></i></span><span class="ff-rq"><span class="toggle on"></span>Required</span><span class="ff-mo"><i data-i="more" data-c="sm"></i></span></div>
+            <div class="ff-q ed"><span class="ff-grip"></span><span class="ff-ix">3</span>
+              <div class="grow"><div class="ff-qt">Anything the people who run it should know?<span class="ff-tg">UNSAVED</span></div>
+                <div class="ff-was">Was: <s>Any comments?</s></div>
+                <div class="input ff-tx">Free text, up to 300 characters</div></div>
+              <span class="ff-sel">Comment<i data-i="cd" data-c="xs"></i></span><span class="ff-rq off"><span class="toggle"></span>Optional</span><span class="ff-mo"><i data-i="more" data-c="sm"></i></span></div>
+            <div class="ff-add"><i data-i="plus" data-c="xs"></i>Add question<span class="sp">3 of 3 used, so it stays quick</span></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="k">WHO SEES THE ANSWERS</h3>
+          <div class="ff-who">
+            <div class="ff-wc"><span class="ff-wi"><i data-i="eye" data-c="sm"></i></span><div><b>Activity owners</b>
+              <p>Combined results for their own items, once 5 or more people have answered. Comments without names.</p></div></div>
+            <div class="ff-wc no"><span class="ff-wi"><i data-i="eyeoff" data-c="sm"></i></span><div><b>Not managers</b>
+              <p>Not part of manager review. Managers never see the answers, and answers never affect approval.</p></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dirty"><span class="dt"></span><span class="tx"><b>1 unsaved change</b> · reworded question 3 · employees see v3 until you publish</span><span class="sp"></span><span class="btn">Discard</span><span class="btn primary">Publish form</span></div>
+    </section>
+
+    <section class="panel ff-pv">
+      <div class="panel-h"><i data-i="eye" data-c="sm"></i><h2>Live preview</h2><span class="lnk">what employees see</span></div>
+      <div class="ff-fr">
+        <div class="ff-steps"><span class="dn"></span><span class="dn"></span><span class="dn"></span><span class="dn"></span><span class="cu"></span><span></span></div>
+        <div class="ff-k">STEP 5 OF 6</div>
+        <h4>Quick feedback</h4>
+        <p class="ff-sb">Helps the people who run this activity improve it.</p>
+        <div class="ff-pq"><div class="ff-pl">Was this worth the time?</div>
+          <div class="ff-pk"><span class="on">Yes</span><span>Partly</span><span>No</span></div></div>
+        <div class="ff-pq"><div class="ff-pl">Would you suggest it to a colleague?</div>
+          <div class="ff-pk"><span>Yes</span><span>Maybe</span><span>No</span></div></div>
+        <div class="ff-pq"><div class="ff-pl">Anything the people who run it should know?<small>optional</small></div>
+          <div class="textarea ff-pt">Type here…<span class="ff-cnt">0 / 300</span></div></div>
+        <div class="ff-pn"><i data-i="eyeoff" data-c="xs"></i><span>Your manager won't see these answers. They don't affect approval.</span></div>
+        <div class="ff-pf"><span class="btn sm"><i data-i="cl" data-c="xs"></i> Back</span><span class="sp"></span><span class="btn sm">Continue</span></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

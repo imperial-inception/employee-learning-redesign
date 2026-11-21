@@ -1,0 +1,251 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Record learning · Review &amp; submit</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+#page{height:100%;display:flex;flex-direction:column}
+.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.acc{color:var(--accent-2)}[data-theme=light] .acc{color:var(--accent)}
+
+/* stepper */
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px}
+.stp .ln{height:3px;border-radius:3px;background:var(--surface-3);margin-bottom:10px}
+.stp.done .ln{background:var(--ok);opacity:.75}
+.stp.cur .ln{background:var(--accent)}
+.stp .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--text-2)}
+.stp .hd .st{width:15px;height:15px}
+.stp .num{width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.stp.cur .num{border-color:var(--accent);background:var(--accent);color:#fff}
+.stp.cur .hd{color:var(--text)}
+.stp:not(.done):not(.cur) .hd{color:var(--muted)}
+.stp .s{font-size:12px;color:var(--muted);margin-top:3px;padding-left:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stp .s.mono{font-size:11.5px}
+
+/* body */
+.body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:20px}
+.form{padding:20px 22px;display:flex;flex-direction:column;min-height:0}
+.form h2{font-size:19px;font-weight:600;letter-spacing:-.02em;margin-top:6px}
+.form .lead{color:var(--muted);margin-top:4px;font-size:13.5px}
+.ctx{margin-top:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.ctx > div{display:flex;align-items:center;gap:10px;height:40px;padding:0 14px;min-width:0}
+.ctx > div + div{border-top:1px solid var(--line)}
+.ctx .k{width:96px;flex:none}
+.ctx .v{display:flex;align-items:center;gap:8px;font-weight:500;font-size:13px;min-width:0;flex:1}
+.ctx .v .ellipsis{min-width:0}
+.ctx .chg{margin-left:auto;font-size:12.5px;color:var(--muted)}
+.ev{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;margin-top:16px;flex:1;min-height:0}
+.drop{border:1.5px dashed var(--line-2);border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;background:linear-gradient(180deg,var(--hover),transparent)}
+.drop .ic{width:36px;height:36px;border-radius:9px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);margin-bottom:10px}
+.drop b{font-weight:550}
+.drop .muted{font-size:12px;margin-top:4px}
+.guide{border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+.guide h3{font-size:12.5px;font-weight:600;margin-bottom:8px}
+.guide .g{display:flex;gap:9px;font-size:12.5px;color:var(--text-2);line-height:1.45;margin-top:7px}
+.guide .g .i{margin-top:2px;color:var(--ok)}
+.guide .g.w .i{color:var(--warn)}
+.guide .g.w{color:var(--muted)}
+.att{margin-top:16px;border:1px solid var(--line);border-radius:11px}
+.att .hd{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:600}
+.fr{display:flex;align-items:center;gap:12px;min-height:56px;padding:9px 14px;border-top:1px solid var(--line)}
+.att .hd + .fr{border-top:none}
+.ft{width:32px;height:34px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;font:600 9.5px "Geist Mono",monospace;letter-spacing:.04em;color:var(--text-2);flex:none}
+.ft.pdf{color:var(--danger)}.ft.xls{color:var(--ok)}.ft.lnk{color:var(--accent-2)}
+[data-theme=light] .ft.lnk{color:var(--accent)}
+.fr .t{font-weight:500}
+.fr .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.fr .m{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.fr .x{color:var(--faint);width:26px;height:26px;display:grid;place-items:center;border-radius:6px}
+.ok-t{color:var(--ok);font-size:12px;display:flex;align-items:center;gap:5px}
+.att .add{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* preview */
+.pv{display:flex;flex-direction:column;min-height:0}
+.pv .pvw{display:flex;align-items:center;gap:10px;padding:14px 18px 12px}
+.pv .pvw b{font-weight:550;font-size:13px;display:block}
+.pv .pvw small{font-size:12px;color:var(--muted)}
+.pv .ttl{padding:0 18px 14px;border-bottom:1px solid var(--line)}
+.pv .ttl .t{font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.pv .sec{padding:12px 18px;border-bottom:1px solid var(--line)}
+.pv .sec p{font-size:13px;line-height:1.55;color:var(--text-2);margin-top:6px}
+.pv .er{display:flex;align-items:center;gap:9px;font-size:12.5px;margin-top:7px;color:var(--text-2)}
+.pv .er .m{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.pv .qf{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-2);margin-top:8px}
+.pv .foot{margin-top:auto;padding:12px 18px;font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;background:var(--surface-2);border-radius:0 0 12px 12px}
+
+/* footer */
+.fbar{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.fbar .note{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.fbar .note b{color:var(--text-2);font-weight:550}
+/* ---- added for steps 1, 2, 3, 5, 6 (prefix rc- = record) ---- */
+.rc-dis{opacity:.4}
+.rc-f{margin-top:16px}
+.rc-lb{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:550;color:var(--text-2);margin-bottom:7px}
+.rc-lb .o{font-weight:400;color:var(--faint)}
+.rc-lb .sp{font-weight:400;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.rc-ttl{height:40px;font-size:14.5px;font-weight:550;letter-spacing:-.01em}
+.rc-3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 150px;gap:14px}
+.rc-3 .mono{font-size:13px}
+.rc-ta{position:relative;flex:1;min-height:0;padding-bottom:28px;color:var(--text)}
+.rc-ta.focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}
+.rc-wc{position:absolute;right:12px;bottom:8px;font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.rc-caret{display:inline-block;width:1.5px;height:15px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.rc-col{display:flex;flex-direction:column;min-height:0}
+.rc-grow{flex:1;min-height:0;display:flex;flex-direction:column}
+.rc-note{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.rc-note .i{margin-top:2px}
+.rc-note b{color:var(--text-2);font-weight:550}
+
+/* step 1: kind of learning */
+.rc-kinds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rc-kind{border:1px solid var(--line-2);border-radius:10px;padding:12px 14px 13px}
+.rc-kind.on{border-color:var(--accent-line);background:var(--accent-bg)}
+.rc-kind .hd{display:flex;align-items:center;gap:9px;font-weight:600;font-size:13.5px}
+.rc-kind .hd .d{width:7px;height:7px}
+.rc-kind p{font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:6px;padding-left:25px}
+.rc-kind.on p{color:var(--text-2)}
+
+/* step 2: guidance + example */
+.rc-exr{display:flex;align-items:center;gap:9px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line);font-size:12.5px;font-weight:550;color:var(--text-2)}
+.rc-exq{margin-top:10px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line);padding:10px 12px}
+.rc-exq p{font-size:12.5px;line-height:1.5;color:var(--text-2);margin-top:5px}
+
+/* step 3: milestone picker */
+.rc-ms{border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.rc-mr{display:flex;align-items:center;gap:11px;height:42px;padding:0 14px;font-size:13px;font-weight:500}
+.rc-mr + .rc-mr{border-top:1px solid var(--line)}
+.rc-mr.on{background:var(--accent-bg);border-radius:9px 9px 0 0}
+.rc-mk{font:500 11px "Geist Mono",monospace;letter-spacing:.04em;color:var(--faint);width:20px}
+.rc-mr .m{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.rc-mr .nm{font-size:12px;color:var(--faint)}
+
+/* step 5: simple choices */
+.rc-chs{display:flex;gap:8px}
+.rc-ch{display:inline-flex;align-items:center;gap:9px;height:38px;padding:0 16px 0 12px;border:1px solid var(--line-2);border-radius:9px;font-size:13px;font-weight:500;color:var(--text-2)}
+.rc-ch.on{border-color:var(--accent-line);background:var(--accent-bg);color:var(--text)}
+.rc-ta.sm{flex:none;min-height:78px}
+.rc-vis{margin-top:18px;display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.rc-vis .ic{width:28px;height:28px;border-radius:7px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--text-2);flex:none;background:var(--surface)}
+.rc-vis b{font-weight:600;font-size:13px;display:block}
+.rc-vis p{font-size:12.5px;color:var(--muted);line-height:1.5;margin-top:2px}
+.pv .qf .rc-a{color:var(--text);font-weight:550}
+.pv .sec p.rc-ph{color:var(--faint);font-size:12.5px}
+.pv .sec p.rc-cl{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pv .rc-msl{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);margin-top:7px}
+.pv .rc-qc{font-size:12px;color:var(--muted);margin-top:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* step 6: the record exactly as Sam sees it */
+.rc-hk{display:flex;align-items:center}
+.rc-ed{font-size:12.5px;color:var(--muted);margin-left:auto;display:inline-flex;align-items:center;gap:5px}
+.rc-sv{margin-top:14px;border:1px solid var(--line);border-radius:11px;flex:none;min-height:0;display:flex;flex-direction:column;background:var(--surface)}
+.rc-sv-h{display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line);font-size:13px}
+.rc-sv-h b{font-weight:550}
+.rc-sv-t{padding:12px 16px 13px;border-bottom:1px solid var(--line)}
+.rc-sv-t .tt{font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.3}
+.rc-sv-b{display:grid;grid-template-columns:minmax(0,1fr) 232px;flex:1;min-height:0}
+.rc-sv-m{padding:2px 16px 12px;min-width:0}
+.rc-sv-s{border-left:1px solid var(--line);padding:14px 16px}
+.rc-blk{padding-top:12px}
+.rc-blk p{font-size:13px;line-height:1.55;color:var(--text-2);margin-top:5px}
+.rc-evr{display:flex;align-items:center;gap:9px;height:29px;font-size:12.5px;color:var(--text-2);min-width:0}
+.rc-evr .c{color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.rc-evr .m{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:auto}
+.rc-fc{display:grid;grid-template-columns:70px minmax(0,1fr);gap:4px 8px;font-size:12.5px;margin-top:9px}
+.rc-fc dt{color:var(--muted)}
+.rc-fc dd{color:var(--text);font-weight:500}
+.rc-sep{height:1px;background:var(--line);margin:14px 0 12px}
+.rc-qq{font-size:12.5px;color:var(--text-2);line-height:1.5;margin-top:8px}
+.rc-qq .muted{font-size:12px}
+
+/* step 6: right panel */
+.rc-qr{display:flex;gap:10px;margin-top:9px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.rc-qr b{font-weight:550;font-size:13px}
+.rc-qr .tt{font-size:13px;color:var(--text-2);margin-top:2px}
+.rc-qr .c{font-size:12px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:6px}
+.rc-dr{display:flex;align-items:flex-start;gap:10px;margin-top:10px}
+.rc-dr .st{margin-top:1px}
+.rc-dr b{font-weight:550;font-size:13px;display:block}
+.rc-dr span{font-size:12.5px;color:var(--muted)}
+.rc-gl{display:flex;align-items:flex-start;gap:10px}
+.rc-gl b{font-weight:600;font-size:13px;display:block}
+.rc-gl span{font-size:12.5px;color:var(--muted);line-height:1.5;display:block;margin-top:2px}
+</style></head>
+<body data-ws="employee" data-active="find" data-role="manager">
+<main id="page">
+  <div class="crumbs"><span>Learning</span><span class="sl">/</span><span>My learning</span><span class="sl">/</span><span style="color:var(--text-2)">Record learning</span></div>
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Record learning</h1>
+      <p class="sub">Tell Sam what you did and show the work. It counts toward your goal once Sam approves it.</p></div>
+    <div class="acts"><span class="mono faint" style="font-size:11.5px;letter-spacing:.04em">DRAFT · SAVED 14:37</span>
+      <span class="btn sm ghost"><i data-i="x" data-c="xs"></i> Close <span class="kbd">Esc</span></span></div>
+  </header>
+
+  <div class="steps">
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>Activity</div><div class="s">Experiential · on the job</div></div>
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>What you learned</div><div class="s">64 words</div></div>
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>How you'll apply it</div><div class="s">41 words</div></div>
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>Evidence</div><div class="s">3 items attached</div></div>
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>Quick feedback</div><div class="s">2 of 2 answered</div></div>
+    <div class="stp cur"><div class="ln"></div><div class="hd"><span class="num">6</span>Review &amp; submit</div><div class="s">Goes to Sam Patel</div></div>
+  </div>
+
+  <div class="body">
+    <section class="panel glow form">
+      <div class="rc-hk"><span class="k">STEP 6 OF 6</span></div>
+      <h2>Check it, then submit</h2>
+      <p class="lead">This is exactly what Sam will see when he opens it. Edit any section and you come straight back here.</p>
+
+      <div class="rc-sv">
+        <div class="rc-sv-h"><div class="avatar sm">JL</div><b>Jordan Lee</b><span class="muted">Systems Engineer · direct report</span><span class="sp tag mono">v1</span></div>
+        <div class="rc-sv-t">
+          <div class="rc-hk"><span class="tt">Interpret a statement of work into standards-based artifacts</span><span class="rc-ed">Edit</span></div>
+          <div class="row" style="gap:6px;margin-top:9px"><span class="tag"><span class="d exp"></span>Experiential</span><span class="tag mono">6 h</span><span class="tag mono">4–14 Nov</span></div>
+        </div>
+        <div class="rc-sv-b">
+          <div class="rc-sv-m">
+            <div class="rc-blk"><div class="rc-hk"><span class="k">WHAT JORDAN LEARNED</span><span class="rc-ed">Edit</span></div>
+              <p>How to break a statement of work into the artifacts our standards expect: which clauses become requirements, which become interface definitions, and which only need a compliance note. Before this I treated every clause as a requirement. Now I check each one against the artifact list first, and I ask the customer early when a clause could belong to two artifacts, or to none.</p></div>
+            <div class="rc-blk"><div class="rc-hk"><span class="k">HOW JORDAN WILL APPLY IT</span><span class="rc-ed">Edit</span></div>
+              <p>On the actuation upgrade I'll map every SOW clause to a model element before the requirements review, so gaps show up in review instead of in test. I'll start with the interface clauses, because they feed the actuation interface model directly.</p></div>
+            <div class="rc-blk"><div class="rc-hk"><span class="k">EVIDENCE · 3</span><span class="rc-ed">Edit</span></div>
+              <div class="rc-evr" style="margin-top:3px"><i data-i="file" data-c="sm c-muted"></i><span>icd-review-notes.pdf</span><span class="c">My markup of the ICD against SOW clauses 3.2 to 3.9</span><span class="m">240 KB</span></div>
+              <div class="rc-evr"><i data-i="file" data-c="sm c-muted"></i><span>artifact-checklist.xlsx</span><span class="c">Each SOW clause mapped to the artifact it needs</span><span class="m">38 KB</span></div>
+              <div class="rc-evr"><i data-i="link" data-c="sm c-muted"></i><span>Design review recording</span><span class="c">I present the clause mapping from 12:40</span><span class="m">link</span></div></div>
+          </div>
+          <div class="rc-sv-s">
+            <div class="rc-hk"><span class="k">LINKED TO</span><span class="rc-ed">Edit</span></div>
+            <dl class="rc-fc"><dt>Goal</dt><dd>SysML v2 goal</dd><dt>Milestone</dt><dd>M1 · Model the actuation interfaces</dd>
+              <dt>Submitted</dt><dd><span class="mono">21 Nov</span> <span class="c-ok" style="font-weight:500">on time</span></dd><dt>Review by</dt><dd class="mono">28 Nov</dd></dl>
+            <div class="rc-sep"></div>
+            <div class="rc-hk"><span class="k">QUICK FEEDBACK</span><span class="rc-ed">Edit</span></div>
+            <dl class="rc-fc"><dt>Worth it</dt><dd>Yes, definitely</dd><dt>Suggest it</dt><dd>Yes</dd></dl>
+            <div class="rc-qq">“Mapping each clause against the artifact checklist was the useful part. A shared checklist template would save the next person a day.” <span class="muted">Goes to the activity owner; not part of Sam's review.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel pv">
+      <div class="panel-h"><i data-i="eye" data-c="sm"></i><h2>What Sam will see</h2><span class="lnk">After you submit</span></div>
+      <div class="sec"><div class="k">IN SAM'S REVIEWS</div>
+        <div class="rc-qr"><div class="avatar">JL</div>
+          <div class="grow"><div class="row"><b>Jordan Lee</b><span class="sp mono faint" style="font-size:12px">in 7 days</span></div>
+            <div class="tt ellipsis">Interpret a statement of work into standards-based artifacts</div>
+            <div class="c"><span class="d exp"></span>Experiential · submitted <span class="mono">21 Nov</span></div></div></div></div>
+      <div class="sec"><div class="k">WHAT SAM CAN DO</div>
+        <div class="rc-dr"><i data-i="st-ok"></i><div><b>Approve</b><span>It counts toward M1 of your SysML v2 goal.</span></div></div>
+        <div class="rc-dr"><i data-i="st-ret"></i><div><b>Return with feedback</b><span>You revise it and resubmit as v2.</span></div></div>
+        <div class="rc-dr"><i data-i="st-bad"></i><div><b>Reject</b><span>With a reason you can read and reply to.</span></div></div></div>
+      <div class="sec" style="border-bottom:none"><div class="rc-gl"><span class="acc"><i data-i="target" data-c="sm"></i></span>
+        <div><b>Only approved learning counts toward your goal.</b><span>Until Sam decides, this shows as In review on your goal.</span></div></div></div>
+      <div class="foot"><i data-i="info" data-c="xs" ></i><span>Every version is kept, and you can't approve your own work.</span></div>
+    </aside>
+  </div>
+
+  <div class="fbar">
+    <span class="note"><i data-i="clock" data-c="sm"></i><span>Submitting today, <b>Fri 21 Nov</b>: your submission date decides whether it's on time. Sam usually reviews within <b>7 days</b>.</span></span>
+    <span class="sp"></span>
+    <span class="btn"><i data-i="cl" data-c="xs"></i> Back</span>
+    <span class="btn">Save draft</span>
+    <span class="btn primary"><i data-i="send" data-c="xs"></i> Submit to Sam <span class="kbd" style="background:transparent;border-color:rgba(127,127,127,.4)">Ctrl Enter</span></span>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

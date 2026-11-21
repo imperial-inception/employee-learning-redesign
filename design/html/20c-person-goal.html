@@ -1,0 +1,149 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Set a goal for Priya</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;border:0;filter:blur(1.5px) saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.58)}
+[data-theme=light] .scrim{background:rgba(250,250,250,.6)}
+.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:1000px;overflow:hidden}
+
+/* header / footer (same as the goal editor) */
+.dh{display:flex;align-items:center;gap:10px;height:56px;padding:0 16px 0 20px;border-bottom:1px solid var(--line)}
+.dh .ic{width:28px;height:28px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.dh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.dh .x{width:28px;height:28px;display:grid;place-items:center;border-radius:7px;color:var(--muted)}
+.df{display:flex;align-items:center;gap:8px;height:62px;padding:0 16px 0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.pg-vis{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--muted);line-height:1.45;max-width:640px}
+.pg-vis .i{margin-top:2px;color:var(--muted)}
+.pg-vis b{font-weight:550;color:var(--text-2)}
+
+/* body */
+.db{display:grid;grid-template-columns:minmax(0,1fr) 404px}
+.pg-col{padding:20px 24px 6px}
+.pg-col.r{border-left:1px solid var(--line);padding:20px 22px 6px}
+.pg-f{margin-bottom:20px}
+.pg-lb{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:550;color:var(--text-2);margin-bottom:7px}
+.pg-lb .o{font-weight:400;color:var(--faint)}
+.pg-lb .sp{font-weight:400;font-size:12px;color:var(--muted)}
+.pg-ttl{height:42px;font-size:15px;font-weight:550;letter-spacing:-.01em}
+.pg-ta{position:relative;min-height:86px;padding-bottom:26px}
+.pg-ta .cc{position:absolute;right:12px;bottom:8px;font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.pg-hp{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45}
+.pg-hp .i{margin-top:2px}
+.pg-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pg-ro{background:var(--surface-2);border-color:var(--line);color:var(--text-2)}
+.pg-ro .lk{margin-left:auto;color:var(--faint)}
+.input .i{color:var(--muted)}
+
+/* milestones */
+.pg-ms{display:grid;grid-template-columns:22px minmax(0,1fr) 132px 26px;gap:8px;align-items:center;margin-bottom:8px}
+.pg-ms .n{font:500 11px "Geist Mono",monospace;letter-spacing:.04em;color:var(--faint)}
+.pg-ms .dt{font-family:"Geist Mono",monospace;font-size:12.5px;padding:0 10px;gap:8px}
+.pg-ms .dt.empty{color:var(--faint);font-family:Geist,"Segoe UI",sans-serif;font-size:13px}
+.pg-ms .rm{color:var(--faint);display:grid;place-items:center}
+.pg-add{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 8px 0 30px;color:var(--muted);font-size:13px;font-weight:500}
+
+/* linked learning or pathway */
+.pg-ll{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.pg-ll .g{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:9px 12px 2px;display:flex}
+.pg-ll .g span:last-child{margin-left:auto}
+.pg-ll .g.sep{border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
+.pg-ll .r{display:flex;align-items:center;gap:10px;min-height:38px;padding:0 10px 0 12px;font-size:13px}
+.pg-ll .r .st{width:15px;height:15px}
+.pg-ll .r .code{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-left:5px}
+.pg-ll .r .s{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.pg-ll .r .rm{color:var(--faint);display:grid;place-items:center;width:20px}
+.pg-ll .pw{align-items:flex-start;padding:8px 10px 9px 12px}
+.pg-ll .pw>.i{margin-top:2px;color:var(--muted)}
+.pg-ll .pw .c{font-size:12px;color:var(--muted);margin-top:2px}
+.pg-ll .pw .rm{margin-top:2px}
+.pg-ll .pw .pill{margin-top:-1px}
+.pg-q{margin-top:10px;height:36px;font-size:13px;color:var(--muted)}
+.pg-q .kbd{margin-left:auto}
+
+.pg-opt{display:flex;align-items:flex-start;gap:12px;padding:15px 0 14px;border-top:1px solid var(--line);margin-top:18px}
+.pg-opt b{font-weight:550;font-size:13.5px;display:block}
+.pg-opt p{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.pg-opt p em{font-style:normal;color:var(--text-2)}
+.pg-opt .ic{color:var(--muted);margin-top:1px}
+.pg-opt .toggle{margin-top:2px}
+</style></head>
+<body data-ws="employee" data-active="team" data-role="manager">
+<iframe id="bg"></iframe>
+<div class="scrim"></div>
+
+<div class="dlg overlay" role="dialog" aria-label="Set a goal for Priya">
+  <div class="dh">
+    <span class="ic"><i data-i="target" data-c="sm"></i></span>
+    <h2>Set a goal for Priya</h2>
+    <span class="pill p-neu"><span class="avatar xs">JL</span>Shows as “Set by Jordan Lee”</span>
+    <span class="sp faint" style="font-size:12px">New goal</span><span class="kbd" style="margin-left:6px">Esc</span>
+    <span class="x"><i data-i="x" data-c="sm"></i></span>
+  </div>
+
+  <div class="db">
+    <!-- left: what the goal is -->
+    <div class="pg-col">
+      <div class="pg-f"><label class="pg-lb">Title</label>
+        <div class="input pg-ttl">Model the flight-control interfaces in SysML v2</div></div>
+
+      <div class="pg-f"><label class="pg-lb">Why it matters <span class="o">optional</span></label>
+        <div class="textarea pg-ta">You asked to start SysML v2 for architects. The interface board moves to SysML v2 models in Q1, and you'd own the interface views.<span class="cc">130 / 280</span></div>
+        <div class="pg-hp"><i data-i="eye" data-c="xs"></i>Priya sees this on the goal. It's never sent to the advisor.</div></div>
+
+      <div class="pg-f pg-two">
+        <div><label class="pg-lb">Due date</label>
+          <div class="input"><i data-i="cal" data-c="sm"></i><span class="mono" style="font-size:13px">31 Mar 2027</span><span class="sp faint" style="font-size:12px">130 days</span></div></div>
+        <div><label class="pg-lb">Timeframe <span class="o">read-only</span></label>
+          <div class="input pg-ro"><span>Medium-term</span><span class="faint">· from due date</span><span class="lk"><i data-i="lock" data-c="xs"></i></span></div></div>
+        <div class="pg-hp" style="grid-column:1/-1;margin-top:-4px"><i data-i="info" data-c="xs"></i>3 to 12 months away is medium-term. It updates when the due date changes.</div>
+      </div>
+
+      <div class="pg-f" style="margin-bottom:8px"><label class="pg-lb">Milestones <span class="o">dates optional · Priya can update them</span><span class="sp mono">3</span></label>
+        <div class="pg-ms"><span class="n">M1</span>
+          <div class="input">Learn SysML v2 for interface views</div>
+          <div class="input dt"><i data-i="cal" data-c="xs"></i>29 Jan</div>
+          <span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="pg-ms"><span class="n">M2</span>
+          <div class="input">Model the actuation ICD in SysML v2</div>
+          <div class="input dt"><i data-i="cal" data-c="xs"></i>5 Mar</div>
+          <span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="pg-ms"><span class="n">M3</span>
+          <div class="input">Walk the interface board through the model</div>
+          <div class="input dt empty"><i data-i="cal" data-c="xs"></i>Add date</div>
+          <span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <span class="pg-add"><i data-i="plus" data-c="xs"></i>Add milestone</span>
+      </div>
+    </div>
+
+    <!-- right: what serves it -->
+    <div class="pg-col r">
+      <label class="pg-lb">Link learning or a pathway <span class="sp mono">3</span></label>
+      <div class="pg-ll">
+        <div class="g"><span>PATHWAY · SHE CHOOSES TO ADOPT IT</span><span>1</span></div>
+        <div class="r pw"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div>SysML v2 for architects</div><div class="c">6 activities · about 14 h</div></div>
+          <span class="pill sm p-acc">Suggested</span><span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="g sep"><span>LEARNING</span><span>2</span></div>
+        <div class="r"><i data-i="st-not"></i><span class="ellipsis">SysML v2 language overview</span><span class="s">Not started</span><span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="r"><i data-i="st-not"></i><span class="ellipsis">Develop System &amp; Component ICS</span><span class="s">Not started</span><span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+      </div>
+      <div class="input pg-q"><i data-i="search" data-c="sm"></i><span>Search learning or pathways</span><span class="kbd">/</span></div>
+      <div class="pg-hp"><i data-i="info" data-c="xs"></i><span>Only approved learning moves the goal. Priya can link more herself.</span></div>
+
+      <div class="pg-opt">
+        <i data-i="target" data-c="sm ic"></i>
+        <div class="grow"><b>Make this her focus</b><p>Her focus is <em>Lead interface control for the flight-control upgrade</em>. Turning this on replaces it, and she sees that you did.</p></div>
+        <span class="toggle"></span></div>
+    </div>
+  </div>
+
+  <div class="df">
+    <span class="pg-vis"><i data-i="eye" data-c="sm"></i><span><b>Priya sees this goal and that you set it.</b> She can link learning and comment; only you can remove it.</span></span>
+    <span class="sp btn ghost">Cancel</span>
+    <span class="btn primary">Set goal <span class="kbd">Ctrl Enter</span></span>
+  </div>
+</div>
+<script>document.getElementById('bg').src='20-person.html'+location.search;</script>
+<script src="assets/shell.js"></script>
+</body></html>
