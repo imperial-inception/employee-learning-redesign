@@ -4,7 +4,7 @@
 .k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
 .acc{color:var(--accent-2)}[data-theme=light] .acc{color:var(--accent)}
 /* header */
-.idh{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+.idh{display:flex;align-items:center;gap:18px;margin-bottom:18px}
 .avatar.xl{width:58px;height:58px;font-size:19px;letter-spacing:-.01em}
 .idl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:6px;white-space:nowrap}
 .idl b{color:var(--text);font-weight:550}
@@ -14,15 +14,16 @@
 .idl .sl{color:var(--faint)}
 .idh .acts{margin-left:auto;display:flex;gap:8px;align-items:center;align-self:flex-start}
 
-.lay{display:grid;grid-template-columns:188px minmax(0,1fr);gap:24px}
-.secnav{display:flex;flex-direction:column;gap:1px}
-.secnav a{display:flex;align-items:center;gap:9px;height:31px;padding:0 9px;border-radius:7px;color:var(--text-2);font-size:13px;font-weight:500}
-.secnav a .i{color:var(--muted)}
-.secnav a.on{background:var(--sel);color:var(--text)}
-.secnav a.on .i{color:var(--text)}
-.secnav .n{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
-.secnav .dot{margin-left:auto;width:7px;height:7px;border-radius:50%;background:var(--warn)}
-.secnav .sep{height:1px;background:var(--line);margin:8px 9px}
+/* profile sections: one horizontal tab row (profile content left, settings pushed right) */
+.ptabs{display:flex;align-items:stretch;gap:2px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.ptabs a{display:flex;align-items:center;gap:7px;height:40px;padding:0 11px;margin-bottom:-1px;color:var(--muted);font-size:13px;font-weight:500;white-space:nowrap;text-decoration:none}
+.ptabs a .i{color:var(--faint)}
+.ptabs a.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ptabs a.on .i{color:var(--text)}
+.ptabs .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.ptabs a.on .n{color:var(--text-2)}
+.ptabs .dot{width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.ptabs .push{margin-left:auto}
 
 .mn{display:flex;flex-direction:column;gap:16px;min-width:0}
 
@@ -78,19 +79,17 @@
     <div class="acts"><span class="btn"><i data-i="eye" data-c="sm"></i> Preview as colleague</span></div>
   </header>
 
-  <div class="lay">
-    <nav class="secnav">
-      <a class="on"><i data-i="grid" data-c="sm"></i>Overview</a>
-      <a><i data-i="brief" data-c="sm"></i>Experience<span class="n">2</span></a>
-      <a><i data-i="sliders" data-c="sm"></i>Tools<span class="n">4</span></a>
-      <a><i data-i="shield" data-c="sm"></i>Certifications</a>
-      <a><i data-i="cap" data-c="sm"></i>Education<span class="n">1</span></a>
-      <a><i data-i="file" data-c="sm"></i>Job expectations</a>
-      <a><i data-i="msg" data-c="sm"></i>Feedback<span class="n">6</span></a>
-      <div class="sep"></div>
-      <a><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="n">hidden</span></a>
-      <a><i data-i="link" data-c="sm"></i>Connected agents<span class="dot"></span></a>
-    </nav>
+  <nav class="ptabs">
+    <a class="on"><i data-i="grid" data-c="sm"></i>Overview</a>
+    <a><i data-i="brief" data-c="sm"></i>Experience<span class="n">2</span></a>
+    <a><i data-i="sliders" data-c="sm"></i>Tools<span class="n">4</span></a>
+    <a><i data-i="shield" data-c="sm"></i>Certifications</a>
+    <a><i data-i="cap" data-c="sm"></i>Education<span class="n">1</span></a>
+    <a><i data-i="file" data-c="sm"></i>Job expectations</a>
+    <a><i data-i="msg" data-c="sm"></i>Feedback<span class="n">6</span></a>
+    <a class="push"><i data-i="eyeoff" data-c="sm"></i>Privacy<span class="n">hidden</span></a>
+    <a><i data-i="link" data-c="sm"></i>Connected agents<span class="dot"></span></a>
+  </nav>
 
     <div class="mn">
 
@@ -142,7 +141,6 @@
         </div>
       </div>
     </div>
-  </div>
 </main>
 <script src="assets/shell.js"></script>
 </body></html>

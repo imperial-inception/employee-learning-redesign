@@ -66,7 +66,7 @@ Not a product screen. The learning loop, the navigation, six principles. Read it
 
 ### 07 · Profile: `07-profile`, route `/profile/<section>`
 - **Primary:** “Review” when an agent change waits; otherwise none.
-- **Layout:** header (name, HR-directory title read-only + link, manager-assigned role, job expectations); sub-nav; overview: Experience (manager-confirmed vs self-reported), Tools (self-rated), Privacy (opt-in toggle), Connected agents.
+- **Layout:** header (name, HR-directory title read-only + link, manager-assigned role, job expectations); horizontal section tabs (Overview · Experience · Tools · Certifications · Education · Job expectations · Feedback, with Privacy · Connected agents pushed right); overview: Experience (manager-confirmed vs self-reported), Tools (self-rated), Privacy (opt-in toggle), Connected agents.
 - **Accept:** “Not recorded” for missing data; directory visibility defaults OFF; HR-sourced fields read-only; “Preview as colleague” shows exactly what others see.
 
 ### 23 · Profile › Connected agents: `23-agent-confirm`, route `/profile/agents`
