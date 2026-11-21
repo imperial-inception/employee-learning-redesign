@@ -1,0 +1,206 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Audit log</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell overflow with the ADMIN tag: keep the mark square, drop the chevron (suggested shared fix) */
+.ws-btn .mark{flex:none}.ws-btn .ws-tag+.i{display:none}
+.c-faint{color:var(--faint)}
+
+/* filters */
+.fb{display:flex;align-items:center;gap:8px}
+.fb .input{height:32px;width:300px;font-size:13px;color:var(--muted)}
+.fc{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 11px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);font-size:13px;color:var(--text);white-space:nowrap}
+.fc .k{color:var(--muted)}
+.fc .i{color:var(--muted)}
+.fc.add{border-style:dashed;color:var(--muted)}
+.fb .tz{margin-left:auto;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.types{display:flex;align-items:center;gap:6px;margin-top:10px}
+.ty{display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 10px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-3);font-size:12.5px;font-weight:500;color:var(--text)}
+.ty .n{font:500 11px "Geist Mono",monospace;color:var(--muted)}
+.ty .i{color:var(--muted)}
+.types .sum{margin-left:auto;font:500 12px "Geist Mono",monospace;color:var(--muted)}
+
+/* table */
+.tp{margin-top:14px;overflow:hidden}
+table{table-layout:fixed}
+th{height:36px;background:var(--surface-2)}
+td{height:43px;vertical-align:middle}
+td,th{padding:0 12px}
+td:first-child,th:first-child{padding-left:16px}
+.tm{font:500 12px "Geist Mono",monospace;color:var(--text-2)}
+tr.g td{height:30px;padding-top:8px;font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);background:var(--bg)}
+[data-theme=light] tr.g td{background:var(--surface-2)}
+tr.g td span{margin-left:6px}
+.ac{display:flex;align-items:center;gap:9px;min-width:0}
+.ac .avatar{width:22px;height:22px;font-size:9px}
+.ac .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ac .rl{font-size:12px;color:var(--faint);white-space:nowrap}
+.sys{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;background:var(--surface-3);color:var(--muted);flex:none;box-shadow:inset 0 0 0 1px var(--line-2)}
+.act{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.act .i{color:var(--muted)}
+.act.bad{color:var(--danger);font-weight:550}
+.act.bad .st{width:15px;height:15px}
+.tg{display:flex;align-items:center;gap:6px;min-width:0}
+.tg .ellipsis{min-width:0}
+.code{font:500 11px "Geist Mono",monospace;color:var(--faint);white-space:nowrap}
+.dt{font-size:12.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dt .mono{font-size:12px;color:var(--text-2)}
+.dt .to{color:var(--text-2)}
+.dl{display:inline-flex;align-items:center;gap:4px;font-size:12.5px;font-weight:500;color:var(--text-2);white-space:nowrap}
+tr.fail td{background:linear-gradient(90deg,var(--danger-bg),transparent 40%)}
+tr.fail td:not(:first-child){background:none}
+.chev{color:var(--faint);text-align:right}
+
+/* expanded */
+tr.x td{height:auto;padding:0;background:var(--surface-2)}
+tr.x td:first-child{box-shadow:inset 2px 0 0 var(--accent)}
+.xd{display:grid;grid-template-columns:330px minmax(0,1fr);gap:0}
+.xm{padding:14px 18px 14px 16px;border-right:1px solid var(--line);display:grid;grid-template-columns:62px minmax(0,1fr);row-gap:8px;column-gap:10px;align-content:start;font-size:12.5px}
+.xm .k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding-top:2px}
+.xm .v{color:var(--text-2);min-width:0}
+.xm .v.mono{font-size:12px}
+.xm .acts{grid-column:1/-1;display:flex;gap:6px;margin-top:4px}
+.sbs{display:grid;grid-template-columns:1fr 1fr;padding:12px 16px 14px;gap:12px}
+.pane{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
+.pane .ph2{display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;border-bottom:1px solid var(--line);font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.pane .ph2 b{color:var(--text-2);font-weight:500;letter-spacing:0;font-size:11.5px}
+.ln{display:grid;grid-template-columns:30px 14px minmax(0,1fr);height:22px;align-items:center;font:500 12px "Geist Mono",monospace;color:var(--text-2);white-space:nowrap}
+.ln span:first-child{color:var(--faint);text-align:right;padding-right:8px;font-size:11px}
+.ln span:last-child{overflow:hidden;text-overflow:ellipsis}
+.ln.del{background:var(--danger-bg)}
+.ln.del span:nth-child(2){color:var(--danger)}
+.ln.ins{background:var(--ok-bg)}
+.ln.ins span:nth-child(2){color:var(--ok)}
+.ln .s{color:var(--ok)}
+.ln.del .s{color:var(--danger)}
+.ph2+.ln{margin-top:4px}
+.ln:last-child{margin-bottom:4px}
+.kk{color:var(--accent-2)}
+[data-theme=light] .kk{color:var(--accent)}
+
+.tf{display:flex;align-items:center;gap:12px;height:44px;padding:0 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.tf .mono{color:var(--text-2)}
+</style></head>
+<body data-ws="admin" data-active="audit">
+<main id="page">
+  <div class="crumbs"><i data-i="key" data-c="xs"></i><span>Admin console</span><span class="sl">/</span><span style="color:var(--text-2)">Audit log</span></div>
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Audit log</h1>
+      <p class="sub">Every admin change, publish, role change, system event and agent-approved change. Read-only and kept for 7 years.</p></div>
+    <div class="acts"><span class="btn ghost"><i data-i="filter" data-c="sm"></i> Saved views</span>
+      <span class="btn primary"><i data-i="download" data-c="sm"></i> Export CSV</span></div>
+  </header>
+
+  <div class="fb">
+    <div class="input"><i data-i="search" data-c="sm"></i><span>Target: name, code or person</span></div>
+    <span class="fc"><span class="k">Actor</span>Anyone<i data-i="cd" data-c="xs"></i></span>
+    <span class="fc"><i data-i="cal" data-c="sm"></i><span class="mono" style="font-size:12.5px">14 Nov – 21 Nov 2026</span><i data-i="cd" data-c="xs"></i></span>
+    <span class="fc add"><i data-i="plus" data-c="xs"></i>Filter</span>
+    <span class="tz"><i data-i="clock" data-c="xs"></i>Times in <b style="color:var(--text-2);font-weight:550">PST (UTC−08:00)</b><span class="seg"><span class="on">Local</span><span>UTC</span></span></span>
+  </div>
+  <div class="types">
+    <span class="k" style="font:500 10.5px 'Geist Mono',monospace;letter-spacing:.07em;color:var(--faint);margin-right:4px">ACTION</span>
+    <span class="ty"><i data-i="sliders" data-c="xs"></i>Admin change<span class="n">612</span></span>
+    <span class="ty"><i data-i="upload" data-c="xs"></i>Publish<span class="n">38</span></span>
+    <span class="ty"><i data-i="key" data-c="xs"></i>Role change<span class="n">21</span></span>
+    <span class="ty"><i data-i="cloud" data-c="xs"></i>System<span class="n">590</span></span>
+    <span class="ty"><i data-i="spark" data-c="xs"></i>Agent-approved<span class="n">23</span></span>
+    <span class="sum">1,284 EVENTS · LAST 7 DAYS</span>
+  </div>
+
+  <section class="panel tp">
+    <table>
+      <colgroup><col style="width:108px"><col style="width:232px"><col style="width:212px"><col><col style="width:372px"><col style="width:30px"></colgroup>
+      <thead><tr><th>Time · PST</th><th>Actor</th><th>Action</th><th>Target</th><th>Details</th><th></th></tr></thead>
+      <tbody>
+        <tr class="g"><td colspan="6">TODAY · FRI 21 NOV<span>· 5 EVENTS</span></td></tr>
+        <tr><td class="tm">14:41:07</td>
+          <td><div class="ac"><span class="avatar a5">WC</span><span class="nm">Wei Chen</span><span class="rl">via agent</span></div></td>
+          <td><div class="act"><i data-i="spark" data-c="sm c-accent"></i>Agent change approved</div></td>
+          <td><div class="tg"><span class="ellipsis">Plan › Wei Chen</span></div></td>
+          <td class="dt">Added <span class="to">VV-230</span> to plan · Wei confirmed at <span class="mono">14:41</span></td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+        <tr class="fail"><td class="tm">13:58:20</td>
+          <td><div class="ac"><span class="sys"><i data-i="cloud" data-c="xs"></i></span><span class="nm">System</span><span class="rl">scheduled refresh</span></div></td>
+          <td><div class="act bad"><i data-i="st-bad"></i>Source refresh failed</div></td>
+          <td><div class="tg"><span class="ellipsis">HR directory</span></div></td>
+          <td class="dt">Timed out · <span class="mono">0 of 4,212</span> records · retry <span class="mono">15:00</span></td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+        <tr class="sel"><td class="tm">11:20:44</td>
+          <td><div class="ac"><span class="avatar a3">MG</span><span class="nm">Maria Gomez</span><span class="rl">Catalog editor</span></div></td>
+          <td><div class="act"><i data-i="sliders" data-c="sm"></i>Catalog item edited</div></td>
+          <td><div class="tg"><span class="ellipsis">Interface Management</span><span class="code">IM-201</span></div></td>
+          <td class="dt">2 fields changed · <span class="dl">Hide diff <i data-i="cu" data-c="xs"></i></span></td>
+          <td class="chev"><i data-i="cd" data-c="xs"></i></td></tr>
+        <tr class="x"><td colspan="6">
+          <div class="xd">
+            <div class="xm">
+              <span class="k">EVENT</span><span class="v mono">evt_01JDB7K2QX9M</span>
+              <span class="k">WHEN</span><span class="v"><span class="mono">21 Nov 2026 11:20:44 PST</span><br><span class="faint mono" style="font-size:11.5px">19:20:44 UTC</span></span>
+              <span class="k">WHERE</span><span class="v">Catalog › Edit drawer</span>
+              <span class="k">REASON</span><span class="v">“Fix Formal item missing a link, flagged in Data health”</span>
+              <div class="acts"><span class="btn sm"><i data-i="clip" data-c="xs"></i> Copy JSON</span><span class="btn sm ghost">Open IM-201 <i data-i="cr" data-c="xs"></i></span></div>
+            </div>
+            <div class="sbs">
+              <div class="pane"><div class="ph2">BEFORE <b>revision 14</b><span class="sp">20 OCT 2026</span></div>
+                <div class="ln"><span>11</span><span></span><span><span class="kk">"code"</span>: <span class="s">"IM-201"</span>,</span></div>
+                <div class="ln"><span>12</span><span></span><span><span class="kk">"title"</span>: <span class="s">"Interface Management"</span>,</span></div>
+                <div class="ln del"><span>13</span><span>−</span><span><span class="kk">"provider_url"</span>: null,</span></div>
+                <div class="ln del"><span>14</span><span>−</span><span><span class="kk">"duration_hours"</span>: 1.5,</span></div>
+                <div class="ln"><span>15</span><span></span><span><span class="kk">"type"</span>: <span class="s">"formal"</span>,</span></div>
+                <div class="ln"><span>16</span><span></span><span><span class="kk">"level"</span>: <span class="s">"L2"</span></span></div></div>
+              <div class="pane"><div class="ph2">AFTER <b>revision 15</b><span class="sp">21 NOV 2026</span></div>
+                <div class="ln"><span>11</span><span></span><span><span class="kk">"code"</span>: <span class="s">"IM-201"</span>,</span></div>
+                <div class="ln"><span>12</span><span></span><span><span class="kk">"title"</span>: <span class="s">"Interface Management"</span>,</span></div>
+                <div class="ln ins"><span>13</span><span>+</span><span><span class="kk">"provider_url"</span>: <span class="s">"https://academy.corp.example/im-201"</span>,</span></div>
+                <div class="ln ins"><span>14</span><span>+</span><span><span class="kk">"duration_hours"</span>: 2,</span></div>
+                <div class="ln"><span>15</span><span></span><span><span class="kk">"type"</span>: <span class="s">"formal"</span>,</span></div>
+                <div class="ln"><span>16</span><span></span><span><span class="kk">"level"</span>: <span class="s">"L2"</span></span></div></div>
+            </div>
+          </div></td></tr>
+        <tr><td class="tm">10:05:12</td>
+          <td><div class="ac"><span class="avatar">JL</span><span class="nm">Jordan Lee</span><span class="rl">Owner</span></div></td>
+          <td><div class="act"><i data-i="key" data-c="sm"></i>Admin access changed</div></td>
+          <td><div class="tg"><span class="avatar a4" style="width:18px;height:18px;font-size:8px">LS</span><span class="ellipsis">Lucas Silva</span></div></td>
+          <td class="dt">Viewer → <span class="to">Catalog editor</span></td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+        <tr><td class="tm">06:00:04</td>
+          <td><div class="ac"><span class="sys"><i data-i="cloud" data-c="xs"></i></span><span class="nm">System</span><span class="rl">nightly import</span></div></td>
+          <td><div class="act"><i data-i="refresh" data-c="sm"></i>Catalog import finished</div></td>
+          <td><div class="tg"><span class="ellipsis">LMS</span></div></td>
+          <td class="dt"><span class="mono">536</span> items · <span class="mono">3</span> conflicts sent to Data health</td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+
+        <tr class="g"><td colspan="6">THU 20 NOV<span>· 2 EVENTS</span></td></tr>
+        <tr><td class="tm">16:12:51</td>
+          <td><div class="ac"><span class="avatar a6">AK</span><span class="nm">Aisha Khan</span><span class="rl">Owner</span></div></td>
+          <td><div class="act"><i data-i="sliders" data-c="sm"></i>Population rule edited</div></td>
+          <td><div class="tg"><span class="ellipsis">Systems engineering</span></div></td>
+          <td class="dt">Matches <span class="mono">1,204</span> → <span class="mono to">1,231</span> people · <span class="dl">Diff <i data-i="cd" data-c="xs"></i></span></td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+        <tr><td class="tm">09:44:10</td>
+          <td><div class="ac"><span class="avatar">JL</span><span class="nm">Jordan Lee</span><span class="rl">Manager</span></div></td>
+          <td><div class="act"><i data-i="user" data-c="sm"></i>Professional role set</div></td>
+          <td><div class="tg"><span class="avatar a2" style="width:18px;height:18px;font-size:8px">DO</span><span class="ellipsis">Daniel Okafor</span></div></td>
+          <td class="dt"><span class="faint">Not recorded</span> → <span class="to">Verification engineer</span></td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+
+        <tr class="g"><td colspan="6">TUE 18 NOV<span>· 2 EVENTS</span></td></tr>
+        <tr><td class="tm">15:02:33</td>
+          <td><div class="ac"><span class="avatar a3">MG</span><span class="nm">Maria Gomez</span><span class="rl">Catalog editor</span></div></td>
+          <td><div class="act"><i data-i="upload" data-c="sm"></i>Pathway published</div></td>
+          <td><div class="tg"><span class="ellipsis">MBSE foundations &amp; digital-thread integration</span></div></td>
+          <td class="dt">Revision 2 · <span class="mono">214</span> people on revision 1 notified</td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+        <tr><td class="tm">08:15:00</td>
+          <td><div class="ac"><span class="avatar">JL</span><span class="nm">Jordan Lee</span><span class="rl">Owner</span></div></td>
+          <td><div class="act"><i data-i="link" data-c="sm"></i>Agent policy changed</div></td>
+          <td><div class="tg"><span class="ellipsis">Connected agents</span></div></td>
+          <td class="dt">Max session <span class="mono">2 h</span> → <span class="mono to">1 h</span></td>
+          <td class="chev"><i data-i="cr" data-c="xs"></i></td></tr>
+      </tbody>
+    </table>
+    <div class="tf"><span>Showing <span class="mono">9</span> of <span class="mono">1,284</span></span><span class="faint">·</span><span>Entries can't be edited or deleted, including by Owners</span><span class="sp btn sm">Load older</span></div>
+  </section>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

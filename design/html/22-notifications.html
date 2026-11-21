@@ -1,0 +1,100 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Notifications</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.c-faint{color:var(--faint)}
+body{overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;border:0;filter:saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.42)}
+[data-theme=light] .scrim{background:rgba(250,250,250,.45)}
+
+/* the bell, lifted above the scrim so the anchor reads as pressed */
+.bell-on{position:fixed;right:86px;top:12px;width:32px;height:32px;border-radius:7px;display:grid;place-items:center;background:var(--surface-3);box-shadow:0 0 0 1px var(--line-2);color:var(--text)}
+
+.np{position:fixed;right:16px;top:60px;width:492px;overflow:visible}
+.np .caret{position:absolute;top:-6px;right:80px;width:12px;height:12px;background:var(--surface);transform:rotate(45deg);border-left:1px solid var(--line-2);border-top:1px solid var(--line-2);border-radius:2px 0 0 0}
+.nh{display:flex;align-items:center;gap:8px;height:52px;padding:0 10px 0 18px;border-bottom:1px solid var(--line)}
+.nh h2{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+.nh .ib{width:28px;height:28px;border-radius:7px;display:grid;place-items:center;color:var(--muted)}
+.ntabs{display:flex;gap:2px;padding:8px 10px 0;border-bottom:1px solid var(--line)}
+.ntabs span{height:30px;padding:0 9px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--muted);margin-bottom:-1px}
+.ntabs span.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.ntabs .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.grp{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:12px 18px 2px}
+.nt{position:relative;display:flex;gap:12px;padding:10px 16px 12px 18px;margin:0 6px;border-radius:9px}
+.nt.sel{background:var(--hover)}
+.nt .ic{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--surface-2);box-shadow:inset 0 0 0 1px var(--line)}
+.nt .ic .st{width:16px;height:16px}
+.nt .ic.ai{background:linear-gradient(135deg,var(--accent),var(--cyan));box-shadow:none;color:#fff}
+.nt .ic.warn{background:var(--warn-bg);box-shadow:none;color:var(--warn)}
+.nt .ic.acc{background:var(--accent-bg);box-shadow:none;color:var(--accent-2)}
+[data-theme=light] .nt .ic.acc{color:var(--accent)}
+.nt .tt{font-size:13px;line-height:1.45;color:var(--text-2);padding-right:46px}
+.nt .tt b{color:var(--text);font-weight:550}
+.nt .tt .code{font:500 11px "Geist Mono",monospace;color:var(--faint);white-space:nowrap}
+.nt .q{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.nt .ac{display:flex;align-items:center;gap:8px;margin-top:9px}
+.nt .ac .m{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.nt .tm{position:absolute;right:16px;top:11px;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.nt .ud{position:absolute;left:5px;top:20px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.nt.read .tt{color:var(--muted)}
+.nt.read .tt b{color:var(--text-2)}
+.nt .btn.primary .kbd{height:17px}
+.nf{display:flex;align-items:center;gap:8px;height:46px;padding:0 16px 0 18px;margin-top:8px;border-top:1px solid var(--line);background:var(--surface-2);border-radius:0 0 14px 14px;font-size:12.5px;color:var(--muted)}
+.nf b{color:var(--text-2);font-weight:550}
+.nf .lnk{margin-left:auto;display:flex;align-items:center;gap:5px;color:var(--text-2);font-weight:500}
+</style></head>
+<body data-ws="employee" data-active="today" data-role="manager">
+<iframe id="bg"></iframe>
+<div class="scrim"></div>
+<div class="bell-on"><i data-i="bell" data-c="sm"></i></div>
+
+<div class="np overlay" role="dialog" aria-label="Notifications">
+  <span class="caret"></span>
+  <div class="nh"><h2>Notifications</h2><span class="pill p-acc">3 new</span>
+    <span class="sp btn sm ghost"><i data-i="check" data-c="xs"></i> Mark all read</span>
+    <span class="ib"><i data-i="sliders" data-c="sm"></i></span></div>
+  <div class="ntabs"><span class="on">All</span><span>Unread <span class="n">3</span></span><span>Reviews <span class="n">2</span></span><span>Agents <span class="n">1</span></span></div>
+
+  <div class="grp">TODAY</div>
+  <div class="nt sel"><span class="ud"></span>
+    <span class="ic ai"><i data-i="spark" data-c="sm"></i></span>
+    <div class="grow"><div class="tt"><b>Desktop assistant (MCP)</b> proposed 2 changes to your plan</div>
+      <div class="q">Link IM-201 to your focus goal, add 2 activities. Nothing changes until you approve.</div>
+      <div class="ac"><span class="btn sm primary">Review changes <span class="kbd">Enter</span></span><span class="m">session ends 15:31</span></div></div>
+    <span class="tm">14:32</span></div>
+
+  <div class="nt"><span class="ud"></span>
+    <span class="ic"><i data-i="st-ret"></i></span>
+    <div class="grow"><div class="tt"><b>Sam Patel</b> returned <b>Clear Status &amp; Issue Communication</b></div>
+      <div class="q">“Add one example from the CDR prep.”</div>
+      <div class="ac"><span class="btn sm">Revise</span><span class="m">v1 · returned for changes</span></div></div>
+    <span class="tm">14:05</span></div>
+
+  <div class="nt"><span class="ud"></span>
+    <span class="ic warn"><i data-i="clock" data-c="sm"></i></span>
+    <div class="grow"><div class="tt"><b>Due in 7 days:</b> Connect requirements and traceability</div>
+      <div class="q">Milestone M2 · due 28 Nov · 0 of 2 approved, 1 in review</div>
+      <div class="ac"><span class="btn sm">Open goal</span></div></div>
+    <span class="tm">09:00</span></div>
+
+  <div class="grp">THIS WEEK</div>
+  <div class="nt read">
+    <span class="ic"><i data-i="st-ok"></i></span>
+    <div class="grow"><div class="tt"><b>Sam Patel</b> approved <b>System integration planning</b> <span class="code">SI-120</span></div>
+      <div class="q">Counts toward Systems integration &amp; verification · now 1 of 4</div>
+      <div class="ac"><span class="btn sm ghost" style="padding:0 8px;margin-left:-8px">View evidence <i data-i="cr" data-c="xs"></i></span></div></div>
+    <span class="tm">Wed</span></div>
+
+  <div class="nt read">
+    <span class="ic acc"><i data-i="refresh" data-c="sm"></i></span>
+    <div class="grow"><div class="tt">Your pathway <b>MBSE foundations</b> has a new revision <span class="code">REV 2</span></div>
+      <div class="q">Adds 1 activity. Your progress carries over; updating is your choice.</div>
+      <div class="ac"><span class="btn sm ghost" style="padding:0 8px;margin-left:-8px">See what changed <i data-i="cr" data-c="xs"></i></span></div></div>
+    <span class="tm">Tue</span></div>
+
+  <div class="nf"><i data-i="bell" data-c="xs"></i><span><b>Daily digest at 9:00</b> · email + Teams</span>
+    <span class="lnk"><i data-i="sliders" data-c="xs"></i> Notification settings</span></div>
+</div>
+<script>document.getElementById('bg').src='01-home.html'+location.search;</script>
+<script src="assets/shell.js"></script>
+</body></html>

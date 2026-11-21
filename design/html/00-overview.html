@@ -1,0 +1,101 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal redesign: overview</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{overflow:hidden}
+.wrap{position:relative;height:100vh;padding:44px 56px 40px;overflow:hidden}
+.wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 55% at 50% 38%,rgba(125,139,255,.10),transparent 70%);pointer-events:none}
+[data-theme=light] .wrap::before{background:radial-gradient(50% 55% at 50% 38%,rgba(75,91,239,.07),transparent 70%)}
+.head{position:relative;display:flex;align-items:flex-end;gap:20px}
+.eb{font:500 11.5px "Geist Mono",monospace;letter-spacing:.1em;color:var(--accent-2)}
+[data-theme=light] .eb{color:var(--accent)}
+.head h1{font-size:34px;margin-top:8px}
+.grid3{position:relative;display:grid;grid-template-columns:360px 1fr 400px;gap:28px;margin-top:26px;align-items:start}
+.col h3{font:500 11.5px "Geist Mono",monospace;letter-spacing:.09em;color:var(--faint);margin-bottom:10px}
+.bad{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--line);font-size:13.5px;color:var(--text-2)}
+.bad:first-of-type{border-top:none}
+.bad .x{color:var(--danger);flex:none;margin-top:1px}
+svg.loop text{font-family:Geist,"Segoe UI",sans-serif}
+.n-box{fill:var(--surface);stroke:var(--line-2)}
+.n-box.hl{stroke:var(--accent)}
+.n-l{fill:var(--text);font-size:15px;font-weight:600}
+.n-s{fill:var(--muted);font-size:11px;font-family:"Geist Mono",monospace!important}
+.ring{fill:none;stroke:var(--accent-line);stroke-width:1.5;stroke-dasharray:4 6}
+.arr{fill:var(--accent)}
+.c1{fill:var(--text);font-size:20px;font-weight:600;letter-spacing:-.02em}
+.c2{fill:var(--muted);font-size:12.5px}
+.tree .ws{padding:12px 14px;border-top:1px solid var(--line)}
+.tree .ws:first-child{border-top:none}
+.tree .ws .k{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.tree .ws .items{display:flex;flex-wrap:wrap;gap:6px}
+.tree .it{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 9px;border-radius:7px;border:1px solid var(--line-2);font-size:12.5px;font-weight:500;background:var(--surface-2)}
+.tree .it .i{width:13px;height:13px;color:var(--muted)}
+.pr{position:relative;display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:26px}
+.pr .p{padding:14px 14px 15px}
+.pr .n{font:500 11px "Geist Mono",monospace;color:var(--accent-2);margin-bottom:8px}
+[data-theme=light] .pr .n{color:var(--accent)}
+.pr b{font-size:14px;font-weight:600;display:block;margin-bottom:4px;letter-spacing:-.01em}
+.pr p{font-size:12.5px;color:var(--muted);line-height:1.45}
+</style></head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div><div class="eb">SKILL PORTAL · REDESIGN OVERVIEW</div><h1>Help people grow. One loop. Five places.</h1>
+      <p class="sub" style="max-width:820px">Every screen serves one step of the loop below. Employees see 5 places built around improving themselves; managers add 4 to understand and help their team; admins get a separate console. Nothing on screen claims more than the data supports.</p></div>
+    <div class="sp row" style="gap:8px"><span class="kbd" style="height:24px">Ctrl K</span><span class="muted" style="font-size:12.5px">search or ask from anywhere</span></div>
+  </div>
+
+  <div class="grid3">
+    <div class="col">
+      <h3>WHAT CHANGES (BEFORE → AFTER)</h3>
+      <div class="panel" style="padding:4px 16px">
+        <div class="bad"><i data-i="x" data-c="sm" class="x"></i><span>12 sidebar items (two called “Pathways”) → <b style="color:var(--text);font-weight:550">5 + 4 + console</b></span></div>
+        <div class="bad"><i data-i="x" data-c="sm"></i><span>“Choose your level” asked 4× → <b style="color:var(--text);font-weight:550">no personal levels</b>; L1–L5 tag courses only</span></div>
+        <div class="bad"><i data-i="x" data-c="sm"></i><span>“In progress” with nothing started → <b style="color:var(--text);font-weight:550">states computed from real activity</b></span></div>
+        <div class="bad"><i data-i="x" data-c="sm"></i><span>“Course link missing” shown to employees → <b style="color:var(--text);font-weight:550">data issues live in Admin › Data health</b></span></div>
+        <div class="bad"><i data-i="x" data-c="sm"></i><span>Generic “why this fits” text → <b style="color:var(--text);font-weight:550">specific reasons on every suggestion</b></span></div>
+        <div class="bad"><i data-i="x" data-c="sm"></i><span>Green status after a failed refresh → <b style="color:var(--text);font-weight:550">failures are loud and owned</b></span></div>
+        <div class="bad"><i data-i="x" data-c="sm"></i><span>Recommendations you can't act on → <b style="color:var(--text);font-weight:550">“Add to plan” everywhere</b></span></div>
+      </div>
+    </div>
+
+    <svg class="loop" viewBox="0 0 600 540" style="width:100%;height:540px">
+      <circle class="ring" cx="300" cy="270" r="190"/>
+      <g><rect class="n-box hl" x="210" y="52" width="180" height="58" rx="12"/><text class="n-l" x="300" y="78" text-anchor="middle">1 · Find</text><text class="n-s" x="300" y="97" text-anchor="middle">search · advisor · Ctrl K</text></g>
+      <g><rect class="n-box" x="384" y="146" width="180" height="58" rx="12"/><text class="n-l" x="474" y="172" text-anchor="middle">2 · Plan</text><text class="n-s" x="474" y="191" text-anchor="middle">goals · pathways</text></g>
+      <g><rect class="n-box" x="384" y="336" width="180" height="58" rx="12"/><text class="n-l" x="474" y="362" text-anchor="middle">3 · Do</text><text class="n-s" x="474" y="381" text-anchor="middle">in the LMS or on the job</text></g>
+      <g><rect class="n-box" x="210" y="430" width="180" height="58" rx="12"/><text class="n-l" x="300" y="456" text-anchor="middle">4 · Record</text><text class="n-s" x="300" y="475" text-anchor="middle">what · how · evidence</text></g>
+      <g><rect class="n-box" x="36" y="336" width="180" height="58" rx="12"/><text class="n-l" x="126" y="362" text-anchor="middle">5 · Review</text><text class="n-s" x="126" y="381" text-anchor="middle">manager approves / returns</text></g>
+      <g><rect class="n-box" x="36" y="146" width="180" height="58" rx="12"/><text class="n-l" x="126" y="172" text-anchor="middle">6 · Evidence</text><text class="n-s" x="126" y="191" text-anchor="middle">approved record · export</text></g>
+      <text class="c1" x="300" y="262" text-anchor="middle">Only Approved counts</text>
+      <text class="c2" x="300" y="286" text-anchor="middle">Submitted ≠ approved · on time = submitted on time</text>
+    </svg>
+
+    <div class="col">
+      <h3>NEW NAVIGATION</h3>
+      <div class="panel tree">
+        <div class="ws"><div class="k"><i data-i="user" data-c="sm"></i> Employee: everyone</div>
+          <div class="items"><span class="it"><i data-i="home"></i>Home</span><span class="it"><i data-i="book"></i>Learning</span><span class="it"><i data-i="target"></i>Goals &amp; pathways</span><span class="it"><i data-i="users"></i>Colleagues</span><span class="it"><i data-i="user"></i>Profile</span></div></div>
+        <div class="ws"><div class="k"><i data-i="users" data-c="sm"></i> Manager: adds a “My team” section</div>
+          <div class="items"><span class="it"><i data-i="inbox"></i>Reviews</span><span class="it"><i data-i="users"></i>Team</span><span class="it"><i data-i="chart"></i>Insights</span><span class="it"><i data-i="file"></i>Reports</span></div></div>
+        <div class="ws"><div class="k"><i data-i="key" data-c="sm"></i> Admin console: separate workspace</div>
+          <div class="items"><span class="it"><i data-i="shield"></i>Data health</span><span class="it"><i data-i="book"></i>Catalog</span><span class="it"><i data-i="route"></i>Pathway templates</span><span class="it"><i data-i="sliders"></i>Rules &amp; populations</span><span class="it"><i data-i="cloud"></i>Sources</span><span class="it"><i data-i="key"></i>Access &amp; audit</span></div></div>
+        <div class="ws"><div class="k"><i data-i="cmd" data-c="sm"></i> Everywhere</div>
+          <div class="items"><span class="it">Ctrl K palette</span><span class="it">Advisor (catalog only)</span><span class="it">Dark + light</span><span class="it">URL keeps tabs &amp; filters</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pr">
+    <div class="panel p"><div class="n">01</div><b>One next step</b><p>Every screen leads with the single most useful action.</p></div>
+    <div class="panel p"><div class="n">02</div><b>Honest states</b><p>Status comes from the API, never guessed in the browser.</p></div>
+    <div class="panel p"><div class="n">03</div><b>Show the why</b><p>Each suggestion names what it matched.</p></div>
+    <div class="panel p"><div class="n">04</div><b>Admin problems stay with admins</b><p>Data issues go to a queue, not to employees.</p></div>
+    <div class="panel p"><div class="n">05</div><b>Fewer concepts</b><p>No personal levels; roles and levels explained once.</p></div>
+    <div class="panel p"><div class="n">06</div><b>Privacy you can see</b><p>Opt-in directory, private notes marked, AI scope stated.</p></div>
+  </div>
+  <div class="row faint" style="position:relative;margin-top:22px;font-size:12px;gap:18px">
+    <span class="mono">design/html · 34 screens · dark + light</span><span>Names, people and numbers are placeholders. Real data always comes from the API.</span>
+    <span class="sp mono">00 / 33</span></div>
+</div>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,169 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Sources</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.lay{display:grid;grid-template-columns:288px 1fr;gap:18px;align-items:start}
+.col{display:flex;flex-direction:column;gap:16px}
+/* source list */
+.sl .li{gap:11px;padding:10px 14px;min-height:60px;align-items:center}
+.sl .li.on{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.sl .ic{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);display:grid;place-items:center;color:var(--text-2);flex:none;background:var(--surface-2)}
+.sl .t{font-size:13px}
+.sl .c{font-size:12px;margin-top:1px}
+.sl .c.bad{color:var(--danger)}.sl .c.rev{color:var(--warn)}
+.sl .li.off .t{color:var(--muted);font-weight:450}
+.fail{padding:13px 14px}
+.fail .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+.fail .hd .st{width:15px;height:15px}
+.fail .er{margin-top:9px;padding:8px 10px;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);font:500 11.5px/1.55 "Geist Mono",monospace;color:var(--text-2)}
+.fail p{font-size:12px;color:var(--muted);margin-top:9px;line-height:1.5}
+.fail .ba{display:flex;gap:6px;margin-top:11px}
+/* main */
+.sh{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.sh .ic{width:42px;height:42px;border-radius:11px;border:1px solid var(--line-2);background:var(--surface);display:grid;place-items:center;color:var(--text)}
+.sh h2{font-size:18px;font-weight:600;letter-spacing:-.015em;display:flex;align-items:center;gap:10px}
+.sh .c{font-size:12.5px;color:var(--muted);margin-top:3px}
+.sh .acts{margin-left:auto;display:flex;gap:8px}
+.stats{display:grid;grid-template-columns:.9fr 1.15fr 1.15fr 1.3fr;margin-bottom:16px}
+.stats .cell{padding:13px 16px;border-left:1px solid var(--line)}
+.stats .cell:first-child{border-left:none}
+.stats .k{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.stats .v{font-size:13.5px;font-weight:550}
+.stats .v.mono{font-size:12.5px;font-weight:500}
+.stats .s{font-size:12px;color:var(--muted);margin-top:4px}
+.ticks{display:flex;gap:4px;align-items:flex-end;height:22px}
+.ticks span{flex:1;height:18px;border-radius:3px;background:var(--ok);opacity:.85}
+.ticks span.bad{background:var(--danger);opacity:1}
+.ticks span.pv{background:var(--warn);opacity:1}
+.ticks span.held{background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2);opacity:1}
+.tk-l{display:flex;justify-content:space-between;font:500 10.5px "Geist Mono",monospace;color:var(--faint);margin-top:5px}
+.grid2{display:grid;grid-template-columns:1fr 300px;gap:16px;align-items:start}
+/* preview */
+.pv{overflow:hidden}
+.pv .panel-h .mono{font-size:11.5px}
+.sum{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);white-space:nowrap}
+.sum .pill{height:24px}
+.sum .pill .mono{font-weight:600}
+.sum .gap{margin-left:auto;font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sum .gap .i{color:var(--ok)}
+.pv table{table-layout:fixed}
+.pv th{height:34px;padding:0 12px;background:var(--surface-2)}
+.pv td{height:45px;padding:0 12px;font-size:12.5px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pv td.it{color:var(--text);font-size:13px;font-weight:500}
+.pv td.it .cd{font:400 11.5px "Geist Mono",monospace;color:var(--faint);margin-right:8px}
+.sg{width:18px;height:18px;border-radius:5px;display:inline-grid;place-items:center;font:700 12px "Geist Mono",monospace;vertical-align:middle}
+.sg.add{background:var(--ok-bg);color:var(--ok)}
+.sg.chg{background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .sg.chg{color:var(--accent)}
+.bf{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--faint)}
+.af{color:var(--text)}
+.ar{color:var(--faint);padding:0 6px}
+.nw{color:var(--muted)}
+.nw .dd{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:1px}
+.pv .tf{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+/* right */
+.mp .li{min-height:34px;padding:0 16px;gap:8px;font-size:12.5px}
+.mp .src{font:500 11.5px "Geist Mono",monospace;color:var(--muted);width:112px;flex:none}
+.mp .li .i{color:var(--faint)}
+.mp .dst{color:var(--text);font-weight:500}
+.mp .ft{display:flex;align-items:center;gap:8px;height:38px;padding:0 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.mp .ft .mono{font-size:11.5px}
+.ph2{padding:14px 16px}
+.ph2 .input{height:34px;font:500 12.5px "Geist Mono",monospace;background:var(--surface-2)}
+.ph2 .input .i{color:var(--faint)}
+.val{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:12.5px;color:var(--ok);font-weight:500}
+.ph2 p{font-size:12px;color:var(--muted);margin-top:7px;line-height:1.45}
+</style></head>
+<body data-ws="admin" data-active="sources">
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Sources</h1>
+      <p class="sub">Where catalog and people data come from. Every import lands in a preview; nothing changes until someone publishes it.</p></div>
+    <div class="acts"><span class="btn"><i data-i="plus" data-c="sm"></i> Add source</span></div>
+  </header>
+
+  <div class="lay">
+    <div class="col">
+      <section class="panel sl">
+        <div class="panel-h"><h2>Sources</h2><span class="cnt">5</span></div>
+        <div class="li"><span class="ic"><i data-i="users" data-c="sm"></i></span><div class="grow"><div class="t">HR directory</div><div class="c bad">Failed today 00:57</div></div><i data-i="st-bad"></i></div>
+        <div class="li on"><span class="ic"><i data-i="cap" data-c="sm"></i></span><div class="grow"><div class="t">Academy catalog</div><div class="c rev">Preview waiting since 11 Nov</div></div><i data-i="st-rev"></i></div>
+        <div class="li"><span class="ic"><i data-i="book" data-c="sm"></i></span><div class="grow"><div class="t">Library catalog</div><div class="c muted">Published 8 Nov · 341 records</div></div><i data-i="st-ok"></i></div>
+        <div class="li"><span class="ic"><i data-i="brief" data-c="sm"></i></span><div class="grow"><div class="t">Job catalog</div><div class="c muted">OK · next refresh 9 Dec</div></div><i data-i="st-ok"></i></div>
+        <div class="li off"><span class="ic"><i data-i="file" data-c="sm"></i></span><div class="grow"><div class="t">Design practices</div><div class="c muted">Not set up</div></div><span class="btn sm">Set up</span></div>
+      </section>
+      <section class="panel fail">
+        <div class="hd"><i data-i="st-bad"></i>HR directory refresh failed</div>
+        <div class="er">Fri 21 Nov 2026 00:57:12 PST<br>Timed out after 120 s waiting for the directory export.</div>
+        <p>Populations and admin search use the last good copy from 20 Nov 23:10 PST. Nothing was changed.</p>
+        <div class="ba"><span class="btn sm"><i data-i="refresh" data-c="xs"></i> Retry now</span><span class="btn sm ghost">View log</span></div>
+      </section>
+    </div>
+
+    <div>
+      <div class="sh"><span class="ic"><i data-i="cap" data-c="lg"></i></span>
+        <div><h2>Academy catalog <span class="pill p-rev">Preview waiting · 10 days</span></h2>
+          <div class="c">Engineering Academy course list · Master list + Course files · 103 records</div></div>
+        <div class="acts"><span class="btn ghost">Discard preview…</span><span class="btn primary"><i data-i="upload" data-c="sm"></i> Publish 103 records</span></div></div>
+
+      <section class="panel stats">
+        <div class="cell"><div class="k"><i data-i="cal" data-c="xs"></i>Schedule</div><div class="v">Weekly · Tue 02:00</div><div class="s">Held while a preview waits</div></div>
+        <div class="cell"><div class="k"><i data-i="check" data-c="xs"></i>Last success</div><div class="v mono">11 Nov 2026 · 02:04:31 PST</div><div class="s">Created this preview</div></div>
+        <div class="cell"><div class="k"><i data-i="clock" data-c="xs"></i>Last attempt</div><div class="v mono">18 Nov 2026 · 02:00:07 PST</div><div class="s">Held: preview not yet published</div></div>
+        <div class="cell"><div class="k">Last 10 runs<span class="sp mono" style="font-size:10.5px;color:var(--danger)">1 FAILED · 14 OCT</span></div>
+          <div class="ticks"><span></span><span></span><span></span><span></span><span class="bad"></span><span></span><span></span><span></span><span class="pv"></span><span class="held"></span></div>
+          <div class="tk-l"><span>16 SEP</span><span>18 NOV</span></div></div>
+      </section>
+
+      <div class="grid2">
+        <div class="col">
+          <section class="panel glow pv">
+            <div class="panel-h"><h2>Import preview</h2><span class="mono faint">11 Nov 02:04 PST</span>
+              <div class="seg sp" style="margin-left:auto"><span class="on">Changes <span class="mono faint">7</span></span><span>All <span class="mono faint">103</span></span></div></div>
+            <div class="sum"><span class="pill p-ok"><span class="mono">+3</span> added</span><span class="pill p-acc"><span class="mono">4</span> changed</span><span class="pill p-neu"><span class="mono">0</span> removed</span><span class="pill p-neu"><span class="mono">96</span> unchanged</span>
+              <span class="gap"><i data-i="check" data-c="xs"></i>5 gaps filled · 2 decisions kept</span></div>
+            <table>
+              <colgroup><col style="width:42px"><col><col style="width:84px"><col style="width:250px"></colgroup>
+              <thead><tr><th></th><th>Item</th><th>Field</th><th>Before → after</th></tr></thead>
+              <tbody>
+                <tr><td><span class="sg add">+</span></td><td class="it"><span class="cd">SE-214</span>Systems Thinking Essentials</td><td class="muted">New item</td><td class="nw"><span class="dd" style="background:var(--t-formal)"></span>Formal · <span class="mono">L2 · 3 h</span></td></tr>
+                <tr><td><span class="sg add">+</span></td><td class="it"><span class="cd">DT-150</span>Digital Thread Data Walkthrough</td><td class="muted">New item</td><td class="nw"><span class="dd" style="background:var(--t-formal)"></span>Formal · <span class="mono">L2 · 1.5 h</span></td></tr>
+                <tr><td><span class="sg add">+</span></td><td class="it"><span class="cd">EX-318</span>Run an interface working group</td><td class="muted">New item</td><td class="nw"><span class="dd" style="background:var(--t-exp)"></span>Experiential · <span class="mono">L3</span></td></tr>
+                <tr><td><span class="sg chg">~</span></td><td class="it"><span class="cd">FA-110</span>Functional Architecture</td><td>Level</td><td><span class="bf mono">L1</span><span class="ar">→</span><span class="af mono">L2</span></td></tr>
+                <tr><td><span class="sg chg">~</span></td><td class="it"><span class="cd">SE-101</span>SE Fundamentals</td><td>Duration</td><td><span class="bf mono">5 h</span><span class="ar">→</span><span class="af mono">6 h</span></td></tr>
+                <tr><td><span class="sg chg">~</span></td><td class="it"><span class="cd">RL-210</span>Shadow a review board</td><td>Type</td><td><span class="bf">Formal</span><span class="ar">→</span><span class="af">Relational</span><span class="faint"> · no link needed</span></td></tr>
+                <tr><td><span class="sg chg">~</span></td><td class="it"><span class="cd">MB-305</span>Model Governance</td><td>Link</td><td><span class="bf mono">http://</span><span class="ar">→</span><span class="af mono">https://</span></td></tr>
+              </tbody>
+            </table>
+            <div class="tf"><i data-i="info" data-c="xs"></i>Publishing replaces the live Academy items. Your conflict decisions stay in place.</div>
+          </section>
+        </div>
+
+        <div class="col">
+          <section class="panel mp">
+            <div class="panel-h"><h2>Column mapping</h2><span class="cnt">12 of 14</span><span class="lnk">Edit <i data-i="cr" data-c="xs"></i></span></div>
+            <div class="li"><span class="src">course_code</span><i data-i="arrow" data-c="xs"></i><span class="dst">Code</span></div>
+            <div class="li"><span class="src">course_title</span><i data-i="arrow" data-c="xs"></i><span class="dst">Title</span></div>
+            <div class="li"><span class="src">summary</span><i data-i="arrow" data-c="xs"></i><span class="dst">Description</span></div>
+            <div class="li"><span class="src">learning_type</span><i data-i="arrow" data-c="xs"></i><span class="dst">Type</span></div>
+            <div class="li"><span class="src">course_level</span><i data-i="arrow" data-c="xs"></i><span class="dst">Level</span></div>
+            <div class="li"><span class="src">hours</span><i data-i="arrow" data-c="xs"></i><span class="dst">Duration</span></div>
+            <div class="li"><span class="src">delivery_url</span><i data-i="arrow" data-c="xs"></i><span class="dst">Course link</span></div>
+            <div class="ft"><span>+ 5 more</span><span class="sp">2 ignored: <span class="mono">owner_email, notes</span></span></div>
+          </section>
+          <section class="panel">
+            <div class="panel-h"><h2>Provider home</h2></div>
+            <div class="ph2">
+              <div class="input"><i data-i="link" data-c="xs"></i>https://academy.example.com</div>
+              <div class="val"><i data-i="st-ok"></i>https on an approved company domain</div>
+              <p>Shown to employees as the Academy's home page.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

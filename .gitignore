@@ -1,0 +1,6 @@
+# review artefacts (regenerate with tools/contact-sheet.ps1)
+design/contact-sheets/
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/

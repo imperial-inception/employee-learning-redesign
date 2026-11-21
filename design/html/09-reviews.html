@@ -1,0 +1,237 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Reviews</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+#page{height:100%;display:flex;flex-direction:column}
+.kh{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.kh+.kh{margin-left:10px}
+.rv{flex:1;min-height:0;display:grid;grid-template-columns:380px 1fr;gap:18px}
+.col{display:flex;flex-direction:column;gap:16px;min-height:0}
+
+/* queue */
+.qf{padding:12px 12px;border-bottom:1px solid var(--line)}
+.qf .seg{display:flex}
+.qf .seg span{flex:auto;justify-content:center;white-space:nowrap;padding:0 9px}
+.seg .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.seg span.on .n{color:var(--text-2)}
+.grp{display:flex;align-items:center;font:500 11px "Geist Mono",monospace;letter-spacing:.06em;color:var(--faint);padding:12px 16px 6px}
+.grp .sp{letter-spacing:0;font-size:11px}
+.q .li{align-items:flex-start;padding:12px 16px;gap:11px;position:relative}
+.q .li:first-of-type{border-top:none}
+.q .li.on{background:var(--sel)}
+.q .li.on::before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:2px;border-radius:0 2px 2px 0;background:var(--accent)}
+.q .nm{display:flex;align-items:center;gap:8px;height:20px}
+.q .nm b{font-weight:550}
+.q .due{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.q .tt{color:var(--text-2);margin-top:1px}
+.q .tt .mono{font-size:11.5px;color:var(--faint);margin-left:4px}
+.q .meta{display:flex;align-items:center;gap:7px;margin-top:6px;font-size:12px;color:var(--muted)}
+.dt{width:6px;height:6px;border-radius:50%;display:inline-block;flex:none}
+.q .meta .sep{color:var(--faint)}
+.vchip{font:500 11px "Geist Mono",monospace;color:var(--orange);background:var(--orange-bg);padding:1px 6px;border-radius:5px}
+
+.q{flex:1}
+
+/* detail */
+.det{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.dh{padding:16px 22px 16px;border-bottom:1px solid var(--line)}
+.dh .who{display:flex;align-items:center;gap:10px;font-size:13px}
+.dh .who b{font-weight:550}
+.dh .pnav{display:flex;align-items:center;gap:6px;margin-left:auto}
+.ttl{font-size:21px;font-weight:600;letter-spacing:-.02em;margin:12px 0 10px;display:flex;align-items:baseline;gap:10px}
+.ttl .mono{font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
+.dh .tags{display:flex;align-items:center;gap:6px}
+.db{flex:1;min-height:0;display:grid;grid-template-columns:1fr 288px}
+.mn{padding:18px 22px;display:flex;flex-direction:column;gap:18px;min-width:0}
+.sec-h{display:flex;align-items:center;gap:8px;font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:7px}
+.sec-h .sp{letter-spacing:0;font-family:Geist,sans-serif;font-size:12px}
+.prose{color:var(--text-2);line-height:1.6}
+.added{background:var(--accent-bg);padding:2px 3px;border-radius:4px;color:var(--text);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.v2mark{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.v2mark .sw{width:10px;height:10px;border-radius:3px;background:var(--accent-bg);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.ev{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.evc{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.evc .pw{position:relative}
+.evc svg.pv{display:block;width:100%;height:120px;background:var(--surface-2);border-bottom:1px solid var(--line)}
+.evc .badge{position:absolute;top:8px;left:8px;font:600 10px "Geist Mono",monospace;letter-spacing:.04em;padding:2px 6px;border-radius:5px;background:var(--accent-bg);color:var(--accent-2);box-shadow:inset 0 0 0 1px var(--accent-line)}
+[data-theme=light] .evc .badge{color:var(--accent)}
+.evc .ef{display:flex;align-items:flex-start;gap:8px;padding:9px 11px}
+.evc .ef .t{font-size:12.5px;font-weight:500}
+.evc .ef .m{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.evc .ef .i{color:var(--muted);margin-top:1px}
+.pv .pg{fill:var(--surface)}.pv .ln{fill:var(--line-2)}.pv .ln2{fill:var(--surface-3)}
+.pv .ac{fill:var(--accent)}.pv .acb{fill:var(--accent-bg)}.pv .bx{fill:var(--surface);stroke:var(--line-2)}
+.pv .bxa{fill:var(--accent-bg);stroke:var(--accent-line)}.pv .ar{stroke:var(--muted);fill:none}
+.pv .grid{stroke:var(--line);fill:none}.pv .okf{fill:var(--ok)}
+.pv .edge{stroke:var(--line-2);fill:none}
+
+.rail{border-left:1px solid var(--line);padding:16px 18px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.props{display:grid;grid-template-columns:72px 1fr;row-gap:9px;column-gap:10px;font-size:12.5px;align-items:center}
+.props .k{color:var(--muted)}
+.props .v{color:var(--text);display:flex;align-items:center;gap:6px;min-width:0;white-space:nowrap}
+.props .v .mono{font-size:12px}
+.rate{display:flex;gap:3px}
+.rate span{width:14px;height:5px;border-radius:2px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.rate span.on{background:var(--text-2);box-shadow:none}
+.hr{height:1px;background:var(--line)}
+.tl{position:relative;display:flex;flex-direction:column;gap:12px}
+.tl::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--line-2)}
+.tl .ev2{display:flex;gap:10px;align-items:flex-start;position:relative}
+.tl .st{width:15px;height:15px;margin-top:1px;background:var(--surface);border-radius:50%}
+.tl .t{font-size:12.5px;font-weight:500}
+.tl .m{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.tl .q2{font-size:12px;color:var(--text-2);margin-top:4px;padding:5px 8px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line)}
+
+/* decision */
+.dec{padding:16px 20px 16px;flex:none}
+.fb-h{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.fb-h .label{margin:0}
+.vis{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2)}
+.vis .avatar{width:18px;height:18px;font-size:8px}
+.fb{min-height:66px;font-size:13.5px;color:var(--text)}
+.caret{display:inline-block;width:1.5px;height:15px;background:var(--accent);vertical-align:-2px;margin-left:1px}
+.pn{display:flex;align-items:center;gap:10px;height:38px;padding:0 12px;margin-top:10px;border-radius:9px;border:1px dashed var(--line-2);
+  background:repeating-linear-gradient(135deg,transparent 0 7px,var(--hover) 7px 9px),var(--surface-2);font-size:12.5px;color:var(--muted)}
+.pn b{font-weight:550;color:var(--text-2)}
+.pn .only{font:600 10px "Geist Mono",monospace;letter-spacing:.06em;color:var(--text-2);border:1px solid var(--line-2);border-radius:4px;padding:1px 5px;background:var(--surface)}
+.pn .add{margin-left:auto;display:flex;align-items:center;gap:4px;color:var(--text-2);font-weight:500}
+.ar-row{display:flex;align-items:center;gap:10px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.btn.danger{color:var(--danger)}
+.impact{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);margin-left:auto;margin-right:4px;white-space:nowrap}
+.impact .i{color:var(--ok)}
+.impact b{color:var(--text-2);font-weight:550}
+.btn.primary .kbd{background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
+</style></head>
+<body data-ws="employee" data-active="reviews" data-role="manager">
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Reviews</h1>
+      <p class="sub">4 submissions from your team are waiting. Each has a 7-day review window from the day it was submitted.</p></div>
+    <div class="acts"><span class="kh"><span class="kbd">J</span><span class="kbd">K</span> next / previous</span><span class="kh"><span class="kbd">A</span> approve</span><span class="kh"><span class="kbd">R</span> return</span></div>
+  </header>
+
+  <div class="rv">
+    <!-- left: queue -->
+    <div class="col">
+      <section class="panel q">
+        <div class="qf"><div class="seg"><span class="on">Waiting <span class="n">4</span></span><span>Returned <span class="n">2</span></span><span>Done this month <span class="n">11</span></span></div></div>
+        <div class="grp">SORTED BY DUE DATE</div>
+        <div class="li on"><div class="avatar a4">PN</div>
+          <div class="grow"><div class="nm"><b>Priya Nair</b><span class="sp pill p-rev" style="height:20px;font-size:11.5px">Due tomorrow</span></div>
+            <div class="tt">Functional Architecture<span class="mono">FA-110</span></div>
+            <div class="meta"><span class="dt d formal"></span>Formal<span class="sep">·</span><span class="vchip">v2</span>resubmitted after changes</div></div></div>
+        <div class="li"><div class="avatar a5">AK</div>
+          <div class="grow"><div class="nm"><b>Alex Kim</b><span class="due">in 3 days</span></div>
+            <div class="tt">Interface Management<span class="mono">IM-201</span></div>
+            <div class="meta"><span class="dt d formal"></span>Formal<span class="sep">·</span>submitted <span class="mono">17 Nov</span></div></div></div>
+        <div class="li"><div class="avatar">WC</div>
+          <div class="grow"><div class="nm"><b>Wei Chen</b><span class="due">in 5 days</span></div>
+            <div class="tt">Run a requirements trace audit</div>
+            <div class="meta"><span class="dt d exp"></span>Experiential<span class="sep">·</span>submitted <span class="mono">19 Nov</span></div></div></div>
+        <div class="li"><div class="avatar a3">MG</div>
+          <div class="grow"><div class="nm"><b>Maria Gomez</b><span class="due">in 6 days</span></div>
+            <div class="tt">Shadow an interface review board</div>
+            <div class="meta"><span class="dt d rel"></span>Relational<span class="sep">·</span>submitted <span class="mono">20 Nov</span></div></div></div>
+      </section>
+    </div>
+
+    <!-- right: selected submission -->
+    <div class="col">
+      <section class="panel det">
+        <div class="dh">
+          <div class="who"><div class="avatar a4">PN</div><b>Priya Nair</b><span class="muted">Systems Engineer · direct report</span>
+            <div class="pnav"><span class="mono faint" style="font-size:11.5px;margin-right:4px">1 OF 4</span><span class="btn sm ghost" style="padding:0 6px"><i data-i="cu" data-c="sm"></i></span><span class="btn sm ghost" style="padding:0 6px"><i data-i="cd" data-c="sm"></i></span><span class="btn sm">Open profile</span></div></div>
+          <h2 class="ttl">Functional Architecture <span class="mono">FA-110</span></h2>
+          <div class="tags"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag">Academy</span><span class="tag mono">8 h</span><span class="pill p-ret">v2 · resubmitted</span><span class="pill p-ok"><i data-i="check" data-c="xs"></i> Submitted on time</span></div>
+        </div>
+        <div class="db">
+          <div class="mn">
+            <div><div class="sec-h">WHAT PRIYA LEARNED</div>
+              <p class="prose">How to break a system function into sub-functions and allocate them to logical elements before choosing any hardware. Functional flow block diagrams made the line between what the system does and what does it finally click.</p></div>
+            <div><div class="sec-h">HOW PRIYA APPLIED IT<span class="sp v2mark"><span class="sw"></span>Added in v2</span></div>
+              <p class="prose">I rebuilt the functional architecture for the hydraulic power unit controller on our test-rig upgrade: 14 functions allocated to 5 logical elements. <span class="added">Doing this exposed a missing function, sensor health monitoring, which we added before the 13 Nov design review. The flow diagram is attached.</span></p></div>
+            <div><div class="sec-h">EVIDENCE <span class="mono" style="letter-spacing:0">3</span><span class="sp faint">2 files · 1 link</span></div>
+              <div class="ev">
+                <div class="evc">
+                  <svg class="pv" viewBox="0 0 180 120" preserveAspectRatio="xMidYMid slice">
+                    <rect class="pg" x="52" y="14" width="76" height="100" rx="3" style="stroke:var(--line-2)"/>
+                    <rect class="ac" x="60" y="20" width="22" height="3" rx="1.5"/>
+                    <rect class="ln" x="60" y="30" width="56" height="4" rx="2"/>
+                    <rect class="ln2" x="60" y="39" width="46" height="3" rx="1.5"/>
+                    <rect class="ln2" x="60" y="46" width="52" height="3" rx="1.5"/>
+                    <rect class="ln2" x="60" y="53" width="38" height="3" rx="1.5"/>
+                    <circle cx="108" cy="70" r="9" class="acb" style="stroke:var(--accent-line)"/>
+                    <path d="m104.5 70 2.5 2.5 4.5-5" style="stroke:var(--accent);fill:none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect class="ln2" x="60" y="68" width="28" height="3" rx="1.5"/>
+                    <rect class="ln2" x="60" y="86" width="56" height="3" rx="1.5"/>
+                    <rect class="ln2" x="60" y="93" width="44" height="3" rx="1.5"/>
+                  </svg>
+                  <div class="ef"><i data-i="file" data-c="sm"></i><div class="grow" style="min-width:0"><div class="t ellipsis">fa-110-certificate.pdf</div><div class="m">PDF · 184 KB</div></div></div></div>
+                <div class="evc"><div class="pw"><span class="badge">NEW IN v2</span>
+                  <svg class="pv" viewBox="0 0 180 120" preserveAspectRatio="xMidYMid slice">
+                    <path class="grid" d="M0 26.5h180M0 52.5h180M0 78.5h180M30.5 0v104M60.5 0v104M90.5 0v104M120.5 0v104M150.5 0v104" stroke-width="1"/>
+                    <rect class="bx" x="12" y="43" width="34" height="18" rx="3"/>
+                    <rect class="bx" x="70" y="25" width="38" height="18" rx="3"/>
+                    <rect class="bx" x="70" y="61" width="38" height="18" rx="3"/>
+                    <rect class="bxa" x="132" y="43" width="36" height="18" rx="3"/>
+                    <path class="ar" d="M46 52h10v-18h14M56 52v18h14M108 34h12v18h12M108 70h12v-18" stroke-width="1.2"/>
+                    <rect class="ln" x="17" y="50.5" width="24" height="3" rx="1.5"/>
+                    <rect class="ln" x="76" y="32.5" width="26" height="3" rx="1.5"/>
+                    <rect class="ln" x="76" y="68.5" width="26" height="3" rx="1.5"/>
+                    <rect class="ac" x="138" y="50.5" width="24" height="3" rx="1.5"/>
+                  </svg></div>
+                  <div class="ef"><i data-i="file" data-c="sm"></i><div class="grow" style="min-width:0"><div class="t ellipsis">hpu-flow-diagram.png</div><div class="m">PNG · 1.2 MB</div></div></div></div>
+                <div class="evc">
+                  <svg class="pv" viewBox="0 0 180 120" preserveAspectRatio="xMidYMid slice">
+                    <rect class="pg" x="22" y="14" width="136" height="100" rx="5" style="stroke:var(--line-2)"/>
+                    <path class="edge" d="M22 28h136"/>
+                    <circle cx="30" cy="21" r="2" class="ln"/><circle cx="37" cy="21" r="2" class="ln"/><circle cx="44" cy="21" r="2" class="ln"/>
+                    <rect class="ln2" x="54" y="19" width="72" height="4" rx="2"/>
+                    <rect class="ac" x="32" y="38" width="10" height="10" rx="2.5"/>
+                    <rect class="ln" x="48" y="39" width="62" height="4" rx="2"/>
+                    <rect class="ln2" x="48" y="46" width="40" height="3" rx="1.5"/>
+                    <rect class="ln2" x="32" y="60" width="114" height="3" rx="1.5"/>
+                    <rect class="ln2" x="32" y="67" width="100" height="3" rx="1.5"/>
+                    <rect class="ln2" x="32" y="74" width="108" height="3" rx="1.5"/>
+                    <rect class="ln2" x="32" y="86" width="86" height="3" rx="1.5"/>
+                    <rect class="ln2" x="32" y="93" width="104" height="3" rx="1.5"/>
+                  </svg>
+                  <div class="ef"><i data-i="link" data-c="sm"></i><div class="grow" style="min-width:0"><div class="t ellipsis">Design review notes</div><div class="m">Intranet · 13 Nov</div></div></div></div>
+              </div></div>
+          </div>
+          <aside class="rail">
+            <div class="props">
+              <span class="k">Goal</span><span class="v"><span class="ellipsis" style="text-decoration:underline;text-decoration-color:var(--line-2);text-underline-offset:3px">Model-based architecture</span></span>
+              <span class="k">Plan step</span><span class="v"><span class="mono">3 of 5</span></span>
+              <span class="k">Submitted</span><span class="v"><span class="mono">15 Nov</span><span style="color:var(--ok)">on time</span></span>
+              <span class="k">Review by</span><span class="v"><span class="mono">22 Nov</span><span style="color:var(--warn)">tomorrow</span></span>
+              <span class="k">Course</span><span class="v"><span class="rate"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span><span class="mono">4/5</span></span>
+            </div>
+            <p class="muted" style="font-size:12px;margin-top:-6px">“Clear examples. Exercises ran long.” Goes to the course owner; not part of your decision.</p>
+            <div class="hr"></div>
+            <div><div class="sec-h">VERSIONS<span class="sp muted">Compare v1 / v2</span></div>
+              <div class="tl">
+                <div class="ev2"><i data-i="st-rev"></i><div><div class="t">v1 submitted</div><div class="m">10 NOV</div></div></div>
+                <div class="ev2"><i data-i="st-ret"></i><div class="grow"><div class="t">Returned by you</div><div class="m">12 NOV</div>
+                  <div class="q2">“Add an example from your project.”</div></div></div>
+                <div class="ev2"><i data-i="st-rev"></i><div><div class="t">v2 submitted <span class="pill p-neu" style="height:18px;font-size:11px;margin-left:4px">Current</span></div><div class="m">15 NOV · ON TIME</div></div></div>
+              </div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel glow dec">
+        <div class="fb-h"><span class="label">Feedback to Priya</span><span class="vis"><i data-i="eye" data-c="xs"></i>Priya will see this and can reply</span><span class="sp faint" style="font-size:12px">Required to return or reject</span></div>
+        <div class="textarea fb">The test-rig example is exactly what was missing. Catching sensor health monitoring before the design review is a good result; walk the team through that diagram at Thursday's stand-up?<span class="caret"></span></div>
+        <div class="pn"><i data-i="lock" data-c="sm"></i><b>Private note</b><span class="only">ONLY YOU</span><span>Never shown to Priya or to the AI.</span><span class="add"><i data-i="plus" data-c="xs"></i>Add note</span></div>
+        <div class="ar-row">
+          <span class="btn ghost danger"><i data-i="x" data-c="sm"></i> Reject</span>
+          <span class="impact"><i data-i="target" data-c="sm"></i><span>Approving counts this toward Priya's goal <b>‘Model-based architecture’</b>.</span></span>
+          <span class="btn">Return for changes <span class="kbd">R</span></span>
+          <span class="btn primary"><i data-i="check" data-c="sm"></i> Approve <span class="kbd">A</span></span>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

@@ -1,0 +1,160 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Reviews, select mode</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* 33 · Reviews in Select mode (bulk decisions). Header, one table panel, one sticky bulk bar. No detail panel. */
+#page{height:100%;display:flex;flex-direction:column}
+.ph{margin-bottom:18px}
+.kh{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted)}
+.kh+.kh{margin-left:10px}
+.btn.primary .kbd{background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
+.seg .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.seg span.on .n{color:var(--text-2)}
+.panel-h{height:54px}
+
+/* table */
+.tp{overflow:hidden}
+.tp th{white-space:nowrap}
+.tp td{height:56px;white-space:nowrap}
+.tp td,.tp th{padding:0 12px}
+.tp .cb{width:48px;padding:0 0 0 18px}
+.tp .ac{width:96px;text-align:right;padding-right:16px}
+.srt{display:inline-flex;align-items:center;gap:3px;color:var(--text-2)}
+.who{display:flex;align-items:center;gap:10px}
+.who b{font-weight:550}
+.it{font-weight:500;color:var(--text)}
+.it .mono{font-size:11.5px;font-weight:500;color:var(--faint);margin-left:7px}
+.ty{display:inline-flex;align-items:center;gap:7px;color:var(--text-2)}
+.dt{width:6px;height:6px;border-radius:50%;display:inline-block;flex:none}
+.sub2{font-size:12px;margin-left:8px}
+.ontime{color:var(--ok)}.late{color:var(--warn)}
+.evd{display:inline-flex;align-items:center;gap:6px;color:var(--text-2)}
+.evd .i{color:var(--muted)}
+.evd.none{color:var(--orange)}.evd.none .i{color:var(--orange)}
+.vchip{font:500 11px "Geist Mono",monospace;color:var(--orange);background:var(--orange-bg);padding:1px 6px;border-radius:5px}
+.v1{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+
+/* selected rows: quiet tint + accent edge */
+tr.sel td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+tr.sel td.cb{box-shadow:inset 2px 0 0 var(--accent)}
+/* rows that cannot be bulk-approved: dimmed, checkbox disabled, short reason under the item; Open stays live */
+tr.dis td:not(.ac){opacity:.5}
+tr.dis td{height:64px}
+.check.dis{background:var(--surface-3);border-color:var(--line-2)}
+.rsn{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2);margin-top:3px}
+.rsn .i{color:var(--muted)}
+
+/* sticky bulk bar */
+/* position:sticky;bottom:24px in the app: with a short list it sits right under the table, on a long list it pins to the bottom */
+.bulk{margin-top:16px;align-self:center;width:800px;padding:12px 14px 12px}
+.nt{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--text-2)}
+.nt .i{color:var(--muted)}
+.ni{height:32px;flex:1;font-size:12.5px;color:var(--faint)}
+.nt .req{font-size:12px;color:var(--faint)}
+.bb{display:flex;align-items:center;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.cnt-chip{display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;border-radius:7px;background:var(--accent-bg);color:var(--accent-2);font-size:12.5px;font-weight:550}
+[data-theme=light] .cnt-chip{color:var(--accent)}
+.cnt-chip .check{width:13px;height:13px;border-radius:3px}
+</style></head>
+<body data-ws="employee" data-active="reviews" data-role="manager" data-counts='{"reviews":7}'>
+<main id="page">
+  <header class="ph">
+    <div><h1>Reviews</h1>
+      <p class="sub">7 submissions are waiting. Tick the routine ones and decide them together; open anything that needs a closer look.</p></div>
+    <div class="acts"><span class="kh"><span class="kbd">X</span> select</span><span class="kh"><span class="kbd">A</span> approve selected</span><span class="kh"><span class="kbd">Esc</span> exit select</span></div>
+  </header>
+
+  <section class="panel tp">
+    <div class="panel-h">
+      <div class="seg"><span class="on">Waiting <span class="n">7</span></span><span>Returned <span class="n">2</span></span><span>Done this month <span class="n">11</span></span></div>
+      <div class="sp seg"><span>One by one</span><span class="on"><i data-i="check" data-c="xs"></i> Select</span></div>
+    </div>
+    <table>
+      <thead><tr>
+        <th class="cb"><span class="check on"><i data-i="check" data-c="xs"></i></span></th>
+        <th>Person</th><th>Submission</th><th>Type</th>
+        <th><span class="srt">Submitted <i data-i="cu" data-c="xs"></i></span></th>
+        <th>Evidence</th><th>Version</th><th class="ac"></th></tr></thead>
+      <tbody>
+        <tr class="sel"><td class="cb"><span class="check on"><i data-i="check" data-c="xs"></i></span></td>
+          <td><div class="who"><div class="avatar a5">TB</div><b>Tom Becker</b></div></td>
+          <td><div class="it">Verification &amp; Validation Basics<span class="mono">VV-230</span></div></td>
+          <td><span class="ty"><span class="dt d formal"></span>Formal</span></td>
+          <td><span class="mono">14 Nov</span><span class="sub2 late">2 days late</span></td>
+          <td><span class="evd"><i data-i="clip" data-c="xs"></i>1 file</span></td>
+          <td><span class="v1">v1</span></td>
+          <td class="ac"><span class="btn sm ghost">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+
+        <tr class="dis"><td class="cb"><span class="check dis"></span></td>
+          <td><div class="who"><div class="avatar a4">PN</div><b>Priya Nair</b></div></td>
+          <td><div class="it">Functional Architecture<span class="mono">FA-110</span></div>
+            <div class="rsn"><i data-i="info" data-c="xs"></i>Resubmission v2: review individually</div></td>
+          <td><span class="ty"><span class="dt d formal"></span>Formal</span></td>
+          <td><span class="mono">15 Nov</span><span class="sub2 ontime">on time</span></td>
+          <td><span class="evd"><i data-i="clip" data-c="xs"></i>3 items</span></td>
+          <td><span class="vchip">v2</span></td>
+          <td class="ac"><span class="btn sm">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+
+        <tr class="sel"><td class="cb"><span class="check on"><i data-i="check" data-c="xs"></i></span></td>
+          <td><div class="who"><div class="avatar a5">AK</div><b>Alex Kim</b></div></td>
+          <td><div class="it">Interface Management<span class="mono">IM-201</span></div></td>
+          <td><span class="ty"><span class="dt d formal"></span>Formal</span></td>
+          <td><span class="mono">17 Nov</span><span class="sub2 ontime">on time</span></td>
+          <td><span class="evd"><i data-i="clip" data-c="xs"></i>1 file</span></td>
+          <td><span class="v1">v1</span></td>
+          <td class="ac"><span class="btn sm ghost">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+
+        <tr class="sel"><td class="cb"><span class="check on"><i data-i="check" data-c="xs"></i></span></td>
+          <td><div class="who"><div class="avatar">WC</div><b>Wei Chen</b></div></td>
+          <td><div class="it">Run a requirements trace audit</div></td>
+          <td><span class="ty"><span class="dt d exp"></span>Experiential</span></td>
+          <td><span class="mono">19 Nov</span><span class="sub2 ontime">on time</span></td>
+          <td><span class="evd"><i data-i="clip" data-c="xs"></i>2 files</span></td>
+          <td><span class="v1">v1</span></td>
+          <td class="ac"><span class="btn sm ghost">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+
+        <tr class="dis"><td class="cb"><span class="check dis"></span></td>
+          <td><div class="who"><div class="avatar a6">FR</div><b>Fatima Rahman</b></div></td>
+          <td><div class="it">Communicating Technical Risk<span class="mono">CO-120</span></div>
+            <div class="rsn"><i data-i="info" data-c="xs"></i>No evidence attached</div></td>
+          <td><span class="ty"><span class="dt d formal"></span>Formal</span></td>
+          <td><span class="mono">20 Nov</span><span class="sub2 ontime">on time</span></td>
+          <td><span class="evd none"><i data-i="clip" data-c="xs"></i>None</span></td>
+          <td><span class="v1">v1</span></td>
+          <td class="ac"><span class="btn sm">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+
+        <tr class="sel"><td class="cb"><span class="check on"><i data-i="check" data-c="xs"></i></span></td>
+          <td><div class="who"><div class="avatar a3">MG</div><b>Maria Gomez</b></div></td>
+          <td><div class="it">Shadow an interface review board</div></td>
+          <td><span class="ty"><span class="dt d rel"></span>Relational</span></td>
+          <td><span class="mono">20 Nov</span><span class="sub2 ontime">on time</span></td>
+          <td><span class="evd"><i data-i="link" data-c="xs"></i>1 link</span></td>
+          <td><span class="v1">v1</span></td>
+          <td class="ac"><span class="btn sm ghost">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+
+        <tr class="sel"><td class="cb"><span class="check on"><i data-i="check" data-c="xs"></i></span></td>
+          <td><div class="who"><div class="avatar">LS</div><b>Lucas Silva</b></div></td>
+          <td><div class="it">Writing Good Requirements<span class="mono">RQ-102</span></div></td>
+          <td><span class="ty"><span class="dt d formal"></span>Formal</span></td>
+          <td><span class="mono">21 Nov</span><span class="sub2 ontime">on time</span></td>
+          <td><span class="evd"><i data-i="clip" data-c="xs"></i>1 file</span></td>
+          <td><span class="v1">v1</span></td>
+          <td class="ac"><span class="btn sm ghost">Open <i data-i="cr" data-c="xs"></i></span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- sticky bulk bar: appears only while something is selected -->
+  <section class="overlay bulk">
+    <div class="nt"><i data-i="eye" data-c="sm"></i><span>Each person gets the same shared note:</span>
+      <div class="input ni">Optional for approve</div><span class="req">Required to return</span></div>
+    <div class="bb">
+      <span class="cnt-chip"><span class="check on"><i data-i="check" data-c="xs"></i></span>5 selected</span>
+      <span class="btn sm ghost">Clear</span>
+      <span class="sp"></span>
+      <span class="btn">Return… <span class="kbd">R</span></span>
+      <span class="btn primary"><i data-i="check" data-c="sm"></i> Approve 5 <span class="kbd">A</span></span>
+    </div>
+  </section>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

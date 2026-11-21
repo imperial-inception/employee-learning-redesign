@@ -1,0 +1,169 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Connected agents</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.c-faint{color:var(--faint)}.mt2{margin-top:2px}
+.lay{display:grid;grid-template-columns:minmax(0,1fr) 404px;gap:20px}
+.k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* Me sub-nav */
+.sn{display:flex;flex-direction:column;gap:1px}
+.sn a{display:flex;align-items:center;gap:9px;height:31px;padding:0 9px;border-radius:7px;color:var(--text-2);font-size:13px;font-weight:500}
+.sn a .i{color:var(--muted)}
+.sn a.on{background:var(--sel);color:var(--text)}
+.sn a.on .i{color:var(--text)}
+.sn .cnt{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.sn-note{margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.5}
+
+.col{display:flex;flex-direction:column;gap:18px;min-width:0}
+
+/* connection */
+.conn .ch{display:flex;align-items:center;gap:12px;padding:16px 16px 14px 18px}
+.cic{width:36px;height:36px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);flex:none}
+.conn .ch b{font-size:14.5px;font-weight:600;letter-spacing:-.01em}
+.conn .ch .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.live{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px var(--ok-bg)}
+.cf{display:grid;grid-template-columns:auto auto minmax(0,1fr);border-top:1px solid var(--line)}
+.cf .cell{padding:11px 18px 13px;border-left:1px solid var(--line)}
+.cf .cell:first-child{border-left:none}
+.cf .v{font:500 15px "Geist Mono",monospace;margin-top:5px;display:flex;align-items:baseline;gap:8px}
+.cf .v small{font:500 12px Geist,"Segoe UI",sans-serif;color:var(--warn)}
+.tbar{height:4px;border-radius:3px;background:var(--surface-3);margin-top:8px;width:150px;overflow:hidden}
+.tbar span{display:block;height:100%;width:37%;margin-left:63%;background:var(--warn);border-radius:3px}
+.scopes{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.scopes .tag .i{color:var(--ok)}
+.scopes .tag.no{color:var(--faint);border-style:dashed}
+.scopes .tag.no .i{color:var(--faint)}
+
+/* pending changes */
+.pend .note{display:flex;align-items:center;gap:10px;margin:14px 16px 4px;padding:10px 12px;border-radius:9px;background:linear-gradient(90deg,var(--accent-bg),transparent 75%);box-shadow:inset 0 0 0 1px var(--accent-line);font-size:13px;color:var(--text-2)}
+.pend .note b{color:var(--text);font-weight:600}
+.pend .note .ic{color:var(--accent-2)}
+[data-theme=light] .pend .note .ic{color:var(--accent)}
+.chg{margin:10px 16px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.chg.sel{border-color:var(--line-2);box-shadow:0 0 0 3px var(--hover)}
+.chg:last-child{margin-bottom:16px}
+.ch-h{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 14px}
+.ch-h .n{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font:600 11px "Geist Mono",monospace;color:var(--text-2);background:var(--surface-3);flex:none}
+.ch-h .t{font-weight:550;font-size:13.5px}
+.ch-h .c{font-size:12.5px;color:var(--muted);margin-top:1px}
+.ch-h .btn .kbd{height:17px;font-size:10px}
+.diff{border-top:1px solid var(--line)}
+.dr{display:grid;grid-template-columns:128px minmax(0,.55fr) 18px minmax(0,1.5fr);align-items:start;column-gap:12px;padding:9px 14px;border-top:1px solid var(--line);font-size:13px}
+.dr.hd{padding:7px 14px 6px;border-top:none;background:var(--surface-2)}
+.dr .f{color:var(--muted);font-size:12.5px}
+.dr .b{color:var(--muted)}
+.dr .b s{text-decoration-color:var(--danger)}
+.dr .ar{color:var(--faint);margin-top:2px}
+.dr .a{color:var(--text)}
+.add{display:flex;align-items:center;gap:8px;margin-top:6px;white-space:nowrap;padding:5px 8px;border-radius:6px;background:var(--ok-bg);font-size:12.5px;color:var(--text)}
+.add .pl{font:600 12px "Geist Mono",monospace;color:var(--ok)}
+.add .code{font:500 11px "Geist Mono",monospace;color:var(--muted)}
+.add .sp{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.hl{padding:1px 6px;border-radius:5px;background:var(--warn-bg);color:var(--text)}
+.rs{display:flex;gap:10px;padding:9px 14px 11px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.rs .k{flex:none;padding-top:2px}
+.rs q{color:var(--text-2);font-style:italic}
+
+/* log */
+.log .r{display:grid;grid-template-columns:62px 18px minmax(0,1fr);align-items:start;column-gap:10px;padding:9px 16px;border-top:1px solid var(--line);font-size:13px}
+.log .r:first-of-type{border-top:none}
+.log .tm{font:500 11.5px "Geist Mono",monospace;color:var(--faint);padding-top:2px}
+.log .r .i{margin-top:2px;color:var(--muted)}
+.log .t{color:var(--text-2);line-height:1.4}
+.log .t b{color:var(--text);font-weight:550}
+.log .c{font-size:12px;color:var(--muted);margin-top:1px}
+.log .r.bad .t b{color:var(--danger)}
+.log .r.wait .c{color:var(--warn)}
+.log .ft{display:flex;gap:8px;padding:10px 16px 12px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45}
+.rules{padding:14px 16px 6px}
+.rules .r{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;color:var(--text-2);margin-bottom:9px;line-height:1.45}
+.rules .r .i{color:var(--ok);margin-top:2px}
+.rules .intro{color:var(--muted);padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:11px}
+.rules .intro .i{color:var(--muted)}
+</style></head>
+<body data-ws="employee" data-active="me" data-role="manager">
+<main id="page">
+  <div class="crumbs"><i data-i="user" data-c="xs"></i><span>Profile</span><span class="sl">/</span><span style="color:var(--text-2)">Connected agents</span></div>
+  <header class="ph" style="margin-bottom:20px">
+    <div><h1>Connected agents</h1>
+      <p class="sub">Assistants you connect act with your permissions for up to 1 hour. They can read and propose; only you approve changes.</p></div>
+    <div class="acts"><span class="btn"><i data-i="plus" data-c="sm"></i> Connect an assistant</span></div>
+  </header>
+
+  <div class="lay">
+
+    <div class="col">
+      <section class="panel conn">
+        <div class="ch">
+          <span class="cic"><i data-i="cmd"></i></span>
+          <div class="grow"><div class="row" style="gap:9px"><b>Desktop assistant (MCP)</b><span class="pill p-ok"><span class="live"></span>Active</span></div>
+            <div class="c">Connected from your work PC · acts as Jordan Lee, with your permissions and no more</div></div>
+          <span class="btn danger"><i data-i="x" data-c="sm"></i> Revoke</span>
+        </div>
+        <div class="cf">
+          <div class="cell"><div class="k">STARTED</div><div class="v">14:31</div></div>
+          <div class="cell"><div class="k">EXPIRES</div><div class="v">15:31 <small>38 min left</small></div><div class="tbar"><span></span></div></div>
+          <div class="cell"><div class="k">SCOPES</div>
+            <div class="scopes"><span class="tag"><i data-i="check" data-c="xs"></i>Read learning</span><span class="tag"><i data-i="check" data-c="xs"></i>Propose changes</span><span class="tag no"><i data-i="x" data-c="xs"></i>Write without you</span></div></div>
+        </div>
+      </section>
+
+      <section class="panel glow pend">
+        <div class="panel-h"><h2>Waiting for your approval</h2><span class="cnt">2</span><span class="lnk mono" style="font-size:11.5px">PROPOSED 14:32:31</span></div>
+        <div class="note"><i data-i="shield" data-c="sm ic"></i><span><b>The agent can only propose.</b> Nothing changes until you approve here.</span></div>
+
+        <div class="chg sel">
+          <div class="ch-h"><span class="n">1</span>
+            <div class="grow"><div class="t">Link “Interface Management IM-201” to goal “SysML v2”</div>
+              <div class="c">Goal · Become confident using SysML v2 to describe system architecture</div></div>
+            <span class="btn sm">Decline <span class="kbd">D</span></span><span class="btn sm primary"><i data-i="check" data-c="xs"></i> Approve <span class="kbd">A</span></span></div>
+          <div class="diff">
+            <div class="dr hd"><span class="k">FIELD</span><span class="k">BEFORE</span><span></span><span class="k">AFTER</span></div>
+            <div class="dr"><span class="f">Linked learning</span><span class="b">5 items</span><i data-i="arrow" data-c="xs ar"></i>
+              <span class="a">6 items<span class="add"><span class="pl">+</span>Interface Management<span class="code">IM-201</span><span class="sp">Formal · 2 h</span></span></span></div>
+            <div class="dr"><span class="f">Progress</span><span class="b"><s>2 of 5 approved</s></span><i data-i="arrow" data-c="xs ar"></i><span class="a"><span class="hl">2 of 6 approved</span> <span class="muted" style="font-size:12px">IM-201 counts once approved</span></span></div>
+          </div>
+          <div class="rs"><span class="k">AGENT'S REASON</span><q>IM-201 covers interfaces between architecture elements, which your goal is about.</q></div>
+        </div>
+
+        <div class="chg">
+          <div class="ch-h"><span class="n">2</span>
+            <div class="grow"><div class="t">Add 2 activities to your plan</div>
+              <div class="c">Plan · Up next · not linked to a goal</div></div>
+            <span class="btn sm">Decline</span><span class="btn sm"><i data-i="check" data-c="xs"></i> Approve</span></div>
+          <div class="diff">
+            <div class="dr"><span class="f">Up next</span><span class="b">4 activities</span><i data-i="arrow" data-c="xs ar"></i>
+              <span class="a">6 activities
+                <span class="add"><span class="pl">+</span>Develop System &amp; Component ICS<span class="sp">Formal · 1.5 h</span></span>
+                <span class="add"><span class="pl">+</span>MBSE community of practice<span class="sp">Relational · monthly</span></span></span></div>
+          </div>
+          <div class="rs"><span class="k">AGENT'S REASON</span><q>Usual next steps after IM-201 for an architecture goal.</q></div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel log">
+        <div class="panel-h"><h2>Activity log</h2><span class="cnt">8</span><span class="lnk">This session</span></div>
+        <div class="r"><span class="tm">14:31:08</span><i data-i="link" data-c="sm"></i><div><div class="t"><b>Connected</b> with 2 scopes</div><div class="c">You signed in on the assistant</div></div></div>
+        <div class="r"><span class="tm">14:31:40</span><i data-i="eye" data-c="sm"></i><div><div class="t"><b>Read</b> your plan</div><div class="c">2 goals, 3 pathways</div></div></div>
+        <div class="r"><span class="tm">14:31:52</span><i data-i="eye" data-c="sm"></i><div><div class="t"><b>Read</b> goal “SysML v2”</div><div class="c">Title, due date, linked learning</div></div></div>
+        <div class="r"><span class="tm">14:32:05</span><i data-i="search" data-c="sm"></i><div><div class="t"><b>Searched</b> the catalog</div><div class="c">“interface management” · 12 results</div></div></div>
+        <div class="r"><span class="tm">14:32:10</span><i data-i="eye" data-c="sm"></i><div><div class="t"><b>Read</b> your approved learning</div><div class="c">9 items</div></div></div>
+        <div class="r wait"><span class="tm">14:32:31</span><i data-i="send" data-c="sm c-accent"></i><div><div class="t"><b>Proposed</b> 2 changes</div><div class="c">Waiting for you</div></div></div>
+        <div class="r bad"><span class="tm">14:33:02</span><i data-i="x" data-c="sm c-danger"></i><div><div class="t"><b>Denied</b> read Priya Nair's plan</div><div class="c">Outside “read learning”: team data</div></div></div>
+        <div class="r bad"><span class="tm">14:35:47</span><i data-i="x" data-c="sm c-danger"></i><div><div class="t"><b>Denied</b> write to your plan</div><div class="c">Writes go through approval only</div></div></div>
+        <div class="ft"><i data-i="file" data-c="xs mt2"></i><span>Kept 90 days. Changes you approve are also written to your organization's audit log.</span></div>
+      </section>
+
+      <section class="panel rules">
+        <div class="r intro"><i data-i="info" data-c="xs"></i><span>An agent is an assistant, like a desktop app, that you let use Skill Portal for you through MCP.</span></div>
+        <div class="r"><i data-i="check" data-c="xs"></i><span>Acts with your permissions, never more.</span></div>
+        <div class="r"><i data-i="check" data-c="xs"></i><span>Never sees private manager notes or other people's records.</span></div>
+        <div class="r"><i data-i="check" data-c="xs"></i><span>Ends at 15:31 even mid-task. Reconnect from the assistant.</span></div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

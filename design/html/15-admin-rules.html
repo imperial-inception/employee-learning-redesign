@@ -1,0 +1,171 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Rules and populations</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.tabs span.n{height:auto;padding:0;margin:0}
+.pill.sm{height:20px;font-size:11.5px;padding:0 7px}
+.lay{display:grid;grid-template-columns:292px 1fr;gap:18px;margin-top:18px;align-items:start}
+/* population list */
+.pl .li{gap:10px;padding:9px 14px;min-height:52px}
+.pl .li.on{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.pl .pr{width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font:600 11px "Geist Mono",monospace;background:var(--surface-3);color:var(--text-2);flex:none}
+.pl .li.on .pr{background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .pl .li.on .pr{color:var(--accent)}
+.pl .t{font-size:13px}
+.pl .c{font-size:12px;color:var(--muted)}
+.pl .m{font:500 12px "Geist Mono",monospace;color:var(--text-2)}
+.pl .li.none .t{color:var(--muted);font-weight:450}
+.pl .li.none .m{color:var(--warn)}
+.pl .ft{display:flex;gap:8px;align-items:flex-start;padding:12px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45}
+.pl .ft .i{color:var(--danger);margin-top:1px}
+/* detail */
+.det{overflow:hidden}
+.det .panel-h{height:56px}
+.det .panel-h .pr{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font:600 11.5px "Geist Mono",monospace;background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .det .panel-h .pr{color:var(--accent)}
+.det .panel-h h2{font-size:15px}
+.body{display:grid;grid-template-columns:1.12fr 1fr}
+.body > div{padding:18px 20px;display:flex;flex-direction:column;gap:18px}
+.body > div + div{border-left:1px solid var(--line)}
+h3.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+h3.k .lnk{margin-left:auto;font:500 12px Geist,sans-serif;letter-spacing:0;color:var(--muted);display:flex;align-items:center;gap:4px}
+.rule{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface-2)}
+.rule .lead{padding:10px 14px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}
+.cond{display:flex;align-items:center;gap:8px;height:44px;padding:0 10px 0 14px;border-top:1px solid var(--line);background:var(--surface);font-size:13px}
+.cond:nth-child(2){border-top:none}
+.cj{font:600 10.5px "Geist Mono",monospace;letter-spacing:.05em;color:var(--faint);width:30px;flex:none}
+.fld{height:26px;padding:0 8px 0 9px;border-radius:7px;background:var(--surface-3);color:var(--text-2);font-size:12.5px;font-weight:500;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.fld .i{color:var(--faint)}
+.op{color:var(--muted);font-size:12.5px}
+.val{height:26px;padding:0 9px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface);font-size:12.5px;font-weight:550;display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.val .mono{font-size:11.5px;color:var(--text-2);font-weight:500}
+.cond .x{margin-left:auto;color:var(--faint);display:flex}
+.cond.new{background:linear-gradient(90deg,var(--accent-bg),transparent 70%),var(--surface);box-shadow:inset 2px 0 0 var(--accent)}
+.cond.new .tg{font:600 10px "Geist Mono",monospace;letter-spacing:.05em;color:var(--accent-2)}
+[data-theme=light] .cond.new .tg{color:var(--accent)}
+.addc{display:flex;align-items:center;gap:7px;height:36px;padding:0 14px;border-top:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:12.5px}
+.match{display:flex;align-items:flex-end;gap:10px;margin-bottom:12px}
+.match .big{font-size:34px}
+.match .lb{font-size:13.5px;color:var(--text-2);padding-bottom:3px}
+.match .dl{font-size:12px;color:var(--muted);padding-bottom:4px;margin-left:auto}
+.ppl{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.ppl .li{min-height:42px;padding:6px 12px;gap:10px}
+.ppl .t{font-size:13px}
+.ppl .c{font-size:12px}
+.ppl .avatar{width:24px;height:24px;font-size:10px}
+.ppl .more{display:flex;align-items:center;justify-content:space-between;height:38px;padding:0 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.ppl .more b{color:var(--text);font-weight:550;display:flex;align-items:center;gap:5px}
+.banner{align-items:flex-start;padding:12px 14px}
+.banner .i.lead{color:var(--warn);margin-top:1px}
+.banner .t{font-size:13px;font-weight:550}
+.banner .c{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.banner .ba{display:flex;gap:6px;margin-top:9px}
+.fw{display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.fw .ic{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;background:var(--accent-bg);color:var(--accent-2);flex:none}
+[data-theme=light] .fw .ic{color:var(--accent)}
+.fw .t{font-size:13.5px;font-weight:600}
+.fw .c{font-size:12px;color:var(--muted);margin-top:2px}
+.fw .c .mono{font-size:11.5px;color:var(--text-2)}
+.rq{border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.rqi{padding:12px 14px;border-top:1px solid var(--line)}
+.rqi:first-child{border-top:none}
+.rqi .hd{display:flex;align-items:center;gap:8px}
+.rqi .hd .i{color:var(--accent-2)}
+[data-theme=light] .rqi .hd .i{color:var(--accent)}
+.rqi .hd b{font-size:13px;font-weight:600}
+.rqi .hd .cd{font:400 11.5px "Geist Mono",monospace;color:var(--faint)}
+.rqi .hd .due{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--text-2);white-space:nowrap}
+.rqi .rs{font-size:12.5px;color:var(--text-2);margin:6px 0 0 24px;line-height:1.45}
+.rqi .rs .q{color:var(--muted)}
+.rqi .ap{display:flex;align-items:center;gap:7px;margin:8px 0 0 24px;font-size:12px;color:var(--muted)}
+.rqi .ap .avatar{width:18px;height:18px;font-size:8.5px}
+.rqi .ap b{color:var(--text-2);font-weight:550}
+.rq .add{display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.rq .add .sp{font-size:11.5px;color:var(--faint);display:flex;align-items:center;gap:5px}
+.dirty{display:flex;align-items:center;gap:10px;height:58px;padding:0 20px;border-top:1px solid var(--line);background:var(--surface-2)}
+.dirty .dt{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.dirty .tx{font-size:13px;color:var(--text-2)}
+.dirty .tx b{color:var(--text);font-weight:550}
+.dirty .tx .mono{font-size:12px}
+</style></head>
+<body data-ws="admin" data-active="rules">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Rules &amp; populations</h1>
+      <p class="sub">Who gets which framework, and which learning is required for whom.</p></div>
+    <div class="acts"><span class="btn"><i data-i="file" data-c="sm"></i> Change history</span></div>
+  </header>
+  <div class="tabs"><span>Frameworks <span class="n">2</span></span><span class="on">Populations <span class="n">6</span></span><span>Required learning <span class="n">4</span></span><span>Roles <span class="n">3</span></span><span>Reminders</span><span>Feedback form</span></div>
+
+  <div class="lay">
+    <section class="panel pl">
+      <div class="panel-h"><h2>Populations</h2><span class="cnt">by priority</span><span class="lnk"><i data-i="plus" data-c="xs"></i> New</span></div>
+      <div class="li on"><span class="pr">1</span><div class="grow"><div class="t">Systems Engineering &amp; Integration</div><div class="c">3 conditions · framework v1</div></div><span class="m">214</span></div>
+      <div class="li"><span class="pr">2</span><div class="grow"><div class="t">Digital Thread</div><div class="c">2 conditions · framework v1</div></div><span class="m">96</span></div>
+      <div class="li"><span class="pr">3</span><div class="grow"><div class="t">Requirements &amp; Verification</div><div class="c">2 conditions · framework v1</div></div><span class="m">158</span></div>
+      <div class="li"><span class="pr">4</span><div class="grow"><div class="t">Model-Based Design</div><div class="c">2 conditions · framework v2 draft</div></div><span class="m">121</span></div>
+      <div class="li"><span class="pr">5</span><div class="grow"><div class="t">Other Systems Engineering</div><div class="c">1 condition · framework v1</div></div><span class="m">412</span></div>
+      <div class="li none"><span class="pr" style="background:transparent;box-shadow:inset 0 0 0 1px var(--line-2)">–</span><div class="grow"><div class="t">In no population</div><div class="c">See no framework yet</div></div><span class="m">37</span></div>
+      <div class="ft"><i data-i="alert" data-c="xs"></i><span>Counts use HR directory data from 20 Nov. Today's refresh failed at 00:57.</span></div>
+    </section>
+
+    <section class="panel det">
+      <div class="panel-h"><span class="pr">1</span><h2>Systems Engineering &amp; Integration</h2><span class="sp"></span><span class="btn sm ghost">Rename</span><span class="btn sm ghost" style="padding:0 6px"><i data-i="more" data-c="sm"></i></span></div>
+      <div class="body">
+        <div>
+          <div>
+            <h3 class="k">RULE</h3>
+            <div class="rule">
+              <div class="lead">An employee is in this population when</div>
+              <div class="cond"><span class="cj"></span><span class="fld">Job family<i data-i="cd" data-c="xs"></i></span><span class="op">is</span><span class="val">Systems Engineering</span><span class="x"><i data-i="x" data-c="xs"></i></span></div>
+              <div class="cond"><span class="cj">AND</span><span class="fld">Occupation<i data-i="cd" data-c="xs"></i></span><span class="op">is</span><span class="val">Systems Integration</span><span class="x"><i data-i="x" data-c="xs"></i></span></div>
+              <div class="cond new"><span class="cj">AND</span><span class="fld">Skill code<i data-i="cd" data-c="xs"></i></span><span class="op">is</span><span class="val"><span class="mono">SE-08</span>Systems integration</span><span class="tg">UNSAVED</span><span class="x" style="margin-left:10px"><i data-i="x" data-c="xs"></i></span></div>
+              <div class="addc"><i data-i="plus" data-c="xs"></i>Add condition</div>
+            </div>
+          </div>
+          <div>
+            <div class="match"><span class="big">214</span><span class="lb">employees match</span><span class="dl"><span class="mono">9</span> fewer than the saved rule</span></div>
+            <div class="ppl">
+              <div class="li"><div class="avatar a2">MG</div><div class="grow"><div class="t">Maria Gomez</div></div><span class="c muted">Integration Engineer · Integration &amp; Test</span></div>
+              <div class="li"><div class="avatar a5">WC</div><div class="grow"><div class="t">Wei Chen</div></div><span class="c muted">Integration Lead · Digital Thread</span></div>
+              <div class="li"><div class="avatar a3">AK</div><div class="grow"><div class="t">Alex Kim</div></div><span class="c muted">Systems Engineer · Integration &amp; Test</span></div>
+              <div class="more"><span>+ 211 more</span><b>Preview all 214 <i data-i="arrow" data-c="xs"></i></b></div>
+            </div>
+          </div>
+          <div class="banner warn"><i data-i="alert" data-c="sm"></i><div class="grow">
+            <div class="t">18 employees also match Digital Thread</div>
+            <div class="c">Systems Engineering &amp; Integration wins by priority (1 before 2), so they get this framework and its required learning.</div>
+            <div class="ba"><span class="btn sm">See the 18</span><span class="btn sm ghost">Change priority</span></div></div></div>
+        </div>
+
+        <div>
+          <div>
+            <h3 class="k">FRAMEWORK <span class="lnk">Change <i data-i="cd" data-c="xs"></i></span></h3>
+            <div class="fw"><span class="ic"><i data-i="grid" data-c="sm"></i></span><div class="grow"><div class="t">Competency framework v1</div>
+              <div class="c"><span class="mono">42</span> competencies · course levels <span class="mono">L1–L5</span> · used by <span class="mono">214</span></div></div></div>
+          </div>
+          <div>
+            <h3 class="k">REQUIRED LEARNING <span style="color:var(--faint)">2</span></h3>
+            <div class="rq">
+              <div class="rqi">
+                <div class="hd"><i data-i="flag" data-c="sm"></i><b>Interface Management</b><span class="cd">IM-201</span><span class="due">by 31 Mar 2027</span></div>
+                <div class="rs"><span class="q">Reason:</span> integration leads own interface control from Q2 2027.</div>
+                <div class="ap"><div class="avatar a4">PN</div>Approved by <b>Priya Nair</b> · 2 Oct 2026</div>
+              </div>
+              <div class="rqi">
+                <div class="hd"><i data-i="flag" data-c="sm"></i><b>Configuration Control</b><span class="cd">CM-140</span><span class="due">60 days after joining</span></div>
+                <div class="rs"><span class="q">Reason:</span> internal audit found design changes made without configuration review.</div>
+                <div class="ap"><div class="avatar a6">SP</div>Approved by <b>Sam Patel</b> · 14 Aug 2026</div>
+              </div>
+              <div class="add"><i data-i="plus" data-c="xs"></i>Require learning<span class="sp"><i data-i="lock" data-c="xs"></i>Removing one needs a second approver</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dirty"><span class="dt"></span><span class="tx"><b>1 unsaved change</b> · added <span class="mono">Skill code is SE-08</span> · 9 fewer employees match</span><span class="sp"></span><span class="btn">Discard</span><span class="btn primary">Save changes <span class="kbd" style="background:transparent;border-color:rgba(127,127,127,.4);color:inherit;opacity:.7">Ctrl S</span></span></div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

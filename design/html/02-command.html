@@ -1,0 +1,61 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Command palette</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;border:0;filter:blur(1.5px) saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.55)}
+[data-theme=light] .scrim{background:rgba(250,250,250,.55)}
+.pal{position:fixed;left:50%;top:118px;transform:translateX(-50%);width:720px;overflow:hidden}
+.pal .q{display:flex;align-items:center;gap:12px;height:58px;padding:0 18px;border-bottom:1px solid var(--line);font-size:17px}
+.caret{display:inline-block;width:2px;height:20px;background:var(--accent);vertical-align:-4px;margin-left:1px}
+.scopes{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line)}
+.scopes span{height:26px;padding:0 10px;border-radius:7px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--muted);border:1px solid transparent}
+.scopes span.on{color:var(--text);background:var(--surface-3);border-color:var(--line-2)}
+.grp{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:12px 18px 5px}
+.it{display:flex;align-items:center;gap:12px;height:42px;padding:0 18px;margin:0 6px;border-radius:8px}
+.it.sel{background:var(--sel)}
+.it .t{font-weight:500}.it .c{color:var(--muted);font-size:12.5px}
+.it .r{margin-left:auto;display:flex;align-items:center;gap:8px}
+.ask{margin:0 6px;border-radius:10px;padding:12px 12px;display:flex;align-items:center;gap:12px;background:linear-gradient(90deg,var(--accent-bg),transparent 70%);box-shadow:inset 0 0 0 1px var(--accent-line)}
+.ask .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--cyan));color:#fff}
+.foot{display:flex;align-items:center;gap:16px;height:42px;padding:0 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);margin-top:8px}
+.foot span{display:flex;align-items:center;gap:6px}
+</style></head>
+<body>
+<iframe id="bg"></iframe>
+<div class="scrim"></div>
+<div class="pal overlay">
+  <div class="q"><i data-i="search" data-c="lg"></i><span>interface integ<span class="caret"></span></span><span class="sp kbd">Esc</span></div>
+  <div class="scopes"><span class="on">All</span><span><i data-i="book" data-c="xs"></i> Learning</span><span><i data-i="route" data-c="xs"></i> Pathways</span><span><i data-i="users" data-c="xs"></i> People</span><span><i data-i="cmd" data-c="xs"></i> Actions</span></div>
+
+  <div class="grp">ASK</div>
+  <div class="ask"><div class="ic"><i data-i="spark" data-c="sm"></i></div>
+    <div class="grow"><div style="font-weight:550">Ask the advisor: “what should I learn for interface integration?”</div>
+      <div class="c" style="color:var(--muted);font-size:12.5px;margin-top:2px">Answers from the learning catalog only, with sources you can open</div></div>
+    <span class="kbd">Enter</span></div>
+
+  <div class="grp">LEARNING</div>
+  <div class="it"><i data-i="st-not"></i><span class="t">Interface Management</span><span class="mono faint" style="font-size:11.5px">IM-201</span>
+    <span class="r"><span class="tag"><span class="d formal"></span>Formal</span><span class="mono faint" style="font-size:12px">2 h</span></span></div>
+  <div class="it"><i data-i="st-not"></i><span class="t">Develop System &amp; Component ICS</span>
+    <span class="r"><span class="tag"><span class="d formal"></span>Formal</span><span class="mono faint" style="font-size:12px">1.5 h</span></span></div>
+  <div class="it"><i data-i="st-prog"></i><span class="t">System Integration Overview</span>
+    <span class="r"><span class="pill p-acc">In your plan</span><span class="mono faint" style="font-size:12px">1 h</span></span></div>
+
+  <div class="grp">PATHWAYS</div>
+  <div class="it"><i data-i="route" data-c="sm"></i><span class="t">Systems integration and verification</span><span class="c">4 activities · 2 milestones</span>
+    <span class="r"><span class="pill p-acc">Adopted</span></span></div>
+
+  <div class="grp">PEOPLE</div>
+  <div class="it"><div class="avatar a2">PN</div><span class="t">Priya Nair</span><span class="c">shares: interface control, SysML · self-reported</span></div>
+
+  <div class="grp">ACTIONS</div>
+  <div class="it"><i data-i="record" data-c="sm"></i><span class="t">Record learning</span><span class="r"><span class="kbd">R</span></span></div>
+  <div class="it"><i data-i="target" data-c="sm"></i><span class="t">Create a goal</span><span class="r"><span class="kbd">G</span></span></div>
+
+  <div class="foot"><span><span class="kbd">↑</span><span class="kbd">↓</span> move</span><span><span class="kbd">Enter</span> open</span><span><span class="kbd">Tab</span> scope</span>
+    <span class="sp"><i data-i="lock" data-c="xs"></i> Results respect your permissions</span></div>
+</div>
+<script>document.getElementById('bg').src='01-home.html'+location.search;</script>
+<script src="assets/shell.js"></script>
+</body></html>

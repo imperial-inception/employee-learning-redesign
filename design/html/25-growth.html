@@ -1,0 +1,169 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Next level</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.lay{display:grid;grid-template-columns:minmax(0,1fr) 352px;gap:18px;margin-top:16px}
+.areas{overflow:hidden;display:flex;flex-direction:column}
+.areas .hd,.areas .ar{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr) 262px;gap:26px;padding:0 20px}
+.areas .hd{height:34px;align-items:center;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.areas .ar{flex:1;padding:15px 20px 16px;border-top:1px solid var(--line);align-items:start}
+.areas .hd + .ar{border-top:none}
+.an{display:flex;align-items:center;gap:10px;font-weight:550;font-size:14px;letter-spacing:-.005em}
+.an .ix{font:500 11px "Geist Mono",monospace;color:var(--faint);width:18px}
+.chg{margin:5px 0 0 28px;font-size:12.5px;color:var(--muted);line-height:1.5}
+.chg b{color:var(--text-2);font-weight:550;margin-right:3px}
+.meter{display:inline-flex;gap:3px;flex:none}
+.meter i{width:13px;height:6px;border-radius:2px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.meter i.on{background:var(--accent);box-shadow:none}
+.meter.nr i{background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--line-2)}
+.ev .lbl{font-size:13px;font-weight:550;color:var(--text)}
+.ev .lbl.none{color:var(--text-2);font-weight:500}
+.ev .lbl.nr{color:var(--muted);font-weight:500;font-style:italic}
+.ev .src{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.5}
+.ev .src .x{color:var(--faint);display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nx .tt{font-size:13px;font-weight:500;color:var(--text)}
+.nx .tt .mono{font-size:11px;color:var(--faint);margin-left:3px}
+.nx .row{gap:6px;margin-top:7px}
+.nx .cov{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-2)}
+.nx .opt{font-size:12px;color:var(--muted);margin-top:4px;padding-left:21px}
+.sum{padding:18px 20px 18px}
+.sum .k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.sum .path{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12.5px;color:var(--text-2)}
+.sum .path .lv{height:24px;padding:0 9px;border-radius:7px;border:1px solid var(--line-2);display:flex;align-items:center;gap:6px;font-weight:500}
+.sum .path .lv.to{border-color:var(--accent-line);color:var(--accent-2);background:var(--accent-bg)}
+[data-theme=light] .sum .path .lv.to{color:var(--accent)}
+.lvls{position:relative;margin-top:14px;display:flex;flex-direction:column;gap:9px}
+.lvls::before{content:"";position:absolute;left:4px;top:9px;bottom:9px;width:1.5px;background:var(--line-2)}
+.lvl{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:500;color:var(--text-2)}
+.lvl .dot{width:10px;height:10px;border-radius:50%;background:var(--surface-3);box-shadow:0 0 0 1.5px var(--muted);position:relative;flex:none}
+.lvl .mono{margin-left:auto;font-size:10.5px;letter-spacing:.06em}
+.lvl.to{color:var(--text)}.lvl.to .dot{background:var(--accent);box-shadow:0 0 0 3px var(--accent-bg)}.lvl.to .mono{color:var(--accent-2)}
+[data-theme=light] .lvl.to .mono{color:var(--accent)}
+.sum .hl{display:flex;align-items:baseline;gap:10px;margin-top:18px}
+.sum .hl .big{font-size:38px}
+.sum .hl span{color:var(--text-2);font-size:14px}
+.seg6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:14px}
+.seg6 span{height:8px;border-radius:3px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.seg6 span.on{background:var(--accent);box-shadow:none}
+.seg6 span.nr{background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 4px)}
+.sum .lg{display:flex;flex-wrap:wrap;gap:6px 13px;font-size:12px;color:var(--muted);margin-top:10px}
+.sum .lg i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px;vertical-align:0}
+.sum p{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.55}
+.sum p b{color:var(--text-2);font-weight:550}
+.oo{padding:16px 18px 18px}
+.oo .who{display:flex;align-items:center;gap:10px}
+.oo .who b{font-weight:550;font-size:13.5px;display:block}
+.oo .who small{font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.oo ul{list-style:none;margin:14px 0 16px;display:flex;flex-direction:column;gap:8px}
+.oo li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;color:var(--text-2)}
+.oo li .i{color:var(--ok);margin-top:1px}
+.oo .btn.primary{width:100%;justify-content:center}
+.oo .help{display:flex;gap:7px;align-items:flex-start;margin-top:10px}
+.how{padding:14px 18px 16px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.how h3{font-size:12.5px;font-weight:600;color:var(--text-2);display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.how b{color:var(--text-2);font-weight:550}
+</style></head>
+<body data-ws="employee" data-active="plan" data-role="manager">
+<main id="page">
+  <div class="crumbs"><span>Goals &amp; pathways</span><span class="sl">/</span><span>Next level</span></div>
+  <header class="ph" style="margin-bottom:16px">
+    <div><div class="row" style="gap:12px"><h1>Next level</h1></div>
+      <p class="sub">What changes from Individual contributor 1 to Individual contributor 2 as a Systems Engineer, and where your evidence already is.</p></div>
+    <div class="acts"><span class="btn"><i data-i="book" data-c="sm"></i> Open in Job catalog <i data-i="ext" data-c="xs"></i></span></div>
+  </header>
+
+  <div class="banner info"><span class="bar-l" style="background:var(--accent)"></span><i data-i="msg" data-c="sm"></i>
+    <div style="font-size:13px"><b style="font-weight:600">Guidance for a conversation, not an assessment.</b>
+      <span class="muted">Expectations come from the Job catalog. Only Approved items and experience your manager confirmed are counted. Nothing here rates you or goes to HR.</span></div></div>
+
+  <div class="lay">
+    <section class="panel areas">
+      <div class="panel-h"><h2>Expectation areas</h2><span class="cnt">6</span>
+        <span class="sp seg"><span class="on">All 6</span><span>Gaps 3</span></span></div>
+      <div class="hd"><span>Area · what changes at IC2</span><span>Evidence on record</span><span>Next step</span></div>
+
+      <div class="ar">
+        <div><div class="an"><span class="ix">01</span>Requirements &amp; traceability</div>
+          <div class="chg"><b>At IC2</b>you own requirements and trace links for a whole subsystem, not single functions.</div></div>
+        <div class="ev"><div class="row" style="gap:9px"><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="lbl">3 pieces of evidence</span></div>
+          <div class="src">2 approved items · 1 confirmed project<br><span class="x">RQ-102 · CDR traceability matrix</span></div></div>
+        <div class="nx"><div class="cov"><i data-i="check" data-c="sm"></i>Enough to talk through</div>
+          <div class="opt">Optional: lead one requirements review</div></div>
+      </div>
+
+      <div class="ar">
+        <div><div class="an"><span class="ix">02</span>Architecture modelling</div>
+          <div class="chg"><b>At IC2</b>you build a subsystem's functional architecture in SysML v2 with light guidance.</div></div>
+        <div class="ev"><div class="row" style="gap:9px"><span class="meter"><i class="on"></i><i></i><i></i></span><span class="lbl">1 piece of evidence</span></div>
+          <div class="src">1 approved item: MBSE foundations<br><span class="x">FA-110 is in review, not counted yet</span></div></div>
+        <div class="nx"><div class="tt">MBSE Language / Architecture: SysML Overview</div>
+          <div class="row"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">0.5 h</span><span class="pill p-acc">In your plan · step 3</span></div></div>
+      </div>
+
+      <div class="ar">
+        <div><div class="an"><span class="ix">03</span>Integration &amp; interfaces</div>
+          <div class="chg"><b>At IC2</b>you define and control interfaces between subsystems, including the ICDs.</div></div>
+        <div class="ev"><div class="row" style="gap:9px"><span class="meter"><i></i><i></i><i></i></span><span class="lbl none">No approved evidence</span></div>
+          <div class="src">Interface review board shadowing is in progress</div></div>
+        <div class="nx"><div class="tt">Interface Management <span class="mono">IM-201</span></div>
+          <div class="row"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">2 h</span><span class="sp btn sm"><i data-i="plus" data-c="xs"></i> Add to plan</span></div></div>
+      </div>
+
+      <div class="ar">
+        <div><div class="an"><span class="ix">04</span>V&amp;V planning</div>
+          <div class="chg"><b>At IC2</b>you write a subsystem's verification plan and pick a method per requirement.</div></div>
+        <div class="ev"><div class="row" style="gap:9px"><span class="meter"><i></i><i></i><i></i></span><span class="lbl none">No approved evidence</span></div>
+          <div class="src">Nothing submitted for this area yet</div></div>
+        <div class="nx"><div class="tt">Verification Planning Essentials <span class="mono">VV-230</span></div>
+          <div class="row"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">3 h</span><span class="sp btn sm"><i data-i="plus" data-c="xs"></i> Add to plan</span></div></div>
+      </div>
+
+      <div class="ar">
+        <div><div class="an"><span class="ix">05</span>Communication</div>
+          <div class="chg"><b>At IC2</b>you present technical status and risks at program reviews without support.</div></div>
+        <div class="ev"><div class="row" style="gap:9px"><span class="meter"><i class="on"></i><i class="on"></i><i></i></span><span class="lbl">2 pieces of evidence</span></div>
+          <div class="src">1 approved item · 1 confirmed briefing<br><span class="x">A returned item is not counted</span></div></div>
+        <div class="nx"><div class="cov"><i data-i="check" data-c="sm"></i>Enough to talk through</div>
+          <div class="opt">Optional: present at the next design review</div></div>
+      </div>
+
+      <div class="ar">
+        <div><div class="an"><span class="ix">06</span>Mentoring</div>
+          <div class="chg"><b>At IC2</b>you guide newer engineers through routine tasks and check their work.</div></div>
+        <div class="ev"><div class="row" style="gap:9px"><span class="meter nr"><i></i><i></i><i></i></span><span class="lbl nr">Not recorded</span></div>
+          <div class="src">No mentoring has been recorded yet</div></div>
+        <div class="nx"><div class="tt">Buddy a new starter for their first month</div>
+          <div class="row"><span class="tag"><span class="d rel"></span>Relational</span><span class="tag mono">1 mo</span><span class="sp btn sm"><i data-i="plus" data-c="xs"></i> Add to plan</span></div></div>
+      </div>
+    </section>
+
+    <aside class="stack" style="gap:16px">
+      <section class="panel glow sum">
+        <div class="k">SYSTEMS ENGINEER · JOB CATALOG</div>
+        <div class="lvls"><div class="lvl"><span class="dot"></span><span>Individual contributor 1</span><span class="mono faint">YOU NOW</span></div><div class="lvl to"><span class="dot"></span><span>Individual contributor 2</span><span class="mono">NEXT</span></div></div>
+        <div class="hl"><span class="big">3 of 6</span><span>areas have evidence</span></div>
+        <div class="seg6"><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span></span><span class="nr"></span></div>
+        <div class="lg"><span><i style="background:var(--accent)"></i>Evidence 3</span><span><i style="background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)"></i>None approved 2</span><span><i style="background:repeating-linear-gradient(135deg,var(--line-2) 0 2px,transparent 2px 4px);box-shadow:inset 0 0 0 1px var(--line-2)"></i>Not recorded 1</span></div>
+        <p>Most evidence in <b>Requirements &amp; traceability</b>. Nothing approved yet for <b>Integration &amp; interfaces</b> or <b>V&amp;V planning</b>.</p>
+      </section>
+
+      <section class="panel oo">
+        <div class="who"><div class="avatar a5">SP</div><div class="grow"><b>Next 1:1 with Sam Patel</b><small>THU 4 DEC · 10:00</small></div></div>
+        <ul>
+          <li><i data-i="check" data-c="sm"></i><span>This comparison, all 6 areas</span></li>
+          <li><i data-i="check" data-c="sm"></i><span>Links to the 4 approved items and 2 confirmed projects above</span></li>
+          <li><i data-i="check" data-c="sm"></i><span>Talking point: “What would IC2 look like on my current program?”</span></li>
+        </ul>
+        <span class="btn primary lg"><i data-i="send" data-c="sm"></i> Bring this to your next 1:1</span>
+        <div class="help"><i data-i="lock" data-c="xs"></i><span>Sam sees only what you add to the shared agenda. Your plan notes stay private.</span></div>
+      </section>
+
+      <section class="panel how">
+        <h3><i data-i="info" data-c="sm"></i>How evidence is counted</h3>
+        <b>Counted:</b> Approved items tagged to the area, and experience your manager confirmed.
+        <b>Not counted:</b> items in review or returned. There are no self-ratings, and no performance data is used.
+      </section>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

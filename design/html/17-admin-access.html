@@ -1,0 +1,176 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Access and audit</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* shell fix (local until shared): keep "Skill Portal" + ADMIN tag on one line */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0}
+.lay{display:grid;grid-template-columns:1fr 392px;gap:18px;align-items:start}
+.col{display:flex;flex-direction:column;gap:18px}
+.btn.on{background:var(--surface-3);box-shadow:0 0 0 1px var(--line-2)}
+/* add admin */
+.add{padding:14px 16px 12px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.add .row{gap:8px}
+.add .input{height:34px;font-size:13.5px;border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-bg)}
+.add .input .i{color:var(--muted)}
+.add .input .caret{width:1.5px;height:16px;background:var(--text);margin-left:-8px}
+.add .input .n{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.add .sel{height:34px}
+.add .sel .k{color:var(--muted)}
+.srch{flex:1;min-width:0}
+.add .row{align-items:flex-start}
+.dd{margin-top:6px;border:1px solid var(--line-2);border-radius:10px;background:var(--surface);overflow:hidden}
+.dd .o{display:flex;align-items:center;gap:10px;height:44px;padding:0 12px;border-top:1px solid var(--line);font-size:13px}
+.dd .o:first-child{border-top:none}
+.dd .o.hi{background:var(--sel)}
+.dd .o b{font-weight:600}
+.dd .o .nm{font-weight:500}
+.dd .o .id{font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.dd .o .c{font-size:12px;color:var(--muted);margin-left:auto}
+.add .help{display:flex;align-items:center;gap:6px;margin-top:9px}
+.add .help .i{color:var(--warn)}
+/* admins table */
+.adm table{table-layout:fixed}
+.adm th{height:34px}
+.adm td{height:47px;white-space:nowrap}
+.adm .avatar{width:26px;height:26px}
+.adm .nm{font-weight:550;font-size:13px}
+.adm .id{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.you{height:19px;font-size:11px;padding:0 6px}
+.role{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 9px;border-radius:7px;border:1px solid var(--line);font-size:12.5px;color:var(--text);font-weight:500}
+.role .i{color:var(--faint)}
+.role.lk{border-color:transparent;padding-left:0;color:var(--text)}
+.role.lk .i{color:var(--muted)}
+.adm .muted{font-size:12.5px}
+.hint{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.hint .i{color:var(--faint)}
+.mo{color:var(--faint);display:flex;justify-content:flex-end}
+/* audit */
+.aud table{table-layout:fixed}
+.aud th{height:34px}
+.aud td{height:39px;font-size:12.5px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.aud .tm{font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.aud .who{display:flex;align-items:center;gap:8px;color:var(--text);font-weight:500;font-size:13px}
+.aud .who .avatar{width:20px;height:20px;font-size:8.5px}
+.aud .sys{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:var(--surface-3);color:var(--muted)}
+.aud .tg{font-weight:550;color:var(--text)}
+.aud .tg .mono{font-size:11.5px;color:var(--faint);font-weight:400;margin-left:5px}
+.aud .bad{color:var(--danger)}
+.via{display:inline-flex;align-items:center;gap:4px;height:18px;padding:0 5px;border-radius:5px;background:var(--accent-bg);color:var(--accent-2);font-size:10.5px;font-weight:600}
+[data-theme=light] .via{color:var(--accent)}
+.aud .seg span{height:24px;padding:0 9px;font-size:12px}
+/* roles */
+.rl .li{align-items:flex-start;padding:12px 16px;gap:12px}
+.rl .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;border:1px solid var(--line-2);color:var(--text-2);flex:none;background:var(--surface-2)}
+.rl .t{font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px}
+.rl .t .mono{font-size:11.5px;color:var(--faint);font-weight:500}
+.rl .c{font-size:12.5px;line-height:1.45;margin-top:3px}
+.rl .ft{display:flex;gap:8px;align-items:flex-start;padding:12px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.45}
+.rl .ft .i{margin-top:1px;flex:none}
+/* agents */
+.ag .top{display:flex;align-items:center;gap:12px;padding:14px 16px 4px}
+.ag .top .big{font-size:30px}
+.ag .top .lb{font-size:13px;color:var(--text-2);line-height:1.3}
+.ag .facts{display:flex;flex-direction:column;gap:6px;padding:10px 16px 14px}
+.ag .facts div{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--text-2)}
+.ag .facts .i{color:var(--ok)}
+.ag .li{min-height:42px;padding:6px 16px;gap:10px}
+.ag .li .avatar{width:22px;height:22px;font-size:9px}
+.ag .li .t{font-size:13px}
+.ag .li .c{font-size:12px}
+.ag .li .m{font:500 11.5px "Geist Mono",monospace;color:var(--text-2);white-space:nowrap}
+.ag .pol{display:flex;align-items:center;gap:10px;height:50px;padding:0 16px;border-top:1px solid var(--line)}
+.ag .pol .t{font-size:13px;font-weight:550}
+.ag .pol .c{font-size:12px;color:var(--muted)}
+</style></head>
+<body data-ws="admin" data-active="access">
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Access &amp; audit</h1>
+      <p class="sub">Who can change Skill Portal, and a record of every change they make.</p></div>
+    <div class="acts"><span class="btn"><i data-i="download" data-c="sm"></i> Export audit log</span></div>
+  </header>
+
+  <div class="lay">
+    <div class="col">
+      <section class="panel adm">
+        <div class="panel-h"><h2>Admins</h2><span class="cnt">5</span><span class="sp btn sm on"><i data-i="plus" data-c="xs"></i> Add admin</span></div>
+        <div class="add">
+          <div class="row">
+            <div class="srch"><div class="input"><i data-i="search" data-c="sm"></i><span>wei</span><span class="caret"></span><span class="n">2 matches</span></div>
+              <div class="dd">
+                <div class="o hi"><div class="avatar a5" style="width:24px;height:24px;font-size:9.5px">WC</div><span class="nm"><b>Wei</b> Chen</span><span class="id">1042871</span><span class="c">Integration Lead · Digital Thread</span><span class="kbd">Enter</span></div>
+                <div class="o"><div class="avatar a4" style="width:24px;height:24px;font-size:9.5px">DW</div><span class="nm">Daniel <b>Wei</b>ss</span><span class="id">1077310</span><span class="c">Test Engineer · Verification</span></div>
+              </div></div>
+            <span class="btn sel"><span class="k">Role</span> Viewer <i data-i="cd" data-c="xs"></i></span>
+            <span class="btn primary" style="height:34px">Add Wei Chen</span>
+            <span class="btn ghost" style="height:34px;padding:0 8px"><i data-i="x" data-c="sm"></i></span>
+          </div>
+          <div class="help"><i data-i="alert" data-c="xs"></i>Searching the HR directory copy from 20 Nov (today's refresh failed).</div>
+        </div>
+        <table>
+          <colgroup><col><col style="width:160px"><col style="width:140px"><col style="width:112px"><col style="width:200px"></colgroup>
+          <thead><tr><th>Person</th><th>Role</th><th>Added by</th><th>Added on</th><th></th></tr></thead>
+          <tbody>
+            <tr><td><div class="row" style="gap:10px"><div class="avatar">JL</div><span class="nm">Jordan Lee</span><span class="pill you p-acc">You</span><span class="id">1003482</span></div></td>
+              <td><span class="role lk"><i data-i="lock" data-c="xs"></i>Owner</span></td><td class="muted">Initial setup</td><td class="mono muted" style="font-size:12px">12 Jan 2026</td>
+              <td><span class="hint"><i data-i="info" data-c="xs"></i>Last owner: can't be removed</span></td></tr>
+            <tr><td><div class="row" style="gap:10px"><div class="avatar a6">SP</div><span class="nm">Sam Patel</span><span class="id">1018827</span></div></td>
+              <td><span class="role">Catalog editor<i data-i="cd" data-c="xs"></i></span></td><td class="muted">Jordan Lee</td><td class="mono muted" style="font-size:12px">3 Feb 2026</td><td><span class="mo"><i data-i="more" data-c="sm"></i></span></td></tr>
+            <tr><td><div class="row" style="gap:10px"><div class="avatar a4">PN</div><span class="nm">Priya Nair</span><span class="id">1021954</span></div></td>
+              <td><span class="role">Catalog editor<i data-i="cd" data-c="xs"></i></span></td><td class="muted">Jordan Lee</td><td class="mono muted" style="font-size:12px">3 Feb 2026</td><td><span class="mo"><i data-i="more" data-c="sm"></i></span></td></tr>
+            <tr><td><div class="row" style="gap:10px"><div class="avatar a2">MG</div><span class="nm">Maria Gomez</span><span class="id">1035610</span></div></td>
+              <td><span class="role">Viewer<i data-i="cd" data-c="xs"></i></span></td><td class="muted">Sam Patel</td><td class="mono muted" style="font-size:12px">18 Aug 2026</td><td><span class="mo"><i data-i="more" data-c="sm"></i></span></td></tr>
+            <tr><td><div class="row" style="gap:10px"><div class="avatar a3">AK</div><span class="nm">Alex Kim</span><span class="id">1049273</span></div></td>
+              <td><span class="role">Viewer<i data-i="cd" data-c="xs"></i></span></td><td class="muted">Priya Nair</td><td class="mono muted" style="font-size:12px">21 Nov 2026</td><td><span class="mo"><i data-i="more" data-c="sm"></i></span></td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="panel aud">
+        <div class="panel-h"><h2>Audit log</h2><span class="cnt">times in PST</span>
+          <div class="seg" style="margin-left:auto"><span class="on">All</span><span>Access</span><span>Catalog</span><span>Rules</span><span>Sources</span></div>
+          <span class="lnk" style="margin-left:12px">Full log <i data-i="cr" data-c="xs"></i></span></div>
+        <table>
+          <colgroup><col style="width:116px"><col style="width:196px"><col style="width:236px"><col></colgroup>
+          <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td class="tm">21 Nov 14:32</td><td><span class="who"><span class="avatar">JL</span>Jordan Lee</span></td><td>changed population rule</td><td class="tg">Systems Engineering &amp; Integration</td></tr>
+            <tr><td class="tm">21 Nov 11:08</td><td><span class="who"><span class="avatar a4">PN</span>Priya Nair</span></td><td>added Viewer</td><td class="tg">Alex Kim<span class="mono">1049273</span></td></tr>
+            <tr><td class="tm">21 Nov 10:41</td><td><span class="who"><span class="avatar a6">SP</span>Sam Patel <span class="via"><i data-i="spark" data-c="xs"></i>agent</span></span></td><td>fixed 3 titles · confirmed by Sam</td><td class="tg">Library catalog items</td></tr>
+            <tr><td class="tm">21 Nov 00:57</td><td><span class="who"><span class="sys"><i data-i="refresh" data-c="xs"></i></span>System</span></td><td class="bad">HR directory refresh failed</td><td class="tg">HR directory</td></tr>
+            <tr><td class="tm">20 Nov 16:12</td><td><span class="who"><span class="avatar a6">SP</span>Sam Patel</span></td><td>changed level L1 → L2</td><td class="tg">Interface Management<span class="mono">IM-201</span></td></tr>
+            <tr><td class="tm">8 Nov 10:15</td><td><span class="who"><span class="avatar a6">SP</span>Sam Patel</span></td><td>published import · 341 records</td><td class="tg">Library catalog</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div class="col">
+      <section class="panel rl">
+        <div class="panel-h"><h2>Roles</h2><span class="cnt">3</span></div>
+        <div class="li"><span class="ic"><i data-i="key" data-c="sm"></i></span><div class="grow"><div class="t">Owner <span class="mono">1</span></div>
+          <div class="c muted">Everything, including access and sources. There is always at least one.</div></div></div>
+        <div class="li"><span class="ic"><i data-i="book" data-c="sm"></i></span><div class="grow"><div class="t">Catalog editor <span class="mono">2</span></div>
+          <div class="c muted">Edits the catalog, templates and rules, and publishes imports. Can't change access.</div></div></div>
+        <div class="li"><span class="ic"><i data-i="eye" data-c="sm"></i></span><div class="grow"><div class="t">Viewer <span class="mono">2</span></div>
+          <div class="c muted">Sees everything, including this audit log. Changes nothing.</div></div></div>
+        <div class="ft"><i data-i="users" data-c="xs"></i><span>Removing required learning always needs a second approver, whatever the role.</span></div>
+      </section>
+
+      <section class="panel ag">
+        <div class="panel-h"><h2>Connected agents</h2><span class="ai-mark" style="margin-left:2px"><i data-i="spark" data-c="xs"></i></span><span class="lnk">Revoke all</span></div>
+        <div class="top"><span class="big">3</span><span class="lb">active sessions<br><span class="muted" style="font-size:12px">across the organization</span></span></div>
+        <div class="facts">
+          <div><i data-i="check" data-c="xs"></i>Act with the signed-in person's own permissions</div>
+          <div><i data-i="check" data-c="xs"></i>Every session expires within 1 hour</div>
+          <div><i data-i="check" data-c="xs"></i>Writes wait for that person's confirmation</div>
+        </div>
+        <div class="li"><div class="avatar a6">SP</div><div class="grow"><div class="t">Sam Patel</div><div class="c muted">1 confirmed write</div></div><span class="m">38 min left</span></div>
+        <div class="li"><div class="avatar">JL</div><div class="grow"><div class="t">Jordan Lee <span class="faint" style="font-weight:400">(you)</span></div><div class="c muted">Read only so far</div></div><span class="m">51 min left</span></div>
+        <div class="li"><div class="avatar a2">MG</div><div class="grow"><div class="t">Maria Gomez</div><div class="c muted">Viewer · read only</div></div><span class="m">12 min left</span></div>
+        <div class="pol"><div class="grow"><div class="t">Allow connected agents</div><div class="c">Owners can turn this off for everyone</div></div><span class="toggle on"></span></div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

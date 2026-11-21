@@ -1,0 +1,146 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Home</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.top{display:grid;grid-template-columns:1fr 390px;gap:18px}
+.hero{padding:20px 22px}
+.hero h2{font-size:26px;font-weight:600;letter-spacing:-.03em;line-height:1.18;margin:10px 0 12px;max-width:720px}
+.prog{display:flex;align-items:center;gap:20px}
+.ring{position:relative;width:92px;height:92px;flex:none}
+.ring .lbl{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring .lbl b{font-size:22px;font-weight:600;letter-spacing:-.03em;display:block;line-height:1}
+.ring .lbl small{font-size:10.5px;color:var(--muted)}
+.bar .o{background:var(--orange)}
+.next{margin-top:12px;border:1px solid var(--line);background:var(--surface-2);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.next .k{font:500 11px "Geist Mono",monospace;letter-spacing:.06em;color:var(--accent-2);margin-bottom:4px}
+[data-theme=light] .next .k{color:var(--accent)}
+.next .t{font-size:14.5px;font-weight:550}
+.then{font-size:12px;color:var(--muted);margin-top:8px}
+.then b{color:var(--text-2);font-weight:500}
+.inbox .grp{padding:12px 16px 4px}
+.inbox .li{border-top:none;align-items:flex-start;padding:8px 16px}
+.inbox .st{margin-top:2px}
+.bottom{display:grid;grid-template-columns:470px 1fr;gap:18px;margin-top:14px}
+.sk{display:grid;grid-template-columns:1fr 92px 108px;align-items:center;gap:12px;padding:9px 16px;border-top:1px solid var(--line)}
+.sk:first-of-type{border-top:none}
+.sk .n{font-weight:500}
+.sk .ev{font-size:12px;color:var(--muted);text-align:right}
+.meter{display:flex;gap:3px}
+.meter i{flex:1;height:6px;border-radius:3px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.meter i.on{background:var(--accent);box-shadow:none}
+.meter.nr{height:6px;border-radius:3px}
+.sk .focus{font:500 10.5px "Geist Mono",monospace;color:var(--accent-2);margin-left:6px}
+[data-theme=light] .sk .focus{color:var(--accent)}
+.sumline{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.sumline .big2{font-size:22px;font-weight:600;letter-spacing:-.03em;white-space:nowrap}
+.topics{display:flex;align-items:center;gap:6px;padding:8px 16px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.feed .li{align-items:flex-start;padding:9px 16px;gap:12px}
+.src{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;background:var(--surface-3);color:var(--text-2)}
+.src.l{color:var(--t-formal)}.src.c{color:var(--cyan)}.src.p{background:none}
+[data-theme=light] .src.c{color:var(--info)}
+.feed .meta{font-size:12px;color:var(--muted);margin-top:2px}
+.feed .why{margin-top:3px}
+.feed .act{display:flex;gap:6px;flex:none;margin-top:1px}
+.panel-h .tabs{border:none;margin-left:6px}
+.panel-h .tabs>span{height:46px}
+</style></head>
+<body data-ws="employee" data-active="today" data-role="manager">
+<main id="page">
+  <header class="ph" style="margin-bottom:14px">
+    <div><div class="mono faint" style="font-size:11.5px;letter-spacing:.08em;margin-bottom:8px">FRI 21 NOV</div>
+      <h1>Good afternoon, Jordan</h1>
+      <p class="sub">You have evidence in 3 of 6 areas toward Individual contributor 2. One thing needs you today.</p></div>
+    <div class="acts"><span class="btn"><i data-i="search" data-c="sm"></i> Find learning <span class="kbd">/</span></span></div>
+  </header>
+
+  <div class="top">
+    <section class="panel glow hero">
+      <div class="row"><span class="pill p-acc"><i data-i="target" data-c="xs"></i> Focus goal</span>
+        <span class="mono faint" style="font-size:12px">DUE 31 DEC · 40 DAYS LEFT</span>
+        <span class="sp btn sm ghost">Open goal <i data-i="arrow" data-c="xs"></i></span></div>
+      <h2>Become confident using SysML v2 to describe system architecture</h2>
+      <div class="prog">
+        <div class="ring">
+          <svg width="92" height="92" viewBox="0 0 92 92" style="transform:rotate(-90deg)">
+            <circle cx="46" cy="46" r="37" fill="none" stroke-width="7" style="stroke:var(--surface-3)"/>
+            <circle cx="46" cy="46" r="37" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--ok)" stroke-dasharray="87 233"/>
+            <circle cx="46" cy="46" r="37" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--warn)" stroke-dasharray="38 233" stroke-dashoffset="-98"/>
+            <circle cx="46" cy="46" r="37" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--orange)" stroke-dasharray="38 233" stroke-dashoffset="-145"/>
+          </svg>
+          <div class="lbl"><div><b>2/5</b><small>approved</small></div></div>
+        </div>
+        <div class="grow">
+          <div class="bar"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="o" style="width:20%"></span><span class="n" style="width:20%"></span></div>
+          <div class="legend"><span><i style="background:var(--ok)"></i>Approved 2</span><span><i style="background:var(--warn)"></i>In review 1</span><span><i style="background:var(--orange)"></i>Returned 1</span><span><i style="background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)"></i>Not started 1</span></div>
+        </div>
+      </div>
+      <div class="next">
+        <i data-i="st-not"></i>
+        <div class="grow"><div class="k">NEXT STEP · 3 OF 5</div>
+          <div class="t">SysML v2 language overview</div>
+          <div class="row" style="gap:8px;margin-top:6px"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">0.5 h</span><span class="tag">LMS</span></div></div>
+        <span class="btn">Done? Record it</span>
+        <span class="btn primary">Open in LMS <i data-i="ext" data-c="sm"></i></span>
+      </div>
+      <div class="then">Then: <b>Shadow an interface review board</b> · <b>Model-to-PLM requirements demo</b></div>
+    </section>
+
+    <section class="panel inbox">
+      <div class="panel-h"><h2>Inbox</h2><span class="cnt">2</span><span class="lnk">My learning <i data-i="cr" data-c="xs"></i></span></div>
+      <div class="grp">Needs you</div>
+      <div class="li"><i data-i="st-ret"></i><div class="grow"><div class="t">Clear Status &amp; Issue Communication</div>
+        <div class="c">Sam: “Add one example from the CDR prep.”</div></div><span class="btn sm">Revise</span></div>
+      <div class="grp">Waiting on others</div>
+      <div class="li"><i data-i="st-rev"></i><div class="grow"><div class="t">Functional Architecture <span class="mono faint" style="font-size:11.5px">FA-110</span></div>
+        <div class="c">Sam reviews by 25 Nov · <span style="color:var(--ok)">submitted on time</span></div></div><span class="m">3d</span></div>
+      <div class="grp">Required</div>
+      <div class="li"><i data-i="info" data-c="sm"></i><div class="grow"><div class="c" style="color:var(--text-2)">Nothing required here. Company-wide training is in the LMS.</div></div></div>
+    </section>
+  </div>
+
+  <div class="bottom">
+    <section class="panel">
+      <div class="panel-h"><h2>Your skills</h2><span class="cnt">toward Individual contributor 2</span><span class="lnk">Next level <i data-i="cr" data-c="xs"></i></span></div>
+      <div class="sumline"><span class="big2">3 of 6</span><span class="muted" style="font-size:12.5px">areas have approved evidence. Strength = approved learning + experience your manager confirmed.</span></div>
+      <div class="sk"><span class="n">Requirements &amp; traceability</span><span class="meter"><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="ev">3 pieces</span></div>
+      <div class="sk"><span class="n">Architecture modelling<span class="focus">FOCUS</span></span><span class="meter"><i class="on"></i><i></i><i></i></span><span class="ev">1 · 1 in review</span></div>
+      <div class="sk"><span class="n">Communication</span><span class="meter"><i class="on"></i><i class="on"></i><i></i></span><span class="ev">2 pieces</span></div>
+      <div class="sk"><span class="n">Integration &amp; interfaces</span><span class="meter"><i></i><i></i><i></i></span><span class="ev">none yet</span></div>
+      <div class="sk"><span class="n">V&amp;V planning</span><span class="meter"><i></i><i></i><i></i></span><span class="ev">none yet</span></div>
+      <div class="sk"><span class="n muted">Mentoring</span><span class="meter nr hatch"></span><span class="ev faint">not recorded</span></div>
+    </section>
+
+    <section class="panel feed">
+      <div class="panel-h"><h2>For your goal</h2>
+        <div class="tabs"><span class="on">All</span><span>Learning <span class="n">3</span></span><span>Community <span class="n">3</span></span><span>People <span class="n">2</span></span></div>
+        <span class="lnk">More <i data-i="cr" data-c="xs"></i></span></div>
+      <div class="topics">Your topics <span class="tag">SysML</span><span class="tag">MBSE</span><span class="tag">Interfaces</span><span class="sp" style="color:var(--accent-2)">Edit topics</span></div>
+      <div class="li"><div class="src l"><i data-i="book" data-c="sm"></i></div>
+        <div class="grow"><div class="t">Interface Management <span class="mono faint" style="font-size:11.5px">IM-201</span></div>
+          <div class="meta">Learning · Formal · 2 h · Academy</div>
+          <div class="why"><b>Why</b>closes your “Integration &amp; interfaces” gap</div></div>
+        <div class="act"><span class="btn sm"><i data-i="plus" data-c="xs"></i> Add to plan</span></div></div>
+      <div class="li"><div class="src c"><i data-i="file" data-c="sm"></i></div>
+        <div class="grow"><div class="t">SysML v2 migration lessons</div>
+          <div class="meta">Community · article on the intranet · 12 Nov · by Wei Chen</div>
+          <div class="why"><b>Why</b>matches your focus goal: “SysML v2”</div></div>
+        <div class="act"><span class="btn sm">Read <i data-i="ext" data-c="xs"></i></span><span class="btn sm ghost">Save</span></div></div>
+      <div class="li"><div class="src c"><i data-i="msg" data-c="sm"></i></div>
+        <div class="grow"><div class="t">“How do you keep SysML interface blocks in sync with the ICD?”</div>
+          <div class="meta">Community · question · 2 answers · asked 18 Nov</div>
+          <div class="why"><b>Why</b>matches your topics: SysML, Interfaces · answering counts as learning with people</div></div>
+        <div class="act"><span class="btn sm">Answer</span></div></div>
+      <div class="li"><div class="src p"><div class="avatar a2">PN</div></div>
+        <div class="grow"><div class="t">Priya Nair <span class="muted" style="font-weight:400;font-size:12.5px">· Lead systems engineer</span></div>
+          <div class="meta"><span style="color:var(--ok)">Manager-confirmed</span> · interface control, 3 approved items</div>
+          <div class="why"><b>Why</b>strong where you have a gap: “Integration &amp; interfaces”</div></div>
+        <div class="act"><span class="btn sm"><i data-i="msg" data-c="xs"></i> Ask</span></div></div>
+      <div class="li"><div class="src c"><i data-i="cal" data-c="sm"></i></div>
+        <div class="grow"><div class="t">Digital thread community call</div>
+          <div class="meta">Community · event · Wed 3 Dec, 15:00 · 45 min</div>
+          <div class="why"><b>Why</b>matches your topic: MBSE · counts as learning with people if you record it</div></div>
+        <div class="act"><span class="btn sm"><i data-i="plus" data-c="xs"></i> Add to plan</span></div></div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

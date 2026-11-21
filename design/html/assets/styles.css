@@ -1,0 +1,212 @@
+/* Skill Portal redesign v2: "Linear-grade" design system (mockup only)
+   Dark-first, hairline borders, monochrome + one accent, Geist type. */
+/* Geist + Geist Mono are bundled (SIL OFL 1.1, see fonts/OFL-LICENSE.txt), so mockups render offline
+   and Playwright baselines use exactly the same font files as next/font in the app. */
+@font-face{font-family:Geist;src:url("fonts/Geist-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:block}
+@font-face{font-family:"Geist Mono";src:url("fonts/GeistMono-Variable.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:block}
+
+:root{
+  --bg:#09090B; --panel:#0D0D10; --surface:#121215; --surface-2:#17171B; --surface-3:#1D1D22;
+  --hover:rgba(255,255,255,.045); --sel:rgba(255,255,255,.075);
+  --line:rgba(255,255,255,.075); --line-2:rgba(255,255,255,.13);
+  --text:#EDEDF0; --text-2:#C6C6CE; --muted:#8C8C97; --faint:#5F5F6A;
+  --accent:#7D8BFF; --accent-2:#A9B2FF; --accent-bg:rgba(125,139,255,.13); --accent-line:rgba(125,139,255,.38);
+  --cyan:#5CE1E6;
+  --ok:#3DD68C; --ok-bg:rgba(61,214,140,.12);
+  --warn:#F2B544; --warn-bg:rgba(242,181,68,.12);
+  --orange:#FF8B4D; --orange-bg:rgba(255,139,77,.12);
+  --danger:#FF5D6E; --danger-bg:rgba(255,93,110,.12);
+  --info:#5CC4FF; --info-bg:rgba(92,196,255,.12);
+  --t-formal:#7D8BFF; --t-rel:#3DD6C3; --t-exp:#FF9F5A;
+  --btn-primary-bg:#EDEDF0; --btn-primary-fg:#09090B; --hero-wash:rgba(125,139,255,.07);
+  --glow:0 0 0 1px rgba(125,139,255,.10),0 24px 80px -24px rgba(125,139,255,.38);
+  --overlay:0 24px 80px rgba(0,0,0,.6),0 0 0 1px var(--line-2);
+  color-scheme:dark;
+}
+[data-theme=light]{
+  --bg:#FAFAFA; --panel:#F4F4F5; --surface:#FFFFFF; --surface-2:#F7F7F8; --surface-3:#EFEFF1;
+  --hover:rgba(0,0,0,.035); --sel:rgba(0,0,0,.06);
+  --line:rgba(9,9,11,.08); --line-2:rgba(9,9,11,.14);
+  --text:#09090B; --text-2:#3F3F46; --muted:#71717A; --faint:#A1A1AA;
+  --accent:#4B5BEF; --accent-2:#3644D6; --accent-bg:rgba(75,91,239,.09); --accent-line:rgba(75,91,239,.35);
+  --cyan:#0BA5B5;
+  --ok:#15A05A; --ok-bg:rgba(21,160,90,.10);
+  /* in review = yellow-amber, returned = red-orange: kept far apart so bars and legends stay readable */
+  --warn:#CA8A04; --warn-bg:rgba(202,138,4,.11);
+  --orange:#EA580C; --orange-bg:rgba(234,88,12,.10); --danger:#E11D48; --danger-bg:rgba(225,29,72,.09);
+  --hero-wash:rgba(75,91,239,.055);
+  --info:#0284C7; --info-bg:rgba(2,132,199,.09);
+  --t-formal:#4B5BEF; --t-rel:#0E9F8E; --t-exp:#D9621F;
+  --btn-primary-bg:#09090B; --btn-primary-fg:#FFFFFF;
+  --glow:0 0 0 1px rgba(75,91,239,.08),0 24px 70px -28px rgba(75,91,239,.35);
+  --overlay:0 24px 80px rgba(9,9,11,.18),0 0 0 1px var(--line-2);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Geist,"Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;font-size:13.5px;line-height:1.45;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11"}
+.mono,.kbd,.num{font-family:"Geist Mono",ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+.i{width:16px;height:16px;flex:none;display:inline-block;vertical-align:middle}
+.i.xs{width:12px;height:12px}.i.sm{width:14px;height:14px}.i.lg{width:20px;height:20px}
+.muted{color:var(--muted)}.faint{color:var(--faint)}.t2{color:var(--text-2)}
+.row{display:flex;align-items:center;gap:10px}.stack{display:flex;flex-direction:column}
+.grow{flex:1;min-width:0}.ellipsis{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sp{margin-left:auto}
+
+/* ---------------- shell ---------------- */
+/* Top navigation bar (logo + sections left; search, bell and profile avatar right). */
+.app{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.topbar{height:56px;flex:none;display:flex;align-items:center;gap:6px;padding:0 24px;background:var(--panel);border-bottom:1px solid var(--line);position:relative;z-index:2}
+.brand{display:flex;align-items:center;gap:9px;margin-right:20px;flex:none}
+.brand .mark{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--cyan));flex:none}
+.brand .mark .i{width:16px;height:16px}
+.brand b{font-weight:600;font-size:14.5px;letter-spacing:-.01em;white-space:nowrap}
+.tnav{display:flex;align-items:center;gap:2px}
+.tnav a,.subnav a{display:flex;align-items:center;gap:7px;white-space:nowrap;text-decoration:none;font-weight:500;font-size:13.5px;color:var(--text-2)}
+.tnav a{height:32px;padding:0 12px;border-radius:8px}
+.tnav a .i{width:12px;height:12px;color:var(--muted)}
+.tnav a.active{background:var(--sel);color:var(--text)}
+.cnt{font:500 11px "Geist Mono",monospace;color:var(--muted)}
+.tnav .cnt{height:18px;min-width:18px;padding:0 5px;border-radius:999px;display:inline-grid;place-items:center;background:var(--accent-bg);color:var(--accent-2)}
+[data-theme=light] .tnav .cnt{color:var(--accent)}
+.tnav .cnt.alert{background:var(--danger-bg);color:var(--danger)}
+.tr{margin-left:auto;display:flex;align-items:center;gap:10px}
+.cmdk-btn{display:flex;align-items:center;gap:8px;width:250px;height:32px;padding:0 9px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--muted);font-size:13px}
+.cmdk-btn .kbd{margin-left:auto}
+.tb-icon{position:relative;width:32px;height:32px;display:grid;place-items:center;border-radius:8px;color:var(--text-2)}
+.tb-icon .dot{position:absolute;top:6px;right:7px;width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 2px var(--panel)}
+.me-btn{display:flex;align-items:center;gap:4px;padding:2px 4px 2px 2px;border-radius:999px;color:var(--muted)}
+.me-btn .avatar{width:30px;height:30px;font-size:11px}
+.me-btn.active .avatar{box-shadow:0 0 0 2px var(--panel),0 0 0 4px var(--accent)}
+.subnav{height:42px;flex:none;display:flex;align-items:stretch;gap:4px;padding:0 24px;background:var(--panel);border-bottom:1px solid var(--line)}
+.subnav a{padding:0 10px;margin-bottom:-1px}
+.subnav a.active{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.subnav .cnt{margin-left:2px}
+.ws-tag{font:500 10.5px "Geist Mono",monospace;padding:2px 6px;border-radius:5px;background:var(--accent-bg);color:var(--accent-2);margin-left:2px}
+.main{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--bg)}
+.main::before{content:"";position:absolute;inset:-200px 0 auto 0;height:520px;background:radial-gradient(60% 60% at 30% 0%,rgba(125,139,255,.09),transparent 70%);pointer-events:none}
+[data-theme=light] .main::before{background:radial-gradient(60% 60% at 30% 0%,rgba(75,91,239,.06),transparent 70%)}
+/* content keeps the same working width as before (about 1368px) and centres on wide screens */
+.content{position:relative;height:100%;overflow:hidden;max-width:1440px;margin:0 auto;padding:24px 36px 26px}
+
+/* ---------------- page header ---------------- */
+.crumbs{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.crumbs .sl{color:var(--faint)}
+.ph{display:flex;align-items:flex-end;gap:16px;margin-bottom:22px}
+h1{font-size:26px;line-height:1.15;font-weight:600;letter-spacing:-.025em}
+.sub{color:var(--muted);margin-top:6px;font-size:14px}
+.ph .acts{margin-left:auto;display:flex;gap:8px;align-items:center}
+
+/* ---------------- controls ---------------- */
+.btn{display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 12px;border-radius:8px;font:500 13px/1 Geist,"Segoe UI",sans-serif;border:1px solid var(--line-2);background:var(--surface-2);color:var(--text);white-space:nowrap}
+.btn.sm{height:28px;padding:0 10px;font-size:12.5px;border-radius:7px}
+.btn.lg{height:38px;padding:0 16px;font-size:13.5px}
+.btn.primary{background:var(--btn-primary-bg);color:var(--btn-primary-fg);border-color:transparent;font-weight:600}
+.btn.accent{background:var(--accent);color:#fff;border-color:transparent;font-weight:600}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--text-2)}
+.btn.ok{background:var(--ok);border-color:transparent;color:#05130B;font-weight:600}
+[data-theme=light] .btn.ok{color:#fff}
+.btn .kbd{margin-left:4px}
+.kbd{display:inline-flex;align-items:center;height:19px;padding:0 5px;border-radius:5px;border:1px solid var(--line-2);background:var(--surface-3);color:var(--muted);font-size:10.5px;font-weight:500}
+.input{height:36px;display:flex;align-items:center;gap:9px;padding:0 11px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);font-size:13.5px}
+.textarea{border:1px solid var(--line-2);border-radius:9px;background:var(--surface);padding:11px 13px;font-size:13.5px;line-height:1.55;color:var(--text)}
+.label{font-size:12.5px;font-weight:550;color:var(--text-2);margin-bottom:7px;display:block}
+.help{font-size:12px;color:var(--muted);margin-top:6px}
+.check{width:15px;height:15px;border-radius:4px;border:1.5px solid var(--line-2);display:inline-grid;place-items:center;flex:none}
+.check.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.toggle{width:28px;height:16px;border-radius:999px;background:var(--surface-3);border:1px solid var(--line-2);position:relative;flex:none}
+.toggle::after{content:"";position:absolute;top:1px;left:1px;width:12px;height:12px;border-radius:50%;background:var(--muted)}
+.toggle.on{background:var(--accent);border-color:var(--accent)}.toggle.on::after{left:13px;background:#fff}
+.seg{display:inline-flex;padding:2px;border-radius:9px;background:var(--surface-2);border:1px solid var(--line)}
+.seg span{height:26px;padding:0 11px;border-radius:7px;display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;color:var(--muted)}
+.seg span.on{background:var(--surface-3);color:var(--text);box-shadow:0 0 0 1px var(--line-2)}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs>span{height:34px;padding:0 10px;display:flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:-1px}
+.tabs>span.on{color:var(--text);box-shadow:inset 0 -1.5px 0 var(--text)}
+.tabs .n{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.tabs span.on .n{color:var(--text-2)}
+
+/* ---------------- surfaces ---------------- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px}
+.panel-h{display:flex;align-items:center;gap:9px;height:46px;padding:0 16px;border-bottom:1px solid var(--line)}
+.panel-h h2{font-size:13.5px;font-weight:600;letter-spacing:-.005em}
+.panel-h .cnt{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.panel-h .lnk{margin-left:auto;font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:4px}
+[data-theme=light] .panel{box-shadow:0 1px 2px rgba(9,9,11,.04),0 2px 6px -2px rgba(9,9,11,.04)}
+[data-theme=light] .topbar,[data-theme=light] .subnav{background:#FFFFFF}
+[data-theme=light] .panel.glow{box-shadow:var(--glow)}
+.glow{position:relative;border:1px solid transparent;background:
+  linear-gradient(160deg,var(--hero-wash),transparent 45%) padding-box,
+  linear-gradient(var(--surface),var(--surface)) padding-box,
+  linear-gradient(135deg,var(--accent-line),var(--line) 35%,var(--line) 65%,rgba(92,225,230,.35)) border-box;box-shadow:var(--glow)}
+.overlay{background:var(--surface);border-radius:14px;box-shadow:var(--overlay)}
+
+/* ---------------- list rows (Linear-style) ---------------- */
+.li{display:flex;align-items:center;gap:11px;min-height:44px;padding:8px 16px;border-top:1px solid var(--line)}
+.li:first-child{border-top:none}
+.li.hover{background:var(--hover)}
+.li .t{font-weight:500;color:var(--text)}
+.li .c{color:var(--muted);font-size:12.5px}
+.li .m{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.st{width:16px;height:16px;flex:none}
+.st-not{color:var(--faint)}.st-prog{color:var(--accent)}.st-rev{color:var(--warn)}.st-ok{color:var(--ok)}.st-ret{color:var(--orange)}.st-lock{color:var(--faint)}.st-bad{color:var(--danger)}
+
+/* ---------------- tags & labels ---------------- */
+.tag{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:6px;border:1px solid var(--line-2);font-size:12px;font-weight:500;color:var(--text-2);white-space:nowrap;background:transparent}
+.tag .d{width:6px;height:6px;border-radius:50%}
+.d.formal{background:var(--t-formal)}.d.rel{background:var(--t-rel)}.d.exp{background:var(--t-exp)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:550;white-space:nowrap}
+.p-ok{background:var(--ok-bg);color:var(--ok)}.p-rev{background:var(--warn-bg);color:var(--warn)}.p-ret{background:var(--orange-bg);color:var(--orange)}
+.p-bad{background:var(--danger-bg);color:var(--danger)}.p-acc{background:var(--accent-bg);color:var(--accent-2)}.p-info{background:var(--info-bg);color:var(--info)}
+.p-neu{background:var(--surface-3);color:var(--text-2)}
+[data-theme=light] .p-acc{color:var(--accent)}
+.why{font-size:12.5px;color:var(--muted)}
+.why b{color:var(--accent-2);font-weight:550;margin-right:4px}
+[data-theme=light] .why b{color:var(--accent)}
+.ai-mark{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:550;color:var(--accent-2)}
+[data-theme=light] .ai-mark{color:var(--accent)}
+
+/* ---------------- data ---------------- */
+.big{font-size:40px;font-weight:600;letter-spacing:-.035em;line-height:1}
+.bar{display:flex;gap:3px;height:6px}
+.bar span{border-radius:3px;height:100%}
+.bar .a{background:var(--ok)}.bar .r{background:var(--warn)}.bar .p{background:var(--accent)}.bar .n{background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin-top:9px}
+.legend i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:6px}
+table{width:100%;border-collapse:collapse}
+th{font-size:12px;font-weight:500;color:var(--muted);text-align:left;padding:0 14px;height:36px;border-bottom:1px solid var(--line)}
+td{padding:0 14px;height:48px;border-bottom:1px solid var(--line);font-size:13px}
+tr:last-child td{border-bottom:none}
+.nr{color:var(--faint)}
+.avatar{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:10.5px;font-weight:600;color:#fff;flex:none;background:linear-gradient(135deg,#5562E8,#8E6CF0)}
+.avatar.lg{width:34px;height:34px;font-size:12px}
+.a2{background:linear-gradient(135deg,#0F9F78,#3DD68C)}.a3{background:linear-gradient(135deg,#D9621F,#F2A65A)}
+.a4{background:linear-gradient(135deg,#9B3BD1,#D17CF0)}.a5{background:linear-gradient(135deg,#0B7FB5,#5CC4FF)}.a6{background:linear-gradient(135deg,#B8324A,#FF7A8C)}
+
+/* ---------------- banners ---------------- */
+.banner{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+.banner .bar-l{width:3px;align-self:stretch;border-radius:3px}
+.banner.danger{background:linear-gradient(90deg,var(--danger-bg),transparent 60%),var(--surface)}
+.banner.warn{background:linear-gradient(90deg,var(--warn-bg),transparent 60%),var(--surface)}
+.banner.info{background:linear-gradient(90deg,var(--accent-bg),transparent 60%),var(--surface)}
+.banner .acts{margin-left:auto;display:flex;gap:8px}
+
+/* ---------------- shared helpers promoted from screens ---------------- */
+.btn.primary .kbd{background:transparent;border-color:rgba(127,127,127,.45);color:inherit}
+.btn.ghost.danger,.btn.danger{color:var(--danger)}
+.pill.sm{height:20px;font-size:11.5px;padding:0 7px}
+.d{width:6px;height:6px;border-radius:50%;flex:none;display:inline-block}
+.grp{font:500 11px "Geist Mono",monospace;letter-spacing:.06em;color:var(--faint);text-transform:uppercase}
+.cite{display:inline-grid;place-items:center;min-width:17px;height:17px;padding:0 4px;border-radius:5px;background:var(--accent-bg);color:var(--accent-2);font:600 10.5px "Geist Mono",monospace;vertical-align:1px}
+[data-theme=light] .cite{color:var(--accent)}
+.avatar.xs{width:20px;height:20px;font-size:9px}.avatar.sm{width:24px;height:24px;font-size:10px}
+.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);display:inline-grid;place-items:center;flex:none}
+.radio.on{border-color:var(--accent)}.radio.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.check.dis{background:var(--surface-3);border-color:var(--line-2);opacity:.6}
+tr.sel td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+tr.sel td:first-child{box-shadow:inset 2px 0 0 var(--accent)}
+.c-warn{color:var(--warn)}.c-orange{color:var(--orange)}.c-ok{color:var(--ok)}.c-danger{color:var(--danger)}.c-accent{color:var(--accent)}.c-muted{color:var(--muted)}
+/* "Not recorded" is never the same as zero: hatch it */
+.hatch{background:repeating-linear-gradient(135deg,var(--line-2) 0 1.5px,transparent 1.5px 6px)}
+/* private content (manager notes): dashed + hatched, visibly different from shared content */
+.priv{border:1px dashed var(--line-2);background:repeating-linear-gradient(135deg,var(--hover) 0 1.5px,transparent 1.5px 7px),var(--surface)}

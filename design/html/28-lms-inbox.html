@@ -1,0 +1,123 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Completed in the LMS</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.lay{display:grid;grid-template-columns:minmax(0,1fr) 352px;gap:18px;margin-top:16px}
+.lms{display:flex;flex-direction:column}.lms .li{flex:1;min-height:58px;gap:13px;padding:9px 16px}
+.lms .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;background:var(--surface-3);color:var(--text-2);flex:none}
+.lms .meta{display:flex;align-items:center;gap:8px;margin-top:3px;font-size:12.5px;color:var(--muted)}
+.lms .meta .mono{font-size:11.5px}
+.lms .meta .dot{width:3px;height:3px;border-radius:50%;background:var(--faint)}
+.cert{display:inline-flex;align-items:center;gap:5px;color:var(--text-2)}
+.cert.nr{color:var(--faint);font-style:italic}
+.lms .when{width:74px;text-align:right;font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.ex{border-top:1px solid var(--line);background:var(--surface-2);position:relative}
+.ex::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent)}
+.ex .hd{display:flex;align-items:center;gap:13px;padding:12px 16px 10px}
+.ex .t{font-weight:550;font-size:14px}
+.ex .fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:4px 16px 0 59px}
+.ex .textarea{min-height:92px;font-size:13px;line-height:1.55;color:var(--text);background:var(--surface)}
+.ex .textarea.focus{border-color:var(--accent-line);box-shadow:0 0 0 3px var(--accent-bg)}
+.ex .textarea .ph{color:var(--faint)}
+.ex .caret{display:inline-block;width:1.5px;height:15px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.ex .cnt{font:500 11px "Geist Mono",monospace;color:var(--faint);text-align:right;margin-top:5px}
+.hint{margin:12px 16px 0 59px;display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:9px;border:1px dashed var(--accent-line);background:var(--accent-bg);font-size:12.5px;color:var(--text-2);line-height:1.5}
+.hint .ai-mark{flex:none;margin-top:1px}
+.ex .ft{display:flex;align-items:center;gap:8px;padding:12px 16px 14px 59px}
+.ex .ft .note{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.how{padding:4px 0 6px}
+.step{display:flex;gap:12px;padding:10px 16px;align-items:flex-start}
+.step .n{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font:600 11px "Geist Mono",monospace;background:var(--surface-3);color:var(--text-2);flex:none;margin-top:-1px}
+.step b{font-weight:550;display:block;font-size:13px}
+.step span{font-size:12.5px;color:var(--muted)}
+.pol{padding:14px 16px 16px}
+.pol .row{align-items:flex-start;gap:11px}
+.pol .toggle{margin-top:2px}
+.pol .q{font-size:13px;font-weight:550;line-height:1.45}
+.pol p{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:10px}
+.pol p b{color:var(--text-2);font-weight:550}
+.recent .li{gap:11px;padding:10px 16px;align-items:flex-start}.recent .li .st{margin-top:2px}
+.sync{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.sync .d{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px var(--ok-bg)}
+</style></head>
+<body data-ws="employee" data-active="find" data-role="manager">
+<main id="page">
+  <div class="crumbs"><span>Learning</span><span class="sl">/</span><span>My learning</span><span class="sl">/</span><span>From the LMS</span></div>
+  <header class="ph" style="margin-bottom:16px">
+    <div><div class="row" style="gap:12px"><h1>Completed in the LMS</h1><span class="pill p-acc">Proposal</span></div>
+      <p class="sub">Courses you finished in the LMS, ready for your record. Add two short answers and send them to Sam.</p></div>
+    <div class="acts"><span class="sync"><span class="d"></span>Synced today <span class="mono">06:00</span></span><span class="btn"><i data-i="refresh" data-c="sm"></i> Sync now</span></div>
+  </header>
+
+  <div class="banner info"><span class="bar-l" style="background:var(--accent)"></span><i data-i="download" data-c="sm"></i>
+    <div style="font-size:13px"><b style="font-weight:600">No more retyping. Completions arrive here within a day.</b>
+      <span class="muted">Title, date, hours and certificate come straight from the LMS. You only add what you learned.</span></div>
+    <span class="acts"><span class="btn sm ghost">How it works</span></span></div>
+
+  <div class="lay">
+    <section class="panel lms">
+      <div class="panel-h"><h2>Ready to submit</h2><span class="cnt">5</span><span class="lnk">Newest first <i data-i="cd" data-c="xs"></i></span></div>
+
+      <div class="ex">
+        <div class="hd"><span class="ic"><i data-i="cap" data-c="sm"></i></span>
+          <div class="grow"><div class="row" style="gap:8px"><span class="t">Configuration Management Basics</span><span class="mono faint" style="font-size:11.5px">CM-140</span></div>
+            <div class="row meta" style="gap:8px;margin-top:3px;font-size:12.5px;color:var(--muted)"><span class="tag" style="height:20px"><span class="d formal"></span>Formal</span><span class="mono">1 h</span><span class="dot"></span><span>Completed <span class="mono">20 Nov</span></span><span class="dot"></span><span class="cert"><i data-i="file" data-c="xs"></i>Certificate.pdf</span></div></div>
+          <span class="btn sm ghost"><i data-i="x" data-c="xs"></i> Not for my record</span></div>
+        <div class="fields">
+          <div><label class="label">What did you learn?</label>
+            <div class="textarea focus">Baselines, change requests and how a configuration audit checks that the built item matches its documentation.<span class="caret"></span></div>
+            <div class="cnt">112 / 600</div></div>
+          <div><label class="label">How will you apply it?</label>
+            <div class="textarea">I'll put the bracket test fixture drawings under a baseline before the review.</div>
+            <div class="cnt">79 / 600</div></div>
+        </div>
+        <div class="hint"><span class="ai-mark"><i data-i="spark" data-c="xs"></i> Suggest improvements</span>
+          <span class="grow">Optional. Tips appear here; nothing is written for you. <span class="t2">Tip: name the review date so Sam can see when you'll apply it.</span></span>
+          <span class="btn sm ghost" style="height:24px">Dismiss</span></div>
+        <div class="ft"><span class="note"><i data-i="lock" data-c="xs"></i>Goes to Sam for review. Only Approved counts.</span>
+          <span class="sp btn sm ghost">Cancel</span>
+          <span class="btn primary"><i data-i="send" data-c="sm"></i> Submit for review <span class="kbd" style="background:transparent;border-color:rgba(127,127,127,.4)">Ctrl Enter</span></span></div>
+      </div>
+
+      <div class="li"><span class="ic"><i data-i="cap" data-c="sm"></i></span>
+        <div class="grow"><div class="t">Systems Engineering Fundamentals <span class="mono faint" style="font-size:11.5px">SE-101</span></div>
+          <div class="meta"><span class="mono">2 h</span><span class="dot"></span><span class="cert"><i data-i="file" data-c="xs"></i>Certificate.pdf</span></div></div>
+        <span class="when">17 Nov</span><span class="btn sm"><i data-i="plus" data-c="xs"></i> Add reflection &amp; submit</span></div>
+      <div class="li"><span class="ic"><i data-i="cap" data-c="sm"></i></span>
+        <div class="grow"><div class="t">Trade Studies in Practice <span class="mono faint" style="font-size:11.5px">SE-214</span></div>
+          <div class="meta"><span class="mono">1.5 h</span><span class="dot"></span><span class="cert"><i data-i="file" data-c="xs"></i>Certificate.pdf</span></div></div>
+        <span class="when">12 Nov</span><span class="btn sm"><i data-i="plus" data-c="xs"></i> Add reflection &amp; submit</span></div>
+      <div class="li"><span class="ic"><i data-i="cap" data-c="sm"></i></span>
+        <div class="grow"><div class="t">Writing Verifiable Requirements <span class="mono faint" style="font-size:11.5px">RQ-118</span></div>
+          <div class="meta"><span class="mono">1 h</span><span class="dot"></span><span class="cert"><i data-i="file" data-c="xs"></i>Certificate.pdf</span></div></div>
+        <span class="when">6 Nov</span><span class="btn sm"><i data-i="plus" data-c="xs"></i> Add reflection &amp; submit</span></div>
+      <div class="li"><span class="ic"><i data-i="cap" data-c="sm"></i></span>
+        <div class="grow"><div class="t">Model-Based Design Reviews <span class="mono faint" style="font-size:11.5px">MB-120</span></div>
+          <div class="meta"><span class="mono">0.75 h</span><span class="dot"></span><span class="cert nr">Certificate not recorded</span></div></div>
+        <span class="when">30 Oct</span><span class="btn sm"><i data-i="plus" data-c="xs"></i> Add reflection &amp; submit</span></div>
+    </section>
+
+    <aside class="stack" style="gap:16px">
+      <section class="panel how">
+        <div class="panel-h" style="margin-bottom:4px"><h2>How it works</h2></div>
+        <div class="step"><span class="n">1</span><div><b>Finish a course in the LMS</b><span>Nothing to do in Skill Portal yet.</span></div></div>
+        <div class="step"><span class="n">2</span><div><b>It appears here within a day</b><span>Nightly sync at <span class="mono">06:00</span>, with date, hours and certificate.</span></div></div>
+        <div class="step"><span class="n">3</span><div><b>Add two short answers</b><span>What you learned and how you'll use it.</span></div></div>
+        <div class="step"><span class="n">4</span><div><b>Sam reviews it</b><span>Only Approved counts toward goals and your record.</span></div></div>
+      </section>
+
+      <section class="panel recent">
+        <div class="panel-h"><h2>Recently submitted</h2><span class="cnt">1</span><span class="lnk">All in Record <i data-i="cr" data-c="xs"></i></span></div>
+        <div class="li"><i data-i="st-rev"></i><div class="grow"><div class="t">Functional Architecture <span class="mono faint" style="font-size:11.5px">FA-110</span></div>
+          <div class="c">From the LMS · Sam reviews by 25 Nov</div></div><span class="m">3d</span></div>
+      </section>
+
+      <section class="panel pol">
+        <div class="row"><span class="toggle"></span><span class="q">Formal LMS completions count as verified evidence (no manager review)</span></div>
+        <div style="margin:12px 0 0 39px"><span class="pill p-rev"><i data-i="flag" data-c="xs"></i> Policy decision: needs HR/quality sign-off</span></div>
+        <p>Off today, so every completion still goes to Sam. If signed off, formal LMS completions would be <b>approved on import</b>; the two answers would still be required. Experiential items always need review.</p>
+      </section>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

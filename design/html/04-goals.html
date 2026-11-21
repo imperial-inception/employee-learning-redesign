@@ -1,0 +1,211 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Plan</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.lay{display:grid;grid-template-columns:300px 1fr;gap:20px;height:calc(100% - 92px)}
+.col{display:flex;flex-direction:column;gap:16px;min-height:0}
+.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.acc{color:var(--accent)}
+[data-theme=light] .acc{color:var(--accent)}
+.bar .o,.sw-o{background:repeating-linear-gradient(-45deg,var(--orange) 0 2.5px,transparent 2.5px 4.5px);box-shadow:inset 0 0 0 1px var(--orange)}
+.legend span{white-space:nowrap;display:inline-flex;align-items:center}
+
+/* left: goals + pathways */
+.nl .li{align-items:flex-start;padding:11px 14px;gap:10px;min-height:0}
+.nl .li.sel{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.nl .li .i,.nl .li .st{margin-top:1px}
+.nl .t{line-height:1.38}
+.nl .c{margin-top:3px}
+.mini{display:flex;align-items:center;gap:9px;margin-top:8px}
+.mini .bar{flex:1;height:4px;gap:2px}
+.mini .m{font-size:11.5px}
+.nl .add{align-items:center;color:var(--muted);font-weight:500;min-height:40px}
+.count{font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+
+/* focus goal */
+.goal{display:grid;grid-template-columns:minmax(0,1fr) 372px}
+.goal .gm{padding:18px 22px 18px}
+.goal h2{font-size:21px;font-weight:600;letter-spacing:-.022em;line-height:1.28;margin:12px 0 7px;max-width:540px;text-wrap:balance}
+.goal .whyl{font-size:13px;color:var(--muted);max-width:560px;text-wrap:pretty}
+.goal .whyl b{color:var(--text-2);font-weight:550}
+.gfacts{display:grid;grid-template-columns:auto 1fr;gap:0;margin-top:16px;border-top:1px solid var(--line);padding-top:14px}
+.gfacts .f{padding-right:22px;margin-right:22px;border-right:1px solid var(--line)}
+.gfacts .f:last-child{border-right:none;margin-right:0;padding-right:0}
+.gfacts .v{font-size:20px;font-weight:600;letter-spacing:-.03em;line-height:1;margin-top:6px}
+.gfacts .v small{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:0;margin-left:3px}
+.gfacts .bar{margin-top:9px}
+.gfacts .legend{margin-top:8px;gap:12px}
+.goal .gl{border-left:1px solid var(--line);display:flex;flex-direction:column}
+.goal .gl .hd{display:flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:600}
+.goal .gl .r{display:flex;align-items:center;gap:10px;height:35px;padding:0 16px;font-size:13px}
+.goal .gl .r .st{width:15px;height:15px}
+.goal .gl .r .s{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.goal .gl .ft{margin-top:auto;padding:9px 16px 11px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+
+/* pathway timeline */
+.pw{display:flex;flex-direction:column;min-height:0}
+.pw-h{display:flex;align-items:center;gap:12px;padding:14px 18px 12px}
+.pw-ic{width:32px;height:32px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.pw-h h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.pw-h .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.pw-prog{width:150px}
+.pw-prog .bar{height:4px;gap:2px;margin-top:6px}
+.rev{margin:0 18px 6px;padding:9px 12px}
+.rev .ic{color:var(--accent-2)}
+[data-theme=light] .rev .ic{color:var(--accent)}
+.tl{padding:10px 18px 4px}
+.ms{position:relative;padding-left:34px;padding-bottom:16px}
+.ms:last-child{padding-bottom:4px}
+.ms::before{content:"";position:absolute;left:9.5px;top:27px;bottom:3px;width:0;border-left:1.5px solid var(--line-2)}
+.ms.done::before{border-left-color:var(--ok);opacity:.55}
+.ms.prog::before{border-left-style:dashed}
+.ms:last-child::before{display:none}
+.ms .node{position:absolute;left:0;top:5px;width:20px;height:20px;display:grid;place-items:center}
+.ms .node .st{width:20px;height:20px}
+.ms-h{display:flex;align-items:center;gap:10px;height:30px}
+.ms-h .mk{font:500 11px "Geist Mono",monospace;letter-spacing:.06em;color:var(--faint)}
+.ms-h b{font-size:14px;font-weight:600;letter-spacing:-.005em}
+.ms-h .c{font-size:12.5px;color:var(--muted)}
+.ms-h .sp{font:500 12px "Geist Mono",monospace;color:var(--faint)}
+.ms.lock .ms-h b{color:var(--text-2)}
+.box{border:1px solid var(--line);border-radius:10px;margin-top:6px;background:var(--surface)}
+.ar{display:grid;grid-template-columns:16px minmax(0,1fr) 112px 46px 300px;align-items:center;column-gap:14px;min-height:50px;padding:8px 14px;border-top:1px solid var(--line)}
+.ar:first-child{border-top:none}
+.ar .t{font-weight:500}
+.ar .code{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:6px}
+.ar .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.ar .du{font:500 12px "Geist Mono",monospace;color:var(--muted);text-align:right}
+.ar .st-col{display:flex;align-items:center;justify-content:flex-end;gap:8px;font-size:12.5px;color:var(--muted);text-align:right}
+.ar .st-col .ok{color:var(--ok);font-weight:550}
+.ar .st-col .rv{color:var(--warn);font-weight:550}
+.ar.next{background:var(--hover)}
+.ar.locked .t{color:var(--muted)}
+.ar.locked .tag{opacity:.8}
+.ar .btn .kbd{height:17px;font-size:10px}
+</style></head>
+<body data-ws="employee" data-active="plan" data-role="manager">
+<main id="page">
+  <header class="ph" style="margin-bottom:20px">
+    <div><h1>Goals &amp; pathways</h1>
+      <p class="sub">Your goals and the pathways you've adopted. Only learning your manager approves counts toward them.</p></div>
+    <div class="acts"><span class="btn"><i data-i="route" data-c="sm"></i> Browse pathways</span>
+      <span class="btn"><i data-i="arrow" data-c="sm"></i> Next level</span></div>
+  </header>
+
+  <div class="lay">
+    <!-- left column -->
+    <div class="col">
+      <section class="panel nl">
+        <div class="panel-h"><h2>Goals</h2><span class="cnt">2</span></div>
+        <div class="li sel"><i data-i="target" data-c="sm acc"></i>
+          <div class="grow"><div class="t">Become confident using SysML v2 to describe system architecture</div>
+            <div class="mini"><div class="bar"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="o" style="width:20%"></span><span class="n" style="width:20%"></span></div><span class="m">2/5</span></div>
+            <div class="c">Focus · due 31 Dec</div></div></div>
+        <div class="li"><i data-i="target" data-c="sm faint"></i>
+          <div class="grow"><div class="t">Lead an interface review</div>
+            <div class="c">Draft · no due date · nothing linked yet</div></div></div>
+        <div class="li add"><i data-i="plus" data-c="sm"></i><span>New goal</span><span class="kbd sp">G</span></div>
+      </section>
+
+      <section class="panel nl">
+        <div class="panel-h"><h2>Pathways</h2><span class="cnt">3</span><span class="lnk">Browse <i data-i="cr" data-c="xs"></i></span></div>
+        <div class="li sel"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">MBSE foundations &amp; digital-thread integration</div>
+            <div class="mini"><div class="bar"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="n" style="width:40%"></span></div><span class="m">2/5</span></div></div></div>
+        <div class="li"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">Systems integration &amp; verification</div>
+            <div class="mini"><div class="bar"><span class="a" style="width:25%"></span><span class="p" style="width:25%"></span><span class="n" style="width:50%"></span></div><span class="m">1/4</span></div></div></div>
+        <div class="li"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">Systems engineering development</div>
+            <div class="mini"><div class="bar"><span class="n" style="width:100%"></span></div><span class="m">0/5</span></div></div></div>
+      </section>
+    </div>
+
+    <!-- main column -->
+    <div class="col">
+      <section class="panel glow goal">
+        <div class="gm">
+          <div class="row" style="gap:8px"><span class="pill p-acc"><i data-i="target" data-c="xs"></i> Focus goal</span>
+            <span class="tag">Short-term</span><span class="faint" style="font-size:12px">set from due date</span>
+            <span class="sp row" style="gap:6px"><span class="btn sm">Edit</span><span class="btn sm ghost">Unfocus</span></span></div>
+          <h2>Become confident using SysML v2 to describe system architecture</h2>
+          <p class="whyl"><b>Why:</b> the actuation architecture moves to SysML v2 models in Q1, and I'll own the interface views.</p>
+          <div class="gfacts">
+            <div class="f"><div class="k">DUE</div><div class="v">31 Dec<small>40 days</small></div></div>
+            <div class="f"><div class="row" style="gap:8px"><span class="k" title="An activity counts once Sam approves it. Submitted work shows as in review until then; on time is judged by the day you submit." style="cursor:help">PROGRESS</span><span class="sp" style="font-size:12.5px"><b class="mono" style="font-weight:600">2/5</b> <span class="muted">approved</span></span></div>
+              <div class="bar" style="margin-top:10px"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="o" style="width:20%"></span><span class="n" style="width:20%"></span></div>
+              <div class="legend"><span><i style="background:var(--ok)"></i>Approved 2</span><span><i style="background:var(--warn)"></i>In review 1</span><span><i class="sw-o"></i>Returned 1</span><span><i style="background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)"></i>Not started 1</span></div></div>
+          </div>
+        </div>
+        <div class="gl">
+          <div class="hd">Linked learning <span class="count">5</span><span class="sp faint" style="font-weight:400;font-size:12px">3 from this pathway</span></div>
+          <div class="r"><i data-i="st-ret"></i><span class="ellipsis">Clear Status &amp; Issue Communication</span><span class="s" style="color:var(--orange)">Returned</span></div>
+          <div class="r"><i data-i="st-rev"></i><span class="ellipsis">Functional Architecture <span class="mono faint" style="font-size:11.5px">FA-110</span></span><span class="s">In review</span></div>
+          <div class="r"><i data-i="st-not"></i><span class="ellipsis">SysML v2 language overview</span><span class="s">Not started</span></div>
+          <div class="r"><i data-i="st-ok"></i><span class="ellipsis">RFLP model walkthrough</span><span class="s mono">29 Oct</span></div>
+          <div class="r"><i data-i="st-ok"></i><span class="ellipsis">MBSE fundamentals <span class="mono faint" style="font-size:11.5px">SE-101</span></span><span class="s mono">14 Oct</span></div>
+          <div class="ft row" style="gap:7px"><i data-i="plus" data-c="xs"></i>Link learning<span class="sp">2 added directly</span></div>
+        </div>
+      </section>
+
+      <section class="panel pw">
+        <div class="pw-h">
+          <div class="pw-ic"><i data-i="route"></i></div>
+          <div class="grow"><h2>MBSE foundations &amp; digital-thread integration</h2>
+            <div class="c">Pathway · revision 1 · adopted 6 Oct · 3 milestones · 5 activities · about 12 h</div></div>
+          <div class="pw-prog"><div class="row" style="gap:6px;font-size:12.5px"><span class="mono" style="font-weight:600">2/5</span><span class="muted">approved</span></div>
+            <div class="bar"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="n" style="width:40%"></span></div></div>
+          <span class="btn sm ghost" style="padding:0 7px"><i data-i="more" data-c="sm"></i></span>
+        </div>
+
+        <div class="banner info rev"><span class="ic"><i data-i="refresh" data-c="sm"></i></span>
+          <span><b style="font-weight:600">Revision 2 is available:</b> <span class="t2">adds 1 activity. Your progress carries over.</span></span>
+          <span class="acts"><span class="btn sm">Review changes</span><span class="btn sm ghost">Later</span></span></div>
+
+        <div class="tl">
+          <div class="ms done">
+            <span class="node"><i data-i="st-ok"></i></span>
+            <div class="ms-h"><span class="mk">M1</span><b>Explore MBSE and RFLP</b><span class="c">Done · 2 of 2 approved</span><span class="sp">COMPLETED 29 OCT</span></div>
+            <div class="box">
+              <div class="ar"><i data-i="st-ok"></i>
+                <div><div class="t">MBSE fundamentals<span class="code">SE-101</span></div><div class="c">LMS · L1 · course</div></div>
+                <span class="tag"><span class="d formal"></span>Formal</span><span class="du">2 h</span>
+                <span class="st-col"><span class="ok">Approved</span><span class="mono">14 Oct</span><span class="faint">· v2</span></span></div>
+              <div class="ar"><i data-i="st-ok"></i>
+                <div><div class="t">RFLP model walkthrough</div><div class="c">One-to-one session with Priya Nair</div></div>
+                <span class="tag"><span class="d rel"></span>Relational</span><span class="du">1 h</span>
+                <span class="st-col"><span class="ok">Approved</span><span class="mono">29 Oct</span><span class="faint">· v1</span></span></div>
+            </div>
+          </div>
+
+          <div class="ms prog">
+            <span class="node"><i data-i="st-prog"></i></span>
+            <div class="ms-h"><span class="mk">M2</span><b>Connect requirements and traceability</b><span class="c">In progress · 0 of 2 approved · 1 in review</span></div>
+            <div class="box">
+              <div class="ar"><i data-i="st-rev"></i>
+                <div><div class="t">Functional Architecture<span class="code">FA-110</span></div><div class="c">LMS · L2 · submitted 18 Nov, on time</div></div>
+                <span class="tag"><span class="d formal"></span>Formal</span><span class="du">3 h</span>
+                <span class="st-col"><span><span class="rv">In review</span> · Sam reviews by <span class="mono">25 Nov</span></span><span class="btn sm ghost">View</span></span></div>
+              <div class="ar next"><i data-i="st-not"></i>
+                <div><div class="t">Model-to-PLM requirements demo</div><div class="c">LMS · L1 · recorded demo with a guided walkthrough</div></div>
+                <span class="tag"><span class="d formal"></span>Formal</span><span class="du">1 h</span>
+                <span class="st-col"><span class="btn sm">Record <span class="kbd">R</span></span><span class="btn sm primary">Open in LMS <i data-i="ext" data-c="xs"></i></span></span></div>
+            </div>
+          </div>
+
+          <div class="ms lock">
+            <span class="node"><i data-i="st-lock"></i></span>
+            <div class="ms-h"><span class="mk">M3</span><b>Apply on a project</b><span class="c">Locked until M2's prerequisite is approved</span></div>
+            <div class="box">
+              <div class="ar locked"><i data-i="st-lock"></i>
+                <div><div class="t">Model governance at team scale</div><div class="c">Done on the job: you record evidence and Sam reviews it</div></div>
+                <span class="tag"><span class="d exp"></span>Experiential</span><span class="du">~8 h</span>
+                <span class="st-col"><i data-i="lock" data-c="xs"></i><span>Opens when FA-110 is approved</span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

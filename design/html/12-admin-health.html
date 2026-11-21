@@ -1,0 +1,124 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Data health</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+#page{height:100%;display:flex;flex-direction:column}
+/* local fix: shared admin sidebar header wraps "Skill Portal" next to the ADMIN tag (see report) */
+.ws-btn{gap:7px}.ws-btn b{white-space:nowrap}.ws-tag{margin-left:0;padding:2px 5px}
+.chk{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+/* banners */
+.bn{display:flex;flex-direction:column;gap:10px}
+.banner{padding:12px 14px 12px 12px;gap:12px}
+.banner .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none}
+.banner.danger .ic{background:var(--danger-bg);color:var(--danger)}
+.banner.warn .ic{background:var(--warn-bg);color:var(--warn)}
+.banner .tx b{font-weight:600}
+.banner .tx .s{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+.banner .tx .s .mono{font-size:11.5px;color:var(--text-2)}
+.banner.danger{border-color:rgba(255,93,110,.28)}
+[data-theme=light] .banner.danger{border-color:rgba(225,29,72,.25)}
+.btn.primary .kbd{background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
+
+/* sources strip */
+.src{display:grid;grid-template-columns:repeat(5,1fr);margin-top:16px}
+.src .cell{padding:12px 16px;border-left:1px solid var(--line);min-width:0}
+.src .cell:first-child{border-left:none}
+.src .nm{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.src .stt{display:flex;align-items:center;gap:7px;font-weight:550;margin-top:6px;font-size:13px}
+.src .stt .st{width:14px;height:14px}
+.src .mt{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c-bad{color:var(--danger)}.c-rev{color:var(--warn)}.c-ok{color:var(--text)}.c-not{color:var(--muted)}
+
+/* queue */
+.qp{flex:1;min-height:0;margin-top:16px;display:flex;flex-direction:column;overflow:hidden}
+.qh{display:flex;align-items:flex-end;padding:0 16px;border-bottom:1px solid var(--line)}
+.qh h2{font-size:13.5px;font-weight:600;margin-right:18px;height:42px;display:flex;align-items:center}
+.qh .tabs{border-bottom:none;height:42px;align-items:flex-end}
+.qh .tabs>span{height:42px}
+.qh .note{margin-left:auto;height:42px;display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.call{display:flex;align-items:center;gap:10px;margin:12px 16px 4px;padding:9px 10px 9px 12px;border-radius:9px;border:1px solid var(--accent-line);background:var(--accent-bg);font-size:13px}
+.call .ai{color:var(--accent-2)}
+[data-theme=light] .call .ai{color:var(--accent)}
+.call .muted{font-size:12.5px}
+.qt th{height:36px;padding:0 12px;white-space:nowrap}
+.qt td{height:48px;padding:0 12px;white-space:nowrap}
+.qt th:first-child,.qt td:first-child{padding-left:16px;width:36px;padding-right:0}
+.qt th:last-child,.qt td:last-child{padding-right:16px}
+.qt tr.on td{background:var(--sel)}
+.it .t{font-weight:500}
+.it .code{font:500 11.5px "Geist Mono",monospace;color:var(--faint);margin-left:7px}
+.fld{color:var(--text-2)}
+.val{display:inline-flex;align-items:center;height:22px;padding:0 7px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--text)}
+.val.mono{font-size:12px}
+.qt .seg{padding:2px}
+.qt .seg span{height:22px;padding:0 9px;font-size:12px}
+.reflag{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--warn);margin-top:3px}
+.since{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.check.mid{background:var(--accent);border-color:var(--accent)}
+.check.mid::after{content:"";width:7px;height:1.75px;border-radius:1px;background:#fff}
+.check .i{width:11px;height:11px}
+.bulk{display:flex;align-items:center;gap:10px;margin:auto 12px 12px;padding:8px 8px 8px 14px;border-radius:11px;background:var(--surface-3);border:1px solid var(--line-2);box-shadow:0 12px 32px -12px rgba(0,0,0,.55)}
+[data-theme=light] .bulk{box-shadow:0 12px 28px -14px rgba(9,9,11,.28)}
+.bulk b{font-weight:600}
+.bulk .div{width:1px;height:18px;background:var(--line-2);margin:0 2px}
+.fade{position:relative}
+</style></head>
+<body data-ws="admin" data-active="health">
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Data health</h1><p class="sub">What needs a person today. Everything else runs on its own.</p></div>
+    <div class="acts"><span class="chk"><i data-i="clock" data-c="xs"></i>Checked <span class="mono">08:14</span> today</span><span class="btn sm ghost"><i data-i="file" data-c="sm"></i> Audit log</span></div>
+  </header>
+
+  <div class="bn">
+    <div class="banner danger"><span class="ic"><i data-i="alert" data-c="sm"></i></span>
+      <div class="tx grow"><div><b>HR directory refresh failed at 00:57.</b> Manager access is using 20 Nov data (1 day old).</div>
+        <div class="s"><i data-i="bell" data-c="xs"></i>Admins notified<span class="faint">·</span>next automatic try <span class="mono">22 Nov 00:57</span><span class="faint">·</span>managers see a “Today's refresh failed” notice</div></div>
+      <div class="acts"><span class="btn">View error</span><span class="btn primary"><i data-i="refresh" data-c="sm"></i> Retry now</span></div></div>
+    <div class="banner warn"><span class="ic"><i data-i="clock" data-c="sm"></i></span>
+      <div class="tx grow"><div><b>Academy catalog preview has waited 10 days:</b> 103 records, 4 changes.</div>
+        <div class="s">Nothing reaches employees until it is published. Imported <span class="mono">11 Nov 06:00</span></div></div>
+      <div class="acts"><span class="btn">Review &amp; publish <i data-i="arrow" data-c="xs"></i></span></div></div>
+  </div>
+
+  <section class="panel src">
+    <div class="cell"><div class="nm"><i data-i="users" data-c="xs"></i>HR directory</div><div class="stt c-bad"><i data-i="st-bad"></i>Failed</div><div class="mt">DAILY 00:57 · GOOD 20 NOV</div></div>
+    <div class="cell"><div class="nm"><i data-i="cap" data-c="xs"></i>Academy catalog</div><div class="stt c-rev"><i data-i="st-rev"></i>Preview waiting</div><div class="mt">103 RECORDS · SINCE 11 NOV</div></div>
+    <div class="cell"><div class="nm"><i data-i="book" data-c="xs"></i>Library catalog</div><div class="stt c-ok"><i data-i="st-ok"></i>OK</div><div class="mt">UPDATED 8 NOV · MONTHLY</div></div>
+    <div class="cell"><div class="nm"><i data-i="brief" data-c="xs"></i>Job catalog</div><div class="stt c-ok"><i data-i="st-ok"></i>OK</div><div class="mt">NEXT 9 DEC · QUARTERLY</div></div>
+    <div class="cell"><div class="nm"><i data-i="grid" data-c="xs"></i>Design practices</div><div class="stt c-not"><i data-i="st-not"></i>Not set up</div><div class="mt" style="color:var(--muted)">OPTIONAL · SET UP <span style="font-family:Geist,sans-serif">→</span></div></div>
+  </section>
+
+  <section class="panel qp">
+    <div class="qh"><h2>Needs attention</h2>
+      <div class="tabs"><span class="on">Conflicts <span class="n">12</span></span><span>Gaps <span class="n">5</span></span><span>Formal items missing a link <span class="n">7</span></span><span>Formatting <span class="n">3</span></span></div>
+      <span class="note"><i data-i="info" data-c="xs"></i>Decisions persist across imports and are re-flagged if a source value changes.</span></div>
+    <div class="call"><span class="ai" style="display:flex"><i data-i="spark" data-c="sm"></i></span><span><b style="font-weight:550">5 gaps can be filled automatically</b> <span class="muted">(one source is blank, so there is nothing to choose)</span></span>
+      <span class="sp btn sm ghost">Review first</span><span class="btn sm">Fill all 5</span></div>
+    <table class="qt">
+      <thead><tr><th><span class="check mid"></span></th><th>Item</th><th>Field</th><th>Master list</th><th>Course files</th><th>Use</th><th>Flagged</th></tr></thead>
+      <tbody>
+        <tr class="on"><td><span class="check on"><i data-i="check" data-c="xs"></i></span></td><td class="it"><span class="t">Functional Architecture</span><span class="code">FA-110</span></td><td class="fld">Course level</td><td><span class="val mono">L2</span></td><td><span class="val mono">L3</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">18 Nov</span></td></tr>
+        <tr class="on"><td><span class="check on"><i data-i="check" data-c="xs"></i></span></td><td class="it"><span class="t">Interface Management</span><span class="code">IM-201</span></td><td class="fld">Professional role</td><td><span class="val">Systems engineer</span></td><td><span class="val">Interface engineer</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">18 Nov</span></td></tr>
+        <tr class="on"><td><span class="check on"><i data-i="check" data-c="xs"></i></span></td><td class="it"><span class="t">Systems Engineering Fundamentals</span><span class="code">SE-101</span></td><td class="fld">Course level</td><td><span class="val mono">L1</span></td><td><span class="val mono">L2</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">18 Nov</span></td></tr>
+        <tr><td><span class="check"></span></td><td class="it"><div><span class="t">Verification &amp; Validation Planning</span><span class="code">VV-230</span></div><div class="reflag"><i data-i="refresh" data-c="xs"></i>Re-flagged: Course files changed L3 → L2 on 18 Nov</div></td><td class="fld">Course level</td><td><span class="val mono">L3</span></td><td><span class="val mono">L2</span></td>
+          <td><div class="seg"><span class="on">Master list</span><span>Course files</span></div></td><td><span class="since">18 Nov</span></td></tr>
+        <tr><td><span class="check"></span></td><td class="it"><span class="t">Configuration Management Basics</span><span class="code">CM-140</span></td><td class="fld">Professional role</td><td><span class="val">Configuration analyst</span></td><td><span class="val">Systems engineer</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">11 Nov</span></td></tr>
+        <tr><td><span class="check"></span></td><td class="it"><span class="t">Requirements Quality</span><span class="code">RQ-120</span></td><td class="fld">Course level</td><td><span class="val mono">L2</span></td><td><span class="val mono">L1</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">11 Nov</span></td></tr>
+        <tr><td><span class="check"></span></td><td class="it"><span class="t">Trade Study Methods</span><span class="code">TS-215</span></td><td class="fld">Professional role</td><td><span class="val">Systems architect</span></td><td><span class="val">Systems engineer</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">11 Nov</span></td></tr>
+        <tr><td><span class="check"></span></td><td class="it"><span class="t">Risk &amp; Opportunity Management</span><span class="code">RM-150</span></td><td class="fld">Course level</td><td><span class="val mono">L2</span></td><td><span class="val mono">L3</span></td>
+          <td><div class="seg"><span>Master list</span><span>Course files</span></div></td><td><span class="since">11 Nov</span></td></tr>
+      </tbody>
+    </table>
+    <div class="bulk"><span class="check on"><i data-i="check" data-c="xs"></i></span><b>3 selected</b><span class="div"></span>
+      <span class="btn sm">Use Master list</span><span class="btn sm">Use Course files</span>
+      <span class="sp muted" style="font-size:12px">Showing 8 of 12 conflicts</span><span class="btn sm ghost">Clear <span class="kbd">Esc</span></span></div>
+  </section>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

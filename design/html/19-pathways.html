@@ -1,0 +1,182 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Learning › Pathways</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.c-faint{color:var(--faint)}.mt2{margin-top:2px}
+.lay{display:grid;grid-template-columns:184px 420px minmax(0,1fr);gap:22px;margin-top:16px}
+.fs{margin-bottom:18px}.fs h3{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:7px}
+.fo{display:flex;align-items:center;gap:9px;height:28px;font-size:13px;color:var(--text-2)}
+.fo .n{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.fo.on{color:var(--text)}
+.pop{font-size:12px;color:var(--muted);line-height:1.5;border-top:1px solid var(--line);padding-top:14px;display:flex;gap:8px}
+.pop b{color:var(--text-2);font-weight:550}
+.sbar{display:flex;align-items:center;gap:12px;height:50px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font-size:16px}
+
+/* list */
+.lh{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:13px}
+.pl .li{align-items:flex-start;padding:13px 16px 13px 14px;gap:11px}
+.pl .li>.i{margin-top:2px;color:var(--muted)}
+.pl .li.sel{background:var(--sel);box-shadow:inset 2px 0 0 var(--accent)}
+.pl .li.sel>.i{color:var(--text)}
+.pl .t{line-height:1.35}
+.pl .c{margin-top:3px}
+.pl .why{margin-top:6px}
+.more{display:flex;align-items:center;gap:8px;margin-top:14px;padding:12px 14px;border:1px dashed var(--line-2);border-radius:10px;font-size:12.5px;color:var(--muted)}
+.more b{color:var(--text-2);font-weight:550;margin-left:4px}
+
+/* preview */
+.pv{display:flex;flex-direction:column;overflow:hidden;align-self:start}
+.pv-h{display:flex;align-items:flex-start;gap:12px;padding:16px 18px 0}
+.pw-ic{width:34px;height:34px;border-radius:9px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);flex:none}
+.pv-h h2{font-size:17px;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.pv-h .c{font-size:12.5px;color:var(--muted);margin-top:3px}
+.desc{padding:12px 18px 0;font-size:13.5px;line-height:1.55;color:var(--text-2)}
+.pv .why{padding:8px 18px 0}
+.facts{display:grid;grid-template-columns:repeat(3,auto) 1fr;margin:14px 18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts .f{padding:10px 18px 10px 0;margin-right:18px;border-right:1px solid var(--line)}
+.facts .f:last-child{border-right:none;margin-right:0;padding-right:0}
+.facts .k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.facts .v{font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:4px;line-height:1.1}
+.facts .v small{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0;margin-left:3px}
+.ava{display:flex;align-items:center;gap:10px;margin-top:4px}
+.avs{display:flex}
+.avs .avatar{width:22px;height:22px;font-size:9px;border:2px solid var(--surface);margin-left:-6px}
+.avs .avatar:first-child{margin-left:0}
+.ava span{font-size:12.5px;color:var(--text-2)}
+.ava b{font-weight:600;font-family:"Geist Mono",monospace;font-size:13px}
+
+.sec{display:flex;align-items:center;gap:8px;font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:14px 18px 7px}
+.sec .sp{font-family:Geist,"Segoe UI",sans-serif;letter-spacing:0;font-size:12px;color:var(--muted)}
+.pre{margin:0 18px;border:1px solid var(--line);border-radius:10px}
+.pre .r{display:flex;align-items:center;gap:10px;height:36px;padding:0 12px;font-size:13px;border-top:1px solid var(--line)}
+.pre .r:first-child{border-top:none}
+.pre .r .st{width:15px;height:15px}
+.pre .r .s{margin-left:auto;font-size:12px;color:var(--muted)}
+.code{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-left:6px}
+
+.tl{padding:0 18px}
+.ms{position:relative;padding-left:26px;padding-bottom:8px}
+.ms::before{content:"";position:absolute;left:6.5px;top:22px;bottom:2px;border-left:1.5px solid var(--line-2)}
+.ms:last-child::before{display:none}
+.ms .node{position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:50%;border:1.5px solid var(--line-2);background:var(--surface);display:grid;place-items:center;font:600 8px "Geist Mono",monospace;color:var(--muted)}
+.ms-h{display:flex;align-items:center;gap:9px;height:28px}
+.ms-h .mk{font:500 11px "Geist Mono",monospace;letter-spacing:.06em;color:var(--faint)}
+.ms-h b{font-size:13.5px;font-weight:600}
+.ms-h .sp{font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.box{border:1px solid var(--line);border-radius:9px;background:var(--surface)}
+.ar{display:grid;grid-template-columns:minmax(0,1fr) 112px 42px;align-items:center;column-gap:12px;height:34px;padding:0 12px;border-top:1px solid var(--line);font-size:13px}
+.ar:first-child{border-top:none}
+.ar .tt{display:flex;align-items:center;gap:8px;min-width:0}
+.ar .tt>span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ar .tag{height:20px;font-size:11.5px;padding:0 7px}
+.ar .du{font:500 12px "Geist Mono",monospace;color:var(--muted);text-align:right}
+.ar .pill{height:19px;font-size:11px;padding:0 6px}
+.ar .lk{color:var(--faint);display:inline-flex}
+
+.pf{display:flex;align-items:center;gap:12px;padding:14px 18px;margin-top:10px;border-top:1px solid var(--line);background:var(--surface-2)}
+.pf .note{font-size:12.5px;color:var(--muted);line-height:1.45}
+.pf .note b{color:var(--text-2);font-weight:550}
+</style></head>
+<body data-ws="employee" data-active="find" data-role="manager">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Learning</h1><p class="sub">Pathways published for systems engineers: ordered milestones and activities you can adopt into your plan.</p></div>
+    <div class="acts"><div class="seg"><span><i data-i="search" data-c="xs"></i> Find</span><span class="on"><i data-i="route" data-c="xs"></i> Pathways</span><span><i data-i="record" data-c="xs"></i> My learning</span></div></div>
+  </header>
+  <div class="sbar"><i data-i="search" data-c="lg"></i><span class="faint">Search pathways by title, skill or course code</span><span class="sp kbd">/</span></div>
+
+  <div class="lay">
+    <aside>
+      <div class="fs"><h3>TOPIC</h3>
+        <div class="fo"><span class="radio"></span>All topics<span class="n">9</span></div>
+        <div class="fo on"><span class="radio on"></span>Architecture &amp; MBSE<span class="n">5</span></div>
+        <div class="fo"><span class="radio"></span>Integration &amp; test<span class="n">2</span></div>
+        <div class="fo"><span class="radio"></span>Engineering practice<span class="n">2</span></div></div>
+      <div class="fs"><h3>FOR ME</h3>
+        <div class="fo"><span class="toggle"></span>Fits my focus goal<span class="n">2</span></div>
+        <div class="fo"><span class="toggle"></span>Hide adopted</div></div>
+      <div class="fs"><h3>LENGTH</h3>
+        <div class="fo"><span class="check"></span>Under 10 h<span class="n">1</span></div>
+        <div class="fo"><span class="check"></span>10–15 h<span class="n">3</span></div>
+        <div class="fo"><span class="check"></span>Over 15 h<span class="n">1</span></div></div>
+      <div class="pop"><i data-i="users" data-c="xs mt2"></i><span>Showing what's published for <b>Systems engineering</b>, your population. Admins choose who sees each pathway.</span></div>
+    </aside>
+
+    <section>
+      <div class="lh"><b>5 pathways</b><span class="muted">in Architecture &amp; MBSE</span><span class="sp muted">Sort <b style="color:var(--text);font-weight:550">Most adopted</b> <i data-i="cd" data-c="xs"></i></span></div>
+      <div class="panel pl">
+        <div class="li"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">MBSE foundations &amp; digital-thread integration</div>
+            <div class="c">5 activities · about 12 h · in your plan since 6 Oct</div></div>
+          <span class="pill p-acc">Adopted</span></div>
+        <div class="li sel"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">SysML v2 for architects</div>
+            <div class="c">7 activities · about 18 h</div>
+            <div class="why"><b>Why</b>matches your focus goal: SysML v2, architecture</div></div></div>
+        <div class="li"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">Model-based requirements</div>
+            <div class="c">6 activities · about 11 h</div></div></div>
+        <div class="li"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">Architecture trade studies</div>
+            <div class="c">5 activities · about 10 h</div></div></div>
+        <div class="li"><i data-i="route" data-c="sm"></i>
+          <div class="grow"><div class="t">Interface definition &amp; control</div>
+            <div class="c">4 activities · about 9 h</div>
+            <div class="why"><b>Why</b>includes IM-201, suggested for your goal</div></div></div>
+      </div>
+      <div class="more"><i data-i="info" data-c="xs"></i><span>4 more pathways in other topics. <b>Show all topics</b></span></div>
+    </section>
+
+    <aside class="panel glow pv">
+      <div class="pv-h">
+        <div class="pw-ic"><i data-i="route"></i></div>
+        <div class="grow"><h2>SysML v2 for architects</h2>
+          <div class="c">Engineering Academy · revision 3 · published 4 Nov</div></div>
+        <span class="btn sm ghost">Full page <i data-i="ext" data-c="xs"></i></span>
+      </div>
+      <p class="desc">Go from reading SysML v2 to using it: learn the textual and graphical notation, model one real subsystem, then present its architecture views to a review board.</p>
+      <div class="facts">
+        <div class="f"><div class="k">MILESTONES</div><div class="v">3</div></div>
+        <div class="f"><div class="k">ACTIVITIES</div><div class="v">7</div></div>
+        <div class="f"><div class="k">ESTIMATE</div><div class="v">18<small>h</small></div></div>
+        <div class="f"><div class="k">ADOPTED BY</div>
+          <div class="ava"><i data-i="users" data-c="sm c-muted"></i><span><b>142</b> colleagues on this pathway</span></div></div>
+      </div>
+
+      <div class="sec">PREREQUISITES<span class="sp">needed before M2 opens</span></div>
+      <div class="pre">
+        <div class="r"><i data-i="st-ok"></i><span>MBSE fundamentals<span class="code">SE-101</span></span><span class="s"><span style="color:var(--ok);font-weight:550">Approved</span> <span class="mono">14 Oct</span></span></div>
+        <div class="r"><i data-i="st-rev"></i><span>Functional Architecture<span class="code">FA-110</span></span><span class="s"><span style="color:var(--warn);font-weight:550">In review</span> · Sam reviews by <span class="mono">25 Nov</span></span></div>
+      </div>
+
+      <div class="sec">MILESTONES<span class="sp">1 activity is already in your plan and won't be duplicated</span></div>
+      <div class="tl">
+        <div class="ms"><span class="node">1</span>
+          <div class="ms-h"><span class="mk">M1</span><b>Read the language</b><span class="sp">2 · 5 h</span></div>
+          <div class="box">
+            <div class="ar"><span class="tt"><span>SysML v2 language overview</span><span class="pill p-acc">In your plan</span></span><span class="tag"><span class="d formal"></span>Formal</span><span class="du">2 h</span></div>
+            <div class="ar"><span class="tt"><span>Textual notation hands-on lab</span></span><span class="tag"><span class="d formal"></span>Formal</span><span class="du">3 h</span></div>
+          </div></div>
+        <div class="ms"><span class="node">2</span>
+          <div class="ms-h"><span class="mk">M2</span><b>Model a real subsystem</b><span class="sp">2 · 7 h</span></div>
+          <div class="box">
+            <div class="ar"><span class="tt"><span>Model one subsystem's interfaces on your program</span></span><span class="tag"><span class="d exp"></span>Experiential</span><span class="du">~6 h</span></div>
+            <div class="ar"><span class="tt"><span>Model review with an architect</span></span><span class="tag"><span class="d rel"></span>Relational</span><span class="du">1 h</span></div>
+          </div></div>
+        <div class="ms"><span class="node">3</span>
+          <div class="ms-h"><span class="mk">M3</span><b>Present the architecture</b><span class="sp">3 · 6 h</span></div>
+          <div class="box">
+            <div class="ar"><span class="tt"><span>Architecture views and viewpoints<span class="code">AV-210</span></span></span><span class="tag"><span class="d formal"></span>Formal</span><span class="du">2 h</span></div>
+            <div class="ar"><span class="tt"><span>Present to the architecture review board</span></span><span class="tag"><span class="d exp"></span>Experiential</span><span class="du">~3 h</span></div>
+            <div class="ar"><span class="tt"><span>Peer model review swap</span></span><span class="tag"><span class="d rel"></span>Relational</span><span class="du">1 h</span></div>
+          </div></div>
+      </div>
+
+      <div class="pf">
+        <span class="btn primary"><i data-i="plus" data-c="sm"></i> Adopt pathway</span>
+        <span class="note"><b>Adopting adds it to your plan;</b> you can remove it any time.</span>
+      </div>
+    </aside>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

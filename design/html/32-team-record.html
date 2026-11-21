@@ -1,0 +1,138 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Record for your team</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+/* 32 · Record for your team (manager bulk record). One centred column: header, stepper, one panel. */
+#page{height:100%;display:flex;flex-direction:column;align-items:center}
+.wrap{width:100%;max-width:880px;flex:1;min-height:0;display:flex;flex-direction:column}
+.ph{margin-bottom:18px}
+.btn.primary .kbd{background:transparent;border-color:rgba(127,127,127,.45);color:inherit;opacity:.75}
+.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* compact stepper: one line, labels only */
+.stepper{display:flex;align-items:center;gap:12px;list-style:none;margin-bottom:16px}
+.stepper li{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--muted);white-space:nowrap}
+.stepper li .st{width:16px;height:16px}
+.stepper .num{width:17px;height:17px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.stepper .done{color:var(--text-2)}
+.stepper .cur{color:var(--text)}
+.stepper .cur .num{border-color:var(--accent);background:var(--accent);color:#fff}
+.stepper .optl{font-weight:400;color:var(--faint);font-size:12px}
+.stepper .ln{flex:1;height:1px;background:var(--line-2);min-width:24px}
+.stepper .ln.done{background:var(--ok);opacity:.55}
+
+/* the one panel */
+.card{flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+.act{display:flex;align-items:center;gap:10px;height:50px;padding:0 20px;border-bottom:1px solid var(--line);background:var(--surface-2);border-radius:12px 12px 0 0}
+.act .k{width:74px;flex:none}
+.act b{font-weight:550}
+.act .muted{font-size:12.5px}
+.lnk{font-size:12.5px;color:var(--muted)}
+
+.sh{display:flex;align-items:center;gap:10px;padding:16px 20px 10px}
+.sh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.sh .cnt{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.qa{display:flex;align-items:center;gap:2px}
+.qa .btn{color:var(--muted)}
+.qa .dot{color:var(--faint)}
+
+.ppl{margin:0 20px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.pr{display:flex;align-items:center;gap:11px;height:40px;padding:0 14px;border-top:1px solid var(--line)}
+.pr:first-child{border-top:none}
+.pr .avatar{width:22px;height:22px;font-size:9px}
+.pr .nm{font-weight:500}
+.pr.off .nm{color:var(--muted)}
+.pr.off .avatar{opacity:.45}
+.pr.skip .nm{color:var(--text-2)}
+.pr .note{margin-left:auto;display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted)}
+.pr .note .st{width:14px;height:14px}
+.pr .lead{margin-left:auto;font-size:12px;color:var(--faint)}
+.pr.skip{background:var(--hover)}
+
+/* how records are created */
+.how{padding:18px 20px 18px}
+.how .label{margin-bottom:9px}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:11px 14px;border:1px solid var(--line);border-radius:10px}
+.opt.on{border-color:var(--accent-line);background:var(--accent-bg)}
+.opt .t{font-weight:550;display:flex;align-items:center;gap:8px}
+.opt .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.opt .pill{height:20px;font-size:11.5px;margin-left:auto}
+.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;flex:none;margin-top:1px}
+.radio.on{border-color:var(--accent)}
+.radio.on::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+
+/* footer summary */
+.foot{margin-top:auto;display:flex;align-items:center;gap:8px;padding:14px 20px;border-top:1px solid var(--line)}
+.foot .sum{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-right:auto}
+.foot .sum b{font-weight:600}
+.foot .sum .sep{color:var(--faint)}
+</style></head>
+<body data-ws="employee" data-active="team" data-role="manager">
+<main id="page">
+ <div class="wrap">
+  <div class="crumbs"><span>Team</span><span class="sl">/</span><span style="color:var(--text-2)">Record for your team</span></div>
+  <header class="ph">
+    <div><h1>Record for your team</h1>
+      <p class="sub">Record a team session or a shared course once. Everyone you tick gets their own record.</p></div>
+    <div class="acts"><span class="btn sm ghost"><i data-i="x" data-c="sm"></i> Close <span class="kbd">Esc</span></span></div>
+  </header>
+
+  <ol class="stepper">
+    <li class="done"><i data-i="st-ok"></i>Activity</li><li class="ln done"></li>
+    <li class="cur"><span class="num">2</span>Who attended</li><li class="ln"></li>
+    <li><span class="num">3</span>Evidence <span class="optl">optional</span></li>
+  </ol>
+
+  <section class="panel glow card">
+    <!-- step 1 result, collapsed to one line -->
+    <div class="act">
+      <span class="k">ACTIVITY</span>
+      <span class="tag"><span class="d rel"></span>Relational</span>
+      <b>Interface review workshop</b>
+      <span class="muted">Thu 20 Nov · 2 h · led by Daniel Okafor</span>
+      <span class="sp lnk">Edit</span>
+    </div>
+
+    <!-- step 2: who attended -->
+    <div class="sh">
+      <h2>Who attended</h2><span class="cnt">9 of 11</span>
+      <div class="sp qa"><span class="btn sm ghost">Select all</span><span class="dot">·</span><span class="btn sm ghost">Paste names</span><span class="dot">·</span><span class="btn sm ghost"><i data-i="upload" data-c="xs"></i> Import attendance CSV</span></div>
+    </div>
+    <div class="ppl">
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a6">AK</div><span class="nm">Aisha Khan</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a5">AK</div><span class="nm">Alex Kim</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a2">DO</div><span class="nm">Daniel Okafor</span><span class="lead">Led the session</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a4">FR</div><span class="nm">Fatima Rahman</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar">LS</div><span class="nm">Lucas Silva</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a3">MG</div><span class="nm">Maria Gomez</span></div>
+      <div class="pr off"><span class="check"></span><div class="avatar a6">NR</div><span class="nm">Nina Rossi</span></div>
+      <div class="pr off"><span class="check"></span><div class="avatar a2">OH</div><span class="nm">Omar Haddad</span></div>
+      <div class="pr skip"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a4">PN</div><span class="nm">Priya Nair</span>
+        <span class="note"><i data-i="st-ok"></i>Already approved for Priya: will be skipped</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar a5">TB</div><span class="nm">Tom Becker</span></div>
+      <div class="pr"><span class="check on"><i data-i="check" data-c="xs"></i></span><div class="avatar">WC</div><span class="nm">Wei Chen</span></div>
+    </div>
+
+    <div class="how">
+      <span class="label">How should the records be created?</span>
+      <div class="opts">
+        <div class="opt on"><span class="radio on"></span>
+          <div class="grow"><div class="t">Ask each person to add a short reflection, then approve<span class="pill p-acc">Recommended</span></div>
+            <div class="c">Each person gets a pre-filled record and adds two or three lines. You approve them in Reviews.</div></div></div>
+        <div class="opt"><span class="radio"></span>
+          <div class="grow"><div class="t">Count as approved now (you confirm attendance)<span class="pill p-rev">Policy: needs HR/quality sign-off</span></div>
+            <div class="c">Records count right away and show you as both creator and approver.</div></div></div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="sum"><b>8 records will be created</b><span class="sep">·</span><span class="muted">1 skipped</span></div>
+      <span class="btn ghost"><i data-i="cl" data-c="sm"></i> Back</span>
+      <span class="btn">Add evidence</span>
+      <span class="btn primary">Create 8 records <span class="kbd">Ctrl Enter</span></span>
+    </div>
+  </section>
+ </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

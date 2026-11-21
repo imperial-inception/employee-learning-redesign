@@ -1,0 +1,157 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Welcome</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.c-faint{color:var(--faint)}.mt2{margin-top:2px}
+.top{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:18px}
+.k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+
+/* get started */
+.gs{padding:0}
+.gs-h{display:flex;align-items:center;gap:14px;padding:18px 22px 16px}
+.gs-h h2{font-size:17px;font-weight:600;letter-spacing:-.015em}
+.gs-h .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.seg3{display:flex;gap:3px;width:120px}
+.seg3 span{flex:1;height:4px;border-radius:3px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.step{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:14px;padding:18px 22px 20px;border-top:1px solid var(--line)}
+.num{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line-2);display:grid;place-items:center;font:600 12px "Geist Mono",monospace;color:var(--muted);margin-top:-2px}
+.step.cur .num{border-color:var(--accent);color:var(--accent-2);background:var(--accent-bg)}
+[data-theme=light] .step.cur .num{color:var(--accent)}
+.sh{display:flex;align-items:center;gap:10px}
+.sh h3{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.sh .sp{font-size:12px;color:var(--muted)}
+.step>div>p{font-size:13px;color:var(--muted);margin-top:3px;max-width:640px}
+.opts{margin-top:12px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+.op{display:flex;align-items:center;gap:12px;min-height:58px;padding:9px 12px 9px 14px;border-top:1px solid var(--line)}
+.op:first-child{border-top:none}
+.op>.i{color:var(--muted)}
+.op .t{font-weight:500}
+.op .why{margin-top:2px}
+.op .m{font-size:12.5px;color:var(--muted);white-space:nowrap;text-align:right}
+.op .m small{display:block;font-size:11.5px;color:var(--faint);margin-top:1px}
+.op .m .i{color:var(--faint)}
+.op.hl{background:var(--hover)}
+.op .btn{min-width:100px;justify-content:center}
+.own{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13px;color:var(--muted);font-weight:500}
+.own .kbd{margin-left:2px}
+.vis{display:flex;align-items:center;gap:14px;margin-top:12px;padding:12px 14px;border:1px dashed var(--line-2);border-radius:10px}
+.vis .t{font-weight:500;font-size:13px}
+.vis .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* right column */
+.rc{display:flex;flex-direction:column;gap:18px}
+.one{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border-top:1px solid var(--line);font-size:13px;color:var(--text-2);line-height:1.5}
+.panel-h+.one{border-top:none}
+.one .i{margin-top:2px}
+.one .lms{color:var(--accent-2);white-space:nowrap}
+[data-theme=light] .one .lms{color:var(--accent)}
+.ab .r{display:grid;grid-template-columns:118px minmax(0,1fr);align-items:center;gap:10px;min-height:42px;padding:6px 16px;border-top:1px solid var(--line);font-size:13px}
+.ab .r:first-of-type{border-top:none}
+.ab .r .l{color:var(--muted);font-size:12.5px}
+.ab .r .v{display:flex;align-items:center;gap:8px;min-width:0}
+.ab .r .src{margin-left:auto;font-size:11.5px;color:var(--faint);white-space:nowrap}
+.ab .avatar{width:20px;height:20px;font-size:8.5px}
+
+.how{padding:14px 16px 15px}
+.flow{display:flex;align-items:center;gap:5px;margin-top:10px;flex-wrap:nowrap}
+.flow span{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px;border-radius:6px;border:1px solid var(--line-2);font-size:12px;font-weight:500;color:var(--text-2);white-space:nowrap}
+.flow .i{color:var(--faint)}
+.flow .okk{border-color:transparent;background:var(--ok-bg);color:var(--ok)}
+.flow .okk .st{width:13px;height:13px}
+.how p{font-size:12.5px;color:var(--muted);margin-top:10px;line-height:1.5}
+</style></head>
+<body data-ws="employee" data-active="today" data-user='{"name":"Omar Haddad","initials":"OH"}'>
+<main id="page">
+  <header class="ph" style="margin-bottom:18px">
+    <div><div class="mono faint" style="font-size:11.5px;letter-spacing:.08em;margin-bottom:8px">FRI 21 NOV · YOUR FIRST WEEK</div>
+      <h1>Welcome, Omar</h1>
+      <p class="sub">Three steps to set up your learning, about 5 minutes. Do them in any order.</p></div>
+    <div class="acts"><span class="btn ghost"><i data-i="help" data-c="sm"></i> How Skill Portal works</span>
+      <span class="btn"><i data-i="record" data-c="sm"></i> Record learning <span class="kbd">R</span></span></div>
+  </header>
+
+  <div class="top">
+    <section class="panel glow gs">
+      <div class="gs-h">
+        <div class="grow"><h2>Get started</h2><div class="c">Starters below are for the Systems engineering job family. Nothing is added until you choose.</div></div>
+        <span class="mono muted" style="font-size:12px">0 of 3 done</span><span class="seg3"><span></span><span></span><span></span></span>
+      </div>
+
+      <div class="step cur">
+        <span class="num">1</span>
+        <div><div class="sh"><h3>Pick a focus goal</h3><span class="sp">One goal leads this page</span></div>
+          <p>A goal is what you want to be able to do. Pick a starter or write your own; you can edit it any time.</p>
+          <div class="opts">
+            <div class="op hl"><i data-i="target" data-c="sm c-accent"></i>
+              <div class="grow"><div class="t">Learn how MBSE is used on our programs</div>
+                <div class="why"><b>Why</b>the usual first goal for new systems engineers</div></div>
+              <span class="m">4 activities · ~9 h<small>due 13 Feb · short-term</small></span>
+              <span class="btn sm primary">Use this goal</span></div>
+            <div class="op"><i data-i="target" data-c="sm"></i>
+              <div class="grow"><div class="t">Get fluent in requirements traceability</div>
+                <div class="why"><b>Why</b>in the Job catalog expectations for your job title</div></div>
+              <span class="m">3 activities · ~7 h<small>due 31 Jan · short-term</small></span>
+              <span class="btn sm">Use this goal</span></div>
+            <div class="op"><i data-i="target" data-c="sm"></i>
+              <div class="grow"><div class="t">Read and review an interface control document</div>
+                <div class="why"><b>Why</b>suggested by Jordan Lee for his team's new starters</div></div>
+              <span class="m">3 activities · ~6 h<small>due 16 Jan · short-term</small></span>
+              <span class="btn sm">Use this goal</span></div>
+          </div>
+          <div class="own"><i data-i="plus" data-c="xs"></i>Write my own goal<span class="kbd">G</span></div>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="num">2</span>
+        <div><div class="sh"><h3>Adopt a pathway</h3><span class="sp">A ready-made sequence of learning</span></div>
+          <div class="opts">
+            <div class="op"><i data-i="route" data-c="sm"></i>
+              <div class="grow"><div class="row" style="gap:8px"><span class="t">Systems engineering onboarding</span><span class="pill p-neu">First 90 days</span></div>
+                <div class="c muted" style="font-size:12.5px;margin-top:2px">2 milestones · 6 activities · about 10 h</div></div>
+              <span class="m"><i data-i="users" data-c="xs c-faint"></i> <span class="mono">318</span> colleagues</span>
+              <span class="btn sm">Preview</span></div>
+            <div class="op"><i data-i="route" data-c="sm"></i>
+              <div class="grow"><div class="t">MBSE foundations &amp; digital-thread integration</div>
+                <div class="c muted" style="font-size:12.5px;margin-top:2px">3 milestones · 5 activities · about 12 h</div></div>
+              <span class="m"><i data-i="users" data-c="xs c-faint"></i> <span class="mono">214</span> colleagues</span>
+              <span class="btn sm">Preview</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="num">3</span>
+        <div><div class="sh"><h3>Make your skills visible</h3><span class="sp">Optional</span></div>
+          <div class="vis"><i data-i="eyeoff" data-c="sm c-muted"></i>
+            <div class="grow"><div class="t">Off. Colleagues can't find you by skill yet.</div>
+              <div class="c">Turn it on to appear in Colleagues. You pick which skills show and can turn it off any time.</div></div>
+            <span class="btn sm ghost">Choose what to share</span><span class="toggle"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rc">
+      <section class="panel inbox">
+        <div class="panel-h"><h2>Inbox</h2></div>
+        <div class="one"><i data-i="inbox" data-c="sm c-muted"></i><span>Nothing needs you yet. Returned work and Jordan's reviews will show here.</span></div>
+        <div class="one"><i data-i="info" data-c="sm c-muted"></i><span>Nothing required in Skill Portal. Company-wide training lives in the LMS. <a class="lms">Open the LMS ↗</a></span></div>
+      </section>
+
+      <section class="panel ab">
+        <div class="panel-h"><h2>About you</h2><span class="lnk">Profile <i data-i="cr" data-c="xs"></i></span></div>
+        <div class="r"><span class="l">Manager</span><span class="v"><span class="avatar">JL</span>Jordan Lee<span class="src">HR directory</span></span></div>
+        <div class="r"><span class="l">Job title</span><span class="v"><span class="ellipsis">Systems Engineer</span><span class="src">HR directory</span></span></div>
+        <div class="r"><span class="l">Started</span><span class="v"><span class="mono" style="font-size:12.5px">17 Nov 2026</span><span class="src">HR directory</span></span></div>
+        <div class="r"><span class="l">Professional role</span><span class="v"><span class="faint">Not recorded</span><span class="src">Jordan assigns this</span></span></div>
+      </section>
+      <section class="panel how">
+        <div class="k">HOW LEARNING COUNTS</div>
+        <div class="flow"><span>Do it</span><i data-i="cr" data-c="xs"></i><span>Record</span><i data-i="cr" data-c="xs"></i><span>Jordan reviews</span><i data-i="cr" data-c="xs"></i><span class="okk"><i data-i="st-ok"></i>Approved</span></div>
+        <p>Only approved learning counts toward goals. On time is judged by the day you submit, not the day it's reviewed.</p>
+      </section>
+    </div>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+
+</body></html>

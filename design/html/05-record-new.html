@@ -1,0 +1,168 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Record learning</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+#page{height:100%;display:flex;flex-direction:column}
+.k{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint)}
+.acc{color:var(--accent-2)}[data-theme=light] .acc{color:var(--accent)}
+
+/* stepper */
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px}
+.stp .ln{height:3px;border-radius:3px;background:var(--surface-3);margin-bottom:10px}
+.stp.done .ln{background:var(--ok);opacity:.75}
+.stp.cur .ln{background:var(--accent)}
+.stp .hd{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:550;color:var(--text-2)}
+.stp .hd .st{width:15px;height:15px}
+.stp .num{width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font:600 10px "Geist Mono",monospace;border:1.5px solid var(--line-2);color:var(--muted);flex:none}
+.stp.cur .num{border-color:var(--accent);background:var(--accent);color:#fff}
+.stp.cur .hd{color:var(--text)}
+.stp:not(.done):not(.cur) .hd{color:var(--muted)}
+.stp .s{font-size:12px;color:var(--muted);margin-top:3px;padding-left:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stp .s.mono{font-size:11.5px}
+
+/* body */
+.body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 440px;gap:20px}
+.form{padding:20px 22px;display:flex;flex-direction:column;min-height:0}
+.form h2{font-size:19px;font-weight:600;letter-spacing:-.02em;margin-top:6px}
+.form .lead{color:var(--muted);margin-top:4px;font-size:13.5px}
+.ctx{margin-top:16px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2)}
+.ctx > div{display:flex;align-items:center;gap:10px;height:40px;padding:0 14px;min-width:0}
+.ctx > div + div{border-top:1px solid var(--line)}
+.ctx .k{width:96px;flex:none}
+.ctx .v{display:flex;align-items:center;gap:8px;font-weight:500;font-size:13px;min-width:0;flex:1}
+.ctx .v .ellipsis{min-width:0}
+.ctx .chg{margin-left:auto;font-size:12.5px;color:var(--muted)}
+.ev{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:18px;margin-top:16px;flex:1;min-height:0}
+.drop{border:1.5px dashed var(--line-2);border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px;background:linear-gradient(180deg,var(--hover),transparent)}
+.drop .ic{width:36px;height:36px;border-radius:9px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2);margin-bottom:10px}
+.drop b{font-weight:550}
+.drop .muted{font-size:12px;margin-top:4px}
+.guide{border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+.guide h3{font-size:12.5px;font-weight:600;margin-bottom:8px}
+.guide .g{display:flex;gap:9px;font-size:12.5px;color:var(--text-2);line-height:1.45;margin-top:7px}
+.guide .g .i{margin-top:2px;color:var(--ok)}
+.guide .g.w .i{color:var(--warn)}
+.guide .g.w{color:var(--muted)}
+.att{margin-top:16px;border:1px solid var(--line);border-radius:11px}
+.att .hd{display:flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:600}
+.fr{display:flex;align-items:center;gap:12px;min-height:56px;padding:9px 14px;border-top:1px solid var(--line)}
+.att .hd + .fr{border-top:none}
+.ft{width:32px;height:34px;border-radius:7px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;font:600 9.5px "Geist Mono",monospace;letter-spacing:.04em;color:var(--text-2);flex:none}
+.ft.pdf{color:var(--danger)}.ft.xls{color:var(--ok)}.ft.lnk{color:var(--accent-2)}
+[data-theme=light] .ft.lnk{color:var(--accent)}
+.fr .t{font-weight:500}
+.fr .c{font-size:12.5px;color:var(--muted);margin-top:2px}
+.fr .m{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.fr .x{color:var(--faint);width:26px;height:26px;display:grid;place-items:center;border-radius:6px}
+.ok-t{color:var(--ok);font-size:12px;display:flex;align-items:center;gap:5px}
+.att .add{display:flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* preview */
+.pv{display:flex;flex-direction:column;min-height:0}
+.pv .who{display:flex;align-items:center;gap:10px;padding:14px 18px 12px}
+.pv .who b{font-weight:550;font-size:13px;display:block}
+.pv .who small{font-size:12px;color:var(--muted)}
+.pv .ttl{padding:0 18px 14px;border-bottom:1px solid var(--line)}
+.pv .ttl .t{font-size:15px;font-weight:600;letter-spacing:-.01em;line-height:1.35}
+.pv .sec{padding:12px 18px;border-bottom:1px solid var(--line)}
+.pv .sec p{font-size:13px;line-height:1.55;color:var(--text-2);margin-top:6px}
+.pv .er{display:flex;align-items:center;gap:9px;font-size:12.5px;margin-top:7px;color:var(--text-2)}
+.pv .er .m{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.pv .qf{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-2);margin-top:8px}
+.pv .foot{margin-top:auto;padding:12px 18px;font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:flex-start;background:var(--surface-2);border-radius:0 0 12px 12px}
+
+/* footer */
+.fbar{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.fbar .note{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted)}
+.fbar .note b{color:var(--text-2);font-weight:550}
+</style></head>
+<body data-ws="employee" data-active="find" data-role="manager">
+<main id="page">
+  <div class="crumbs"><span>Learning</span><span class="sl">/</span><span>My learning</span><span class="sl">/</span><span style="color:var(--text-2)">Record learning</span></div>
+  <header class="ph" style="margin-bottom:18px">
+    <div><h1>Record learning</h1>
+      <p class="sub">Tell Sam what you did and show the work. It counts toward your goal once Sam approves it.</p></div>
+    <div class="acts"><span class="mono faint" style="font-size:11.5px;letter-spacing:.04em">DRAFT · SAVED 14:32</span>
+      <span class="btn sm ghost"><i data-i="x" data-c="xs"></i> Close <span class="kbd">Esc</span></span></div>
+  </header>
+
+  <div class="steps">
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>Activity</div><div class="s">Experiential · on the job</div></div>
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>What you learned</div><div class="s">64 words</div></div>
+    <div class="stp done"><div class="ln"></div><div class="hd"><i data-i="st-ok"></i>How you'll apply it</div><div class="s">41 words</div></div>
+    <div class="stp cur"><div class="ln"></div><div class="hd"><span class="num">4</span>Evidence</div><div class="s">3 items attached</div></div>
+    <div class="stp"><div class="ln"></div><div class="hd"><span class="num">5</span>Quick feedback</div><div class="s">2 questions · about 1 min</div></div>
+    <div class="stp"><div class="ln"></div><div class="hd"><span class="num">6</span>Review &amp; submit</div><div class="s">Goes to Sam Patel</div></div>
+  </div>
+
+  <div class="body">
+    <section class="panel glow form">
+      <div class="k">STEP 4 OF 6</div>
+      <h2>Add evidence</h2>
+      <p class="lead">Show what you produced and the part you played. Files stay private to you and Sam.</p>
+
+      <div class="ctx">
+        <div><span class="k">ACTIVITY</span><span class="v"><span class="tag"><span class="d exp"></span>Experiential</span><span class="ellipsis">Interpret a statement of work into standards-based artifacts</span></span><span class="chg">Edit</span></div>
+        <div><span class="k">LINKED GOAL</span><span class="v"><span class="acc"><i data-i="target" data-c="sm"></i></span><span class="ellipsis">Become confident using SysML v2 to describe system architecture</span></span><span class="chg">Change</span></div>
+      </div>
+
+      <div class="ev">
+        <div class="drop">
+          <div class="ic"><i data-i="upload"></i></div>
+          <div><b>Drop files here</b> <span class="muted">or</span> <b class="acc">browse</b></div>
+          <div class="muted">PDF, Office files or images · up to 25 MB each</div>
+        </div>
+        <div class="guide">
+          <h3>Good experiential evidence</h3>
+          <div class="g"><i data-i="check" data-c="xs"></i><span>Something you made: notes, a checklist, a model view</span></div>
+          <div class="g"><i data-i="check" data-c="xs"></i><span>Your part in it, not just the team's result</span></div>
+          <div class="g"><i data-i="check" data-c="xs"></i><span>What changed because of it</span></div>
+          <div class="g w"><i data-i="alert" data-c="xs"></i><span>Link to controlled files in the approved repository; don't upload them</span></div>
+        </div>
+      </div>
+
+      <div class="att">
+        <div class="hd">Attached <span class="mono faint" style="font-weight:500;font-size:11.5px">3</span><span class="sp faint" style="font-weight:400;font-size:12px">Add a line on what each item shows</span></div>
+        <div class="fr"><span class="ft pdf">PDF</span>
+          <div class="grow"><div class="t">icd-review-notes.pdf</div><div class="c">My markup of the ICD against SOW clauses 3.2 to 3.9</div></div>
+          <span class="m">240 KB</span><span class="ok-t"><i data-i="check" data-c="xs"></i>Uploaded</span><span class="x"><i data-i="x" data-c="sm"></i></span></div>
+        <div class="fr"><span class="ft xls">XLS</span>
+          <div class="grow"><div class="t">artifact-checklist.xlsx</div><div class="c">Checklist I built: each SOW clause mapped to the artifact it needs</div></div>
+          <span class="m">38 KB</span><span class="ok-t"><i data-i="check" data-c="xs"></i>Uploaded</span><span class="x"><i data-i="x" data-c="sm"></i></span></div>
+        <div class="fr"><span class="ft lnk"><i data-i="link" data-c="sm"></i></span>
+          <div class="grow"><div class="t">Design review recording</div><div class="c">I present the clause mapping from 12:40 · intranet video</div></div>
+          <span class="m">Link</span><span class="ok-t"><i data-i="check" data-c="xs"></i>Reachable</span><span class="x"><i data-i="x" data-c="sm"></i></span></div>
+        <div class="add"><i data-i="plus" data-c="xs"></i>Add a link<span class="sp faint">Paste a URL from the intranet or a project repository</span></div>
+      </div>
+    </section>
+
+    <aside class="panel pv">
+      <div class="panel-h"><i data-i="eye" data-c="sm"></i><h2>What Sam will see</h2><span class="lnk">Updates as you edit</span></div>
+      <div class="who"><div class="avatar">JL</div><div class="grow"><b>Jordan Lee</b><small>Systems Engineer · submits to Sam Patel</small></div><span class="tag mono">v1</span></div>
+      <div class="ttl"><div class="t">Interpret a statement of work into standards-based artifacts</div>
+        <div class="row" style="gap:6px;margin-top:8px"><span class="tag"><span class="d exp"></span>Experiential</span><span class="tag"><i data-i="target" data-c="xs"></i>SysML v2 goal</span>
+          <span class="sp mono faint" style="font-size:11.5px">4–14 NOV · 6 H</span></div></div>
+      <div class="sec"><div class="k">WHAT I LEARNED</div>
+        <p>How to break a statement of work into the artifacts our standards expect: which clauses become requirements, which become interface definitions, and which only need a compliance note.</p></div>
+      <div class="sec"><div class="k">HOW I'LL APPLY IT</div>
+        <p>On the actuation upgrade I'll map every SOW clause to a model element before the requirements review, so gaps show up in review instead of in test.</p></div>
+      <div class="sec"><div class="k">EVIDENCE · 3</div>
+        <div class="er"><i data-i="file" data-c="sm"></i>icd-review-notes.pdf<span class="m">240 KB</span></div>
+        <div class="er"><i data-i="file" data-c="sm"></i>artifact-checklist.xlsx<span class="m">38 KB</span></div>
+        <div class="er"><i data-i="link" data-c="sm"></i>Design review recording<span class="m">link</span></div></div>
+      <div class="sec" style="border-bottom:none"><div class="row"><span class="k">QUICK FEEDBACK</span><span class="sp faint" style="font-size:12px">next step</span></div>
+        <div class="qf"><span>Was this worth the time?</span><span class="faint">Not answered</span></div>
+        <div class="qf"><span>Would you suggest it to a colleague?</span><span class="faint">Not answered</span></div></div>
+      <div class="foot"><i data-i="info" data-c="xs" ></i><span>Sam can approve it, return it with feedback, or reject it. Every version is kept, and you can't approve your own work.</span></div>
+    </aside>
+  </div>
+
+  <div class="fbar">
+    <span class="note"><i data-i="clock" data-c="sm"></i><span>Sam usually reviews within <b>7 days</b>. Your submission date decides whether it's on time.</span></span>
+    <span class="sp"></span>
+    <span class="btn"><i data-i="cl" data-c="xs"></i> Back</span>
+    <span class="btn">Save draft</span>
+    <span class="btn primary">Continue <span class="kbd" style="background:transparent;border-color:rgba(127,127,127,.4)">Ctrl Enter</span></span>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>

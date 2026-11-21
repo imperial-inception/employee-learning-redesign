@@ -1,0 +1,205 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: On the go</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+body{overflow:hidden}
+.stage{position:relative;height:100vh;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:72px;padding:0 100px 0 112px;overflow:hidden;
+  background:radial-gradient(42% 55% at 74% 50%,var(--hero-wash),transparent 70%),var(--bg)}
+.stage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--line-2) 1px,transparent 1.3px);background-size:24px 24px;
+  -webkit-mask-image:radial-gradient(48% 62% at 74% 50%,#000 10%,transparent 75%);mask-image:radial-gradient(48% 62% at 74% 50%,#000 10%,transparent 75%);pointer-events:none}
+.intro{position:relative;max-width:520px}
+.intro .k{font:500 11.5px "Geist Mono",monospace;letter-spacing:.08em;color:var(--faint);margin-bottom:14px}
+.intro h1{font-size:44px;letter-spacing:-.035em}
+.intro .sub{font-size:15px;line-height:1.55;margin-top:14px;max-width:470px}
+.caps{margin-top:34px;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.cap{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
+.cap .num{font:500 12px "Geist Mono",monospace;color:var(--accent-2);padding-top:2px;width:22px}
+[data-theme=light] .cap .num{color:var(--accent)}
+.cap b{font-weight:600;font-size:14.5px;display:block}
+.cap p{font-size:13.5px;color:var(--muted);margin-top:4px;line-height:1.55}
+.rules{list-style:none;margin-top:22px;display:flex;flex-direction:column;gap:9px}
+.rules li{display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--text-2)}
+.rules li .i{color:var(--muted);margin-top:1px}
+
+.phones{position:relative;display:flex;gap:52px;align-items:flex-start}
+.pcol .lab{font:500 11px "Geist Mono",monospace;letter-spacing:.08em;color:var(--faint);margin:0 0 12px 6px;display:flex;gap:8px}
+.pcol .lab b{color:var(--text-2);font-weight:500}
+.pw{width:359px;height:777px}
+.phone{width:390px;height:844px;transform:scale(.92);transform-origin:top left;border-radius:60px;padding:11px;background:var(--surface-3);
+  box-shadow:0 0 0 1px var(--line-2),inset 0 0 0 1px var(--line-2),0 40px 90px -30px rgba(0,0,0,.55)}
+[data-theme=light] .phone{box-shadow:0 0 0 1px var(--line-2),inset 0 0 0 1px var(--line-2),0 40px 80px -36px rgba(9,9,11,.35)}
+.scr{position:relative;height:100%;border-radius:50px;background:var(--bg);overflow:hidden;font-size:14.5px;display:flex;flex-direction:column;box-shadow:0 0 0 1px var(--line)}
+.island{position:absolute;top:11px;left:50%;width:118px;height:34px;margin-left:-59px;border-radius:20px;background:var(--bg);box-shadow:0 0 0 1px var(--line);z-index:3}
+[data-theme=light] .island{background:var(--text);box-shadow:none}
+.sb{height:54px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:6px 30px 0 36px;font:600 15px Geist,sans-serif}
+.sb .rt{display:flex;align-items:center;gap:6px}
+.sig{display:flex;align-items:flex-end;gap:2px;height:11px}
+.sig i{width:3px;border-radius:1px;background:var(--text)}
+.bat{width:25px;height:12px;border-radius:4px;box-shadow:inset 0 0 0 1.2px var(--muted);padding:2px;position:relative}
+.bat::after{content:"";position:absolute;right:-3px;top:4px;width:2px;height:4px;border-radius:0 1px 1px 0;background:var(--muted)}
+.bat span{display:block;height:100%;width:72%;border-radius:2px;background:var(--text)}
+.body{flex:1;min-height:0;padding:4px 18px 0;display:flex;flex-direction:column;gap:12px;overflow:hidden}
+.home{height:5px;width:134px;border-radius:3px;background:var(--text);opacity:.85;margin:0 auto 8px}
+
+/* employee phone */
+.top{display:flex;align-items:flex-end;justify-content:space-between;padding:6px 2px 0}
+.top .d{font:500 11px "Geist Mono",monospace;letter-spacing:.08em;color:var(--faint)}
+.top h2{font-size:30px;font-weight:650;letter-spacing:-.03em;line-height:1.1;margin-top:3px}
+.top .ic{display:flex;align-items:center;gap:12px;color:var(--muted);padding-bottom:3px}
+.card{border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:15px 16px}
+.focus h3{font-size:18.5px;font-weight:600;letter-spacing:-.02em;line-height:1.28;margin:9px 0 12px}
+.focus .bar{height:7px}
+.focus .lgd{display:flex;gap:12px;font-size:12px;color:var(--muted);margin-top:9px}
+.focus .lgd i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:5px}
+.nx .k{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--accent-2);margin-bottom:6px}
+[data-theme=light] .nx .k{color:var(--accent)}
+.nx .t{font-size:15.5px;font-weight:550;line-height:1.3}
+.nx .tags{display:flex;gap:6px;margin-top:9px}
+.nx .btns{display:grid;grid-template-columns:1fr 1.15fr;gap:8px;margin-top:12px}
+.nx .btns .btn{height:40px;justify-content:center;border-radius:10px;font-size:13.5px}
+.ib .hdr{display:flex;align-items:center;gap:8px;padding:0 2px 8px}
+.ib .hdr b{font-size:15px;font-weight:600}
+.ib .hdr .n{font:500 12px "Geist Mono",monospace;color:var(--faint)}
+.ib .row-m{display:flex;gap:11px;align-items:flex-start;padding:11px 14px;border-top:1px solid var(--line)}
+.ib .row-m:first-child{border-top:none}
+.ib .row-m .st{margin-top:2px}
+.ib .tt{font-size:14px;font-weight:500;line-height:1.3}
+.ib .cc{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.4}
+.tabs-m{flex:none;display:grid;grid-template-columns:repeat(5,1fr);padding:9px 10px 8px;border-top:1px solid var(--line);background:var(--panel)}
+.tabs-m span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;font-weight:500;color:var(--muted)}
+.tabs-m span .i{width:22px;height:22px}
+.tabs-m span.on{color:var(--text)}
+.tabs-m .badge{position:relative}
+.tabs-m .badge::after{content:"1";position:absolute;top:-4px;right:-9px;min-width:15px;height:15px;border-radius:8px;background:var(--accent);color:var(--btn-primary-fg);font:600 9.5px "Geist Mono",monospace;display:grid;place-items:center}
+[data-theme=light] .tabs-m .badge::after{color:var(--surface)}
+
+/* manager phone */
+.nav-m{display:flex;align-items:center;justify-content:space-between;padding:2px 0 0;font-size:15px}
+.nav-m .bk{display:flex;align-items:center;gap:2px;color:var(--accent-2);font-weight:500}
+[data-theme=light] .nav-m .bk{color:var(--accent)}
+.nav-m .bk .i{width:20px;height:20px}
+.nav-m .pos{font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.who{display:flex;align-items:center;gap:11px}
+.who b{font-weight:600;font-size:15px;display:block}
+.who small{font:500 11.5px "Geist Mono",monospace;color:var(--muted)}
+.sub-t h3{font-size:21px;font-weight:600;letter-spacing:-.025em;line-height:1.2}
+.sub-t .tags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.goal{display:flex;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--surface-2);border:1px solid var(--line);font-size:12.5px;color:var(--text-2)}
+.goal .i{color:var(--muted)}
+.goal b{font-weight:550;color:var(--text)}
+.qa .q{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:5px}
+.qa p{font-size:14px;line-height:1.5;color:var(--text-2)}
+.ev{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.thumb{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+.thumb .pv{height:96px;background:var(--surface-2);border-bottom:1px solid var(--line);position:relative;padding:12px 14px;display:flex;flex-direction:column;gap:5px}
+.thumb .pv i{display:block;height:4px;border-radius:2px;background:var(--line-2)}
+.thumb .pv .seal{position:absolute;right:10px;bottom:9px;color:var(--accent)}
+.thumb .pv.img{padding:0;background:linear-gradient(135deg,var(--surface-3),var(--surface-2))}
+.thumb .pv.img svg{position:absolute;inset:0;width:100%;height:100%}
+.thumb .fn{padding:8px 10px;font-size:12px;font-weight:500;display:flex;align-items:center;gap:6px}
+.thumb .fn small{font:500 10.5px "Geist Mono",monospace;color:var(--faint);margin-left:auto}
+.skm{display:flex;align-items:center;gap:10px;padding:11px 16px 12px}.skm>div{flex:1}.skm .k{font-size:12px;color:var(--muted)}.skm .v{font-size:20px;font-weight:600;letter-spacing:-.03em;margin-top:3px}.skm .v small{font-size:12px;font-weight:500;letter-spacing:0;color:var(--muted);margin-left:6px}
+.qs{display:grid;grid-template-columns:1fr 1fr;padding:0}
+.qs > div{padding:10px 16px 11px}.qs > div + div{border-left:1px solid var(--line)}
+.qs .k{font-size:12px;color:var(--muted)}
+.qs .v{font-size:22px;font-weight:600;letter-spacing:-.03em;margin-top:3px}
+.qs .v small{font-size:12px;font-weight:500;letter-spacing:0;color:var(--ok);margin-left:4px}
+.qs > div + div .v small{color:var(--muted);margin-left:0}
+.win{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.win .mono{font-size:10.5px;letter-spacing:.07em;color:var(--faint)}
+.win .wb{flex:1;height:5px;border-radius:3px;background:var(--surface-3);overflow:hidden}
+.win .wb span{display:block;height:100%;background:var(--ok);border-radius:3px}
+.act-m{flex:none;padding:12px 16px 10px;border-top:1px solid var(--line);background:var(--panel);display:flex;flex-direction:column;gap:10px}
+.act-m .in{height:38px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);display:flex;align-items:center;padding:0 12px;font-size:13.5px;color:var(--faint)}
+.act-m .bb{display:grid;grid-template-columns:1fr 1.3fr;gap:9px}
+.act-m .btn{height:44px;justify-content:center;border-radius:12px;font-size:14.5px}
+.act-m .btn.ret{color:var(--orange)}
+</style></head>
+<body>
+<div class="stage">
+  <section class="intro">
+    <div class="k">SKILL PORTAL · MOBILE</div>
+    <div class="row" style="gap:14px;align-items:center"><h1>On the go</h1><span class="pill p-acc">Proposal</span></div>
+    <p class="sub">The two moments that happen away from a desk: checking what's next, and clearing a review between meetings. Same tokens, same rules as the web app.</p>
+    <div class="caps">
+      <div class="cap"><span class="num">01</span><div><b>Employee · Home</b><p>Focus goal, the one next step, the inbox and how your skills are growing. Opening a course hands off to the LMS; recording stays two short answers.</p></div></div>
+      <div class="cap"><span class="num">02</span><div><b>Manager · Review</b><p>The submission, both answers and the evidence, with Approve or Return. Returning needs a comment the employee can act on.</p></div></div>
+    </div>
+    <ul class="rules">
+      <li><i data-i="check" data-c="sm"></i>Only Approved counts, exactly as on desktop.</li>
+      <li><i data-i="eye" data-c="sm"></i>Evidence opens full screen, so nothing is approved unseen.</li>
+      <li><i data-i="lock" data-c="sm"></i>No admin, reports or private notes on mobile.</li>
+    </ul>
+  </section>
+
+  <div class="phones">
+    <div class="pcol"><div class="lab">01 <b>EMPLOYEE · HOME</b></div>
+      <div class="pw"><div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="sb"><span>9:41</span><span class="rt"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:11px"></i></span><span class="bat"><span></span></span></span></div>
+        <div class="body">
+          <div class="top"><div><div class="d">FRI 21 NOV</div><h2>Home</h2></div>
+            <div class="ic"><i data-i="search"></i><span class="avatar" style="width:30px;height:30px;font-size:11px">JL</span></div></div>
+
+          <div class="card glow focus">
+            <div class="row" style="gap:8px"><span class="pill p-acc"><i data-i="target" data-c="xs"></i> Focus goal</span><span class="mono faint" style="font-size:11px;margin-left:auto">DUE 31 DEC</span></div>
+            <h3>Become confident using SysML v2 to describe system architecture</h3>
+            <div class="bar"><span class="a" style="width:40%"></span><span class="r" style="width:20%"></span><span class="n" style="width:40%"></span></div>
+            <div class="lgd"><span><i style="background:var(--ok)"></i>2 approved</span><span><i style="background:var(--warn)"></i>1 in review</span><span><i style="background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)"></i>2 to go</span></div>
+          </div>
+
+          <div class="card nx">
+            <div class="k">NEXT STEP · 3 OF 5</div>
+            <div class="t">MBSE Language / Architecture: SysML Overview</div>
+            <div class="tags"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">0.5 h</span><span class="tag">LMS</span></div>
+            <div class="btns"><span class="btn">Record it</span><span class="btn primary">Open in LMS <i data-i="ext" data-c="sm"></i></span></div>
+          </div>
+
+          <div class="ib">
+            <div class="hdr"><b>Inbox</b><span class="n">2</span></div>
+            <div class="card" style="padding:0">
+              <div class="row-m"><i data-i="st-ret"></i><div class="grow"><div class="tt">Clear Status &amp; Issue Communication</div><div class="cc">Returned by Sam: “Add one example from the CDR prep.”</div></div><i data-i="cr" data-c="sm" style="color:var(--faint);margin-top:8px"></i></div>
+              <div class="row-m"><i data-i="st-rev"></i><div class="grow"><div class="tt">Functional Architecture (FA-110)</div><div class="cc">Sam reviews by 25 Nov</div></div><span class="mono faint" style="font-size:12px;margin-top:2px">3d</span></div>
+            </div>
+          </div>
+          <div class="card skm"><div><div class="k">Your skills toward Individual contributor 2</div><div class="v">3 of 6 <small>areas have approved evidence</small></div></div><i data-i="cr" data-c="sm" style="color:var(--faint)"></i></div>
+        </div>
+        <div class="tabs-m">
+          <span class="on"><i data-i="home"></i>Home</span>
+          <span><i data-i="book"></i>Learning</span>
+          <span><i data-i="target"></i>Goals</span>
+          <span><i data-i="users"></i>Colleagues</span>
+          <span><i data-i="user"></i>Profile</span>
+        </div>
+        <div style="background:var(--panel);padding-top:4px"><div class="home"></div></div>
+      </div></div></div>
+    </div>
+
+    <div class="pcol"><div class="lab">02 <b>MANAGER · REVIEW</b></div>
+      <div class="pw"><div class="phone"><div class="scr">
+        <div class="island"></div>
+        <div class="sb"><span>9:41</span><span class="rt"><span class="sig"><i style="height:4px"></i><i style="height:6px"></i><i style="height:8px"></i><i style="height:11px"></i></span><span class="bat"><span></span></span></span></div>
+        <div class="body" style="gap:16px">
+          <div class="nav-m"><span class="bk"><i data-i="cl"></i>Reviews</span><span class="pos">1 OF 4</span><i data-i="more" style="color:var(--muted)"></i></div>
+          <div class="who"><span class="avatar a2" style="width:36px;height:36px;font-size:12px">PN</span><div><b>Priya Nair</b><small>SENT 19 NOV · DUE 26 NOV</small></div></div>
+          <div class="sub-t"><h3>Interface Management <span class="mono faint" style="font-size:13px;font-weight:500;letter-spacing:0">IM-201</span></h3>
+            <div class="tags"><span class="tag"><span class="d formal"></span>Formal</span><span class="tag mono">2 h</span><span class="tag">Academy</span><span class="tag">Completed 18 Nov</span></div></div>
+          <div class="goal"><i data-i="target" data-c="sm"></i><span>Counts toward <b>Lead interface definition</b> · 3 of 4 approved</span></div>
+          <div class="qa"><div class="q">WHAT I LEARNED</div><p>How an ICD fixes ownership of each interface, and why changes go through the review board instead of email.</p></div>
+          <div class="qa"><div class="q">HOW I'LL APPLY IT</div><p>Draft the sensor harness ICD with owners per signal before the December board.</p></div>
+          <div class="win"><span class="mono">REVIEW WINDOW</span><span class="wb"><span style="width:29%"></span></span><span>5 of 7 days left</span></div>
+          <div class="ev">
+            <div class="thumb"><div class="pv"><i style="width:55%;background:var(--text-2);opacity:.5"></i><i style="width:80%"></i><i style="width:70%"></i><i style="width:40%"></i><span class="seal"><i data-i="shield"></i></span></div><div class="fn"><i data-i="file" data-c="xs"></i>Certificate<small>PDF</small></div></div>
+            <div class="thumb"><div class="pv img"><svg viewBox="0 0 160 96" preserveAspectRatio="none"><rect x="14" y="18" width="44" height="24" rx="4" fill="none" style="stroke:var(--muted)" stroke-width="1.5"/><rect x="100" y="52" width="46" height="24" rx="4" fill="none" style="stroke:var(--muted)" stroke-width="1.5"/><path d="M58 30 H80 V64 H100" fill="none" style="stroke:var(--accent)" stroke-width="2"/><circle cx="80" cy="47" r="3" style="fill:var(--accent)"/></svg></div><div class="fn"><i data-i="clip" data-c="xs"></i>ICD sketch<small>PNG</small></div></div>
+          </div>
+        </div>
+        <div class="act-m">
+          <div class="in">Comment for Priya (needed to return)…</div>
+          <div class="bb"><span class="btn ret"><i data-i="st-ret"></i> Return</span><span class="btn ok"><i data-i="check" data-c="sm"></i> Approve</span></div>
+        </div>
+        <div style="background:var(--panel);padding-top:2px"><div class="home"></div></div>
+      </div></div></div>
+    </div>
+  </div>
+</div>
+<script src="assets/shell.js"></script>
+</body></html>

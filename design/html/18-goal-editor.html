@@ -1,0 +1,162 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Edit goal</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.c-faint{color:var(--faint)}.mt2{margin-top:2px}
+body{overflow:hidden}
+#bg{position:fixed;inset:0;width:100%;height:100%;border:0;filter:blur(1.5px) saturate(.9)}
+.scrim{position:fixed;inset:0;background:rgba(5,5,8,.58)}
+[data-theme=light] .scrim{background:rgba(250,250,250,.6)}
+.dlg{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:1000px;overflow:hidden}
+
+/* header / footer */
+.dh{display:flex;align-items:center;gap:10px;height:56px;padding:0 16px 0 20px;border-bottom:1px solid var(--line)}
+.dh .ic{width:28px;height:28px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface-2);display:grid;place-items:center;color:var(--text-2)}
+.dh h2{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.dh .x{width:28px;height:28px;display:grid;place-items:center;border-radius:7px;color:var(--muted)}
+.df{display:flex;align-items:center;gap:8px;height:62px;padding:0 16px 0 12px;border-top:1px solid var(--line);background:var(--surface-2)}
+.df .vis{display:flex;align-items:center;gap:8px;margin-left:10px;padding-left:16px;border-left:1px solid var(--line);font-size:12.5px;color:var(--muted);white-space:nowrap}
+.df .vis b{font-weight:550;color:var(--text-2);white-space:nowrap}
+.df .vis .i{color:var(--muted)}
+
+/* body */
+.db{display:grid;grid-template-columns:minmax(0,1fr) 404px}
+.col{padding:20px 24px 6px}
+.col.r{border-left:1px solid var(--line);padding:20px 22px 6px}
+.f{margin-bottom:20px}
+.lb{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:550;color:var(--text-2);margin-bottom:7px}
+.lb .o{font-weight:400;color:var(--faint)}
+.lb .sp{font-weight:400;font-size:12px;color:var(--muted)}
+.input.ttl{height:42px;font-size:15px;font-weight:550;letter-spacing:-.01em}
+.ta{position:relative;min-height:86px;padding-bottom:26px}
+.ta .cc{position:absolute;right:12px;bottom:8px;font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.help{display:flex;align-items:center;gap:6px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ro{background:var(--surface-2);border-color:var(--line);color:var(--text-2);cursor:default}
+.ro .lk{margin-left:auto;color:var(--faint)}
+.input .i{color:var(--muted)}
+
+/* milestones */
+.msr{display:grid;grid-template-columns:22px minmax(0,1fr) 132px 26px;gap:8px;align-items:center;margin-bottom:8px}
+.msr .n{font:500 11px "Geist Mono",monospace;letter-spacing:.04em;color:var(--faint)}
+.msr .dt{font-family:"Geist Mono",monospace;font-size:12.5px;padding:0 10px;gap:8px}
+.msr .dt.empty{color:var(--faint);font-family:Geist,"Segoe UI",sans-serif;font-size:13px}
+.msr .rm{color:var(--faint);display:grid;place-items:center}
+.addl{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 8px 0 30px;color:var(--muted);font-size:13px;font-weight:500}
+
+/* linked learning */
+.ll{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface)}
+.ll .g{font:500 10.5px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);padding:9px 12px 2px;display:flex}
+.ll .g span:last-child{margin-left:auto}
+.ll .r{display:flex;align-items:center;gap:10px;height:38px;padding:0 10px 0 12px;font-size:13px}
+.ll .r .st{width:15px;height:15px}
+.ll .r .code{font:500 11px "Geist Mono",monospace;color:var(--faint);margin-left:5px}
+.ll .r .s{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap}
+.ll .r .rm{color:var(--faint);display:grid;place-items:center;width:20px}
+.ll .pwg{border-top:1px solid var(--line);margin-top:4px;padding-top:10px}
+.ll .gl{display:flex;gap:2px;margin-left:auto}
+.ll .gl .st{width:13px;height:13px}
+
+
+.srch{margin-top:10px;border:1px solid var(--accent);border-radius:10px;background:var(--surface);box-shadow:0 0 0 3px var(--accent-bg),0 12px 32px -12px rgba(0,0,0,.45);overflow:hidden}
+[data-theme=light] .srch{box-shadow:0 0 0 3px var(--accent-bg),0 12px 32px -14px rgba(9,9,11,.18)}
+.srch .q{display:flex;align-items:center;gap:9px;height:38px;padding:0 12px;border-bottom:1px solid var(--line);font-size:13.5px}
+.srch .q .i{color:var(--muted)}
+.caret{display:inline-block;width:1.5px;height:16px;background:var(--accent);vertical-align:-3px;margin-left:1px}
+.srch .res{display:flex;align-items:center;gap:10px;height:40px;padding:0 8px;margin:3px 4px;border-radius:7px;font-size:13px}
+.srch .res.sel{background:var(--sel)}
+.srch .res .code{font:500 11px "Geist Mono",monospace;color:var(--faint)}
+.srch .res .m{margin-left:auto;display:flex;align-items:center;gap:8px;font:500 12px "Geist Mono",monospace;color:var(--muted)}
+.srch .res .pill{height:20px;font:550 11.5px Geist,"Segoe UI",sans-serif}
+.srch .ft{display:flex;align-items:center;gap:14px;height:32px;padding:0 12px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted)}
+.srch .ft span{display:flex;align-items:center;gap:5px}
+.srch .ft .kbd{height:17px;font-size:10px}
+
+.opt{display:flex;align-items:flex-start;gap:12px;padding:15px 0 14px;border-top:1px solid var(--line)}
+.opt b{font-weight:550;font-size:13.5px;display:block}
+.opt p{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+.opt .ic{color:var(--muted);margin-top:1px}
+.opt .toggle{margin-top:2px}
+.sep{height:1px;background:var(--line);margin:4px 0 0}
+</style></head>
+<body data-ws="employee" data-active="plan" data-role="manager">
+<iframe id="bg"></iframe>
+<div class="scrim"></div>
+
+<div class="dlg overlay" role="dialog" aria-label="Edit goal">
+  <div class="dh">
+    <span class="ic"><i data-i="target" data-c="sm"></i></span>
+    <h2>Edit goal</h2>
+    <span class="pill p-acc"><i data-i="target" data-c="xs"></i> Focus goal</span>
+    <span class="sp faint" style="font-size:12px">Created 6 Oct · edited 12 Nov</span><span class="kbd" style="margin-left:6px">Esc</span>
+    <span class="x"><i data-i="x" data-c="sm"></i></span>
+  </div>
+
+  <div class="db">
+    <!-- left: what the goal is -->
+    <div class="col">
+      <div class="f"><label class="lb">Title</label>
+        <div class="input ttl">Become confident using SysML v2 to describe system architecture</div></div>
+
+      <div class="f"><label class="lb">Why it matters <span class="o">optional</span></label>
+        <div class="textarea ta">The actuation architecture moves to SysML v2 models in Q1, and I'll own the interface views.<span class="cc">93 / 280</span></div>
+        <div class="help"><i data-i="eye" data-c="xs"></i>Sam sees this next to your submissions. It's never sent to the advisor.</div></div>
+
+      <div class="f two">
+        <div><label class="lb">Due date</label>
+          <div class="input"><i data-i="cal" data-c="sm"></i><span class="mono" style="font-size:13px">31 Dec 2026</span><span class="sp faint" style="font-size:12px">40 days</span></div></div>
+        <div><label class="lb">Timeframe <span class="o">read-only</span></label>
+          <div class="input ro"><span>Short-term</span><span class="faint">· from due date</span><span class="lk"><i data-i="lock" data-c="xs"></i></span></div></div>
+        <div class="help" style="grid-column:1/-1;margin-top:-4px"><i data-i="info" data-c="xs"></i>Under 3 months away is short-term. It updates when you change the due date.</div>
+      </div>
+
+      <div class="f" style="margin-bottom:8px"><label class="lb">Milestones <span class="o">dates optional</span><span class="sp mono">2</span></label>
+        <div class="msr"><span class="n">M1</span>
+          <div class="input">Model the actuation interfaces in SysML v2</div>
+          <div class="input dt"><i data-i="cal" data-c="xs"></i>12 Dec</div>
+          <span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="msr"><span class="n">M2</span>
+          <div class="input">Walk Sam through the interface view</div>
+          <div class="input dt empty"><i data-i="cal" data-c="xs"></i>Add date</div>
+          <span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <span class="addl"><i data-i="plus" data-c="xs"></i>Add milestone</span>
+      </div>
+    </div>
+
+    <!-- right: what serves it -->
+    <div class="col r">
+      <label class="lb">Linked learning <span class="sp mono">5</span></label>
+      <div class="ll">
+        <div class="g"><span>ADDED DIRECTLY</span><span>2</span></div>
+        <div class="r"><i data-i="st-ret"></i><span class="ellipsis">Clear Status &amp; Issue Communication</span><span class="s" style="color:var(--orange)">Returned</span><span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="r"><i data-i="st-not"></i><span class="ellipsis">SysML v2 language overview</span><span class="s">Not started</span><span class="rm"><i data-i="x" data-c="xs"></i></span></div>
+        <div class="g pwg"><span>FROM A PATHWAY · MANAGED THERE</span><span>3</span></div>
+        <div class="r"><i data-i="route" data-c="sm c-muted"></i><span class="ellipsis">MBSE foundations</span>
+          <span class="gl"><i data-i="st-ok"></i><i data-i="st-ok"></i><i data-i="st-rev"></i></span><span class="s" style="margin-left:8px">2 approved · 1 in review</span></div>
+      </div>
+
+      <div class="srch">
+        <div class="q"><i data-i="search" data-c="sm"></i><span>interface<span class="caret"></span></span><span class="sp faint" style="font-size:12px">Link learning</span></div>
+        <div class="res sel"><span class="tag" style="border:none;padding:0"><span class="d formal"></span></span><span>Interface Management</span><span class="code">IM-201</span><span class="m">2 h<span class="kbd">Enter</span></span></div>
+        <div class="res"><span class="tag" style="border:none;padding:0"><span class="d formal"></span></span><span>Develop System &amp; Component ICS</span><span class="m">1.5 h</span></div>
+        <div class="res"><span class="tag" style="border:none;padding:0"><span class="d rel"></span></span><span>Interface review board: shadowing</span><span class="m"><span class="pill p-acc">In your plan</span></span></div>
+        <div class="ft"><span><span class="kbd">↑</span><span class="kbd">↓</span> move</span><span><span class="kbd">Enter</span> link</span><span><span class="kbd">Esc</span> close</span><span class="sp">12 matches</span></div>
+      </div>
+
+      <div class="opt" style="margin-top:18px">
+        <i data-i="target" data-c="sm ic"></i>
+        <div class="grow"><b>Make this my focus</b><p>Your focus leads Home and ranks suggestions. One goal at a time.</p></div>
+        <span class="toggle on"></span></div>
+
+    </div>
+  </div>
+
+  <div class="df">
+    <span class="btn ghost danger">Delete goal</span>
+    <span class="vis"><i data-i="eye" data-c="sm c-muted"></i><b>Your manager can see this goal.</b><span>Sam Patel sees it and its progress. Colleagues don't.</span></span>
+    <span class="sp btn ghost">Cancel</span>
+    <span class="btn primary">Save changes <span class="kbd">Ctrl Enter</span></span>
+  </div>
+</div>
+<script>document.getElementById('bg').src='04-goals.html'+location.search;</script>
+<script src="assets/shell.js"></script>
+</body></html>

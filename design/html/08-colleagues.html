@@ -1,0 +1,111 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Skill Portal: Find people</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+.lay{display:grid;grid-template-columns:200px minmax(0,1fr);gap:28px;margin-top:16px}
+.fs{margin-bottom:18px}.fs h3{font:500 11px "Geist Mono",monospace;letter-spacing:.07em;color:var(--faint);margin-bottom:7px}
+.fo{display:flex;align-items:center;gap:9px;height:28px;font-size:13px;color:var(--text-2)}
+.fo .n{margin-left:auto;font:500 11.5px "Geist Mono",monospace;color:var(--faint)}
+.sbar{display:flex;align-items:center;gap:12px;height:50px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--surface);font-size:16px}
+.vis{margin-top:12px;padding:9px 12px}
+.vis .ic{color:var(--muted)}
+.vis b{font-weight:600}
+
+.res .li{align-items:flex-start;padding:13px 16px;gap:13px}
+.res .avatar{margin-top:1px}
+.res .nm{display:flex;align-items:baseline;gap:8px}
+.res .nm .c{font-size:12.5px;color:var(--muted)}
+.res .ml{display:flex;align-items:center;gap:8px;margin-top:8px;flex-wrap:nowrap;min-width:0}
+.res .ml + .ml{margin-top:7px}
+.tool .meter{margin-left:2px}
+.tool .lvl{color:var(--text)}
+.sr-t{font-size:11.5px;color:var(--faint)}
+.ot{font-size:12px;color:var(--muted);white-space:nowrap}
+.ot::before{content:"·";color:var(--faint);margin-right:8px}
+.exs.nr{color:var(--faint)}
+.res .act{display:flex;gap:6px;flex:none}
+.tool{display:inline-flex;align-items:center;gap:8px;height:22px;padding:0 8px;border-radius:6px;border:1px solid var(--line-2);font-size:12px;font-weight:500;color:var(--text-2);white-space:nowrap}
+.meter{display:inline-flex;gap:2px}
+.meter span{width:9px;height:5px;border-radius:1.5px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--line-2)}
+.meter span.on{background:var(--text-2);box-shadow:none}
+.lvl{font-size:12px;color:var(--text-2);white-space:nowrap}
+.lvl small{color:var(--faint);font-size:11.5px;margin-left:3px}
+.src{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 7px;border-radius:6px;font-size:12px;font-weight:550;white-space:nowrap;flex:none}
+.src.mc{background:var(--ok-bg);color:var(--ok)}
+.src.sr{border:1px dashed var(--line-2);color:var(--muted);font-weight:500}
+.exs{font-size:12.5px;color:var(--text-2);min-width:0}
+.dotsep{color:var(--faint)}
+.team-pill{font-size:11.5px;color:var(--accent-2);font-weight:550}
+[data-theme=light] .team-pill{color:var(--accent)}
+
+</style></head>
+<body data-ws="employee" data-active="colleagues" data-role="manager">
+<main id="page">
+  <header class="ph" style="margin-bottom:16px">
+    <div><h1>Colleagues</h1><p class="sub">Find people by skill or tool. Only colleagues who chose to be visible appear.</p></div>
+    
+  </header>
+  <div class="sbar"><i data-i="search" data-c="lg"></i><span>SysML</span><span class="sp muted" style="font-size:12.5px">Skills, tools and experience</span><span class="kbd">Enter</span></div>
+  <div class="banner info vis"><span class="ic"><i data-i="eyeoff" data-c="sm"></i></span>
+    <span><b>Only colleagues who chose to be visible appear.</b> <span class="t2">You're currently hidden.</span></span>
+    <span class="acts"><span class="btn sm">Change in Profile › Privacy</span></span></div>
+
+  <div class="lay">
+    <aside>
+      <div class="fs"><h3>EXPERIENCE</h3>
+        <div class="fo"><span class="check on"><i data-i="check" data-c="xs"></i></span>Manager-confirmed<span class="n">3</span></div>
+        <div class="fo"><span class="check on"><i data-i="check" data-c="xs"></i></span>Self-reported<span class="n">2</span></div>
+        <div class="fo"><span class="check on"><i data-i="check" data-c="xs"></i></span>Not recorded<span class="n">1</span></div></div>
+      <div class="fs"><h3>CONFIDENCE</h3>
+        <div class="fo"><span class="check"></span>Expert<span class="n">1</span></div>
+        <div class="fo"><span class="check"></span>Advanced<span class="n">2</span></div>
+        <div class="fo"><span class="check"></span>Working<span class="n">2</span></div>
+        <div class="fo"><span class="check"></span>Basic<span class="n">1</span></div></div>
+      <div class="fs"><h3>TEAM</h3>
+        <div class="fo"><span class="check"></span>Architecture &amp; integration<span class="n">2</span></div>
+        <div class="fo"><span class="check"></span>Flight controls<span class="n">1</span></div>
+        <div class="fo"><span class="check"></span>Requirements &amp; V&amp;V<span class="n">2</span></div>
+        <div class="fo"><span class="check"></span>Integration lab<span class="n">1</span></div></div>
+      <div class="fs"><h3>MATCHED IN</h3>
+        <div class="fo"><span class="toggle on"></span>Tools<span class="n">6</span></div>
+        <div class="fo"><span class="toggle on"></span>Experience<span class="n">5</span></div></div>
+    </aside>
+
+    <section>
+      <div class="row" style="margin-bottom:10px;font-size:13px"><b>6 colleagues</b><span class="muted">for “SysML” · 41 of 212 colleagues are visible</span><span class="sp muted">Sort <b style="color:var(--text);font-weight:550">Best match</b> <i data-i="cd" data-c="xs"></i></span></div>
+      <div class="panel res">
+        <div class="li hover"><div class="avatar lg a2">PN</div>
+          <div class="grow"><div class="nm"><span class="t">Priya Nair</span><span class="c ellipsis">Lead systems engineer · Architecture &amp; integration</span></div>
+            <div class="ml"><span class="tool">SysML v2<span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span></span><span class="lvl">Expert</span></span><span class="sr-t">self-rated</span><span class="ot">Requirements tool</span><span class="ot">PLM system</span></div>
+            <div class="ml"><span class="src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span><span class="exs ellipsis">SysML v2 model owner, flight controls · <span class="mono">2023 – now</span></span></div></div>
+          <div class="act"><span class="btn sm primary"><i data-i="msg" data-c="xs"></i> Message</span><span class="btn sm">View profile</span></div></div>
+        <div class="li"><div class="avatar lg a3">FR</div>
+          <div class="grow"><div class="nm"><span class="t">Fatima Rahman</span><span class="c ellipsis">Model-based systems engineer · Flight controls</span></div>
+            <div class="ml"><span class="tool">SysML v2<span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span><span class="lvl">Advanced</span></span><span class="sr-t">self-rated</span><span class="ot">PLM system</span></div>
+            <div class="ml"><span class="src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span><span class="exs ellipsis">Moved the actuation model from SysML v1 to v2 · <span class="mono">2025</span></span></div></div>
+          <div class="act"><span class="btn sm"><i data-i="msg" data-c="xs"></i> Message</span><span class="btn sm ghost">View profile</span></div></div>
+        <div class="li"><div class="avatar lg a5">WC</div>
+          <div class="grow"><div class="nm"><span class="t">Wei Chen</span><span class="c ellipsis">Systems engineer · Architecture &amp; integration</span></div>
+            <div class="ml"><span class="tool">SysML v2<span class="meter"><span class="on"></span><span class="on"></span><span class="on"></span><span></span></span><span class="lvl">Advanced</span></span><span class="sr-t">self-rated</span><span class="ot">Python</span></div>
+            <div class="ml"><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><span class="exs ellipsis">Built the interface views for the cabin model · <span class="mono">2024</span></span></div></div>
+          <div class="act"><span class="btn sm"><i data-i="msg" data-c="xs"></i> Message</span><span class="btn sm ghost">View profile</span></div></div>
+        <div class="li"><div class="avatar lg a4">DO</div>
+          <div class="grow"><div class="nm"><span class="t">Daniel Okafor</span><span class="c ellipsis">Engineering manager · Requirements &amp; V&amp;V</span></div>
+            <div class="ml"><span class="tool">SysML v2<span class="meter"><span class="on"></span><span class="on"></span><span></span><span></span></span><span class="lvl">Working</span></span><span class="sr-t">self-rated</span><span class="ot">Requirements tool</span><span class="ot">PLM system</span></div>
+            <div class="ml"><span class="src mc"><i data-i="shield" data-c="xs"></i>Manager-confirmed</span><span class="exs ellipsis">Reviewed the SysML v2 pilot models for two programs</span></div></div>
+          <div class="act"><span class="btn sm"><i data-i="msg" data-c="xs"></i> Message</span><span class="btn sm ghost">View profile</span></div></div>
+        <div class="li"><div class="avatar lg a6">AK</div>
+          <div class="grow"><div class="nm"><span class="t">Alex Kim</span><span class="c ellipsis">Verification engineer · Requirements &amp; V&amp;V</span></div>
+            <div class="ml"><span class="tool">SysML v2<span class="meter"><span class="on"></span><span class="on"></span><span></span><span></span></span><span class="lvl">Working</span></span><span class="sr-t">self-rated</span><span class="ot">Requirements tool</span></div>
+            <div class="ml"><span class="src sr"><i data-i="user" data-c="xs"></i>Self-reported</span><span class="exs ellipsis">Writes test cases straight from SysML v2 requirements</span></div></div>
+          <div class="act"><span class="btn sm"><i data-i="msg" data-c="xs"></i> Message</span><span class="btn sm ghost">View profile</span></div></div>
+        <div class="li"><div class="avatar lg ">MG</div>
+          <div class="grow"><div class="nm"><span class="t">Maria Gomez</span><span class="c ellipsis">Integration engineer · Integration lab</span></div>
+            <div class="ml"><span class="tool">SysML v2<span class="meter"><span class="on"></span><span></span><span></span><span></span></span><span class="lvl">Basic</span></span><span class="sr-t">self-rated</span><span class="ot">Python</span></div>
+            <div class="ml"><span class="exs nr">Experience: not recorded</span></div></div>
+          <div class="act"><span class="btn sm"><i data-i="msg" data-c="xs"></i> Message</span><span class="btn sm ghost">View profile</span></div></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="assets/shell.js"></script>
+</body></html>
