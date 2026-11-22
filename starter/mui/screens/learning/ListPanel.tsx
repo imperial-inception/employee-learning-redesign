@@ -25,7 +25,7 @@ export function ListPanel({ id, title, action, footer, children }: { id: string;
   );
 }
 
-/** A small label above a group of rows ("For your goal · Own a subsystem architecture by Q3"). */
+/** A small label above a group of rows ("For your goal · Model a subsystem in SysML v2"). */
 export function PanelSection({ label, sub, id }: { label: string; sub?: string; id?: string }) {
   return (
     <Box sx={{ px: 5, py: 2, display: 'flex', alignItems: 'baseline', gap: 3, bgcolor: 'ds.surface2', borderBottom: 1, borderColor: 'divider', '* + &': { borderTop: 1, borderTopColor: 'divider' } }}>

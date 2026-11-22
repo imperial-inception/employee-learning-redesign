@@ -37,8 +37,11 @@ export type LearningItem = {
 
 /** What the page knows about Jordan. `learningLevel` is chosen in Profile; null shows the one-line level hint. */
 export const PROFILE: { level: Level; learningLevel: Level | null; goal: string } = {
-  level: 'L1', learningLevel: 'L2', goal: 'Own a subsystem architecture by Q3',
+  level: 'L1', learningLevel: 'L2', goal: 'Model a subsystem in SysML v2', // same goal as Home and Pathways
 };
+
+/** The level after the person's current learning level (L2 → L3); null at the top or when no level is chosen. */
+export const nextLevel = (l: Level | null): Level | null => (l && l !== 'L5' ? (`L${Number(l[1]) + 1}` as Level) : null);
 
 const url = (code: string) => `https://lms.example.com/learning/${code.toLowerCase()}`;
 
@@ -51,9 +54,9 @@ const ALL: LearningItem[] = [
   { id: 'safety', title: 'Product Safety & Integrity Awareness', code: 'PS-100', kind: 'formal', level: 'L1', requirement: 'mandatory', provider: 'LMS', format: 'Online', hours: 1, status: 'not_started', added: '2026-09-01',
     description: 'The yearly refresher on reporting safety and product integrity concerns.',
     why: 'Required for Systems Engineers by 15 Jan.', url: url('PS-100') },
-  { id: 'mbse', title: 'Introduction to MBSE', code: 'MB-101', kind: 'formal', level: 'L1', requirement: 'optional', provider: 'LMS', format: 'Online', hours: 0.5, status: 'in_progress', added: '2026-06-18',
-    why: 'You are halfway through; about 15 minutes left.', url: url('MB-101') },
-  { id: 'status', title: 'Clear Status & Issue Communication', code: 'CO-120', kind: 'rel', level: 'L1', requirement: 'optional', provider: 'LMS', format: 'In person', hours: 2, status: 'not_started', added: '2025-08-22',
+  { id: 'mbse', title: 'Introduction to MBSE', code: 'MB-101', kind: 'formal', level: 'L1', requirement: 'optional', provider: 'LMS', format: 'Online', hours: 0.5, status: 'approved', added: '2026-06-18',
+    why: 'Approved 12 Nov; it raised your Architecture modelling.', url: url('MB-101') },
+  { id: 'status', title: 'Clear Status & Issue Communication', code: 'CO-120', kind: 'rel', level: 'L1', requirement: 'optional', provider: 'LMS', format: 'In person', hours: 2, status: 'returned', added: '2025-08-22',
     description: 'Communicate work status, blockers and technical issues clearly and early, in the team’s usual forum and cadence.',
     why: 'Sam Patel named status updates as your focus area on 12 Nov.', url: url('CO-120') },
   { id: 'sow', title: 'Scope & Statement of Work Interpretation', code: 'SW-110', kind: 'exp', level: 'L1', requirement: 'optional', provider: 'LMS', format: 'On the job', hours: 4, status: 'not_started', added: '2025-05-12',
@@ -65,11 +68,11 @@ const ALL: LearningItem[] = [
   // ---------- role · L2 ----------
   { id: 'rq', title: 'Requirements Writing & Review', code: 'RQ-210', kind: 'formal', level: 'L2', requirement: 'mandatory', provider: 'LMS', format: 'Online', hours: 3, status: 'approved', added: '2025-01-15',
     why: 'Required at L2; completed 14 Sep.', url: url('RQ-210') },
-  { id: 'im', title: 'Interface Management', code: 'IM-201', kind: 'formal', level: 'L2', requirement: 'mandatory', provider: 'Academy', format: 'Virtual classroom', hours: 6, status: 'not_started', inPlan: true, added: '2026-04-07',
+  { id: 'im', title: 'Interface Management', code: 'IM-201', kind: 'formal', level: 'L2', requirement: 'optional', provider: 'Academy', format: 'Online', hours: 2, status: 'not_started', added: '2026-04-07',
     description: 'Define, control and coordinate interfaces across stakeholders so interface decisions stay traceable and change-controlled.',
     why: 'Closes your Interface management gap for L2 (you are at 1 of the 2 needed).', url: url('IM-201') },
-  { id: 'fa', title: 'Functional Architecture', code: 'FA-110', kind: 'formal', level: 'L2', requirement: 'optional', provider: 'LMS', format: 'Online', hours: 3, status: 'in_progress', inPlan: true, added: '2026-08-19',
-    why: 'Teaches the architecture views your Q3 goal asks you to own.', url: url('FA-110') },
+  { id: 'fa', title: 'Functional Architecture', code: 'FA-110', kind: 'formal', level: 'L2', requirement: 'optional', provider: 'LMS', format: 'Online', hours: 3, status: 'submitted', inPlan: true, added: '2026-08-19',
+    why: 'Teaches the architecture views your SysML v2 goal asks you to model.', url: url('FA-110') },
   { id: 'tools', title: 'Multi-Tool Practitioner for Issue Resolution', code: 'IR-210', kind: 'exp', level: 'L2', requirement: 'optional', provider: 'LMS', format: 'On the job', hours: 8, status: 'not_started', added: '2025-10-30',
     description: 'Use several integration and V&V tools in enough depth to support cross-functional issue resolution.',
     why: 'Practise on change request CR-482, which touches three of these tools.', url: url('IR-210') },
@@ -121,14 +124,14 @@ export type RecGroup = { id: string; label: string; sub?: string; items: Learnin
 
 export const RECOMMENDED: RecGroup[] = [
   { id: 'goal', label: 'For your goal', sub: PROFILE.goal, items: pick(['fa', 'ics', 'sicase']) },
-  { id: 'level', label: `To reach ${PROFILE.learningLevel ?? 'your next level'}`, sub: 'Gaps between your profile and the next level', items: pick(['tools', 'trade']) },
+  { id: 'level', label: `To reach ${nextLevel(PROFILE.learningLevel) ?? 'your next level'}`, sub: 'Gaps between your profile and the next level', items: pick(['tools', 'trade']) },
   { id: 'required', label: 'Required for your role', sub: 'Systems Engineer', items: pick(['safety', 'im']) },
 ];
 
 /** Example questions: a short chip label, and the full question it puts in the ask bar. */
 export const EXAMPLE_QUESTIONS: Array<{ label: string; q: string }> = [
   { label: 'A pathway for interface integration', q: 'Recommend a published pathway for systems engineering and interface integration' },
-  { label: 'What next to reach L2?', q: 'What should I learn next to reach L2?' },
+  { label: 'What next to reach L3?', q: 'What should I learn next to reach L3?' },
   { label: 'Trainings completed this year', q: 'How many trainings have I completed this year?' },
 ];
 
@@ -140,13 +143,13 @@ export const ANSWER: { paragraphs: AnswerPart[][]; pathway: string; matches: Lea
   pathway: 'Systems integration and verification',
   paragraphs: [
     ['The published pathway “Systems integration and verification” fits best. It starts with System Integration Overview ', { cite: 1 }, ', which you completed in October, so you can go straight to the interface work.'],
-    ['Interface Management ', { cite: 2 }, ' closes your L2 gap and is already in your plan; Interface Control Specifications ', { cite: 3 }, ' then shows how to write the specs your subsystem needs. Agree the order with Sam Patel.'],
+    ['Interface Management ', { cite: 2 }, ' closes your L2 gap; Interface Control Specifications ', { cite: 3 }, ' then shows how to write the specs your subsystem needs. Agree the order with Sam Patel.'],
   ],
   matches: pick(['sio', 'im', 'ics']),
 };
 
 export const FOLLOW_UPS: Array<{ q: string; a: string }> = [
-  { q: 'Compare these recommendations', a: 'System Integration Overview is the broad introduction (done). Interface Management is the core skill and required at L2. Interface Control Specifications is the hands-on follow-on: take it after Interface Management.' },
+  { q: 'Compare these recommendations', a: 'System Integration Overview is the broad introduction (done). Interface Management is the core skill at L2. Interface Control Specifications is the hands-on follow-on: take it after Interface Management.' },
   { q: 'How could I apply this learning?', a: 'Use change request CR-482: list its interfaces, name an owner for each and agree the change path with Sam Patel. That is also good evidence for your L2 review.' },
   { q: 'Which one is quickest?', a: 'Interface Control Specifications, at 3 hours online. Interface Management is a 6-hour virtual classroom, scheduled monthly.' },
 ];

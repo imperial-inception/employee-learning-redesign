@@ -57,11 +57,11 @@ export const PATHWAYS: Pathway[] = [
       { id: 'advanced', title: 'Develop advanced practice and collaboration' },
     ],
     activities: [
-      { id: 'mb-101', title: 'Introduction to MBSE', code: 'MB-101', kind: 'formal', level: 'L1', stageId: 'foundations', status: 'approved', hours: 3, url: lms('MB-101'),
+      { id: 'mb-101', title: 'Introduction to MBSE', code: 'MB-101', kind: 'formal', level: 'L1', stageId: 'foundations', status: 'approved', hours: 0.5, url: lms('MB-101'),
         why: 'The model-based basics every later step assumes.' },
       { id: 'sy-140', title: 'SysML Language & Architecture Overview', code: 'SY-140', kind: 'formal', level: 'L2', stageId: 'foundations', status: 'not_started', hours: 2, url: lms('SY-140'),
         why: 'Finishes “Explore the foundations” and gives you the SysML basics your goal needs.' },
-      { id: 'fa-110', title: 'Functional Architecture', code: 'FA-110', kind: 'formal', level: 'L3', stageId: 'architecture', status: 'submitted', hours: 3, url: lms('FA-110'),
+      { id: 'fa-110', title: 'Functional Architecture', code: 'FA-110', kind: 'formal', level: 'L2', stageId: 'architecture', status: 'submitted', hours: 3, url: lms('FA-110'),
         why: 'Creates the functional architecture artifacts used for integration and traceability.' },
       { id: 'gov', title: 'Model & Configuration Governance at Team Scale', kind: 'exp', level: 'L4', stageId: 'architecture', status: 'not_started', hours: 2, url: lms('GOV-OJT'),
         why: 'Practise baselines, branching and review cadence on your team’s model.', waitingOn: 'Functional Architecture' },
@@ -81,7 +81,7 @@ export const PATHWAYS: Pathway[] = [
     activities: [
       { id: 'rf-105', title: 'RFLP Modeling Basics', code: 'RF-105', kind: 'formal', level: 'L1', stageId: 'rflp', status: 'approved', hours: 3, url: lms('RF-105'),
         why: 'Walks one small system through its requirements, functional, logical and physical views.' },
-      { id: 'im-201', title: 'Interface Management', code: 'IM-201', kind: 'formal', level: 'L2', stageId: 'rflp', status: 'approved', hours: 2, url: lms('IM-201'),
+      { id: 'im-201', title: 'Interface Management', code: 'IM-201', kind: 'formal', level: 'L2', stageId: 'rflp', status: 'not_started', hours: 2, url: lms('IM-201'),
         why: 'Gives every interface between subsystems a clear owner.' },
       { id: 'rt-220', title: 'Requirements Traceability in Models', code: 'RT-220', kind: 'formal', level: 'L2', stageId: 'trace', status: 'in_progress', hours: 2, url: lms('RT-220'),
         why: 'You are halfway through; it links requirements to the model elements you built in RFLP.' },

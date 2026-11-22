@@ -11,8 +11,12 @@ Make the existing app **look and feel better without changing what it is**:
 1. **Re-skin:** apply one polished MUI theme to the whole app. Same brand (blue top bar, navy surfaces), same layout,
    same screens, same flows. Cleaner components: consistent radii and heights, hairline borders instead of heavy
    gradients, clearer type hierarchy, readable secondary text, tinted status chips, calm alerts, a finished light mode.
-2. **Restructure two areas for a better experience:** **Learning** and **Pathways** get a new inside structure
-   (below), in the same brand and frame. **Home** keeps its layout with a few small fixes.
+2. **Restructure three areas for a better experience:** **Home** becomes a skills home, and **Learning** and
+   **Pathways** get a new inside structure (below), in the same brand and frame.
+
+**How to build them right:** `docs/RESKIN_SCREENS.md` is the implementation spec: what each section is for, the data
+contract (TypeScript types in `starter/mui/data/*.ts`), what the backend computes vs what the screen displays, privacy,
+empty states, gaps and tests. Read it before Phase 2.
 
 **Backend, API contracts, permissions and business rules do not change.** If a fix needs data the API doesn't return,
 hide that part, show the honest empty state, and log it in `design/GAPS.md` (field, screen, why).
@@ -46,10 +50,14 @@ cd starter && npm install && npm run dev        →  http://localhost:3100/mui
 
 ## The fixes (only these)
 
-**Home**
-- "Choose your level" appears **once** (the info strip with its button), not in 3–4 places.
-- "Your next steps": no "Course link missing" badge; each item shows one specific reason ("Fits your focus goal: SysML v2",
-  "Required for your role by 15 Jan"); items suit the person's level.
+**Home** (restructured as a skills home; `?state=new` shows the first-run version)
+- **Your skills** is the centrepiece: each skill area's strength (approved learning + manager-confirmed experience),
+  "Gap for <next level>" marks, and "Not recorded" (never 0) when unknown.
+- **Your focus** (goal, progress, next step) and **Needs you** (returned, due, in review) on the right.
+- **Grow a skill**: for the biggest gap, three ways to grow: a course, a colleague who's strong in it (opt-in only),
+  and a community event. **Recently added**: the latest approved items and the skill each raised.
+- The three stat cards become one summary line; the level prompt appears once; no "Course link missing" badges.
+- New users see a **Get started** checklist instead of empty boxes.
 
 **Learning** (restructured; tab in the URL `?tab=recommended|role|browse`)
 - Tabs: **Recommended** (default) · **For your role** · **Browse all** (was "Discover learning").
@@ -87,8 +95,7 @@ of Home, the three Learning tabs, Pathways, Goals, Profile and one admin table i
 list of anything that looks wrong. Done when: nothing broke (tests, lint, types), no screen changed layout, AA contrast holds.
 
 **Phase 2: The three areas**, one per commit: Home's next steps → Learning → Pathways. Rebuild each against the
-starter's `/mui` page (Home: today's structure + fixes; Learning and Pathways: the new structure), wired to the real
-API (adapters, not new endpoints).
+starter's `/mui` page, following `docs/RESKIN_SCREENS.md`, wired to the real API (adapters, not new endpoints).
 Done when: side by side with the starter page in both themes there's no unexplained difference, the fixes are in,
 existing tests pass, axe is clean, keyboard works.
 
