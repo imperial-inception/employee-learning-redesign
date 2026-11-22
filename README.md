@@ -10,7 +10,8 @@ High-fidelity redesign of **Skill Portal**, an employee development app whose go
 
 | Path | What it is |
 |---|---|
-| `CODEX_PROMPT.md` | **Start here if you're the implementer.** The full brief: goal, rules, phases, verification loop, done-when, report format |
+| `CODEX_RESKIN.md` | **Start here (current plan).** Re-skin the existing app with one polished MUI theme (same brand, layout and screens) and lightly restructure Home's next steps, Learning and Pathways. Reference: `starter/` → `/mui` |
+| `CODEX_PROMPT.md` | Full-redesign brief (reference for later, not the current task). The full brief: goal, rules, phases, verification loop, done-when, report format |
 | `starter/` | **The design as working code** for a Next.js Pages Router app (React 18, TypeScript 5, alongside MUI 5 and Tailwind 4): tokens, fonts, theme switch, components, shell, and all 62 views as React, each measured against its PNG. See [starter/README.md](starter/README.md) and [starter/PORTING.md](starter/PORTING.md) |
 | `codex/GOAL.md` | Text for Codex `/goal` (use after the first screen passes the loop) |
 | `codex/AGENTS.md` | Block to paste into the app repo's `AGENTS.md` |
@@ -100,7 +101,11 @@ A file named `NNx-name` is another state of screen `NN`, built in the same task.
 
 **Roles and manager-set goals:** a manager picks each direct report's professional role (20b, or inline on Team 10b) from the choices admins configure (15d), and can set a goal for a direct report (20c); the employee sees it labelled “Set by …” (04b).
 
-## Using this with Codex (summary)
+## Current plan: re-skin first
+
+The app keeps its brand, layout and screens. One MUI theme (`starter/mui/theme`) polishes every screen at once, and three areas get small, specific fixes. Run `cd starter && npm run dev` and open `/mui` (theme gallery), `/mui/home`, `/mui/learning`, `/mui/pathways`. Hand Codex **`CODEX_RESKIN.md`**. The full redesign below stays as a reference for later.
+
+## Using this with Codex for the full redesign (later)
 
 1. Copy `design/`, `docs/`, `codex/` and `CODEX_PROMPT.md` into the app repository.
 2. Paste the block from `codex/AGENTS.md` into the app's `AGENTS.md`; restart Codex.

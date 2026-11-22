@@ -8,6 +8,17 @@ talks to a backend: the job of this folder is to hand over the **look**, proven,
 pixel-identical, and the worst measures well under the 3% pass mark. This is with Tailwind's preflight and MUI's
 CssBaseline both active, like in a typical host app. Re-measure any time with `npm run diff` (see below).
 
+## Re-skin (current plan): `/mui`
+
+The app keeps its own brand, layout and screens; one MUI theme makes it look better.
+
+- `mui/theme/index.ts` (`createAppTheme(mode, brand?)`, `appThemeOptions` for merging with a company theme) and
+  `mui/theme/brand.ts` (the brand colours as inputs; defaults approximate today's app).
+- `/mui`: every MUI component the app uses, themed. `/mui/home`, `/mui/learning`, `/mui/pathways`: today's screens
+  recreated in MUI with the small fixes from `../CODEX_RESKIN.md`.
+- `mui/components/AppFrame.tsx`: today's frame (blue top bar, left menu, breadcrumbs), polished.
+- `mui/theme/linear.ts`: the full redesign's black/indigo theme, used only by the design-kit pages below.
+
 ## Run it
 
 ```powershell

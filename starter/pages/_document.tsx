@@ -8,6 +8,7 @@ export default function Document(props: DocumentProps & DocumentHeadTagsProps) {
       <Head>
         {/* Sets data-theme before first paint: no flash of the wrong theme. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/GeistMono-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         {/* MUI / Emotion SSR styles (only needed because the app also renders MUI components). */}

@@ -11,24 +11,24 @@ import { AppCacheProvider } from '@mui/material-nextjs/v13-pagesRouter';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { DsRoot } from '@/components/ds';
-import { createDsMuiTheme } from '@/lib/mui-theme';
+import { createAppTheme } from '@/mui/theme';
+import { createDsTheme } from '@/mui/theme/linear';
 import { useThemeHotkey, useThemeMode } from '@/lib/theme';
 
 export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps, router } = props;
   const mode = useThemeMode();
-  const muiTheme = useMemo(() => createDsMuiTheme(mode), [mode]);
+  // /mui/* = the re-skin of the real app: its own screens in plain MUI, polished by the brand theme (no kit CSS).
+  // Everything else = the design kit, with its own black/indigo MUI theme.
+  const reskin = router.pathname.startsWith('/mui');
+  const muiTheme = useMemo(() => (reskin ? createAppTheme(mode) : createDsTheme(mode)), [mode, reskin]);
   useThemeHotkey();
 
   return (
     <AppCacheProvider {...props}>
-      {/* MUI is themed from the same tokens, so any MUI component (data grid, date picker, an old screen)
-          sits comfortably next to the redesign. CssBaseline is on to mirror a typical MUI app. */}
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
-        <DsRoot>
-          <Component {...pageProps} />
-        </DsRoot>
+        {reskin ? <Component {...pageProps} /> : <DsRoot><Component {...pageProps} /></DsRoot>}
       </ThemeProvider>
     </AppCacheProvider>
   );
